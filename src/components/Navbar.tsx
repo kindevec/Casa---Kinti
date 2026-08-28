@@ -149,33 +149,33 @@ export const Navbar: React.FC = () => {
               <span>WhatsApp Directo</span>
             </a>
 
-            <div className="flex items-center justify-center gap-4 text-[#6B7FD1]">
+            <div className="flex items-center justify-center gap-4">
               <a
                 href="https://www.tiktok.com/@johapro3"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok Casa Kinti"
-                className="p-2.5 rounded-full bg-white/80 hover:bg-white hover:text-[#9B8FD9] transition-colors border border-[#C9D4F5]"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
               >
-                <span className="font-bold text-xs">TikTok</span>
+                <img src="/icons/tiktok.png" alt="TikTok" className="w-full h-full object-cover" />
               </a>
               <a
                 href="https://www.instagram.com/casa_kinti_"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Casa Kinti"
-                className="p-2.5 rounded-full bg-white/80 hover:bg-white hover:text-[#9B8FD9] transition-colors border border-[#C9D4F5]"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
               >
-                <Instagram className="w-5 h-5" />
+                <img src="/icons/instagram.png" alt="Instagram" className="w-full h-full object-cover" />
               </a>
               <a
                 href="https://www.facebook.com/casakinti"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook Casa Kinti"
-                className="p-2.5 rounded-full bg-white/80 hover:bg-white hover:text-[#9B8FD9] transition-colors border border-[#C9D4F5]"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
               >
-                <Facebook className="w-5 h-5" />
+                <img src="/icons/facebook.png" alt="Facebook" className="w-full h-full object-cover" />
               </a>
             </div>
 

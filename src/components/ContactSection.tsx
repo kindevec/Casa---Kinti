@@ -332,7 +332,7 @@ export const ContactSection: React.FC = () => {
 
               </div>
 
-              {/* Redes Sociales con Enlaces Nuevos */}
+              {/* Redes Sociales con Enlaces y Logos Oficiales */}
               <div className="pt-4 border-t border-[#C9D4F5]/60">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#6B7FD1] block mb-3">
                   Síguenos en Redes Sociales:
@@ -342,29 +342,40 @@ export const ContactSection: React.FC = () => {
                     href={CONTACT_INFO.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3.5 py-2 rounded-xl bg-[#DCEEFB] hover:bg-[#9B8FD9] hover:text-white text-[#3E4A7A] text-xs font-bold transition-all border border-[#C9D4F5] flex items-center gap-1.5"
+                    className="w-10 h-10 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-all duration-200 active:scale-95"
+                    aria-label="TikTok Casa Kinti"
                   >
-                    <span>TikTok</span>
+                    <img src="/icons/tiktok.png" alt="TikTok" className="w-full h-full object-cover" />
                   </a>
 
                   <a
                     href={CONTACT_INFO.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl bg-[#DCEEFB] hover:bg-[#9B8FD9] hover:text-white text-[#3E4A7A] transition-all border border-[#C9D4F5]"
-                    aria-label="Instagram"
+                    className="w-10 h-10 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-all duration-200 active:scale-95"
+                    aria-label="Instagram Casa Kinti"
                   >
-                    <Instagram className="w-4 h-4" />
+                    <img src="/icons/instagram.png" alt="Instagram" className="w-full h-full object-cover" />
                   </a>
 
                   <a
                     href={CONTACT_INFO.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl bg-[#DCEEFB] hover:bg-[#9B8FD9] hover:text-white text-[#3E4A7A] transition-all border border-[#C9D4F5]"
-                    aria-label="Facebook"
+                    className="w-10 h-10 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-all duration-200 active:scale-95"
+                    aria-label="Facebook Casa Kinti"
                   >
-                    <Facebook className="w-4 h-4" />
+                    <img src="/icons/facebook.png" alt="Facebook" className="w-full h-full object-cover" />
+                  </a>
+
+                  <a
+                    href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-all duration-200 active:scale-95"
+                    aria-label="WhatsApp Casa Kinti"
+                  >
+                    <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-full h-full object-cover" />
                   </a>
                 </div>
               </div>

@@ -38,43 +38,43 @@ export const HeroSection: React.FC = () => {
          ======================================================== */}
       <aside
         aria-label="Redes sociales de Casa Kinti"
-        className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 bg-white/90 backdrop-blur-md px-2.5 py-4 rounded-full border border-[#C9D4F5] shadow-lg shadow-[#3E4A7A]/10"
+        className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2.5 bg-white/95 backdrop-blur-md p-2 rounded-full border border-[#C9D4F5] shadow-lg shadow-[#3E4A7A]/10"
       >
         <a
           href={CONTACT_INFO.tiktok}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="TikTok Casa Kinti"
-          className="w-8 h-8 rounded-full bg-[#DCEEFB] hover:bg-[#6B7FD1] text-[#3E4A7A] hover:text-white flex items-center justify-center text-[10px] font-bold transition-all duration-200 hover:scale-110"
+          className="w-8 h-8 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95"
         >
-          <span>TK</span>
+          <img src="/icons/tiktok.png" alt="TikTok Casa Kinti" className="w-full h-full object-cover" />
         </a>
         <a
           href={CONTACT_INFO.instagram}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram Casa Kinti"
-          className="w-8 h-8 rounded-full bg-[#DCEEFB] hover:bg-[#6B7FD1] text-[#3E4A7A] hover:text-white flex items-center justify-center transition-all duration-200 hover:scale-110"
+          className="w-8 h-8 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95"
         >
-          <Instagram className="w-4 h-4" />
+          <img src="/icons/instagram.png" alt="Instagram Casa Kinti" className="w-full h-full object-cover" />
         </a>
         <a
           href={CONTACT_INFO.facebook}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook Casa Kinti"
-          className="w-8 h-8 rounded-full bg-[#DCEEFB] hover:bg-[#6B7FD1] text-[#3E4A7A] hover:text-white flex items-center justify-center transition-all duration-200 hover:scale-110"
+          className="w-8 h-8 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95"
         >
-          <Facebook className="w-4 h-4" />
+          <img src="/icons/facebook.png" alt="Facebook Casa Kinti" className="w-full h-full object-cover" />
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp Casa Kinti"
-          className="w-8 h-8 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-xs"
+          className="w-8 h-8 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95"
         >
-          <MessageCircle className="w-4 h-4" />
+          <img src="/icons/whatsapp.png" alt="WhatsApp Casa Kinti" className="w-full h-full object-cover" />
         </a>
       </aside>
 
