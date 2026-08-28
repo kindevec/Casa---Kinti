@@ -1,11 +1,187 @@
 import React from 'react';
-import { PATH_STEPS, WHATSAPP_PHONE } from '../data';
-import { ButterflyGraphic, FloralBouquet } from './FloralDecorations';
-import { BookOpen, Sparkles, Scale, Flower2, ArrowRight, MessageCircle, Clock, Zap } from 'lucide-react';
+import {
+  PATH_STEPS_HOLISTICA,
+  PATH_STEPS_EDUCACION,
+  WHATSAPP_PHONE,
+} from '../data';
+import { useNicheMode } from '../context/NicheContext';
+import { FloralBouquet, ButterflyGraphic } from './FloralDecorations';
+import { CoverflowCarousel, CoverflowSlide } from './ui/coverflow-carousel';
+import {
+  BookOpen,
+  Sparkles,
+  Scale,
+  Flower2,
+  ArrowRight,
+  Eye,
+  Leaf,
+  Brain,
+  GraduationCap,
+} from 'lucide-react';
+
+const HOLISTICA_COVERFLOW_SLIDES: CoverflowSlide[] = [
+  {
+    src: '/tarot-hero.png',
+    alt: 'Lectura Express de Tarot Terapéutico',
+    title: 'Lectura Express de Tarot Terapéutico',
+    subtitle:
+      'Consulta terapéutica y orientación espiritual con preguntas claras, sin adivinar. Enfocada en tu autoconocimiento y desbloqueo de dudas.',
+    meta: [
+      { label: 'Duración', value: '15 min' },
+      { label: 'Modalidad', value: 'Presencial u Online' },
+    ],
+    ctaText: 'Reservar Lectura por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, quiero reservar mi Lectura Express de Tarot Terapéutico.',
+  },
+  {
+    src: '/johanna-hero.png',
+    alt: 'Sesión de Limpia Energética y Medicina Andina',
+    title: 'Limpia Energética & Medicina Andina',
+    subtitle:
+      'Liberación profunda de cargas pesadas, corte de lazos densos y equilibrio bioenergético con sahumerios y plantas sagradas andinas.',
+    meta: [
+      { label: 'Duración', value: '60 min' },
+      { label: 'Técnica', value: 'Medicina Andina' },
+    ],
+    ctaText: 'Agendar Limpia por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, me gustaría agendar una Sesión de Limpia Energética & Armonización Áurica.',
+  },
+  {
+    src: '/pulseras-amuletos.png',
+    alt: 'Pulseras Amuletos de piedras naturales consagradas',
+    title: 'Pulseras Amuletos con Radiestesia',
+    subtitle:
+      'Pulseras de piedras naturales con estudio radiestésico con péndulo para saber cuál es la gema que tu energía necesita.',
+    meta: [
+      { label: 'Estudio Radiestésico', value: 'Personalizado' },
+      { label: 'Piedras', value: '100% Naturales' },
+    ],
+    ctaText: 'Pedir mi Pulsera por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo encargar una Pulsera Amuleto con estudio radiestésico personalizado.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
+    alt: 'Flores de Bach y preparados botánicos medicinales',
+    title: 'Consulta & Fórmula Floral de Bach',
+    subtitle:
+      'Diagnóstico emocional y preparación de gotero personalizado de 30ml con esencias florales de Bach para tratar ansiedad, insomnio y estrés.',
+    meta: [
+      { label: 'Frasco', value: 'Gotero 30ml incluido' },
+      { label: 'Duración', value: '45 min' },
+    ],
+    ctaText: 'Solicitar Terapia Floral por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo una consulta de Flores de Bach con mi fórmula personalizada.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80',
+    alt: 'Sanación y paz interior profunda',
+    title: 'Sanación Bioenergética & Paz Interior',
+    subtitle:
+      'Alineación de chakras, armonización vibracional con cuencos y reconexión espiritual profunda para tu vitalidad diaria.',
+    meta: [
+      { label: 'Sesión', value: '75 min' },
+      { label: 'Efecto', value: 'Armonía & Serenidad' },
+    ],
+    ctaText: 'Reservar Sanación por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo agendar una sesión de Sanación Bioenergética & Paz Interior.',
+  },
+];
+
+const EDUCACION_COVERFLOW_SLIDES: CoverflowSlide[] = [
+  {
+    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    alt: 'Diagnóstico Psicopedagógico y Evaluación Cognitiva',
+    title: 'Diagnóstico Psicopedagógico Integral',
+    subtitle:
+      'Evaluación personalizada de dificultades de aprendizaje, desarrollo del lenguaje y estilo cognitivo con informe para escuela y hogar.',
+    meta: [
+      { label: 'Duración', value: '60 a 75 min' },
+      { label: 'Especialista', value: 'Máster en Aprendizaje' },
+    ],
+    ctaText: 'Agendar Diagnóstico por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, me gustaría agendar un Diagnóstico Psicopedagógico Integral para mi hijo(a).',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+    alt: 'Estimulación Temprana e Inmersión Bilingüe Infantil',
+    title: 'Play & Learn: Inmersión Bilingüe',
+    subtitle:
+      'Estimulación temprana del lenguaje en inglés y español a través de canciones, juegos sensoriales y dinámicas vivenciales.',
+    meta: [
+      { label: 'Sesiones', value: '4 al mes' },
+      { label: 'Grupos', value: 'Reducidos por edad' },
+    ],
+    ctaText: 'Inscribir a mi Hijo(a) por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo información para inscribir a mi hijo(a) en el Taller de Inmersión Bilingüe Infantil.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    alt: 'Asesoría y Acompañamiento para Padres y Familias',
+    title: 'Escuela & Pautas de Estudio en el Hogar',
+    subtitle:
+      'Orientación para padres con estrategias pedagógicas concretas para crear rutinas de estudio amigables y apoyar la autonomía sin frustración.',
+    meta: [
+      { label: 'Duración', value: '60 min' },
+      { label: 'Modalidad', value: 'Presencial u Online' },
+    ],
+    ctaText: 'Solicitar Asesoría por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, quiero una sesión de asesoría pedagógica y pautas para el hogar.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
+    alt: 'Material Didáctico Multisensorial y Kits de Aprendizaje',
+    title: 'Kit Didáctico de Lectoescritura & Atención',
+    subtitle:
+      'Pack de fichas táctiles, tarjetas fonéticas bilingües y juegos de motricidad diseñados para reforzar el aprendizaje lúdico en casa.',
+    meta: [
+      { label: 'Material', value: 'Impreso & Plastificado' },
+      { label: 'Incluye', value: 'Guía para padres' },
+    ],
+    ctaText: 'Adquirir Kit por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo adquirir el Kit Didáctico Multisensorial de Refuerzo.',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=800&q=80',
+    alt: 'Seguridad y Éxito Escolar en Niños Felices',
+    title: 'Acompañamiento & Autonomía Escolar',
+    subtitle:
+      'Seguimiento pedagógico continuo para construir seguridad, motivación y felicidad en su etapa escolar con bases sólidas.',
+    meta: [
+      { label: 'Enfoque', value: 'Pedagogía Positiva' },
+      { label: 'Impacto', value: 'Autonomía & Éxito' },
+    ],
+    ctaText: 'Consultar Acompañamiento por WhatsApp',
+    whatsappMessage:
+      'Hola Johanna, deseo información sobre el programa de Acompañamiento & Autonomía Escolar.',
+  },
+];
 
 export const PathSection: React.FC = () => {
+  const { mode } = useNicheMode();
+
+  const steps = mode === 'educacion' ? PATH_STEPS_EDUCACION : PATH_STEPS_HOLISTICA;
+  const coverflowSlides =
+    mode === 'educacion' ? EDUCACION_COVERFLOW_SLIDES : HOLISTICA_COVERFLOW_SLIDES;
+
   const getStepIcon = (iconName: string) => {
     switch (iconName) {
+      case 'Eye':
+        return <Eye className="w-7 h-7 text-[#6B7FD1]" />;
+      case 'Leaf':
+        return <Leaf className="w-7 h-7 text-[#9B8FD9]" />;
+      case 'Brain':
+        return <Brain className="w-7 h-7 text-[#6B7FD1]" />;
+      case 'GraduationCap':
+        return <GraduationCap className="w-7 h-7 text-[#9B8FD9]" />;
       case 'BookOpen':
         return <BookOpen className="w-7 h-7 text-[#6B7FD1]" />;
       case 'Sparkles':
@@ -19,39 +195,48 @@ export const PathSection: React.FC = () => {
     }
   };
 
-  const tarotWhatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
-    'Hola, quiero reservar mi Lectura Express de Tarot Terapéutico por $15'
-  )}`;
-
   return (
-    <div className="relative py-20 overflow-hidden bg-gradient-to-b from-[#C9D4F5]/40 via-[#FFFFFF] to-[#DCEEFB]/40">
+    <div
+      className="relative pt-44 sm:pt-52 md:pt-60 pb-2 overflow-hidden bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF]/70 to-[#DCEEFB]/40 transition-colors duration-500"
+    >
       {/* Elementos botánicos flotantes sutiles */}
       <FloralBouquet className="absolute top-10 right-4 w-36 h-36 opacity-40 -z-5" />
       <FloralBouquet className="absolute bottom-10 left-4 w-36 h-36 opacity-40 -z-5" flip />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Encabezado de la Sección */}
+        {/* ========================================================
+            SECCIÓN SUPERIOR: 4 Pasos del Proceso (Sin Insignia)
+           ======================================================== */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#DCEEFB] text-[#6B7FD1] text-xs font-bold uppercase tracking-[0.2em] border border-[#9B8FD9]/30">
-            <span>Tu Recorrido Hacia la Plenitud</span>
-          </div>
-
           <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A] leading-tight">
-            El bienestar no es casualidad,{' '}
-            <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-              es un camino
-            </span>
+            {mode === 'educacion' ? (
+              <>
+                El aprendizaje sin barreras,{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  es un proceso
+                </span>
+              </>
+            ) : (
+              <>
+                El bienestar no es casualidad,{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  es un camino
+                </span>
+              </>
+            )}
           </h2>
 
           <p className="text-base text-[#3E4A7A]/80 max-w-xl mx-auto font-normal">
-            Cada paso está diseñado con empatía y rigor profesional para guiar tu proceso de autoconocimiento o apoyar el desarrollo de tus hijos.
+            {mode === 'educacion'
+              ? 'Cada etapa está guiada con calidez y rigor psicopedagógico para potenciar el talento único, la autonomía y el bilingüismo de tus pequeños.'
+              : 'Cada paso está diseñado con empatía y rigor profesional para guiar tu proceso de autoconocimiento, sanación energética y equilibrio integral.'}
           </p>
         </div>
 
-        {/* Fila de 4 Íconos con Mariposa Decorativa */}
+        {/* Fila de 4 Tarjetas de Pasos con Mariposa Decorativa */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {PATH_STEPS.map((step, idx) => (
+          {steps.map((step, idx) => (
             <div
               key={step.number}
               id={`path-step-${step.number}`}
@@ -94,73 +279,62 @@ export const PathSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Botón CTA centrado */}
-        <div className="text-center mt-12">
+        {/* Botón CTA central hacia servicios */}
+        <div className="text-center mt-12 mb-20">
           <a
             href="#servicios"
             id="path-cta-button"
-            className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-white text-base font-semibold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
           >
-            <span>Comienza tu camino</span>
-            <ArrowRight className="w-4 h-4 text-white" />
+            <span>
+              {mode === 'educacion'
+                ? 'Explora nuestros programas educativos'
+                : 'Comienza tu camino de sanación'}
+            </span>
+            <ArrowRight className="w-4 h-4 text-black" />
           </a>
         </div>
 
-        {/* Banner de Promoción Especial Tarot Terapéutico */}
-        <div className="mt-16 relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#6B7FD1] via-[#8596DD] to-[#9B8FD9] p-8 sm:p-10 text-white shadow-xl border border-white/40">
-          {/* Elementos decorativos en banner */}
-          <ButterflyGraphic className="absolute -top-2 right-8 opacity-85" size={42} color="pink" />
-          <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-white/10 blur-2xl" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="space-y-3 text-center lg:text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-xs px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
-                <Zap className="w-3.5 h-3.5 text-[#F5C84C]" />
-                <span>Promoción Especial de Inicio de Año</span>
-              </div>
-
-              <h3 className="font-serif-display text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                Lectura Express de Tarot Terapéutico
-              </h3>
-
-              <p className="text-sm sm:text-base text-white/90 leading-relaxed font-light">
-                Consulta terapéutica y orientación espiritual con preguntas claras, sin adivinar. Enfocada en tu autoconocimiento, desbloqueo de dudas y toma de decisiones.
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs sm:text-sm font-medium text-white/90">
-                <span className="flex items-center gap-1 bg-black/10 px-3 py-1 rounded-full">
-                  <Clock className="w-3.5 h-3.5 text-[#F5C84C]" /> 15 minutos de sesión
-                </span>
-                <span className="flex items-center gap-1 bg-black/10 px-3 py-1 rounded-full">
-                  ✦ Modalidad Presencial u Online
-                </span>
-              </div>
-            </div>
-
-            {/* Precio & Botón WhatsApp directo */}
-            <div className="flex flex-col sm:flex-row lg:flex-col items-center gap-4 shrink-0">
-              <div className="text-center lg:text-right">
-                <span className="text-xs text-white/80 line-through block">Precio regular: $25.00</span>
-                <div className="flex items-baseline justify-center lg:justify-end gap-1">
-                  <span className="text-4xl sm:text-5xl font-bold font-serif-display text-[#F5C84C]">
-                    $15
+        {/* ========================================================
+            CARRUSEL 3D COVERFLOW: Directo sin contenedor de fondo
+           ======================================================== */}
+        <div className="relative pt-6">
+          {/* Título de la galería interactiva (Sin Insignia) */}
+          <div className="text-center max-w-2xl mx-auto space-y-2 mb-6">
+            <h3 className="font-serif-display text-3xl sm:text-4xl text-[#3E4A7A] font-bold">
+              {mode === 'educacion' ? (
+                <>
+                  Programas &{' '}
+                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
+                    Talleres Destacados
                   </span>
-                  <span className="text-xs uppercase tracking-wider text-white/90">USD</span>
-                </div>
-              </div>
-
-              <a
-                href={tarotWhatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="tarot-promo-whatsapp-btn"
-                className="inline-flex items-center justify-center gap-2.5 bg-white text-[#3E4A7A] hover:bg-[#DCEEFB] font-bold text-sm sm:text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap"
-              >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                <span>Reservar por WhatsApp</span>
-              </a>
-            </div>
+                </>
+              ) : (
+                <>
+                  Experiencias &{' '}
+                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
+                    Terapias en Promoción
+                  </span>
+                </>
+              )}
+            </h3>
+            <p className="text-xs sm:text-sm text-[#3E4A7A]/75">
+              Pasa el cursor sobre las imágenes para ver los detalles y agendar directamente.
+            </p>
           </div>
+
+          {/* Componente 3D CoverflowCarousel con información en Hover */}
+          <CoverflowCarousel
+            slides={coverflowSlides}
+            cardWidth="clamp(240px, 30vw, 360px)"
+            rotate={42}
+            depth={0.6}
+            autoPlayInterval={2400}
+            showCaption={false}
+            showNavigation={true}
+            showPagination={true}
+            whatsappPhone={WHATSAPP_PHONE}
+          />
         </div>
 
       </div>

@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useNicheMode } from '../context/NicheContext';
 import { SERVICES_ANCESTRAL, SERVICES_EDUCACION, INCLUDED_EXPERIENCE_ITEMS, TESTIMONIALS, WHATSAPP_PHONE } from '../data';
 import { ServiceItem } from '../types';
-import { ButterflyGraphic, FloralBouquet, FloralPhotoFrame } from './FloralDecorations';
-import { Sparkles, Flower, Leaf, Eye, Brain, Languages, CheckSquare, Calendar, Check, Star, MessageCircle, ArrowRight } from 'lucide-react';
+import { ButterflyGraphic, FloralBouquet, FloralPhotoFrame, WhatsAppOfficialIcon } from './FloralDecorations';
+import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
+import { AnimatedConstructPhoto } from './AnimatedConstructPhoto';
+import { FlowingExperienceList } from './FlowingExperienceList';
+import { ScrollReelTestimonials } from './ui/scroll-reel-testimonials';
+import { Sparkles, Flower, Leaf, Eye, Brain, Languages, CheckSquare, Calendar, Check, Star, ArrowRight, BookOpen, GraduationCap, Award, HeartHandshake, TrendingUp, Puzzle } from 'lucide-react';
 
 export const ServicesSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'ancestral' | 'educacion'>('all');
+  const { mode } = useNicheMode();
 
   const getServiceIcon = (iconName: string, category: 'ancestral' | 'educacion') => {
     const isAncestral = category === 'ancestral';
@@ -15,9 +21,9 @@ export const ServicesSection: React.FC = () => {
       case 'Flower':
         return <Flower className={`w-6 h-6 ${isAncestral ? 'text-[#9B8FD9]' : 'text-[#F0C6D9]'}`} />;
       case 'Leaf':
-        return <Leaf className={`w-6 h-6 text-[#12A89D]`} />;
+        return <Leaf className="w-6 h-6 text-[#12A89D]" />;
       case 'Eye':
-        return <Eye className={`w-6 h-6 text-[#6B7FD1]`} />;
+        return <Eye className="w-6 h-6 text-[#6B7FD1]" />;
       case 'Brain':
         return <Brain className="w-6 h-6 text-[#9B8FD9]" />;
       case 'Languages':
@@ -34,10 +40,25 @@ export const ServicesSection: React.FC = () => {
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
   };
 
+  const currentServices = mode === 'educacion' ? SERVICES_EDUCACION : SERVICES_ANCESTRAL;
+
+  // Reordenamiento de testimonios según el nicho activo
+  const sortedTestimonials = [...TESTIMONIALS].sort((a, b) => {
+    if (mode === 'educacion') {
+      if (a.area === 'educacion') return -1;
+      if (b.area === 'educacion') return 1;
+    } else {
+      if (a.area === 'ancestral') return -1;
+      if (b.area === 'ancestral') return 1;
+    }
+    return 0;
+  });
+
   return (
     <section
       id="servicios"
-      className="relative py-24 bg-gradient-to-b from-[#DCEEFB]/40 via-[#FFFFFF] to-[#C9D4F5]/30 overflow-hidden"
+      data-mode={mode}
+      className="relative pt-3 sm:pt-4 pb-20 sm:pb-24 bg-gradient-to-b from-[#DCEEFB]/40 via-[#FFFFFF] to-[#C9D4F5]/30 overflow-hidden transition-all duration-400"
     >
       {/* Botánicos en fondo */}
       <FloralBouquet className="absolute top-12 left-0 w-44 h-44 opacity-40 -z-5" />
@@ -45,319 +66,178 @@ export const ServicesSection: React.FC = () => {
       <ButterflyGraphic className="absolute top-1/3 right-[8%] opacity-70" size={38} color="purple" />
       <ButterflyGraphic className="absolute bottom-1/4 left-[6%] opacity-60" size={30} color="pink" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
-        {/* Cabecera Principal de Servicios */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#DCEEFB] text-[#6B7FD1] text-xs font-bold uppercase tracking-[0.2em] border border-[#9B8FD9]/30">
-            <Sparkles className="w-3.5 h-3.5 text-[#9B8FD9]" />
-            <span>Nuestros Dos Nichos de Especialidad</span>
-          </div>
-
+        {/* Cabecera Principal de Servicios — Estructura Única y Limpia (Sin insignia) */}
+        <div key={mode} className="text-center max-w-3xl mx-auto space-y-3 animate-in fade-in duration-350">
           <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-            Servicios Terapéuticos &{' '}
-            <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-              Educativos
-            </span>
+            {mode === 'educacion' ? (
+              <>
+                Servicios &{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  Educación
+                </span>
+              </>
+            ) : (
+              <>
+                Servicios &{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  Terapias
+                </span>
+              </>
+            )}
           </h2>
 
           <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal max-w-2xl mx-auto">
-            Casa Kinti ofrece dos áreas independientes de acompañamiento con altos estándares de calidad: sanación holística para el alma y desarrollo pedagógico para la niñez.
+            {mode === 'educacion'
+              ? 'Diagnósticos psicopedagógicos, estimulación bilingüe temprana y programas personalizados dirigidos por Máster en Problemas de Aprendizaje.'
+              : 'Limpiezas energéticas, esencias florales de Bach, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio integral.'}
           </p>
+        </div>
 
-          {/* Filtro / Selector de Nichos */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
-            <button
-              type="button"
-              onClick={() => setActiveTab('all')}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'all'
-                  ? 'bg-[#6B7FD1] text-white shadow-sm'
-                  : 'bg-white/80 text-[#3E4A7A] hover:bg-white border border-[#C9D4F5]'
-              }`}
-            >
-              Todos los Servicios (7)
-            </button>
+        {/* Grid de Servicios Directo con Animación Card Curtain Reveal */}
+        <div
+          key={mode + '-grid'}
+          className={`grid grid-cols-1 ${
+            mode === 'educacion' ? 'md:grid-cols-3' : 'md:grid-cols-2'
+          } gap-8 animate-in fade-in duration-350`}
+        >
+          {currentServices.map((service, idx) => (
+            <div key={service.id} className="relative overflow-visible">
+              {/* Mariposa con movimiento continuo flotando POR FUERA del contenedor */}
+              <motion.div
+                className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 z-40 pointer-events-none"
+                animate={{
+                  x: [0, -4, 4, -3, 0],
+                  y: [0, -7, 2, -5, 0],
+                  rotate: [6, -8, 8, -6, 6],
+                  scale: [0.95, 1.08, 0.96, 1.05, 0.95],
+                }}
+                transition={{
+                  duration: 5.8 + (idx % 3),
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ButterflyGraphic
+                  size={30}
+                  color={idx % 2 === 0 ? 'purple' : 'blue'}
+                />
+              </motion.div>
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('ancestral')}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
-                activeTab === 'ancestral'
-                  ? 'bg-[#9B8FD9] text-white shadow-sm'
-                  : 'bg-white/80 text-[#3E4A7A] hover:bg-white border border-[#C9D4F5]'
-              }`}
-            >
-              <span>🌿 Medicina Ancestral</span>
-            </button>
+              <CardCurtainReveal
+                id={`service-card-${service.id}`}
+                className="relative bg-white rounded-3xl min-h-[370px] sm:min-h-[390px] h-[370px] sm:h-[390px] shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              >
+                {/* ========================================================
+                    1. CORTINA FRONTAL QUE SE ABRE EN 2 HOJAS (IZQ Y DER)
+                    Muestra imagen completa sin recortar, título y precio
+                   ======================================================== */}
+                <CardCurtainSplitCover
+                  image={service.image || '/tarot-hero.png'}
+                  title={service.title}
+                  price={service.price}
+                  promoPrice={service.promoPrice}
+                  badge={service.badge}
+                  duration={service.duration}
+                  category={service.category === 'educacion' ? 'Área Psicopedagógica' : 'Medicina Integrativa'}
+                  icon={getServiceIcon(service.icon, service.category)}
+                />
 
-            <button
-              type="button"
-              onClick={() => setActiveTab('educacion')}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
-                activeTab === 'educacion'
-                  ? 'bg-[#6B7FD1] text-white shadow-sm'
-                  : 'bg-white/80 text-[#3E4A7A] hover:bg-white border border-[#C9D4F5]'
-              }`}
-            >
-              <span>📚 Educación Infantil</span>
-            </button>
-          </div>
+                {/* ========================================================
+                    2. CONTENIDO INTERIOR REVELADO (ADAPTADO AL CONTENEDOR)
+                   ======================================================== */}
+                <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-between h-full w-full bg-gradient-to-br from-[#FFFFFF] via-[#F3F7FE] to-[#DCEEFB] text-[#3E4A7A]">
+                  
+                  {/* Categoría, Insignias y Duración centradas */}
+                  <div className="flex flex-wrap items-center justify-center gap-1.5 border-b border-[#C9D4F5]/60 pb-2.5 shrink-0 w-full">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7FD1] bg-[#DCEEFB] px-3 py-1 rounded-full border border-[#C9D4F5]/80 shadow-xs">
+                      {service.category === 'educacion' ? 'Área Psicopedagógica' : 'Medicina Integrativa'}
+                    </span>
+
+                    {service.badge && (
+                      <span className="bg-[#7F93D8] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs">
+                        {service.badge}
+                      </span>
+                    )}
+                    {service.duration && (
+                      <span className="text-[10px] text-[#54638F] font-medium bg-white px-2.5 py-0.5 rounded-full border border-[#C9D4F5]/70">
+                        {service.duration}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Contenido: Descripción y Beneficios adaptados al alto del contenedor */}
+                  <div className="flex-1 flex flex-col items-center justify-center text-center my-auto py-2.5 space-y-3 w-full">
+                    <p className="text-xs sm:text-sm text-[#3E4A7A]/95 leading-relaxed font-normal max-w-xs mx-auto">
+                      {service.description}
+                    </p>
+
+                    {service.keyBenefits && (
+                      <ul className="flex flex-col items-center justify-center space-y-1.5 pt-2.5 border-t border-[#C9D4F5]/60 w-full max-w-xs mx-auto">
+                        {service.keyBenefits.map((kb, kIdx) => (
+                          <li key={kIdx} className="text-xs sm:text-sm text-[#3E4A7A]/90 flex items-center justify-center gap-2">
+                            <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
+                            <span>{kb}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* Botón de Contactar con Barra Verde y Logo Oficial de WhatsApp */}
+                  <div className="pt-2.5 border-t border-[#C9D4F5]/60 flex items-center justify-center shrink-0 w-full">
+                    <a
+                      href={getServiceBookingUrl(service)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1EBE5D] text-black text-xs sm:text-sm font-bold py-3 px-4 rounded-2xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02] active:scale-95 border border-[#25D366]/30"
+                    >
+                      <WhatsAppOfficialIcon className="w-5 h-5 text-black shrink-0" />
+                      <span>Contactar por WhatsApp</span>
+                    </a>
+                  </div>
+
+                </div>
+
+              </CardCurtainReveal>
+            </div>
+          ))}
         </div>
 
         {/* ========================================================
-            BLOQUE A — Medicina Ancestral y Terapéutica (Púrpura / Azul-Violeta)
-           ======================================================== */}
-        {(activeTab === 'all' || activeTab === 'ancestral') && (
-          <div className="space-y-8 animate-in fade-in duration-300">
-            
-            {/* Sub-encabezado de Nicho A */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-[#C9D4F5]/60 via-[#E7F3FC] to-white border border-[#9B8FD9]/40 shadow-xs">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#9B8FD9] text-white flex items-center justify-center shadow-xs shrink-0">
-                  <Sparkles className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7FD1] block">
-                    Nicho 1 · Sanación Holística
-                  </span>
-                  <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#3E4A7A]">
-                    Medicina Ancestral & Terapias Energéticas
-                  </h3>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm text-[#3E4A7A]/80 max-w-sm sm:text-right font-light">
-                Limpiezas energéticas, esencias florales andinas, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio interior.
-              </p>
-            </div>
-
-            {/* Grid de Servicios Nicho A */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {SERVICES_ANCESTRAL.map((service) => (
-                <div
-                  key={service.id}
-                  id={`service-card-${service.id}`}
-                  className="bg-white rounded-3xl p-7 shadow-xs hover:shadow-xl border border-[#9B8FD9]/30 hover:border-[#6B7FD1] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#DCEEFB] flex items-center justify-center border border-[#9B8FD9]/20">
-                        {getServiceIcon(service.icon, 'ancestral')}
-                      </div>
-                      <div className="text-right">
-                        {service.promoPrice && (
-                          <span className="text-xs text-[#3E4A7A]/60 line-through block">
-                            {service.promoPrice}
-                          </span>
-                        )}
-                        <span className="text-2xl font-bold font-serif-display text-[#6B7FD1] block">
-                          {service.price}
-                        </span>
-                        {service.duration && (
-                          <span className="text-[11px] text-[#3E4A7A]/70 font-medium">
-                            {service.duration}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-serif-display text-xl font-bold text-[#3E4A7A]">
-                          {service.title}
-                        </h4>
-                        {service.badge && (
-                          <span className="bg-[#9B8FD9]/20 text-[#6B7FD1] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#9B8FD9]/30">
-                            {service.badge}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#3E4A7A]/80 mt-2 leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-
-                    {service.keyBenefits && (
-                      <ul className="space-y-1.5 pt-2 border-t border-[#C9D4F5]/30">
-                        {service.keyBenefits.map((kb, idx) => (
-                          <li key={idx} className="text-xs text-[#3E4A7A]/85 flex items-center gap-2">
-                            <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
-                            <span>{kb}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-
-                  <div className="pt-6 mt-4 border-t border-[#C9D4F5]/40 flex items-center justify-between">
-                    <a
-                      href="#contacto"
-                      className="text-xs font-bold text-[#3E4A7A] hover:text-[#6B7FD1] transition-colors flex items-center gap-1"
-                    >
-                      <span>Más información</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-
-                    <a
-                      href={getServiceBookingUrl(service)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-95"
-                    >
-                      <Calendar className="w-3.5 h-3.5 text-white" />
-                      <span>Agendar</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        )}
-
-        {/* ========================================================
-            BLOQUE B — Educación Infantil Bilingüe y Problemas de Aprendizaje (Lila / Rosa)
-           ======================================================== */}
-        {(activeTab === 'all' || activeTab === 'educacion') && (
-          <div className="space-y-8 animate-in fade-in duration-300">
-            
-            {/* Sub-encabezado de Nicho B */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-[#F0C6D9]/40 via-[#FFFFFF] to-[#C9D4F5]/50 border border-[#F0C6D9] shadow-xs">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#6B7FD1] text-white flex items-center justify-center shadow-xs shrink-0">
-                  <Brain className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9B8FD9] block">
-                    Nicho 2 · Acompañamiento Psicopedagógico
-                  </span>
-                  <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#3E4A7A]">
-                    Educación Infantil Bilingüe & Aprendizaje
-                  </h3>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm text-[#3E4A7A]/80 max-w-sm sm:text-right font-light">
-                Diagnósticos psicopedagógicos, estimulación del lenguaje en inglés/español y estrategias adaptadas para el éxito escolar de tu hijo.
-              </p>
-            </div>
-
-            {/* Grid de Servicios Nicho B */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {SERVICES_EDUCACION.map((service) => (
-                <div
-                  key={service.id}
-                  id={`service-card-${service.id}`}
-                  className="bg-white rounded-3xl p-7 shadow-xs hover:shadow-xl border border-[#F0C6D9]/80 hover:border-[#9B8FD9] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-[#F0C6D9]/30 flex items-center justify-center border border-[#F0C6D9]">
-                        {getServiceIcon(service.icon, 'educacion')}
-                      </div>
-                      <div className="text-right">
-                        <span className="text-2xl font-bold font-serif-display text-[#6B7FD1] block">
-                          {service.price}
-                        </span>
-                        {service.duration && (
-                          <span className="text-[11px] text-[#3E4A7A]/70 font-medium">
-                            {service.duration}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-serif-display text-lg font-bold text-[#3E4A7A] leading-snug">
-                          {service.title}
-                        </h4>
-                      </div>
-                      {service.badge && (
-                        <span className="inline-block mt-1 bg-[#F0C6D9]/40 text-[#6B7FD1] text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          {service.badge}
-                        </span>
-                      )}
-                      <p className="text-xs sm:text-sm text-[#3E4A7A]/80 mt-2 leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-
-                    {service.keyBenefits && (
-                      <ul className="space-y-1.5 pt-2 border-t border-[#F0C6D9]/40">
-                        {service.keyBenefits.map((kb, idx) => (
-                          <li key={idx} className="text-xs text-[#3E4A7A]/85 flex items-center gap-2">
-                            <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
-                            <span>{kb}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-
-                  <div className="pt-6 mt-4 border-t border-[#F0C6D9]/40 flex items-center justify-between">
-                    <a
-                      href="#contacto"
-                      className="text-xs font-bold text-[#3E4A7A] hover:text-[#6B7FD1] transition-colors flex items-center gap-1"
-                    >
-                      <span>Detalles</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
-
-                    <a
-                      href={getServiceBookingUrl(service)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-95"
-                    >
-                      <Calendar className="w-3.5 h-3.5 text-white" />
-                      <span>Agendar</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        )}
-
-        {/* ========================================================
             BLOQUE TIPO "QUÉ INCLUYE TU EXPERIENCIA" CON MOCKUP
+            (Sin contenedor encajonado, integrado al fondo de la sección)
            ======================================================== */}
-        <div className="relative rounded-3xl bg-gradient-to-br from-white via-[#E7F3FC] to-[#DCEEFB] p-8 sm:p-12 shadow-lg border border-[#9B8FD9]/30 overflow-hidden">
-          <FloralBouquet className="absolute -bottom-10 -right-10 w-44 h-44 opacity-60" flip />
-          <ButterflyGraphic className="absolute top-6 left-8" size={36} color="purple" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        <div className="relative pt-12 pb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start relative z-10">
             
-            {/* Mockup decorativo a un costado */}
-            <div className="lg:col-span-5 flex justify-center">
-              <FloralPhotoFrame
-                badgeText="Kit de Bienestar Casa Kinti"
-                className="max-w-[320px] w-full"
-              >
-                {/* reemplazar con foto real: Mockup de folleto de bienvenida, guía de aromaterapia y bolsa de hierbas medicinales de Casa Kinti */}
-                <div className="relative aspect-square w-full bg-[#DCEEFB] overflow-hidden p-6 flex flex-col justify-between text-center">
-                  <img
-                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
-                    alt="Experiencia y Kit de Bienestar Casa Kinti"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#3E4A7A]/70 via-[#3E4A7A]/20 to-transparent" />
-                  
-                  <div className="relative z-10 text-white mt-auto">
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#F5C84C]">
-                      Protocolo Exclusivo
-                    </span>
-                    <h4 className="font-serif-display text-xl font-bold">
-                      Acompañamiento Integral
-                    </h4>
-                  </div>
-                </div>
-              </FloralPhotoFrame>
+            {/* Fotografía: Comienza en 'Lo que...' y su altura vertical llega hasta el final de la barra de 'Acompañamiento continuo...' */}
+            <div className="lg:col-span-5 flex flex-col justify-start items-center lg:items-start w-full lg:pt-6">
+              <AnimatedConstructPhoto
+                aspectRatio="landscape"
+                imageSrc={
+                  mode === 'educacion'
+                    ? [
+                        'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+                      ]
+                    : [
+                        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
+                      ]
+                }
+                alt="Experiencia Casa Kinti"
+                className="w-full max-w-[480px] drop-shadow-xl"
+              />
             </div>
 
-            {/* Lista de Checks al otro costado */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Lista de Checks (Empieza en 'Lo que...' y termina en la barra 'Acompañamiento...') + Botón centrado en su lugar */}
+            <div className="lg:col-span-7 space-y-4">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block mb-1">
                   Atención Personalizada
@@ -370,29 +250,16 @@ export const ServicesSection: React.FC = () => {
                 </h3>
               </div>
 
-              <div className="space-y-3">
-                {INCLUDED_EXPERIENCE_ITEMS.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-3 bg-white/80 p-3.5 rounded-2xl border border-[#C9D4F5]/60 shadow-2xs backdrop-blur-xs"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-[#12A89D]/15 text-[#12A89D] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 font-bold" />
-                    </div>
-                    <span className="text-xs sm:text-sm text-[#3E4A7A] font-medium leading-relaxed">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              <FlowingExperienceList items={INCLUDED_EXPERIENCE_ITEMS} />
 
-              <div className="pt-2">
+              {/* Botón Centrado de Agendar en su lugar (dentro de esta columna) */}
+              <div className="pt-3 flex justify-center items-center w-full">
                 <a
                   href="#contacto"
                   id="experience-cta-btn"
-                  className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-white text-sm font-semibold px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-sm font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-4 h-4 text-black" />
                   <span>Agenda tu diagnóstico inicial</span>
                 </a>
               </div>
@@ -402,65 +269,261 @@ export const ServicesSection: React.FC = () => {
         </div>
 
         {/* ========================================================
-            BLOQUE "HISTORIAS DE TRANSFORMACIÓN" (TESTIMONIOS)
+            BLOQUE FINAL: DIFERENCIADO SEGÚN EL NICHO
+            - Modo Educación: Pilares de Impacto Psicopedagógico & Logros
+            - Modo Holística: Historias de Transformación (Testimonios)
            ======================================================== */}
-        <div className="space-y-12 pt-6">
+        <div className="space-y-10 pt-4">
           
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#9B8FD9]">
-              TÚ PODRÍAS ESTAR AQUÍ
-            </span>
-            <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#3E4A7A]">
-              Historias de{' '}
-              <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
-                Transformación
-              </span>
-            </h3>
-            <p className="text-xs sm:text-sm text-[#3E4A7A]/75">
-              Experiencias reales de quienes han confiado su bienestar y el de sus familias en Casa Kinti.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.id}
-                id={`testimonial-card-${t.id}`}
-                className="relative bg-white rounded-3xl p-7 shadow-xs hover:shadow-xl border border-[#C9D4F5] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
-              >
-                {/* 5 Estrellas Doradas */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-1 text-[#F5C84C]">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
-                    ))}
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-[#3E4A7A]/90 italic leading-relaxed">
-                    "{t.text}"
-                  </p>
-                </div>
-
-                {/* Avatar y Nombre */}
-                <div className="flex items-center gap-3 pt-6 mt-6 border-t border-[#C9D4F5]/40">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    loading="lazy"
-                    className="w-11 h-11 rounded-full object-cover border-2 border-[#9B8FD9]/40 shadow-xs"
-                  />
-                  <div>
-                    <h5 className="text-sm font-bold text-[#3E4A7A]">
-                      {t.name}
-                    </h5>
-                    <span className="text-[11px] text-[#6B7FD1] font-medium block">
-                      {t.role}
-                    </span>
-                  </div>
-                </div>
+          {mode === 'educacion' ? (
+            /* BLOQUE EXCLUSIVO EDUCACIÓN: Métodos de Enseñanza y Aprendizaje (Diseño Curvo Asimétrico) */
+            <>
+              <div className="text-center max-w-3xl mx-auto space-y-2 animate-in fade-in duration-300">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1]">
+                  CÓMO ENSEÑAMOS Y ACOMPAÑAMOS
+                </span>
+                <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#3E4A7A]">
+                  Métodos de{' '}
+                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
+                    Enseñanza
+                  </span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#3E4A7A]/75 max-w-2xl mx-auto leading-relaxed">
+                  Estrategias psicopedagógicas y neuroeducativas adaptadas al ritmo, estilo cognitivo y potencial único de cada estudiante.
+                </p>
               </div>
-            ))}
-          </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 pt-4">
+                
+                {/* Método 1: Multisensorial VAK - Contorno Azul Lavanda (#6B7FD1) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                    opacity: { duration: 0.6 },
+                  }}
+                  whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.3 } }}
+                  className="group relative flex flex-col overflow-hidden rounded-tl-[3.5rem] sm:rounded-tl-[4.5rem] rounded-br-[3.5rem] sm:rounded-br-[4.5rem] bg-white border-2 border-[#6B7FD1]/40 hover:border-[#6B7FD1] shadow-[0_8px_25px_-5px_rgba(107,127,209,0.3)] hover:shadow-[0_18px_40px_0px_rgba(107,127,209,0.55)] transition-all duration-300 hover:ring-4 hover:ring-[#6B7FD1]/20"
+                >
+                  {/* Destello de luz diagonal al pasar el mouse */}
+                  <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
+
+                  {/* Foto superior con zoom animado */}
+                  <div className="relative h-52 sm:h-56 overflow-hidden bg-[#DCEEFB]">
+                    <img
+                      src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+                      alt="Aprendizaje Multisensorial VAK"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#DCEEFB]/40 to-transparent" />
+                  </div>
+
+                  {/* Bloque inferior Cielo Pastel */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-gradient-to-b from-[#EBF3FC] to-[#D8E8FA] border-t-2 border-[#6B7FD1]/30">
+                    <div className="space-y-2.5 mb-5">
+                      <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
+                        Aprendizaje Multisensorial
+                      </h4>
+                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                        Conexión de las vías visual, auditiva y kinestésica (tacto y movimiento) para fijar conceptos en lectura y matemáticas sin memorización forzada.
+                      </p>
+                    </div>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Aprendizaje Multisensorial (VAK)*.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                    >
+                      <span>Consultar método</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </motion.div>
+
+                {/* Método 2: Neuroeducación y TDAH - Contorno Púrpura Lavanda (#9B8FD9) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  animate={{ y: [-5, 3, -5] }}
+                  transition={{
+                    y: { duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
+                    opacity: { duration: 0.6, delay: 0.1 },
+                  }}
+                  whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.3 } }}
+                  className="group relative flex flex-col overflow-hidden rounded-tl-[3.5rem] sm:rounded-tl-[4.5rem] rounded-br-[3.5rem] sm:rounded-br-[4.5rem] bg-white border-2 border-[#9B8FD9]/50 hover:border-[#9B8FD9] shadow-[0_8px_25px_-5px_rgba(155,143,217,0.35)] hover:shadow-[0_18px_40px_0px_rgba(155,143,217,0.6)] transition-all duration-300 hover:ring-4 hover:ring-[#9B8FD9]/20"
+                >
+                  {/* Destello de luz diagonal al pasar el mouse */}
+                  <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
+
+                  {/* Foto superior con zoom animado */}
+                  <div className="relative h-52 sm:h-56 overflow-hidden bg-[#E8E1FB]">
+                    <img
+                      src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=600&q=80"
+                      alt="Funciones Ejecutivas y TDAH"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#E8E1FB]/40 to-transparent" />
+                  </div>
+
+                  {/* Bloque inferior Lavanda Pastel */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-gradient-to-b from-[#F2EDFD] to-[#E3D9FB] border-t-2 border-[#9B8FD9]/35">
+                    <div className="space-y-2.5 mb-5">
+                      <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
+                        Funciones Ejecutivas & TDAH
+                      </h4>
+                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                        Entrenamiento de la atención sostenida, autorregulación emocional y memoria de trabajo para superar bloqueos y reducir el estrés en tareas.
+                      </p>
+                    </div>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Desarrollo de Funciones Ejecutivas*.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#9B8FD9] hover:text-[#9B8FD9] transition-all"
+                    >
+                      <span>Consultar método</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </motion.div>
+
+                {/* Método 3: Fonética Sintética e Inmersión Bilingüe - Contorno Rosa Floral (#F0C6D9 / #E8A2C2) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  animate={{ y: [0, -7, 0] }}
+                  transition={{
+                    y: { duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 },
+                    opacity: { duration: 0.6, delay: 0.2 },
+                  }}
+                  whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.3 } }}
+                  className="group relative flex flex-col overflow-hidden rounded-tl-[3.5rem] sm:rounded-tl-[4.5rem] rounded-br-[3.5rem] sm:rounded-br-[4.5rem] bg-white border-2 border-[#F0C6D9] hover:border-[#E8A2C2] shadow-[0_8px_25px_-5px_rgba(240,198,217,0.4)] hover:shadow-[0_18px_40px_0px_rgba(232,162,194,0.6)] transition-all duration-300 hover:ring-4 hover:ring-[#F0C6D9]/30"
+                >
+                  {/* Destello de luz diagonal al pasar el mouse */}
+                  <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
+
+                  {/* Foto superior con zoom animado */}
+                  <div className="relative h-52 sm:h-56 overflow-hidden bg-[#FCE8F2]">
+                    <img
+                      src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80"
+                      alt="Fonética Sintética y Bilingüismo"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#FCE8F2]/40 to-transparent" />
+                  </div>
+
+                  {/* Bloque inferior Rosa Floral Pastel */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-gradient-to-b from-[#FCEDF4] to-[#F7D6E7] border-t-2 border-[#F0C6D9]">
+                    <div className="space-y-2.5 mb-5">
+                      <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
+                        Jolly Phonics & Bilingüismo
+                      </h4>
+                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                        Adquisición natural del inglés mediante historias fonéticas, canciones y juegos para pronunciar, leer y conversar con soltura sin miedo al error.
+                      </p>
+                    </div>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Jolly Phonics e Inmersión Bilingüe*.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                    >
+                      <span>Consultar método</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </motion.div>
+
+                {/* Método 4: Acompañamiento Familia y Escuela - Contorno Azul Periwinkle (#6B7FD1 / #C9D4F5) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  animate={{ y: [-4, 4, -4] }}
+                  transition={{
+                    y: { duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 1.2 },
+                    opacity: { duration: 0.6, delay: 0.3 },
+                  }}
+                  whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.3 } }}
+                  className="group relative flex flex-col overflow-hidden rounded-tl-[3.5rem] sm:rounded-tl-[4.5rem] rounded-br-[3.5rem] sm:rounded-br-[4.5rem] bg-white border-2 border-[#6B7FD1]/40 hover:border-[#6B7FD1] shadow-[0_8px_25px_-5px_rgba(107,127,209,0.3)] hover:shadow-[0_18px_40px_0px_rgba(107,127,209,0.55)] transition-all duration-300 hover:ring-4 hover:ring-[#6B7FD1]/20"
+                >
+                  {/* Destello de luz diagonal al pasar el mouse */}
+                  <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
+
+                  {/* Foto superior con zoom animado */}
+                  <div className="relative h-52 sm:h-56 overflow-hidden bg-[#DCEEFB]">
+                    <img
+                      src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=600&q=80"
+                      alt="Acompañamiento Familia y Escuela"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#DCEEFB]/40 to-transparent" />
+                  </div>
+
+                  {/* Bloque inferior Azul Nube Pastel */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-gradient-to-b from-[#EEF3FD] to-[#D9E4FA] border-t-2 border-[#6B7FD1]/30">
+                    <div className="space-y-2.5 mb-5">
+                      <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
+                        Vínculo Familia & Escuela
+                      </h4>
+                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                        Coordinación directa con docentes y orientación personalizada a los padres para construir un entorno de confianza, motivación y seguridad emocional.
+                      </p>
+                    </div>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Acompañamiento Familia y Escuela*.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                    >
+                      <span>Consultar método</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </motion.div>
+
+              </div>
+            </>
+          ) : (
+            /* BLOQUE HOLÍSTICA: Historias de Transformación con Animación ScrollReelTestimonials */
+            <>
+              <div className="text-center max-w-2xl mx-auto space-y-2 animate-in fade-in duration-300">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#9B8FD9]">
+                  TÚ PODRÍAS ESTAR AQUÍ
+                </span>
+                <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#3E4A7A]">
+                  Historias de{' '}
+                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
+                    Transformación
+                  </span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#3E4A7A]/75">
+                  Experiencias reales de quienes han confiado su bienestar y el de sus familias en Casa Kinti.
+                </p>
+              </div>
+
+              <div className="w-full flex justify-center">
+                <ScrollReelTestimonials
+                  testimonials={TESTIMONIALS.filter((t) => t.area !== 'educacion').map((t) => ({
+                    quote: t.text,
+                    author: t.name,
+                    role: t.role,
+                    image: t.avatar,
+                    alt: `Retrato de ${t.name}`,
+                  }))}
+                />
+              </div>
+            </>
+          )}
 
         </div>
 

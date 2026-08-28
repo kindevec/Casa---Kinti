@@ -21,6 +21,7 @@ export interface ServiceItem {
   badge?: string;
   duration?: string;
   keyBenefits?: string[];
+  image?: string;
 }
 
 export interface TestimonialItem {

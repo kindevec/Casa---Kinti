@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { PRODUCTS, WHATSAPP_PHONE } from '../data';
+import { motion } from 'framer-motion';
+import { useNicheMode } from '../context/NicheContext';
+import { PRODUCTS, COURSES_EDUCACION, WHATSAPP_PHONE } from '../data';
 import { ProductItem } from '../types';
-import { ButterflyGraphic, FloralBouquet } from './FloralDecorations';
+import { ButterflyGraphic, FloralBouquet, WhatsAppOfficialIcon } from './FloralDecorations';
+import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
 import { MessageCircle, Sparkles, Check, Eye, X, Shield, ArrowUpRight } from 'lucide-react';
 
 export const ProductsSection: React.FC = () => {
+  const { mode } = useNicheMode();
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
 
+  const currentItems = mode === 'educacion' ? COURSES_EDUCACION : PRODUCTS;
+
   const getProductWhatsappUrl = (product: ProductItem) => {
-    const message = `Hola Casa Kinti, me gustaría consultar y adquirir el producto: *${product.name}* (${product.price}).`;
+    const prefix = mode === 'educacion' ? 'inscribirme en el curso / taller' : 'consultar y adquirir el producto';
+    const message = `Hola Casa Kinti, me gustaría ${prefix}: *${product.name}* (${product.price}).`;
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
   };
 
   return (
     <section
       id="productos"
-      className="relative py-24 bg-gradient-to-b from-[#C9D4F5]/30 via-[#FFFFFF] to-[#DCEEFB]/40 overflow-hidden"
+      data-mode={mode}
+      className="relative pt-16 sm:pt-20 pb-6 sm:pb-8 bg-gradient-to-b from-[#C9D4F5]/30 via-[#FFFFFF] to-[#DCEEFB]/40 overflow-hidden"
     >
       {/* Botánicos en esquinas */}
       <FloralBouquet className="absolute top-8 right-0 w-40 h-40 opacity-40 -z-5" />
@@ -23,129 +31,150 @@ export const ProductsSection: React.FC = () => {
       <ButterflyGraphic className="absolute top-16 left-[10%] opacity-65" size={32} color="blue" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Encabezado Editorial */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#DCEEFB] text-[#6B7FD1] text-xs font-bold uppercase tracking-[0.2em] border border-[#9B8FD9]/30">
-            <Sparkles className="w-3.5 h-3.5 text-[#9B8FD9]" />
-            <span>Tienda Holística & Sagrada</span>
-          </div>
-
+        {/* Cabecera Principal de Productos / Cursos según el modo activo (Sin insignia) */}
+        <div key={mode} className="text-center max-w-2xl mx-auto space-y-3 mb-16 animate-in fade-in duration-350">
           <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-            Productos &{' '}
-            <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-              Amuletos
-            </span>
+            {mode === 'educacion' ? (
+              <>
+                Cursos &{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  Talleres
+                </span>
+              </>
+            ) : (
+              <>
+                Productos &{' '}
+                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
+                  Amuletos
+                </span>
+              </>
+            )}
           </h2>
 
           <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal">
-            Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.
+            {mode === 'educacion'
+              ? 'Programas de inmersión bilingüe, escuela para familias y kits didácticos multisensoriales para potenciar el aprendizaje y desarrollo infantil.'
+              : 'Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.'}
           </p>
         </div>
 
-        {/* Grid de Productos Catálogo Editorial */}
+        {/* Grid de Productos o Cursos con Animación Card Curtain Reveal */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PRODUCTS.map((product) => {
+          {currentItems.map((product, idx) => {
             const isBracelets = product.id === 'pulseras-amuletos';
             return (
-              <div
-                key={product.id}
-                id={`product-card-${product.id}`}
-                className="group relative bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-[#C9D4F5]/80 hover:border-[#9B8FD9] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between"
-              >
-                {/* Badge flotante destacado */}
-                {product.badge && (
-                  <div
-                    className={`absolute top-4 left-4 z-20 px-3.5 py-1 rounded-full text-xs font-bold shadow-md uppercase tracking-wider backdrop-blur-xs flex items-center gap-1.5 ${
-                      isBracelets
-                        ? 'bg-[#12A89D] text-white border border-white/60'
-                        : 'bg-[#9B8FD9] text-white border border-white/60'
-                    }`}
-                  >
-                    <Sparkles className="w-3 h-3 text-[#F5C84C]" />
-                    <span>{product.badge}</span>
-                  </div>
-                )}
-
-                {/* Imagen Cuadrada con Efecto Zoom */}
-                <div className="relative aspect-square w-full overflow-hidden bg-[#F0C6D9]/10">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+              <div key={product.id} className="relative overflow-visible">
+                {/* Mariposa con movimiento continuo flotando POR FUERA del contenedor */}
+                <motion.div
+                  className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 z-40 pointer-events-none"
+                  animate={{
+                    x: [0, 4, -4, 3, 0],
+                    y: [0, -6, 3, -4, 0],
+                    rotate: [-6, 8, -8, 6, -6],
+                    scale: [0.95, 1.08, 0.96, 1.05, 0.95],
+                  }}
+                  transition={{
+                    duration: 5.5 + (idx % 3),
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ButterflyGraphic
+                    size={30}
+                    color={idx % 2 === 0 ? 'pink' : 'purple'}
                   />
-                  
-                  {/* Overlay sutil al hover con botón de vista rápida */}
-                  <div className="absolute inset-0 bg-[#3E4A7A]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedProduct(product)}
-                      className="bg-white/95 text-[#3E4A7A] hover:text-[#6B7FD1] text-xs font-bold px-4 py-2 rounded-full shadow-md backdrop-blur-xs flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Ver Detalles</span>
-                    </button>
-                  </div>
-                </div>
+                </motion.div>
 
-                {/* Contenido de la Tarjeta */}
-                <div className="p-6 flex flex-col flex-grow justify-between text-center space-y-4">
-                  <div>
-                    <span className="text-[11px] font-bold tracking-[0.2em] text-[#9B8FD9] uppercase block mb-1">
-                      {product.category}
-                    </span>
+                <CardCurtainReveal
+                  id={`product-card-${product.id}`}
+                  className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 min-h-[370px] sm:min-h-[390px] h-[370px] sm:h-[390px] flex flex-col justify-between"
+                >
+                  {/* ========================================================
+                      1. CORTINA FRONTAL QUE SE ABRE EN 2 HOJAS (IZQ Y DER)
+                      Muestra imagen completa sin recortar, título y precio
+                     ======================================================== */}
+                  <CardCurtainSplitCover
+                    image={product.image}
+                    title={product.name}
+                    price={product.price}
+                    badge={product.badge}
+                    category={product.category}
+                  />
 
-                    <h3 className="font-serif-display text-lg sm:text-xl font-bold text-[#3E4A7A] group-hover:text-[#6B7FD1] transition-colors leading-snug">
-                      {product.name}
-                    </h3>
+                  {/* ========================================================
+                      2. CONTENIDO INTERIOR REVELADO (ADAPTADO AL CONTENEDOR)
+                     ======================================================== */}
+                  <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-between h-full w-full bg-gradient-to-br from-[#FFFFFF] via-[#F3F7FE] to-[#DCEEFB] text-[#3E4A7A]">
+                    
+                    {/* Categoría e Insignias centradas */}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 border-b border-[#C9D4F5]/60 pb-2.5 shrink-0 w-full">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7FD1] bg-[#DCEEFB] px-3 py-1 rounded-full border border-[#C9D4F5]/80 shadow-xs">
+                        {product.category}
+                      </span>
 
-                    <p className="text-xs sm:text-sm text-[#3E4A7A]/75 mt-2 line-clamp-2 leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-[#C9D4F5]/40 space-y-3">
-                    {/* Precio en Negrita */}
-                    <div className="text-xl font-bold font-serif-display text-[#3E4A7A]">
-                      {product.price}
+                      {product.badge && (
+                        <div
+                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold shadow-xs uppercase tracking-wider flex items-center gap-1 ${
+                            isBracelets
+                              ? 'bg-[#F5C84C] text-[#3E4A7A]'
+                              : 'bg-[#7F93D8] text-white'
+                          }`}
+                        >
+                          {isBracelets && <Sparkles className="w-2.5 h-2.5" />}
+                          <span>{product.badge}</span>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Botón pequeño Consultar por WhatsApp */}
-                    <div className="flex gap-2">
+                    {/* Contenido: Descripción y Beneficios adaptados al alto del contenedor */}
+                    <div className="flex-1 flex flex-col items-center justify-center text-center my-auto py-2.5 space-y-3 w-full">
+                      <p className="text-xs sm:text-sm text-[#3E4A7A]/95 leading-relaxed font-normal max-w-xs mx-auto">
+                        {product.description}
+                      </p>
+
+                      {product.benefits && (
+                        <ul className="flex flex-col items-center justify-center space-y-1.5 pt-2.5 border-t border-[#C9D4F5]/60 w-full max-w-xs mx-auto">
+                          {product.benefits.slice(0, 3).map((benefit, bIdx) => (
+                            <li key={bIdx} className="text-xs sm:text-sm text-[#3E4A7A]/90 flex items-center justify-center gap-2">
+                              <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
+                              <span>{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+
+                    {/* Botón de Contactar con Barra Verde y Logo Oficial de WhatsApp */}
+                    <div className="pt-2.5 border-t border-[#C9D4F5]/60 flex items-center justify-center shrink-0 w-full">
                       <a
                         href={getProductWhatsappUrl(product)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow-xs hover:shadow-md transition-all duration-200 active:scale-95"
+                        className="w-full py-3 px-4 rounded-2xl bg-[#25D366] hover:bg-[#1EBE5D] text-black text-xs sm:text-sm font-bold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 border border-[#25D366]/30"
                       >
-                        <MessageCircle className="w-3.5 h-3.5 text-white" />
-                        <span>Consultar por WhatsApp</span>
+                        <WhatsAppOfficialIcon className="w-5 h-5 text-black shrink-0" />
+                        <span>Contactar por WhatsApp</span>
                       </a>
                     </div>
+
                   </div>
 
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Nota de asesoría personalizada */}
-        <div className="mt-12 text-center bg-white/80 p-5 rounded-2xl border border-[#9B8FD9]/30 max-w-xl mx-auto shadow-xs">
-          <p className="text-xs sm:text-sm text-[#3E4A7A] font-medium flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#12A89D]" />
-            <span>¿No sabes qué piedra necesitas? Agenda tu <strong>estudio radiestésico gratuito</strong> al solicitar tus pulseras.</span>
-          </p>
-        </div>
+                </CardCurtainReveal>
+            </div>
+          );
+        })}
+      </div>
 
       </div>
 
-      {/* Modal de Detalle de Producto */}
+      {/* Modal Detalle de Producto o Curso */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#3E4A7A]/40 backdrop-blur-xs animate-in fade-in duration-200">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#3E4A7A]/50 backdrop-blur-xs animate-in fade-in"
+          onClick={() => setSelectedProduct(null)}
+        >
           <div
-            className="relative bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#C9D4F5] overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl border border-[#C9D4F5] p-6 sm:p-8 space-y-6"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -157,61 +186,62 @@ export const ProductsSection: React.FC = () => {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="space-y-5">
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#DCEEFB]">
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  className="w-full h-full object-cover"
-                />
-                {selectedProduct.badge && (
-                  <span className="absolute bottom-3 left-3 bg-[#6B7FD1] text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {selectedProduct.badge}
-                  </span>
-                )}
-              </div>
+            <div className="aspect-16/9 rounded-2xl overflow-hidden bg-[#DCEEFB]">
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-              <div>
-                <span className="text-xs font-bold text-[#9B8FD9] uppercase tracking-wider">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#6B7FD1]">
                   {selectedProduct.category}
                 </span>
-                <h3 className="font-serif-display text-2xl font-bold text-[#3E4A7A] mt-1">
-                  {selectedProduct.name}
-                </h3>
-                <p className="text-xl font-bold text-[#6B7FD1] mt-1 font-serif-display">
+                <span className="text-2xl font-bold font-serif-display text-[#3E4A7A]">
                   {selectedProduct.price}
-                </p>
-                <p className="text-sm text-[#3E4A7A]/80 mt-3 leading-relaxed">
-                  {selectedProduct.description}
-                </p>
+                </span>
               </div>
 
+              <h4 className="font-serif-display text-2xl font-bold text-[#3E4A7A]">
+                {selectedProduct.name}
+              </h4>
+
+              <p className="text-sm text-[#3E4A7A]/80 leading-relaxed">
+                {selectedProduct.description}
+              </p>
+
               {selectedProduct.benefits && (
-                <div className="bg-[#DCEEFB]/40 p-4 rounded-2xl border border-[#9B8FD9]/20">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#6B7FD1] mb-2 flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5" />
-                    <span>Propiedades y Beneficios:</span>
-                  </h4>
+                <div className="space-y-2 pt-3 border-t border-[#C9D4F5]/40">
+                  <span className="text-xs font-bold uppercase text-[#3E4A7A]/90 block">
+                    {mode === 'educacion' ? 'Lo que incluye el curso / material:' : 'Propiedades & Beneficios:'}
+                  </span>
                   <ul className="space-y-1.5">
                     {selectedProduct.benefits.map((b, idx) => (
-                      <li key={idx} className="text-xs text-[#3E4A7A] flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
+                      <li key={idx} className="text-xs text-[#3E4A7A]/85 flex items-center gap-2">
+                        <Check className="w-4 h-4 text-[#12A89D] shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
+            </div>
 
+            <div className="pt-2 flex items-center gap-3">
               <a
                 href={getProductWhatsappUrl(selectedProduct)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all duration-200 hover:scale-[1.02]"
+                className="w-full py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-black text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Pedir o Consultar por WhatsApp</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 text-black" />
+                <span>
+                  {mode === 'educacion'
+                    ? 'Inscribirme por WhatsApp'
+                    : 'Comprar por WhatsApp'}
+                </span>
               </a>
             </div>
           </div>

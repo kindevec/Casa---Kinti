@@ -167,3 +167,119 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #6B7FD1;
 }
+
+/* ========================================================
+   ESTILOS DE ANIMACIÓN ORBITAL (ORBIT IMAGES / CIRCLES)
+   ======================================================== */
+.orbit-container {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-scaling-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-scaling-container--responsive {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+}
+
+.orbit-rotation-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-path-svg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbit-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.orbit-center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* ========================================================
+   MODO DE NICHO DUAL (HOLÍSTICA VS EDUCACIÓN)
+   ======================================================== */
+body[data-mode="educacion"] .only-holistica {
+  display: none !important;
+}
+
+body[data-mode="holistica"] .only-educacion {
+  display: none !important;
+}
+
+/* Transición visual suave al cambiar de nicho */
+.niche-fade-enter {
+  animation: nicheFadeIn 0.38s ease-in-out forwards;
+}
+
+@keyframes nicheFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================
+   SCROLL REEL TESTIMONIALS ANIMATIONS
+   ======================================================== */
+.scroll-reel-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: scroll-reel-char-rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.scroll-reel-exit {
+  animation: scroll-reel-exit 0.24s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes scroll-reel-char-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-reel-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+

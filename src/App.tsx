@@ -1,7 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
+import { NicheProvider } from './context/NicheContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { CredentialsStrip } from './components/CredentialsStrip';
 import { PathSection } from './components/PathSection';
 import { AboutSection } from './components/AboutSection';
 import { ProductsSection } from './components/ProductsSection';
@@ -11,32 +11,33 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col selection:bg-[#9B8FD9]/30 selection:text-[#3E4A7A] relative">
-      {/* Header Sticky Minimalista */}
-      <Navbar />
+    <NicheProvider>
+      <div className="min-h-screen flex flex-col selection:bg-[#9B8FD9]/30 selection:text-[#3E4A7A] relative">
+        {/* Header Sticky con Toggle Deslizante iOS de Nichos */}
+        <Navbar />
 
-      {/* Flujo continuo de las 5 secciones */}
-      <main className="flex-grow">
-        {/* SECCIÓN 1: INICIO (Hero Editorial + Credenciales + El Camino del Bienestar + Banner Tarot) */}
-        <HeroSection />
-        <CredentialsStrip />
-        <PathSection />
+        {/* Flujo continuo de las secciones adaptadas dinámicamente */}
+        <main className="flex-grow">
+          {/* SECCIÓN 1: INICIO (Hero con contenido sincronizado: Holística vs Educación) */}
+          <HeroSection />
+          <PathSection />
 
-        {/* SECCIÓN 2: SOBRE MÍ (Biografía de Johanna Proaño + Badges + Historia Casa Kinti) */}
-        <AboutSection />
+          {/* SECCIÓN 2: SOBRE MÍ (Biografía de Johanna Proaño) */}
+          <AboutSection />
 
-        {/* SECCIÓN 3: PRODUCTOS (Catálogo Editorial + Pulseras con Estudio Radiestésico + Aceites y Cristales) */}
-        <ProductsSection />
+          {/* SECCIÓN 3: PRODUCTOS (Visible ÚNICAMENTE en modo Holística) */}
+          <ProductsSection />
 
-        {/* SECCIÓN 4: SERVICIOS (Bloque A: Medicina Ancestral & Bloque B: Educación Infantil + Mockup + Testimonios) */}
-        <ServicesSection />
+          {/* SECCIÓN 4: SERVICIOS (Bloque A Holística o Bloque B Educación según el modo) */}
+          <ServicesSection />
 
-        {/* SECCIÓN 5: CONTÁCTANOS (CTA Floral + Formulario Interactivo + Horarios + Redes + Mapa + Footer) */}
-        <ContactSection />
-      </main>
+          {/* SECCIÓN 5: CONTÁCTANOS (Compartido con preselección adaptada) */}
+          <ContactSection />
+        </main>
 
-      {/* Botón Flotante Global de WhatsApp con animación de pulso */}
-      <FloatingWhatsApp />
-    </div>
+        {/* Botón Flotante Global de WhatsApp con animación de pulso */}
+        <FloatingWhatsApp />
+      </div>
+    </NicheProvider>
   );
 }

@@ -3,28 +3,28 @@ import { ProductItem, ServiceItem, TestimonialItem, PathStep, CertificationItem 
 export const WHATSAPP_PHONE = '593962669994';
 export const WHATSAPP_DEFAULT_MSG = 'Hola Casa Kinti, me gustaría obtener más información sobre sus servicios y productos.';
 
-export const PATH_STEPS: PathStep[] = [
+export const PATH_STEPS_HOLISTICA: PathStep[] = [
   {
     number: '01',
-    keyword: 'APRENDE',
+    keyword: 'CONECTA',
     title: 'Conoce tu Esencia',
-    description: 'Descubre el poder de la medicina ancestral y el diagnóstico psicopedagógico para comprender tu momento vital o el desarrollo de tu pequeño.',
-    icon: 'BookOpen',
+    description: 'Diagnóstico bioenergético con péndulo y escucha consciente para comprender tu momento vital y origen de desequilibrios.',
+    icon: 'Eye',
     accentColor: '#9B8FD9',
   },
   {
     number: '02',
     keyword: 'SANA',
-    title: 'Terapias Personalizadas',
-    description: 'Liberación de bloqueos emocionales y energéticos a través de limpias tradicionales, Flores de Bach y botánica medicinal andina.',
-    icon: 'Sparkles',
+    title: 'Limpias & Botánica',
+    description: 'Liberación de bloqueos emocionales y energéticos a través de limpias ancestrales, sahumerios y plantas medicinales.',
+    icon: 'Leaf',
     accentColor: '#6B7FD1',
   },
   {
     number: '03',
     keyword: 'EQUILIBRA',
-    title: 'Armoniza Cuerpo y Mente',
-    description: 'Integración de hábitos armónicos, amuletos con estudio radiestésico y pautas pedagógicas claras para el hogar y la familia.',
+    title: 'Armoniza tu Energía',
+    description: 'Terapia con Flores de Bach personalizadas, amuletos consagrados con radiestesia y hábitos de autocuidado.',
     icon: 'Scale',
     accentColor: '#9B8FD9',
   },
@@ -32,11 +32,48 @@ export const PATH_STEPS: PathStep[] = [
     number: '04',
     keyword: 'FLORECE',
     title: 'Transformación Plena',
-    description: 'Experimenta paz interior, vitalidad renovada y niños seguros, alegres y motivados en su proceso de aprendizaje y vida.',
+    description: 'Experimenta serenidad interior profunda, vitalidad renovada y reconexión con tu propósito y bienestar integral.',
     icon: 'Flower2',
     accentColor: '#6B7FD1',
   },
 ];
+
+export const PATH_STEPS_EDUCACION: PathStep[] = [
+  {
+    number: '01',
+    keyword: 'EVALÚA',
+    title: 'Diagnóstico Integral',
+    description: 'Evaluación psicopedagógica personalizada para identificar el estilo de aprendizaje, fortalezas y necesidades del niño.',
+    icon: 'Brain',
+    accentColor: '#6B7FD1',
+  },
+  {
+    number: '02',
+    keyword: 'ESTIMULA',
+    title: 'Inmersión Bilingüe',
+    description: 'Metodología lúdica e inmersión en inglés y español para potenciar el lenguaje, la motricidad y la creatividad temprana.',
+    icon: 'BookOpen',
+    accentColor: '#9B8FD9',
+  },
+  {
+    number: '03',
+    keyword: 'ACOMPAÑA',
+    title: 'Pautas para el Hogar',
+    description: 'Estrategias pedagógicas claras para padres y docentes, rutinas de estudio amigables y adecuación curricular.',
+    icon: 'GraduationCap',
+    accentColor: '#6B7FD1',
+  },
+  {
+    number: '04',
+    keyword: 'CRECE',
+    title: 'Seguridad & Éxito',
+    description: 'Niños seguros de sí mismos, motivados y felices en su etapa escolar, con bases cognitivas y emocionales sólidas.',
+    icon: 'Sparkles',
+    accentColor: '#9B8FD9',
+  },
+];
+
+export const PATH_STEPS = PATH_STEPS_HOLISTICA;
 
 export const CERTIFICATIONS: CertificationItem[] = [
   {
@@ -71,8 +108,7 @@ export const PRODUCTS: ProductItem[] = [
     name: 'Pulseras Amuletos Personalizadas',
     price: '$22.00',
     description: 'Pulseras personalizadas con estudio radiestésico GRATIS para saber cuál es la piedra o cristal que necesitas. Energía, protección e intención en cada diseño.',
-    /* reemplazar con foto real: Pulseras de piedras naturales sobre fondo neutro con velas y amatistas */
-    image: 'https://images.unsplash.com/photo-1611591475836-3914a4b4ee95?auto=format&fit=crop&w=800&q=80',
+    image: '/pulseras-amuletos.png',
     badge: 'Estudio radiestésico GRATIS',
     category: 'Amuletos & Cristales',
     benefits: ['Estudio radiestésico incluido', 'Piedras naturales consagradas', 'Diseño a medida según tu energía'],
@@ -132,6 +168,72 @@ export const PRODUCTS: ProductItem[] = [
   },
 ];
 
+export const COURSES_EDUCACION: ProductItem[] = [
+  {
+    id: 'curso-estimulacion-bilingue',
+    name: 'Taller Continuo de Estimulación Bilingüe',
+    price: '$45.00 / módulo',
+    description: 'Programa lúdico de inmersión en inglés y español para potenciar el lenguaje, la motricidad fina y la socialización en edades tempranas (2 a 6 años).',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    badge: 'Inscripciones Abiertas',
+    category: 'Talleres Bilingües',
+    benefits: ['Inmersión lingüística natural', 'Material sensorial incluido', 'Grupos reducidos y personalizados'],
+    popular: true,
+  },
+  {
+    id: 'curso-padres-aprendizaje',
+    name: 'Curso para Padres: Manejo de Dificultades de Aprendizaje',
+    price: '$35.00',
+    description: 'Herramientas prácticas, rutinas y estrategias psicopedagógicas para acompañar el estudio en casa sin estrés ni frustración familiar.',
+    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    badge: 'Formato Online / Híbrido',
+    category: 'Escuela para Familias',
+    benefits: ['Guías y plantillas descargables', 'Estrategias para TDAH y dislexia', 'Asesoría directa con Johanna Proaño'],
+    popular: true,
+  },
+  {
+    id: 'kit-material-didactico',
+    name: 'Kit de Material Didáctico Multisensorial + Guía Pedagógica',
+    price: '$28.00',
+    description: 'Set de fichas interactivas, juegos sensoriales y cuadernillo de estimulación cognitiva diseñado para reforzar la lectura, escritura y concentración.',
+    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
+    badge: 'Material Físico + Guía',
+    category: 'Materiales & Guías',
+    benefits: ['Material didáctico de alta durabilidad', 'Guía de actividades paso a paso', 'Estimulación cognitiva y motriz'],
+    popular: true,
+  },
+  {
+    id: 'programa-nivelacion-escolar',
+    name: 'Programa de Nivelación y Refuerzo Pedagógico Integral',
+    price: '$60.00 / mes',
+    description: 'Acompañamiento individualizado y continuo para superar bloqueos escolares en lectoescritura, razonamiento lógico y hábitos de estudio.',
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80',
+    badge: 'Atención 1 a 1',
+    category: 'Refuerzo Académico',
+    benefits: ['Evaluación diagnóstica inicial', 'Coordinación con la institución educativa', 'Reportes mensuales de avance para padres'],
+  },
+  {
+    id: 'taller-lectoescritura-creativa',
+    name: 'Taller de Lectoescritura Creativa & Fonética en Inglés',
+    price: '$25.00 / taller',
+    description: 'Enfoque fonético y multisensorial (Jolly Phonics) para que los niños aprendan a leer y escribir con entusiasmo y confianza.',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+    badge: 'Método Lúdico',
+    category: 'Talleres Bilingües',
+    benefits: ['Sonidos fonéticos y juegos interactivos', 'Desarrollo de comprensión lectora', 'Fichas de práctica ilustradas'],
+  },
+  {
+    id: 'guia-psicopedagogica-descargable',
+    name: 'Guía Digital: Rutinas y Hábitos de Estudio Exitosos',
+    price: '$12.00',
+    description: 'Ebook y planificador imprimible con técnicas de concentración, pausas activas y métodos de estudio probados para la etapa escolar.',
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80',
+    badge: 'Descarga Inmediata',
+    category: 'Materiales & Guías',
+    benefits: ['Planificadores semanales imprimibles', 'Técnicas de gestión del tiempo para niños', 'Consejos para motivar sin castigos'],
+  },
+];
+
 export const SERVICES_ANCESTRAL: ServiceItem[] = [
   {
     id: 'limpias-ancestrales',
@@ -142,6 +244,7 @@ export const SERVICES_ANCESTRAL: ServiceItem[] = [
     icon: 'Sparkles',
     badge: 'Más Solicitado',
     duration: '45 - 60 min',
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Diagnóstico energético con péndulo/varillas', 'Descarga de energías densas y estrés', 'Alineación de centros energéticos (Chakras)'],
   },
   {
@@ -152,6 +255,7 @@ export const SERVICES_ANCESTRAL: ServiceItem[] = [
     category: 'ancestral',
     icon: 'Flower',
     duration: '45 min',
+    image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Entrevista terapéutica profunda', 'Frasco de elíxir personalizado incluido', 'Acompañamiento en el proceso emocional'],
   },
   {
@@ -162,6 +266,7 @@ export const SERVICES_ANCESTRAL: ServiceItem[] = [
     category: 'ancestral',
     icon: 'Leaf',
     duration: '40 min',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Guía botánica personalizada', 'Tratamiento natural complementario', 'Baños de florecimiento y despojo'],
   },
   {
@@ -174,6 +279,7 @@ export const SERVICES_ANCESTRAL: ServiceItem[] = [
     icon: 'Eye',
     badge: 'Promoción $15',
     duration: '15 - 30 min',
+    image: '/tarot-hero.png',
     keyBenefits: ['Enfoque 100% terapéutico y evolutivo', 'Claridad ante encrucijadas personales', 'Preguntas abiertas y respuestas profundas'],
   },
 ];
@@ -188,6 +294,7 @@ export const SERVICES_EDUCACION: ServiceItem[] = [
     icon: 'Brain',
     badge: 'Especialidad Máster',
     duration: '60 min',
+    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Estrategias adaptadas al ritmo del niño', 'Asesoría a padres y docentes', 'Plan de intervención psicopedagógico'],
   },
   {
@@ -198,6 +305,7 @@ export const SERVICES_EDUCACION: ServiceItem[] = [
     category: 'educacion',
     icon: 'Languages',
     duration: '50 min por sesión',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Inmersión lingüística natural y afectiva', 'Metodología lúdica con canciones y juegos', 'Grupos reducidos para atención cercana'],
   },
   {
@@ -209,6 +317,7 @@ export const SERVICES_EDUCACION: ServiceItem[] = [
     icon: 'CheckSquare',
     badge: 'Recomendado para inicio',
     duration: '75 min',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
     keyBenefits: ['Informe pedagógico detallado para padres', 'Detección temprana de necesidades especiales', 'Recomendaciones prácticas para el aula y hogar'],
   },
 ];
@@ -224,30 +333,48 @@ export const INCLUDED_EXPERIENCE_ITEMS = [
 export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'test-1',
-    name: 'María F.',
-    role: 'Cliente de Terapia Ancestral',
+    name: 'María Fernanda L.',
+    role: 'Limpia & Medicina Ancestral',
     text: 'Las limpias energéticas con Johanna me devolvieron la calma y la vitalidad que había perdido hace meses. El ambiente de Casa Kinti transmite una paz absoluta desde que cruzas la puerta.',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     area: 'ancestral',
   },
   {
     id: 'test-2',
-    name: 'Andrea S.',
-    role: 'Paciente de Flores de Bach',
+    name: 'Andrea Salazar',
+    role: 'Terapia con Flores de Bach',
     text: 'Las Flores de Bach personalizadas me ayudaron a manejar mi ansiedad y el insomnio de una forma muy natural y respetuosa. La calidez y escucha de Johanna es incomparable.',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
     area: 'flores',
   },
   {
     id: 'test-3',
-    name: 'Carla P.',
-    role: 'Mamá de Mateo (Asesoría en Aprendizaje)',
-    text: 'La asesoría de Johanna fue clave para entender cómo aprende mi hijo. Pasamos de la frustración a verlo seguro y feliz yendo a la escuela todos los días. ¡Infinitas gracias!',
+    name: 'Patricia Morales',
+    role: 'Lectura de Tarot Terapéutico',
+    text: 'Fue una sesión con preguntas claras y enfoque de autoconocimiento sin misterios innecesarios. Me dio una dirección nítida para desbloquear decisiones personales cruciales.',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
-    area: 'educacion',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    area: 'ancestral',
+  },
+  {
+    id: 'test-4',
+    name: 'Valeria Rosales',
+    role: 'Armonización Áurica & Sahumerio',
+    text: 'Llegué con una sobrecarga emocional muy densa. La armonización con hierbas sagradas andinas y el sonido me dejaron liviana y con una claridad mental maravillosa.',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    area: 'ancestral',
+  },
+  {
+    id: 'test-5',
+    name: 'Gabriel Benítez',
+    role: 'Diagnóstico Radiestésico con Péndulo',
+    text: 'El diagnóstico energético fue exacto en los puntos de bloqueo que sentía en mi cuerpo. El amuleto y las recomendaciones de Johanna transformaron mi energía en el trabajo.',
+    rating: 5,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    area: 'ancestral',
   },
 ];
 
