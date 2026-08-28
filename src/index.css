@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Paleta "Cielo Encantado" - Casa Kinti */
+    --color-sky-pastel: #DCEEFB;
+    --color-lavender-light: #C9D4F5;
+    --color-blue-violet: #6B7FD1;
+    --color-purple-soft: #9B8FD9;
+    --color-pink-floral: #F0C6D9;
+    --color-dark-slate: #3E4A7A;
+    --color-gold-soft: #F5C84C;
+    --color-white: #FFFFFF;
+    --color-teal-accent: #12A89D;
+    
+    /* Tipografías:
+       - Script/Manuscrita (Reemplazo para Verandah Reverie): 'Alex Brush', 'Great Vibes', cursive
+       - Serif Display (Titulares Editoriales): 'Playfair Display', 'Cormorant Garamond', serif
+       - Sans-Serif Redondeada (Reemplazo para Caviar Dreams): 'Quicksand', 'Poppins', sans-serif
+    */
+    --font-script: 'Alex Brush', 'Great Vibes', cursive;
+    --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Quicksand', 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-dark-slate);
+    background-color: var(--color-sky-pastel);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(201, 212, 245, 0.6) 0px, transparent 50%),
+      radial-gradient(at 100% 20%, rgba(240, 198, 217, 0.4) 0px, transparent 50%),
+      radial-gradient(at 50% 60%, rgba(220, 238, 251, 0.7) 0px, transparent 50%),
+      radial-gradient(at 100% 90%, rgba(201, 212, 245, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+/* Animación de aleteo sutil de mariposa */
+@keyframes butterfly-flap {
+  0%, 100% {
+    transform: scaleX(1) rotate(0deg);
+  }
+  50% {
+    transform: scaleX(0.4) rotate(4deg);
+  }
+}
+
+/* Animación flotante suave */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) translateX(4px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(6px) translateX(-4px) rotate(-1deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(107, 127, 209, 0.4);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 14px rgba(107, 127, 209, 0);
+  }
+}
+
+/* Animación de entrada elegante para el logotipo */
+@keyframes logo-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.85);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(3px) scale(1.04);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Animación de movimiento flotante y respiración continua del logo */
+@keyframes logo-breathe-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translateY(-5px) rotate(0.8deg) scale(1.015);
+  }
+  66% {
+    transform: translateY(3px) rotate(-0.6deg) scale(0.995);
+  }
+}
+
+.animate-logo-entrance {
+  animation: logo-entrance 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-logo-float {
+  animation: logo-breathe-float 6.5s ease-in-out infinite;
+}
+
+.animate-butterfly {
+  animation: butterfly-flap 1.8s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.5s infinite;
+}
+
+/* Efecto halo de luz celestial */
+.celestial-glow {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(220, 238, 251, 0.2) 70%, transparent 100%);
+}
+
+/* Scrollbar personalizada suave */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #DCEEFB;
+}
+::-webkit-scrollbar-thumb {
+  background: #9B8FD9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B7FD1;
+}

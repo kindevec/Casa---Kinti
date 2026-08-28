@@ -1,0 +1,6 @@
+{
+  "name": "Casa Kinti — Medicinas Integrativas",
+  "description": "Landing page de Casa Kinti: Medicina Ancestral, Educación Infantil Bilingüe y Bienestar Integral en Quito, Ecuador.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
