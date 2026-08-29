@@ -1,7 +1,7 @@
 import React from 'react';
 import { Quote, CheckCircle2, BookOpen, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { FloralBouquet, ButterflyGraphic } from './FloralDecorations';
+import { FloralBouquet, ButterflyGraphic, AgendarCalendarIcon, SolicitarEvaluacionIcon } from './FloralDecorations';
 import OrbitImages from './OrbitCircles';
 import { AnimatedConstructPhoto } from './AnimatedConstructPhoto';
 import { useNicheMode } from '../context/NicheContext';
@@ -74,7 +74,7 @@ export const AboutSection: React.FC = () => {
               </span>
             </h2>
 
-            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
               {mode === 'educacion'
                 ? 'Educadora infantil bilingüe y Máster en Problemas de Aprendizaje con más de 15 años guiando a familias y niños hacia su máximo potencial.'
                 : 'Terapeuta floral de Bach, herbolaria medicinal y mujer medicina ancestral consagrada al bienestar integral en Quito.'}
@@ -96,11 +96,11 @@ export const AboutSection: React.FC = () => {
                 Hola, soy Johanna Proaño
               </h3>
               
-              <p className="text-sm sm:text-base text-[#3E4A7A]/85 leading-relaxed font-normal text-justify">
+              <p className="text-sm sm:text-base text-black leading-relaxed font-normal text-justify">
                 Fundé <strong>Casa Kinti</strong> en Quito con la convicción profunda de que el bienestar emocional y espiritual de la familia es la base indispensable para el desarrollo pleno de los niños. Tras años de experiencia docente y terapéutica, comprendí que mente, corazón y energía deben atenderse en conjunto para desbloquear el verdadero potencial humano.
               </p>
 
-              <p className="text-sm sm:text-base text-[#3E4A7A]/85 leading-relaxed font-normal text-justify">
+              <p className="text-sm sm:text-base text-black leading-relaxed font-normal text-justify">
                 En nuestro espacio convergen armónicamente la ciencia del aprendizaje infantil y la sabiduría de la medicina natural. Acompaño de forma cercana a niños, jóvenes y adultos a superar barreras pedagógicas y desequilibrios energéticos, brindando herramientas personalizadas en un entorno seguro, amoroso y de confidencialidad absoluta.
               </p>
             </div>
@@ -112,20 +112,23 @@ export const AboutSection: React.FC = () => {
                   customItems={ABOUT_CIRCLES.map((item, idx) => (
                     <div
                       key={idx}
-                      className={`group relative rounded-full aspect-square w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 ${item.bgColor} ${item.borderColor} border-2 shadow-2xl hover:scale-106 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
+                      className={`group relative overflow-hidden rounded-full aspect-square w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 ${item.bgColor} ${item.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
                     >
-                      {/* Mismo icono ilustrado del banner ampliado */}
-                      <div className="w-11 h-11 sm:w-13 sm:h-13 md:w-15 md:h-15 flex items-center justify-center mb-1 shrink-0">
+                      {/* Destello de luz diagonal reflectante al pasar el mouse */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+
+                      {/* Mismo icono ilustrado del banner ampliado con rotación y escala */}
+                      <div className="relative z-10 w-11 h-11 sm:w-13 sm:h-13 md:w-15 md:h-15 flex items-center justify-center mb-1 shrink-0">
                         <img
                           src={item.iconSrc}
                           alt={item.iconAlt}
                           loading="lazy"
-                          className="max-h-full max-w-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
+                          className="max-h-full max-w-full object-contain drop-shadow-sm group-hover:scale-115 group-hover:rotate-12 transition-transform duration-300"
                         />
                       </div>
 
                       {/* Título completo sin cortes ni truncamientos */}
-                      <span className="font-bold text-[11px] sm:text-xs md:text-[13px] text-[#3E4A7A] text-center leading-snug px-1.5 break-words">
+                      <span className="relative z-10 font-bold text-[11px] sm:text-xs md:text-[13px] text-black text-center leading-snug px-1.5 break-words">
                         {item.title}
                       </span>
                     </div>
@@ -166,16 +169,21 @@ export const AboutSection: React.FC = () => {
                   ? 'Acompañar a un niño es sembrar confianza para toda su vida.'
                   : 'Sanar el presente para florecer el futuro de nuestras familias.'}
               </p>
-              <span className="text-xs sm:text-sm font-bold text-[#3E4A7A] uppercase tracking-widest block mt-2 text-center">
+              <span className="text-xs sm:text-sm font-bold text-black uppercase tracking-widest block mt-2 text-center">
                 — Johanna Proaño
               </span>
             </div>
 
             {/* Barra de Consulta ubicada después de la frase */}
             <div className="w-full">
-              <div className="flex items-center gap-3 bg-[#DCEEFB]/70 p-4 rounded-2xl border border-[#9B8FD9]/30 w-full shadow-xs">
-                <CheckCircle2 className="w-5 h-5 text-[#12A89D] shrink-0" />
-                <p className="text-xs sm:text-sm text-[#3E4A7A] font-medium leading-normal">
+              <div className="relative group overflow-hidden flex items-center gap-3.5 bg-gradient-to-r from-[#DCEEFB] via-[#E8F4FD] to-[#DCEEFB] p-4 sm:p-5 rounded-2xl border border-[#9B8FD9]/35 w-full shadow-xs hover:shadow-[0_8px_25px_rgba(107,127,209,0.25)] hover:border-[#6B7FD1]/50 transition-all duration-300 hover:scale-[1.02] cursor-default">
+                {/* Destello de luz diagonal reflectante */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                
+                {/* Icono directo sin contenedor con cambio de color, rotación, escala y resplandor */}
+                <CheckCircle2 className="relative z-10 w-6 h-6 text-[#12A89D] group-hover:text-[#6B7FD1] shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 drop-shadow-xs group-hover:drop-shadow-[0_4px_12px_rgba(107,127,209,0.55)]" />
+
+                <p className="relative z-10 text-xs sm:text-sm text-black font-medium leading-normal">
                   {mode === 'educacion'
                     ? 'Cada valoración y acompañamiento pedagógico se brinda con calidez humana, empatía y compromiso ético con el desarrollo de tu hijo.'
                     : 'Cada consulta se realiza en un espacio de confidencialidad absoluta, calidez humana y respeto profundo por tu proceso.'}
@@ -221,7 +229,7 @@ export const AboutSection: React.FC = () => {
               )}
             </h2>
 
-            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
               {mode === 'educacion'
                 ? 'Acompañamos a tus hijos con diagnóstico psicopedagógico especializado, estimulación bilingüe temprana y métodos personalizados para que aprendan motivados, seguros y sin bloqueos.'
                 : 'Permítenos acompañarte en un viaje de equilibrio, claridad y desarrollo. Estamos listos para recibirte en nuestro santuario de sanación o de forma virtual.'}
@@ -230,17 +238,18 @@ export const AboutSection: React.FC = () => {
             <div className="pt-3 sm:pt-4">
               <a
                 href="#booking-form"
-                className="inline-flex items-center gap-2 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 {mode === 'educacion' ? (
                   <>
-                    <BookOpen className="w-5 h-5 text-black" />
-                    <span>Solicitar Evaluación Psicopedagógica</span>
+                    <SolicitarEvaluacionIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                    <span className="relative z-10">Solicitar Evaluación Psicopedagógica</span>
                   </>
                 ) : (
                   <>
-                    <Calendar className="w-5 h-5 text-black" />
-                    <span>Completar Formulario de Reserva</span>
+                    <AgendarCalendarIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                    <span className="relative z-10">Completar Formulario de Reserva</span>
                   </>
                 )}
               </a>

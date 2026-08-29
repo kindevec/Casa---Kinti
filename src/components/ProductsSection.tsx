@@ -63,7 +63,7 @@ export const ProductsSection: React.FC = () => {
               )}
             </h2>
 
-            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
               {mode === 'educacion'
                 ? 'Programas de inmersión bilingüe, escuela para familias y kits didácticos multisensoriales para potenciar el aprendizaje y desarrollo infantil.'
                 : 'Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.'}
@@ -141,14 +141,14 @@ export const ProductsSection: React.FC = () => {
 
                     {/* Contenido: Descripción y Beneficios adaptados al alto del contenedor */}
                     <div className="flex-1 flex flex-col items-center justify-center text-center my-auto py-2.5 space-y-3 w-full">
-                      <p className="text-xs sm:text-sm text-[#3E4A7A]/95 leading-relaxed font-normal max-w-xs mx-auto">
+                      <p className="text-xs sm:text-sm text-black leading-relaxed font-normal max-w-xs mx-auto">
                         {product.description}
                       </p>
 
                       {product.benefits && (
                         <ul className="flex flex-col items-center justify-center space-y-1.5 pt-2.5 border-t border-[#C9D4F5]/60 w-full max-w-xs mx-auto">
                           {product.benefits.slice(0, 3).map((benefit, bIdx) => (
-                            <li key={bIdx} className="text-xs sm:text-sm text-[#3E4A7A]/90 flex items-center justify-center gap-2">
+                            <li key={bIdx} className="text-xs sm:text-sm text-black flex items-center justify-center gap-2">
                               <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
                               <span>{benefit}</span>
                             </li>
@@ -157,16 +157,17 @@ export const ProductsSection: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Botón de Contactar con Barra Verde y Logo Oficial de WhatsApp */}
+                    {/* Botón de Contactar con Barra Pastel Animada */}
                     <div className="pt-2.5 border-t border-[#C9D4F5]/60 flex items-center justify-center shrink-0 w-full">
                       <a
                         href={getProductWhatsappUrl(product)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-3 px-4 rounded-2xl bg-[#25D366] hover:bg-[#1EBE5D] text-black text-xs sm:text-sm font-bold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 border border-[#25D366]/30"
+                        className="relative overflow-hidden w-full py-3 px-4 rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 group/btn"
                       >
-                        <WhatsAppOfficialIcon className="w-5 h-5 text-black shrink-0" />
-                        <span>Contactar por WhatsApp</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                        <WhatsAppOfficialIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover/btn:text-white group-hover/btn:rotate-12 transition-all duration-300 shrink-0" />
+                        <span className="relative z-10">Contactar por WhatsApp</span>
                       </a>
                     </div>
 
@@ -221,18 +222,18 @@ export const ProductsSection: React.FC = () => {
                 {selectedProduct.name}
               </h4>
 
-              <p className="text-sm text-[#3E4A7A]/80 leading-relaxed">
+              <p className="text-sm text-black leading-relaxed">
                 {selectedProduct.description}
               </p>
 
               {selectedProduct.benefits && (
                 <div className="space-y-2 pt-3 border-t border-[#C9D4F5]/40">
-                  <span className="text-xs font-bold uppercase text-[#3E4A7A]/90 block">
+                  <span className="text-xs font-bold uppercase text-black block">
                     {mode === 'educacion' ? 'Lo que incluye el curso / material:' : 'Propiedades & Beneficios:'}
                   </span>
                   <ul className="space-y-1.5">
                     {selectedProduct.benefits.map((b, idx) => (
-                      <li key={idx} className="text-xs text-[#3E4A7A]/85 flex items-center gap-2">
+                      <li key={idx} className="text-xs text-black flex items-center gap-2">
                         <Check className="w-4 h-4 text-[#12A89D] shrink-0" />
                         <span>{b}</span>
                       </li>

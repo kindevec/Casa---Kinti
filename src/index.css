@@ -310,3 +310,138 @@ body[data-mode="holistica"] .only-educacion {
   }
 }
 
+/* ========================================================
+   ANIMATED TAB BAR (FLUID MOBILE NAVIGATION)
+   ======================================================== */
+.svg-container {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-tab-bar-wrapper {
+  user-select: none;
+  filter: drop-shadow(0 12px 30px rgba(62, 74, 122, 0.20));
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  font-size: 13px;
+  padding: 0.35em 0.6em;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  height: 4.5em;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(155, 143, 217, 0.45);
+  box-shadow: 0 8px 25px rgba(62, 74, 122, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.menu__item {
+  all: unset;
+  flex: 1;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu__item:hover {
+  transform: scale(1.05);
+}
+
+.menu__item:active {
+  transform: scale(0.95);
+}
+
+.menu__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu__item .icon,
+.menu__item svg {
+  width: 1.45em;
+  height: 1.45em;
+  stroke: #3E4A7A;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s ease, color 0.3s ease;
+  pointer-events: none;
+}
+
+.menu__item:hover .icon,
+.menu__item:hover svg {
+  stroke: #3E4A7A;
+}
+
+.menu__item.active .icon,
+.menu__item.active svg {
+  transform: translateY(-0.15em) scale(1.22);
+  stroke: #6B7FD1 !important;
+  color: #6B7FD1 !important;
+  filter: drop-shadow(0 0 10px rgba(107, 127, 209, 0.55));
+}
+
+.menu__label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #3E4A7A;
+  margin-top: 3px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.menu__item:hover .menu__label {
+  color: #6B7FD1;
+}
+
+.menu__item.active .menu__label {
+  color: #6B7FD1;
+  font-weight: 800;
+  transform: translateY(0.05em);
+}
+
+.menu__border {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4em;
+  height: 100%;
+  border-radius: 1.6em;
+  background: linear-gradient(180deg, rgba(155, 143, 217, 0.32) 0%, rgba(107, 127, 209, 0.18) 50%, rgba(240, 198, 217, 0.1) 85%, transparent 100%);
+  box-shadow: 0 0 24px 8px rgba(155, 143, 217, 0.32);
+  border: none;
+  filter: blur(4px);
+  transition: transform var(--timeOut, 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275));
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes strok {
+  100% {
+    stroke-dashoffset: 400;
+  }
+}
+

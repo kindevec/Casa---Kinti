@@ -439,3 +439,99 @@ export const WhatsAppOfficialIcon: React.FC<{ className?: string }> = ({
   );
 };
 
+/**
+ * Ícono Oficial de Calendario con Reloj para Agendar Cita (Trazado exacto de la referencia)
+ */
+export const AgendarCalendarIcon: React.FC<{ className?: string; size?: number }> = ({
+  className = 'w-5 h-5',
+  size = 20,
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`shrink-0 ${className}`}
+      aria-hidden="true"
+    >
+      {/* 3 ganchos superiores del calendario */}
+      <path d="M7 2.5V5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M12 2.5V5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M17 2.5V5.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      {/* Línea horizontal divisoria */}
+      <path d="M3.5 9.5H20.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      {/* Cuerpo redondeado del calendario */}
+      <path
+        d="M18.5 4.5H5.5C4.12 4.5 3 5.62 3 7V17C3 18.38 4.12 19.5 5.5 19.5H10.5"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21 11V7C21 5.62 19.88 4.5 18.5 4.5"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Reloj en esquina inferior derecha */}
+      <circle cx="16.5" cy="16.5" r="4.5" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M16.5 14V16.5L18.2 18.2" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+};
+
+/**
+ * Ícono Oficial de Portapapeles con Lápiz para Solicitar Evaluación (Trazado exacto de la referencia)
+ */
+export const SolicitarEvaluacionIcon: React.FC<{ className?: string; size?: number }> = ({
+  className = 'w-5 h-5',
+  size = 20,
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`shrink-0 ${className}`}
+      aria-hidden="true"
+    >
+      {/* Clip superior */}
+      <path
+        d="M8.5 2H15.5C16.0523 2 16.5 2.44772 16.5 3V5H7.5V3C7.5 2.44772 7.94772 2 8.5 2Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Tabla portapapeles */}
+      <path
+        d="M17 4.5H19C19.8284 4.5 20.5 5.17157 20.5 6V19.5C20.5 20.3284 19.8284 21 19 21H5C4.17157 21 3.5 20.3284 3.5 19.5V6C3.5 5.17157 4.17157 4.5 5 4.5H7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Casilla 1 + Check */}
+      <rect x="6.5" y="8" width="3" height="3" rx="0.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 9.5L13.5 11L16.5 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Casilla 2 + Check */}
+      <rect x="6.5" y="13" width="3" height="3" rx="0.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 14.5L13.5 16L15.5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Lápiz inclinado a la derecha */}
+      <path
+        d="M16 12L20.5 7.5L22 9L17.5 13.5L15.5 14L16 12Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+

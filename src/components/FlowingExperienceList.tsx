@@ -169,7 +169,7 @@ export const FlowingBenefitItem: React.FC<FlowingBenefitItemProps> = ({
       {/* Contenido Principal al FRENTE (z-10): Siempre 100% Nítido y Visible */}
       <div className="flex items-center gap-3.5 relative z-10">
         <PurpleCheckCircleIcon className="w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110 drop-shadow-xs" />
-        <span className="text-xs sm:text-sm text-[#3E4A7A] font-semibold leading-relaxed group-hover:text-[#2A1045] transition-colors">
+        <span className="text-xs sm:text-sm text-black font-semibold leading-relaxed group-hover:text-[#2A1045] transition-colors">
           {text}
         </span>
       </div>

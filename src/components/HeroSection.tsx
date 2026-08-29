@@ -7,6 +7,8 @@ import {
   FloralBouquet,
   HeroOrganicBackdrop,
   BloomingBotanicalTree,
+  AgendarCalendarIcon,
+  SolicitarEvaluacionIcon,
 } from './FloralDecorations';
 import {
   Calendar,
@@ -216,7 +218,7 @@ export const HeroSection: React.FC = () => {
             <div className="relative min-h-[90px] sm:min-h-[80px] max-w-xl mx-auto flex items-center justify-center">
               <p
                 key={mode}
-                className="text-base sm:text-lg text-[#3E4A7A]/85 font-normal leading-relaxed text-justify transition-all duration-400 animate-in fade-in"
+                className="text-base sm:text-lg text-black font-normal leading-relaxed text-justify transition-all duration-400 animate-in fade-in"
               >
                 {mode === 'educacion' ? (
                   <>
@@ -236,19 +238,24 @@ export const HeroSection: React.FC = () => {
                 href="#contacto"
                 id="hero-cta-agendar"
                 onClick={handleAgendaCita}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-base font-bold px-8 py-3.5 rounded-full shadow-lg shadow-[#6B7FD1]/25 hover:shadow-xl hover:shadow-[#9B8FD9]/30 transition-all duration-300 hover:scale-105 active:scale-95 group"
+                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
               >
-                <Calendar className="w-4 h-4 text-black group-hover:rotate-12 transition-transform" />
-                <span>Agenda tu cita</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                {mode === 'educacion' ? (
+                  <SolicitarEvaluacionIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                ) : (
+                  <AgendarCalendarIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                )}
+                <span className="relative z-10">{mode === 'educacion' ? 'Solicitar evaluación' : 'Agenda tu cita'}</span>
               </a>
 
               <a
                 href="#sobre-mi"
                 id="hero-cta-conoce-mas"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-white text-[#3E4A7A] hover:text-[#6B7FD1] text-base font-semibold px-7 py-3.5 rounded-full border border-[#C9D4F5] shadow-xs hover:shadow-md transition-all duration-300"
+                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-gradient-to-tr hover:from-[#DDEBFC] hover:via-[#ECE6FB] hover:to-[#FCE5F1] text-black hover:text-[#6B7FD1] text-base font-semibold px-7 py-3.5 rounded-full shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 group"
               >
-                <span>Conoce más</span>
-                <ArrowDown className="w-4 h-4 text-[#6B7FD1]" />
+                <span className="relative z-10">Conoce más</span>
+                <ArrowDown className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:translate-y-1 transition-transform duration-300" />
               </a>
             </div>
 
@@ -272,20 +279,23 @@ export const HeroSection: React.FC = () => {
                 customItems={currentOrbitPillars.map((pillar, idx) => (
                   <div
                     key={idx}
-                    className={`group relative rounded-full aspect-square w-[136px] h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:scale-106 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
+                    className={`group relative overflow-hidden rounded-full aspect-square w-[136px] h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
                   >
-                    {/* Icono ilustrado ampliado */}
-                    <div className="w-13 h-13 sm:w-15 sm:h-15 md:w-17 md:h-17 flex items-center justify-center mb-1">
+                    {/* Destello de luz diagonal reflectante al pasar el mouse */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+
+                    {/* Icono ilustrado ampliado con giro y escala interactiva */}
+                    <div className="relative z-10 w-13 h-13 sm:w-15 sm:h-15 md:w-17 md:h-17 flex items-center justify-center mb-1">
                       <img
                         src={pillar.iconSrc}
                         alt={pillar.iconAlt}
                         loading="lazy"
-                        className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                        className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-115 group-hover:rotate-12 transition-transform duration-300"
                       />
                     </div>
 
                     {/* Texto destacado y centrado */}
-                    <span className="font-bold text-xs sm:text-[13px] md:text-sm text-[#3E4A7A] text-center leading-tight px-1.5 line-clamp-2">
+                    <span className="relative z-10 font-bold text-xs sm:text-[13px] md:text-sm text-black text-center leading-tight px-1.5 line-clamp-2">
                       {pillar.text}
                     </span>
                   </div>

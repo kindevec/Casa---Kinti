@@ -90,25 +90,26 @@ export const Navbar: React.FC = () => {
                 type="button"
                 id="nav-toggle-holistica"
                 onClick={() => setMode('holistica')}
-                className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                className={`relative group overflow-hidden w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
                   mode === 'holistica'
-                    ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
-                    : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
+                    ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-[0_6px_20px_rgba(107,127,209,0.45)] scale-105 ring-2 ring-[#9B8FD9]/60'
+                    : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white shadow-xs hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)]'
                 }`}
                 aria-label="Cambiar a Modo Holística"
                 aria-pressed={mode === 'holistica'}
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 <img
                   src="/icons/flor.png"
                   alt="Holística"
-                  className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
+                  className={`relative z-10 w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 group-hover:rotate-12 ${
                     mode === 'holistica'
                       ? 'brightness-0 invert drop-shadow-xs'
-                      : 'opacity-70 group-hover:opacity-100'
+                      : 'opacity-80 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert'
                   }`}
                 />
                 {/* Tooltip flotante */}
-                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1 z-30">
                   <span>🌿</span>
                   <span>Holística</span>
                 </span>
@@ -122,25 +123,26 @@ export const Navbar: React.FC = () => {
                 type="button"
                 id="nav-toggle-educacion"
                 onClick={() => setMode('educacion')}
-                className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                className={`relative group overflow-hidden w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
                   mode === 'educacion'
-                    ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
-                    : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
+                    ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-[0_6px_20px_rgba(107,127,209,0.45)] scale-105 ring-2 ring-[#9B8FD9]/60'
+                    : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white shadow-xs hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)]'
                 }`}
                 aria-label="Cambiar a Modo Educación"
                 aria-pressed={mode === 'educacion'}
               >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 <img
                   src="/icons/birrete.png"
                   alt="Educación"
-                  className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
+                  className={`relative z-10 w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 group-hover:rotate-12 ${
                     mode === 'educacion'
                       ? 'brightness-0 invert drop-shadow-xs'
-                      : 'opacity-70 group-hover:opacity-100'
+                      : 'opacity-80 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert'
                   }`}
                 />
                 {/* Tooltip flotante */}
-                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1 z-30">
                   <span>📚</span>
                   <span>Educación</span>
                 </span>
@@ -199,41 +201,47 @@ export const Navbar: React.FC = () => {
 
             {/* Selector de Nicho dentro del Drawer Móvil */}
             <div className="mt-6 p-3 bg-white/70 rounded-2xl border border-[#C9D4F5]">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#3E4A7A]/70 block mb-2 text-center">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-black block mb-2 text-center">
                 Modo de Experiencia
               </span>
-              <div className="flex items-center bg-[#DCEEFB] p-1 rounded-full border border-[#9B8FD9]/30">
+              <div className="flex items-center bg-[#DCEEFB] p-1 rounded-full border border-[#9B8FD9]/30 gap-1">
                 <button
                   type="button"
                   onClick={() => setMode('holistica')}
-                  className={`flex-1 py-2 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
-                    mode === 'holistica' ? 'bg-[#6B7FD1] text-white shadow-xs' : 'text-[#3E4A7A]'
+                  className={`relative group overflow-hidden flex-1 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 hover:scale-102 active:scale-95 cursor-pointer ${
+                    mode === 'holistica'
+                      ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-md ring-1 ring-[#9B8FD9]/40'
+                      : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white'
                   }`}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                   <img
                     src="/icons/flor.png"
                     alt=""
-                    className={`w-3.5 h-3.5 object-contain ${
-                      mode === 'holistica' ? 'brightness-0 invert' : 'opacity-80'
+                    className={`relative z-10 w-4 h-4 object-contain transition-all duration-300 group-hover:rotate-12 ${
+                      mode === 'holistica' ? 'brightness-0 invert' : 'opacity-80 group-hover:brightness-0 group-hover:invert'
                     }`}
                   />
-                  <span>Holística</span>
+                  <span className="relative z-10">Holística</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setMode('educacion')}
-                  className={`flex-1 py-2 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
-                    mode === 'educacion' ? 'bg-[#6B7FD1] text-white shadow-xs' : 'text-[#3E4A7A]'
+                  className={`relative group overflow-hidden flex-1 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 hover:scale-102 active:scale-95 cursor-pointer ${
+                    mode === 'educacion'
+                      ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-md ring-1 ring-[#9B8FD9]/40'
+                      : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white'
                   }`}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                   <img
                     src="/icons/birrete.png"
                     alt=""
-                    className={`w-3.5 h-3.5 object-contain ${
-                      mode === 'educacion' ? 'brightness-0 invert' : 'opacity-80'
+                    className={`relative z-10 w-4 h-4 object-contain transition-all duration-300 group-hover:rotate-12 ${
+                      mode === 'educacion' ? 'brightness-0 invert' : 'opacity-80 group-hover:brightness-0 group-hover:invert'
                     }`}
                   />
-                  <span>Educación</span>
+                  <span className="relative z-10">Educación</span>
                 </button>
               </div>
             </div>
@@ -296,7 +304,7 @@ export const Navbar: React.FC = () => {
               </a>
             </div>
 
-            <p className="text-center text-xs text-[#3E4A7A]/70 font-medium">
+            <p className="text-center text-xs text-black font-medium">
               Quito, Ecuador · Johanna Proaño
             </p>
           </div>

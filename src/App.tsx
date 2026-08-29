@@ -7,7 +7,9 @@ import { AboutSection } from './components/AboutSection';
 import { ProductsSection } from './components/ProductsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { ContactSection } from './components/ContactSection';
+import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { MobileTabBar } from './components/MobileTabBar';
 
 export default function App() {
   return (
@@ -34,6 +36,12 @@ export default function App() {
           {/* SECCIÓN 5: CONTÁCTANOS (Compartido con preselección adaptada) */}
           <ContactSection />
         </main>
+
+        {/* FOOTER MULTI-COLUMNA ADAPTADO AL NICHO */}
+        <Footer />
+
+        {/* Barra de Navegación Animada Inferior para Móviles */}
+        <MobileTabBar />
 
         {/* Botón Flotante Global de WhatsApp con animación de pulso */}
         <FloatingWhatsApp />

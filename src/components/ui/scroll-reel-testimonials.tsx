@@ -51,7 +51,7 @@ const HOVER_SCROLL_INTERVAL = 1800; // time between transitions while holding cu
 const EASE_INOUT = "cubic-bezier(0.65,0,0.35,1)";
 
 const QUOTE_CLASSES =
-  "m-0 text-base sm:text-lg font-serif-display font-medium leading-[1.6] tracking-[-0.01em] text-[#3E4A7A] italic text-justify";
+  "m-0 text-base sm:text-lg font-serif-display font-medium leading-[1.6] tracking-[-0.01em] text-black italic text-justify";
 const AUTHOR_CLASSES =
   "m-0 text-xs sm:text-sm font-bold leading-[1.3] text-[#6B7FD1]";
 
@@ -400,7 +400,7 @@ export function ScrollReelTestimonials({
               <div>
                 <p className={AUTHOR_CLASSES}>{current.author}</p>
                 {current.role && (
-                  <span className="text-[11px] text-[#3E4A7A]/70 font-medium block">
+                  <span className="text-[11px] text-black font-medium block">
                     {current.role}
                   </span>
                 )}
@@ -429,7 +429,7 @@ export function ScrollReelTestimonials({
                   />
                 </p>
                 {current.role && (
-                  <span className="text-[11px] text-[#3E4A7A]/70 font-medium block mt-0.5">
+                  <span className="text-[11px] text-black font-medium block mt-0.5">
                     {current.role}
                   </span>
                 )}
@@ -453,10 +453,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(-1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Historia anterior"
-            className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-[#C9D4F5] bg-white text-black transition-all duration-200 hover:scale-115 hover:bg-[#DCEEFB] hover:border-[#9B8FD9] hover:shadow-md active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B7FD1] shadow-xs"
+            className="relative overflow-hidden grid h-10 w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-115 hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] active:scale-95 shadow-xs group"
           >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="h-4 w-4 text-black"
+              className="relative z-10 h-4.5 w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -473,10 +474,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Siguiente historia"
-            className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-[#C9D4F5] bg-white text-black transition-all duration-200 hover:scale-115 hover:bg-[#DCEEFB] hover:border-[#9B8FD9] hover:shadow-md active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B7FD1] shadow-xs"
+            className="relative overflow-hidden grid h-10 w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-115 hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] active:scale-95 shadow-xs group"
           >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="h-4 w-4 text-black"
+              className="relative z-10 h-4.5 w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

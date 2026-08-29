@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNicheMode } from '../context/NicheContext';
 import { SERVICES_ANCESTRAL, SERVICES_EDUCACION, INCLUDED_EXPERIENCE_ITEMS, TESTIMONIALS, WHATSAPP_PHONE } from '../data';
 import { ServiceItem } from '../types';
-import { ButterflyGraphic, FloralBouquet, FloralPhotoFrame, WhatsAppOfficialIcon } from './FloralDecorations';
+import { ButterflyGraphic, FloralBouquet, FloralPhotoFrame, WhatsAppOfficialIcon, AgendarCalendarIcon } from './FloralDecorations';
 import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
 import { AnimatedConstructPhoto } from './AnimatedConstructPhoto';
 import { FlowingExperienceList } from './FlowingExperienceList';
@@ -100,7 +100,7 @@ export const ServicesSection: React.FC = () => {
               )}
             </h2>
 
-            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
               {mode === 'educacion'
                 ? 'Diagnósticos psicopedagógicos, estimulación bilingüe temprana y programas personalizados dirigidos por Máster en Problemas de Aprendizaje.'
                 : 'Limpiezas energéticas, esencias florales de Bach, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio integral.'}
@@ -174,7 +174,7 @@ export const ServicesSection: React.FC = () => {
                       </span>
                     )}
                     {service.duration && (
-                      <span className="text-[10px] text-[#54638F] font-medium bg-white px-2.5 py-0.5 rounded-full border border-[#C9D4F5]/70">
+                      <span className="text-[10px] text-black font-medium bg-white px-2.5 py-0.5 rounded-full border border-[#C9D4F5]/70">
                         {service.duration}
                       </span>
                     )}
@@ -182,14 +182,14 @@ export const ServicesSection: React.FC = () => {
 
                   {/* Contenido: Descripción y Beneficios adaptados al alto del contenedor */}
                   <div className="flex-1 flex flex-col items-center justify-center text-center my-auto py-2.5 space-y-3 w-full">
-                    <p className="text-xs sm:text-sm text-[#3E4A7A]/95 leading-relaxed font-normal max-w-xs mx-auto">
+                    <p className="text-xs sm:text-sm text-black leading-relaxed font-normal max-w-xs mx-auto">
                       {service.description}
                     </p>
 
                     {service.keyBenefits && (
                       <ul className="flex flex-col items-center justify-center space-y-1.5 pt-2.5 border-t border-[#C9D4F5]/60 w-full max-w-xs mx-auto">
                         {service.keyBenefits.map((kb, kIdx) => (
-                          <li key={kIdx} className="text-xs sm:text-sm text-[#3E4A7A]/90 flex items-center justify-center gap-2">
+                          <li key={kIdx} className="text-xs sm:text-sm text-black flex items-center justify-center gap-2">
                             <Check className="w-3.5 h-3.5 text-[#12A89D] shrink-0" />
                             <span>{kb}</span>
                           </li>
@@ -270,10 +270,11 @@ export const ServicesSection: React.FC = () => {
                 <a
                   href="#contacto"
                   id="experience-cta-btn"
-                  className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-sm font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-sm font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
                 >
-                  <Calendar className="w-4 h-4 text-black" />
-                  <span>Agenda tu diagnóstico inicial</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                  <AgendarCalendarIcon className="relative z-10 w-4.5 h-4.5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                  <span className="relative z-10">Agenda tu diagnóstico inicial</span>
                 </a>
               </div>
             </div>
@@ -301,7 +302,7 @@ export const ServicesSection: React.FC = () => {
                     Enseñanza
                   </span>
                 </h3>
-                <p className="text-xs sm:text-sm text-[#3E4A7A]/75 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-xs sm:text-sm text-black max-w-2xl mx-auto leading-relaxed">
                   Estrategias psicopedagógicas y neuroeducativas adaptadas al ritmo, estilo cognitivo y potencial único de cada estudiante.
                 </p>
               </div>
@@ -341,7 +342,7 @@ export const ServicesSection: React.FC = () => {
                       <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
                         Aprendizaje Multisensorial
                       </h4>
-                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                      <p className="text-xs text-black leading-relaxed text-justify">
                         Conexión de las vías visual, auditiva y kinestésica (tacto y movimiento) para fijar conceptos en lectura y matemáticas sin memorización forzada.
                       </p>
                     </div>
@@ -349,10 +350,11 @@ export const ServicesSection: React.FC = () => {
                       href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Aprendizaje Multisensorial (VAK)*.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                      className="relative overflow-hidden inline-flex items-center gap-2 text-xs font-bold bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white px-4 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(107,127,209,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 group/btn self-start"
                     >
-                      <span>Consultar método</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                      <span className="relative z-10">Consultar método</span>
+                      <ArrowRight className="relative z-10 w-3.5 h-3.5 text-[#6B7FD1] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all duration-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -390,7 +392,7 @@ export const ServicesSection: React.FC = () => {
                       <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
                         Funciones Ejecutivas & TDAH
                       </h4>
-                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                      <p className="text-xs text-black leading-relaxed text-justify">
                         Entrenamiento de la atención sostenida, autorregulación emocional y memoria de trabajo para superar bloqueos y reducir el estrés en tareas.
                       </p>
                     </div>
@@ -398,10 +400,11 @@ export const ServicesSection: React.FC = () => {
                       href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Desarrollo de Funciones Ejecutivas*.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#9B8FD9] hover:text-[#9B8FD9] transition-all"
+                      className="relative overflow-hidden inline-flex items-center gap-2 text-xs font-bold bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white px-4 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(107,127,209,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 group/btn self-start"
                     >
-                      <span>Consultar método</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                      <span className="relative z-10">Consultar método</span>
+                      <ArrowRight className="relative z-10 w-3.5 h-3.5 text-[#6B7FD1] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all duration-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -439,7 +442,7 @@ export const ServicesSection: React.FC = () => {
                       <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
                         Jolly Phonics & Bilingüismo
                       </h4>
-                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                      <p className="text-xs text-black leading-relaxed text-justify">
                         Adquisición natural del inglés mediante historias fonéticas, canciones y juegos para pronunciar, leer y conversar con soltura sin miedo al error.
                       </p>
                     </div>
@@ -447,10 +450,11 @@ export const ServicesSection: React.FC = () => {
                       href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Jolly Phonics e Inmersión Bilingüe*.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                      className="relative overflow-hidden inline-flex items-center gap-2 text-xs font-bold bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white px-4 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(107,127,209,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 group/btn self-start"
                     >
-                      <span>Consultar método</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                      <span className="relative z-10">Consultar método</span>
+                      <ArrowRight className="relative z-10 w-3.5 h-3.5 text-[#6B7FD1] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all duration-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -488,7 +492,7 @@ export const ServicesSection: React.FC = () => {
                       <h4 className="font-serif-display text-xl sm:text-2xl font-bold text-[#3E4A7A] leading-snug text-center">
                         Vínculo Familia & Escuela
                       </h4>
-                      <p className="text-xs text-[#3E4A7A]/80 leading-relaxed text-justify">
+                      <p className="text-xs text-black leading-relaxed text-justify">
                         Coordinación directa con docentes y orientación personalizada a los padres para construir un entorno de confianza, motivación y seguridad emocional.
                       </p>
                     </div>
@@ -496,10 +500,11 @@ export const ServicesSection: React.FC = () => {
                       href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Johanna, me gustaría conocer más sobre el método: *Acompañamiento Familia y Escuela*.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-black border-b-2 border-black/80 pb-0.5 self-start hover:border-[#6B7FD1] hover:text-[#6B7FD1] transition-all"
+                      className="relative overflow-hidden inline-flex items-center gap-2 text-xs font-bold bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white px-4 py-2 rounded-full shadow-xs hover:shadow-[0_4px_14px_rgba(107,127,209,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 group/btn self-start"
                     >
-                      <span>Consultar método</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                      <span className="relative z-10">Consultar método</span>
+                      <ArrowRight className="relative z-10 w-3.5 h-3.5 text-[#6B7FD1] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all duration-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -519,7 +524,7 @@ export const ServicesSection: React.FC = () => {
                     Transformación
                   </span>
                 </h3>
-                <p className="text-xs sm:text-sm text-[#3E4A7A]/75">
+                <p className="text-xs sm:text-sm text-black">
                   Experiencias reales de quienes han confiado su bienestar y el de sus familias en Casa Kinti.
                 </p>
               </div>

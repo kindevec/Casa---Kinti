@@ -60,7 +60,7 @@ export const CredentialsStrip: React.FC = () => {
       </div>
 
       {/* Texto actualizado */}
-      <span className="font-bold text-[10px] sm:text-[11px] md:text-xs text-[#3E4A7A] text-center leading-snug px-1 line-clamp-2 sm:line-clamp-none">
+      <span className="font-bold text-[10px] sm:text-[11px] md:text-xs text-black text-center leading-snug px-1 line-clamp-2 sm:line-clamp-none">
         {pillar.text}
       </span>
     </div>

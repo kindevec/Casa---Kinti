@@ -233,7 +233,7 @@ export const PathSection: React.FC = () => {
               )}
             </h2>
 
-            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
               {mode === 'educacion'
                 ? 'Cada etapa está guiada con calidez y rigor psicopedagógico para potenciar el talento único, la autonomía y el bilingüismo de tus pequeños.'
                 : 'Cada paso está diseñado con empatía y rigor profesional para guiar tu proceso de autoconocimiento, sanación energética y equilibrio integral.'}
@@ -279,7 +279,7 @@ export const PathSection: React.FC = () => {
               </h3>
 
               {/* Descripción */}
-              <p className="text-xs sm:text-sm text-[#3E4A7A]/75 leading-relaxed">
+              <p className="text-xs sm:text-sm text-black leading-relaxed">
                 {step.description}
               </p>
             </div>
@@ -291,14 +291,15 @@ export const PathSection: React.FC = () => {
           <a
             href="#servicios"
             id="path-cta-button"
-            className="inline-flex items-center gap-2.5 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+            className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
           >
-            <span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+            <span className="relative z-10">
               {mode === 'educacion'
                 ? 'Explora nuestros programas educativos'
                 : 'Comienza tu camino de sanación'}
             </span>
-            <ArrowRight className="w-4 h-4 text-black" />
+            <ArrowRight className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300" />
           </a>
         </div>
 
@@ -325,7 +326,7 @@ export const PathSection: React.FC = () => {
                 </>
               )}
             </h3>
-            <p className="text-xs sm:text-sm text-[#3E4A7A]/75">
+            <p className="text-xs sm:text-sm text-black">
               Pasa el cursor sobre las imágenes para ver los detalles y agendar directamente.
             </p>
           </div>

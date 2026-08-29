@@ -465,7 +465,7 @@ export function CoverflowCarousel({
           </div>
         </div>
 
-        {/* Flechas de navegación: aparecen ambas simultáneamente al pasar el mouse por el carrusel y van cambiando continuamente mientras el cursor permanezca sobre ellas */}
+        {/* Flechas de navegación a los lados del carrusel: aparecen ambas simultáneamente al pasar el cursor sobre el carrusel */}
         {showNavigation && (
           <>
             <button
@@ -477,9 +477,10 @@ export function CoverflowCarousel({
                 e.stopPropagation();
                 nudge(-1);
               }}
-              className="absolute left-1 sm:left-4 top-1/2 z-[250] -translate-y-1/2 rounded-full bg-white/95 p-3 text-[#3E4A7A] shadow-xl backdrop-blur-xs transition-all duration-300 hover:bg-[#6B7FD1] hover:text-white hover:scale-110 active:scale-95 border border-[#C9D4F5] opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer"
+              className="overflow-hidden absolute -left-2 sm:-left-6 md:-left-10 lg:-left-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] flex items-center justify-center text-[#6B7FD1] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(107,127,209,0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+              <ChevronLeft className="relative z-10 w-6 h-6 text-[#6B7FD1] group-hover:text-white group-hover:-translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
             </button>
             <button
               type="button"
@@ -490,9 +491,10 @@ export function CoverflowCarousel({
                 e.stopPropagation();
                 nudge(1);
               }}
-              className="absolute right-1 sm:right-4 top-1/2 z-[250] -translate-y-1/2 rounded-full bg-white/95 p-3 text-[#3E4A7A] shadow-xl backdrop-blur-xs transition-all duration-300 hover:bg-[#6B7FD1] hover:text-white hover:scale-110 active:scale-95 border border-[#C9D4F5] opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer"
+              className="overflow-hidden absolute -right-2 sm:-right-6 md:-right-10 lg:-right-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] flex items-center justify-center text-[#6B7FD1] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(107,127,209,0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
             >
-              <ChevronRight className="w-5 h-5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+              <ChevronRight className="relative z-10 w-6 h-6 text-[#6B7FD1] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
             </button>
           </>
         )}
@@ -507,7 +509,7 @@ export function CoverflowCarousel({
             {active.title}
           </p>
           {active.subtitle && (
-            <p className="mt-1 text-sm sm:text-base text-[#3E4A7A]/80 max-w-xl leading-relaxed">
+            <p className="mt-1 text-sm sm:text-base text-black max-w-xl leading-relaxed">
               {active.subtitle}
             </p>
           )}
@@ -518,7 +520,7 @@ export function CoverflowCarousel({
                   key={row.label}
                   className="flex items-center gap-1.5 bg-white/90 rounded-full px-4 py-1.5 text-xs sm:text-sm border border-[#C9D4F5] shadow-xs"
                 >
-                  <span className="text-[#3E4A7A]/70 font-medium">{row.label}:</span>
+                  <span className="text-black font-medium">{row.label}:</span>
                   <span className="font-bold text-[#6B7FD1]">{row.value}</span>
                 </div>
               ))}
@@ -533,10 +535,11 @@ export function CoverflowCarousel({
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#6B7FD1] hover:bg-[#9B8FD9] text-black text-sm font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                className="relative overflow-hidden inline-flex items-center gap-2 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-sm font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
               >
-                <MessageCircle className="w-4 h-4 text-black" />
-                <span>{active.ctaText || 'Consultar por WhatsApp'}</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                <MessageCircle className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                <span className="relative z-10">{active.ctaText || 'Consultar por WhatsApp'}</span>
               </a>
             </div>
           )}
