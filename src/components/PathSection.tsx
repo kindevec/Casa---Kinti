@@ -197,7 +197,7 @@ export const PathSection: React.FC = () => {
 
   return (
     <div
-      className="relative pt-44 sm:pt-52 md:pt-60 pb-2 overflow-hidden bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF]/70 to-[#DCEEFB]/40 transition-colors duration-500"
+      className="relative pt-52 sm:pt-60 md:pt-68 lg:pt-72 pb-2 overflow-hidden bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF]/70 to-[#DCEEFB]/40 transition-colors duration-500"
     >
       {/* Elementos botánicos flotantes sutiles */}
       <FloralBouquet className="absolute top-10 right-4 w-36 h-36 opacity-40 -z-5" />

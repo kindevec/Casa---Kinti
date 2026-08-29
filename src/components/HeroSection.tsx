@@ -171,75 +171,7 @@ export const HeroSection: React.FC = () => {
       {/* Silueta orgánica curva multicapa derecha */}
       <HeroOrganicBackdrop className="-z-10" />
 
-      {/* ========================================================
-          TOGGLE FLOTANTE VERTICAL DUAL (HOLÍSTICA / EDUCACIÓN)
-          Ubicado en el lateral derecho fijo
-         ======================================================== */}
-      <aside
-        aria-label="Selector de Nicho: Holística o Educación"
-        className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2.5 bg-white/95 backdrop-blur-md p-1.5 sm:p-2 rounded-full border border-[#9B8FD9]/40 shadow-xl shadow-[#3E4A7A]/15 select-none"
-      >
-        {/* Botón Modo Holística (Ícono Flor) */}
-        <button
-          type="button"
-          id="floating-toggle-holistica"
-          onClick={() => setMode('holistica')}
-          className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
-            mode === 'holistica'
-              ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
-              : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
-          }`}
-          aria-label="Cambiar a Modo Holística"
-          aria-pressed={mode === 'holistica'}
-        >
-          <img
-            src="/icons/flor.png"
-            alt="Holística"
-            className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
-              mode === 'holistica'
-                ? 'brightness-0 invert drop-shadow-xs'
-                : 'opacity-70 group-hover:opacity-100'
-            }`}
-          />
-          {/* Tooltip lateral flotante */}
-          <span className="absolute right-full mr-3 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
-            <span>🌿</span>
-            <span>Holística</span>
-          </span>
-        </button>
 
-        {/* Separador sutil */}
-        <div className="w-5 h-px bg-[#C9D4F5]" />
-
-        {/* Botón Modo Educación (Ícono Birrete) */}
-        <button
-          type="button"
-          id="floating-toggle-educacion"
-          onClick={() => setMode('educacion')}
-          className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
-            mode === 'educacion'
-              ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
-              : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
-          }`}
-          aria-label="Cambiar a Modo Educación"
-          aria-pressed={mode === 'educacion'}
-        >
-          <img
-            src="/icons/birrete.png"
-            alt="Educación"
-            className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
-              mode === 'educacion'
-                ? 'brightness-0 invert drop-shadow-xs'
-                : 'opacity-70 group-hover:opacity-100'
-            }`}
-          />
-          {/* Tooltip lateral flotante */}
-          <span className="absolute right-full mr-3 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
-            <span>📚</span>
-            <span>Educación</span>
-          </span>
-        </button>
-      </aside>
 
       {/* ========================================================
           MARIPOSAS FLOTANTES Y BOTÁNICOS ORGÁNICOS
@@ -323,117 +255,122 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA DERECHA: Stack Interactivo Adaptado según el Nicho
+              COLUMNA DERECHA: Órbita Interactiva de Pilares
              ---------------------------------------------------- */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center relative translate-x-6 sm:translate-x-10 lg:translate-x-16 -translate-y-2 sm:-translate-y-4 lg:-translate-y-6">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-4 sm:translate-y-8 lg:translate-y-12 pl-0 lg:pl-4">
             
-            {/* Contenedor relativo del Stack de Tarjetas Interactivas con Decoraciones Florales (Más Ancho) */}
-            <div className="relative z-10 w-full flex justify-center">
-              <div
-                key={mode}
-                className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[530px] lg:max-w-[550px] h-[480px] sm:h-[520px] md:h-[550px] transition-all duration-400 animate-in fade-in"
-              >
-                
-                {/* Bouquet en esquina superior izquierda */}
-                <FloralBouquet className="absolute -top-8 -left-8 w-24 h-24 z-20 pointer-events-none" />
-                
-                {/* Bouquet en la esquina superior derecha */}
-                <FloralBouquet className="absolute -top-8 -right-8 w-24 h-24 z-20 pointer-events-none" flip />
+            {/* Contenedor de la órbita desplazado más hacia la derecha y abajo */}
+            <div className="w-full flex items-center justify-center lg:justify-start relative z-10 translate-x-24 sm:translate-x-36 lg:translate-x-56">
+              
+              {/* Mariposas y flores decorativas alrededor de la órbita */}
+              <FloralBouquet className="absolute -top-8 -left-8 w-24 h-24 z-20 pointer-events-none" />
+              <FloralBouquet className="absolute -top-8 -right-8 w-24 h-24 z-20 pointer-events-none" flip />
+              <ButterflyGraphic className="absolute -top-7 right-14 z-30 pointer-events-none" size={38} color="purple" />
+              <ButterflyGraphic className="absolute bottom-4 -left-6 z-30 pointer-events-none" size={30} color="pink" />
 
-                {/* Mariposa aleteando arriba al centro-derecha */}
-                <ButterflyGraphic
-                  className="absolute -top-7 right-14 z-30 pointer-events-none"
-                  size={38}
-                  color="purple"
-                />
-
-                {/* Mariposa pequeña abajo a la izquierda */}
-                <ButterflyGraphic
-                  className="absolute bottom-4 -left-6 z-30 pointer-events-none"
-                  size={30}
-                  color="pink"
-                />
-
-                {/* Componente Stack de React Bits con fotografías del nicho activo */}
-                <Stack
-                  randomRotation={true}
-                  sensitivity={170}
-                  sendToBackOnClick={true}
-                  autoplay={true}
-                  autoplayDelay={3600}
-                  pauseOnHover={true}
-                  cards={currentCards.map((card, idx) => (
-                    <div
-                      key={card.id}
-                      className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-[#E7F3FC] select-none group cursor-pointer border-0"
-                    >
-                      {/* Fotografía limpia */}
+              <OrbitImages
+                customItems={currentOrbitPillars.map((pillar, idx) => (
+                  <div
+                    key={idx}
+                    className={`group relative rounded-full aspect-square w-[136px] h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:scale-106 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
+                  >
+                    {/* Icono ilustrado ampliado */}
+                    <div className="w-13 h-13 sm:w-15 sm:h-15 md:w-17 md:h-17 flex items-center justify-center mb-1">
                       <img
-                        src={card.image}
-                        alt={card.alt}
-                        loading={idx === 0 ? 'eager' : 'lazy'}
-                        className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                        src={pillar.iconSrc}
+                        alt={pillar.iconAlt}
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
                       />
-
-                      {/* Descripción emergente: aparece ÚNICAMENTE al pasar el mouse por encima */}
-                      <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-[#3E4A7A]/95 via-[#3E4A7A]/80 to-transparent opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
-                        <p className="text-white text-xs sm:text-sm font-semibold leading-snug drop-shadow-md text-center">
-                          {card.description}
-                        </p>
-                      </div>
                     </div>
-                  ))}
-                />
-              </div>
+
+                    {/* Texto destacado y centrado */}
+                    <span className="font-bold text-xs sm:text-[13px] md:text-sm text-[#3E4A7A] text-center leading-tight px-1.5 line-clamp-2">
+                      {pillar.text}
+                    </span>
+                  </div>
+                ))}
+                shape="circle"
+                baseWidth={416}
+                radius={124}
+                aspectRatio="1 / 1"
+                itemSize={164}
+                duration={12}
+                rotation={0}
+                paused={false}
+                showPath={false}
+              />
             </div>
 
             {/* Árbol botánico acuarelado sutil emergiendo en el lado inferior */}
             <BloomingBotanicalTree className="absolute -bottom-10 -right-6 w-32 h-32 opacity-70 z-0" />
             <BloomingBotanicalTree className="absolute -bottom-8 -left-10 w-28 h-28 opacity-60 z-0" flip />
-
           </div>
 
         </div>
       </div>
 
       {/* ========================================================
-          ÓRBITA INTERACTIVA (CÍRCULOS MAXIMIZADOS Y AGRUPADOS SIN SUPERPOSICIÓN)
+          STACK DE FOTOS INTERACTIVO (POSICIÓN INFERIOR MÁS ABAJO)
          ======================================================== */}
       <div
-        className="absolute -bottom-36 sm:-bottom-44 md:-bottom-52 left-1/2 -translate-x-1/2 w-full max-w-[380px] sm:max-w-[440px] md:max-w-[480px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
+        className="absolute -bottom-52 sm:-bottom-60 md:-bottom-68 left-1/2 -translate-x-1/2 w-full max-w-[380px] sm:max-w-[440px] md:max-w-[480px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
       >
-        <OrbitImages
-          customItems={currentOrbitPillars.map((pillar, idx) => (
-            <div
-              key={idx}
-              className={`group relative rounded-full aspect-square w-[136px] h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:scale-106 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
-            >
-              {/* Icono ilustrado ampliado */}
-              <div className="w-13 h-13 sm:w-15 sm:h-15 md:w-17 md:h-17 flex items-center justify-center mb-1">
-                <img
-                  src={pillar.iconSrc}
-                  alt={pillar.iconAlt}
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
+        <div
+          key={mode}
+          className="relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] h-[380px] sm:h-[430px] md:h-[455px] transition-all duration-400 animate-in fade-in"
+        >
+          {/* Bouquet en esquina superior izquierda */}
+          <FloralBouquet className="absolute -top-6 -left-6 w-20 h-20 z-20 pointer-events-none" />
+          
+          {/* Bouquet en la esquina superior derecha */}
+          <FloralBouquet className="absolute -top-6 -right-6 w-20 h-20 z-20 pointer-events-none" flip />
 
-              {/* Texto destacado y perfectamente centrado */}
-              <span className="font-bold text-xs sm:text-[13px] md:text-sm text-[#3E4A7A] text-center leading-tight px-1.5 line-clamp-2">
-                {pillar.text}
-              </span>
-            </div>
-          ))}
-          shape="circle"
-          baseWidth={416}
-          radius={124}
-          aspectRatio="1 / 1"
-          itemSize={164}
-          duration={12}
-          rotation={0}
-          paused={false}
-          showPath={false}
-        />
+          {/* Mariposa aleteando arriba al centro-derecha */}
+          <ButterflyGraphic
+            className="absolute -top-5 right-10 z-30 pointer-events-none"
+            size={34}
+            color="purple"
+          />
+
+          {/* Mariposa pequeña abajo a la izquierda */}
+          <ButterflyGraphic
+            className="absolute bottom-2 -left-4 z-30 pointer-events-none"
+            size={28}
+            color="pink"
+          />
+
+          {/* Componente Stack de React Bits con fotografías del nicho activo */}
+          <Stack
+            randomRotation={true}
+            sensitivity={170}
+            sendToBackOnClick={true}
+            autoplay={true}
+            autoplayDelay={3600}
+            pauseOnHover={true}
+            cards={currentCards.map((card, idx) => (
+              <div
+                key={card.id}
+                className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-[#E7F3FC] select-none group cursor-pointer border-0"
+              >
+                {/* Fotografía limpia */}
+                <img
+                  src={card.image}
+                  alt={card.alt}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                />
+
+                {/* Descripción emergente: aparece ÚNICAMENTE al pasar el mouse por encima */}
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-[#3E4A7A]/95 via-[#3E4A7A]/80 to-transparent opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
+                  <p className="text-white text-xs sm:text-sm font-semibold leading-snug drop-shadow-md text-center">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          />
+        </div>
       </div>
 
     </section>

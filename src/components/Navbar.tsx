@@ -77,47 +77,74 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          {/* LADO DERECHO: Redes Sociales Ampliadas y Libres + Botón Hamburguesa Móvil */}
+          {/* LADO DERECHO: Selector Horizontal de Nichos (Holística / Educación) + Botón Hamburguesa Móvil */}
           <div className="flex items-center gap-3 sm:gap-4 z-10">
             
-            {/* Redes Sociales Oficiales Sueltas (Tamaño Aumentado y sin barra) */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href={CONTACT_INFO.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok Casa Kinti"
-                className="w-10 h-10 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95 flex items-center justify-center bg-white/90 p-1 border border-[#C9D4F5] shadow-2xs hover:border-[#9B8FD9]"
+            {/* Toggle Horizontal Dual de Nichos (Holística / Educación) */}
+            <div
+              aria-label="Selector de Nicho: Holística o Educación"
+              className="flex flex-row items-center gap-1.5 bg-white/95 backdrop-blur-md p-1.5 rounded-full border border-[#9B8FD9]/40 shadow-md shadow-[#3E4A7A]/10 select-none translate-x-2 sm:translate-x-4 lg:translate-x-8"
+            >
+              {/* Botón Modo Holística (Ícono Flor) */}
+              <button
+                type="button"
+                id="nav-toggle-holistica"
+                onClick={() => setMode('holistica')}
+                className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                  mode === 'holistica'
+                    ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
+                    : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
+                }`}
+                aria-label="Cambiar a Modo Holística"
+                aria-pressed={mode === 'holistica'}
               >
-                <img src="/icons/tiktok.png" alt="TikTok" className="w-full h-full object-cover rounded-full" />
-              </a>
-              <a
-                href={CONTACT_INFO.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram Casa Kinti"
-                className="w-10 h-10 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95 flex items-center justify-center bg-white/90 p-1 border border-[#C9D4F5] shadow-2xs hover:border-[#9B8FD9]"
+                <img
+                  src="/icons/flor.png"
+                  alt="Holística"
+                  className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
+                    mode === 'holistica'
+                      ? 'brightness-0 invert drop-shadow-xs'
+                      : 'opacity-70 group-hover:opacity-100'
+                  }`}
+                />
+                {/* Tooltip flotante */}
+                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+                  <span>🌿</span>
+                  <span>Holística</span>
+                </span>
+              </button>
+
+              {/* Separador sutil */}
+              <div className="w-px h-6 bg-[#C9D4F5]" />
+
+              {/* Botón Modo Educación (Ícono Birrete) */}
+              <button
+                type="button"
+                id="nav-toggle-educacion"
+                onClick={() => setMode('educacion')}
+                className={`relative group w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                  mode === 'educacion'
+                    ? 'bg-gradient-to-tr from-[#6B7FD1] to-[#9B8FD9] shadow-md shadow-[#6B7FD1]/35 scale-105 ring-2 ring-[#9B8FD9]/50'
+                    : 'bg-white/80 hover:bg-[#DCEEFB] hover:scale-105 text-[#3E4A7A]'
+                }`}
+                aria-label="Cambiar a Modo Educación"
+                aria-pressed={mode === 'educacion'}
               >
-                <img src="/icons/instagram.png" alt="Instagram" className="w-full h-full object-cover rounded-full" />
-              </a>
-              <a
-                href={CONTACT_INFO.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook Casa Kinti"
-                className="w-10 h-10 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95 flex items-center justify-center bg-white/90 p-1 border border-[#C9D4F5] shadow-2xs hover:border-[#9B8FD9]"
-              >
-                <img src="/icons/facebook.png" alt="Facebook" className="w-full h-full object-cover rounded-full" />
-              </a>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp Casa Kinti"
-                className="w-10 h-10 rounded-full overflow-hidden transition-all duration-200 hover:scale-115 hover:shadow-md active:scale-95 flex items-center justify-center bg-white/90 p-1 border border-[#C9D4F5] shadow-2xs hover:border-[#9B8FD9]"
-              >
-                <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-full h-full object-cover rounded-full" />
-              </a>
+                <img
+                  src="/icons/birrete.png"
+                  alt="Educación"
+                  className={`w-6 h-6 sm:w-7 sm:h-7 object-contain transition-all duration-300 ${
+                    mode === 'educacion'
+                      ? 'brightness-0 invert drop-shadow-xs'
+                      : 'opacity-70 group-hover:opacity-100'
+                  }`}
+                />
+                {/* Tooltip flotante */}
+                <span className="absolute top-full mt-2.5 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-[#3E4A7A] text-white text-[11px] font-bold tracking-wide shadow-md whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-1">
+                  <span>📚</span>
+                  <span>Educación</span>
+                </span>
+              </button>
             </div>
 
             {/* Mobile Hamburger Button */}
