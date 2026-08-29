@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNicheMode } from '../context/NicheContext';
-import { CasaKintiLogo } from './FloralDecorations';
+import { CasaKintiLogo, ButterflyGraphic } from './FloralDecorations';
+import { Menu, X, MessageCircle } from 'lucide-react';
+import { WHATSAPP_PHONE, WHATSAPP_DEFAULT_MSG, CONTACT_INFO } from '../data';
 
 export const Navbar: React.FC = () => {
   const { mode, setMode } = useNicheMode();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -145,10 +148,168 @@ export const Navbar: React.FC = () => {
                 </span>
               </button>
             </div>
+
+            {/* Mobile Hamburger Button */}
+            <div className="flex md:hidden items-center">
+              <button
+                type="button"
+                id="hamburger-menu-button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-full bg-white/85 hover:bg-white text-[#3E4A7A] border border-[#C9D4F5] shadow-xs focus:outline-hidden transition-colors"
+                aria-label="Abrir menú de navegación"
+                aria-expanded={isMenuOpen}
+              >
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
 
         </div>
       </header>
+
+      {/* Mobile / Side Panel Drawer */}
+      <div
+        className={`fixed inset-0 z-50 transition-all duration-300 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-[#3E4A7A]/30 backdrop-blur-xs"
+          onClick={() => setIsMenuOpen(false)}
+        />
+
+        {/* Drawer Content */}
+        <div
+          className={`absolute top-0 right-0 w-full max-w-sm h-full bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF] to-[#C9D4F5] shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 transform ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div>
+            {/* Header Drawer */}
+            <div className="flex items-center justify-between pb-6 border-b border-[#9B8FD9]/20">
+              <CasaKintiLogo size="sm" />
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 rounded-full bg-white/80 text-[#3E4A7A] hover:bg-white border border-[#C9D4F5]"
+                aria-label="Cerrar menú"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Selector de Nicho dentro del Drawer Móvil */}
+            <div className="mt-6 p-3 bg-white/70 rounded-2xl border border-[#C9D4F5]">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-black block mb-2 text-center">
+                Modo de Experiencia
+              </span>
+              <div className="flex items-center bg-[#DCEEFB] p-1 rounded-full border border-[#9B8FD9]/30 gap-1">
+                <button
+                  type="button"
+                  onClick={() => setMode('holistica')}
+                  className={`relative group overflow-hidden flex-1 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 hover:scale-102 active:scale-95 cursor-pointer ${
+                    mode === 'holistica'
+                      ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-md ring-1 ring-[#9B8FD9]/40'
+                      : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white'
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                  <img
+                    src="/icons/flor.png"
+                    alt=""
+                    className={`relative z-10 w-4 h-4 object-contain transition-all duration-300 group-hover:rotate-12 ${
+                      mode === 'holistica' ? 'brightness-0 invert' : 'opacity-80 group-hover:brightness-0 group-hover:invert'
+                    }`}
+                  />
+                  <span className="relative z-10">Holística</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMode('educacion')}
+                  className={`relative group overflow-hidden flex-1 py-2.5 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 hover:scale-102 active:scale-95 cursor-pointer ${
+                    mode === 'educacion'
+                      ? 'bg-gradient-to-tr from-[#6B7FD1] via-[#8E82DA] to-[#E8A2C2] text-white shadow-md ring-1 ring-[#9B8FD9]/40'
+                      : 'bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white'
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                  <img
+                    src="/icons/birrete.png"
+                    alt=""
+                    className={`relative z-10 w-4 h-4 object-contain transition-all duration-300 group-hover:rotate-12 ${
+                      mode === 'educacion' ? 'brightness-0 invert' : 'opacity-80 group-hover:brightness-0 group-hover:invert'
+                    }`}
+                  />
+                  <span className="relative z-10">Educación</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="mt-6 flex flex-col gap-2.5">
+              {navLinks.map((link) => (
+                <button
+                  key={link.label + link.href}
+                  type="button"
+                  onClick={() => handleLinkClick(link.href)}
+                  className="w-full text-left px-4 py-3 rounded-2xl text-base font-bold text-[#3E4A7A] hover:text-[#6B7FD1] hover:bg-white/80 transition-all flex items-center justify-between group"
+                >
+                  <span>{link.label}</span>
+                  <ButterflyGraphic size={20} color="purple" className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Drawer Footer & Socials */}
+          <div className="pt-6 border-t border-[#9B8FD9]/20 space-y-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold py-3 px-4 rounded-xl shadow-xs transition-colors"
+            >
+              <MessageCircle className="w-5 h-5 text-black" />
+              <span>WhatsApp Directo</span>
+            </a>
+
+            <div className="flex items-center justify-center gap-4">
+              <a
+                href="https://www.tiktok.com/@johapro3"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok Casa Kinti"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
+              >
+                <img src="/icons/tiktok.png" alt="TikTok" className="w-full h-full object-cover" />
+              </a>
+              <a
+                href="https://www.instagram.com/casa_kinti_"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram Casa Kinti"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
+              >
+                <img src="/icons/instagram.png" alt="Instagram" className="w-full h-full object-cover" />
+              </a>
+              <a
+                href="https://www.facebook.com/casakinti"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook Casa Kinti"
+                className="w-9 h-9 rounded-full overflow-hidden hover:scale-115 hover:shadow-md transition-transform"
+              >
+                <img src="/icons/facebook.png" alt="Facebook" className="w-full h-full object-cover" />
+              </a>
+            </div>
+
+            <p className="text-center text-xs text-black font-medium">
+              Quito, Ecuador · Johanna Proaño
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
