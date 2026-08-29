@@ -23,7 +23,7 @@ export const ProductsSection: React.FC = () => {
     <section
       id="productos"
       data-mode={mode}
-      className="relative pt-16 sm:pt-20 pb-6 sm:pb-8 bg-gradient-to-b from-[#C9D4F5]/30 via-[#FFFFFF] to-[#DCEEFB]/40 overflow-hidden"
+      className="relative pt-16 sm:pt-20 pb-6 sm:pb-8 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] overflow-hidden transition-colors duration-500"
     >
       {/* Botánicos en esquinas */}
       <FloralBouquet className="absolute top-8 right-0 w-40 h-40 opacity-40 -z-5" />
@@ -31,31 +31,44 @@ export const ProductsSection: React.FC = () => {
       <ButterflyGraphic className="absolute top-16 left-[10%] opacity-65" size={32} color="blue" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Cabecera Principal de Productos / Cursos según el modo activo (Sin insignia) */}
-        <div key={mode} className="text-center max-w-2xl mx-auto space-y-3 mb-16 animate-in fade-in duration-350">
-          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-            {mode === 'educacion' ? (
-              <>
-                Cursos &{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  Talleres
-                </span>
-              </>
-            ) : (
-              <>
-                Productos &{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  Amuletos
-                </span>
-              </>
-            )}
-          </h2>
+        {/* Cabecera Principal de Productos / Cursos (Diseño unificado) */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-16 sm:mb-20">
+          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
+          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
+          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
+          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
-          <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal">
-            {mode === 'educacion'
-              ? 'Programas de inmersión bilingüe, escuela para familias y kits didácticos multisensoriales para potenciar el aprendizaje y desarrollo infantil.'
-              : 'Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.'}
-          </p>
+          <div key={mode + '-products-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
+              {mode === 'educacion'
+                ? 'PROGRAMAS & MATERIALES'
+                : 'ELEMENTOS DE ARMONIZACIÓN'}
+            </span>
+
+            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
+              {mode === 'educacion' ? (
+                <>
+                  Cursos &{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    Talleres
+                  </span>
+                </>
+              ) : (
+                <>
+                  Productos &{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    Amuletos
+                  </span>
+                </>
+              )}
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+              {mode === 'educacion'
+                ? 'Programas de inmersión bilingüe, escuela para familias y kits didácticos multisensoriales para potenciar el aprendizaje y desarrollo infantil.'
+                : 'Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.'}
+            </p>
+          </div>
         </div>
 
         {/* Grid de Productos o Cursos con Animación Card Curtain Reveal */}

@@ -197,41 +197,48 @@ export const PathSection: React.FC = () => {
 
   return (
     <div
-      className="relative pt-52 sm:pt-60 md:pt-68 lg:pt-72 pb-2 overflow-hidden bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF]/70 to-[#DCEEFB]/40 transition-colors duration-500"
+      className="relative pt-64 sm:pt-72 md:pt-80 lg:pt-88 pb-2 overflow-hidden bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
     >
       {/* Elementos botánicos flotantes sutiles */}
-      <FloralBouquet className="absolute top-10 right-4 w-36 h-36 opacity-40 -z-5" />
+      <FloralBouquet className="absolute top-16 sm:top-24 right-4 w-36 h-36 opacity-40 -z-5" />
       <FloralBouquet className="absolute bottom-10 left-4 w-36 h-36 opacity-40 -z-5" flip />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ========================================================
-            SECCIÓN SUPERIOR: 4 Pasos del Proceso (Sin Insignia)
+            SECCIÓN SUPERIOR: 4 Pasos del Proceso (Diseño unificado)
            ======================================================== */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A] leading-tight">
-            {mode === 'educacion' ? (
-              <>
-                El aprendizaje sin barreras,{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  es un proceso
-                </span>
-              </>
-            ) : (
-              <>
-                El bienestar no es casualidad,{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  es un camino
-                </span>
-              </>
-            )}
-          </h2>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-16 sm:mb-20">
+          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
+          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
+          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
+          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
-          <p className="text-base text-[#3E4A7A]/80 max-w-xl mx-auto font-normal">
-            {mode === 'educacion'
-              ? 'Cada etapa está guiada con calidez y rigor psicopedagógico para potenciar el talento único, la autonomía y el bilingüismo de tus pequeños.'
-              : 'Cada paso está diseñado con empatía y rigor profesional para guiar tu proceso de autoconocimiento, sanación energética y equilibrio integral.'}
-          </p>
+          <div key={mode + '-path-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
+            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
+              {mode === 'educacion' ? (
+                <>
+                  El aprendizaje sin barreras,{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    es un proceso
+                  </span>
+                </>
+              ) : (
+                <>
+                  El bienestar no es casualidad,{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    es un camino
+                  </span>
+                </>
+              )}
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+              {mode === 'educacion'
+                ? 'Cada etapa está guiada con calidez y rigor psicopedagógico para potenciar el talento único, la autonomía y el bilingüismo de tus pequeños.'
+                : 'Cada paso está diseñado con empatía y rigor profesional para guiar tu proceso de autoconocimiento, sanación energética y equilibrio integral.'}
+            </p>
+          </div>
         </div>
 
         {/* Fila de 4 Tarjetas de Pasos con Mariposa Decorativa */}

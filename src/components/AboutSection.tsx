@@ -43,7 +43,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section
       id="sobre-mi"
-      className="relative w-full overflow-hidden pt-4 sm:pt-6 pb-16 sm:pb-20 bg-gradient-to-b from-[#DCEEFB] via-[#FFFFFF]/80 to-[#DCEEFB]/40 transition-colors duration-500"
+      className="relative w-full overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-20 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
     >
       {/* Decoraciones botánicas idénticas al resto de las secciones */}
       <FloralBouquet className="absolute top-8 right-6 w-44 h-44 opacity-35 -z-5" />
@@ -52,52 +52,34 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ========================================================
-            CABECERA PRINCIPAL: SOBRE MÍ CON 2 MARIPOSAS A LOS LADOS
+            CABECERA PRINCIPAL: SOBRE MÍ (Diseño unificado)
            ======================================================== */}
-        <div className="relative text-center max-w-xl mx-auto mb-10 flex items-center justify-center">
-          
-          {/* Mariposa animada izquierda (al medio a la izquierda del título) */}
-          <motion.div
-            className="absolute left-0 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 pointer-events-none z-20"
-            animate={{
-              x: [0, 8, -6, 6, 0],
-              y: [-6, 8, -4, 6, -6],
-              rotate: [-14, 8, -12, 6, -14],
-              scale: [0.95, 1.06, 0.95, 1.02, 0.95],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <ButterflyGraphic size={36} color="purple" />
-          </motion.div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16">
+          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
+          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
+          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
+          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
-          {/* Título Principal */}
-          <h2 className="font-script text-6xl sm:text-7xl md:text-8xl text-[#9B8FD9] leading-tight select-none relative z-10 px-8 sm:px-12">
-            Sobre Mí
-          </h2>
+          <div key={mode + '-about-header'} className="space-y-3 relative z-10 animate-in fade-in duration-300">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
+              {mode === 'educacion'
+                ? 'TRAYECTORIA & VOCACIÓN DOCENTE'
+                : 'SABIDURÍA & VOCACIÓN DE SERVICIO'}
+            </span>
 
-          {/* Mariposa animada derecha (al medio a la derecha del título) */}
-          <motion.div
-            className="absolute right-0 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 pointer-events-none z-20"
-            animate={{
-              x: [0, -8, 6, -6, 0],
-              y: [6, -8, 4, -6, 6],
-              rotate: [14, -8, 12, -6, 14],
-              scale: [0.95, 1.06, 0.95, 1.02, 0.95],
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.4,
-            }}
-          >
-            <ButterflyGraphic size={34} color="pink" />
-          </motion.div>
+            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
+              Conoce a Johanna Proaño{' '}
+              <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                y Casa Kinti
+              </span>
+            </h2>
 
+            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+              {mode === 'educacion'
+                ? 'Educadora infantil bilingüe y Máster en Problemas de Aprendizaje con más de 15 años guiando a familias y niños hacia su máximo potencial.'
+                : 'Terapeuta floral de Bach, herbolaria medicinal y mujer medicina ancestral consagrada al bienestar integral en Quito.'}
+            </p>
+          </div>
         </div>
 
         {/* ========================================================

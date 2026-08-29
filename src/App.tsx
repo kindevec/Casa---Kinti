@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { NicheProvider } from './context/NicheContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -12,7 +12,7 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 export default function App() {
   return (
     <NicheProvider>
-      <div className="min-h-screen flex flex-col selection:bg-[#9B8FD9]/30 selection:text-[#3E4A7A] relative">
+      <div className="min-h-screen flex flex-col bg-[#E8F3FD] selection:bg-[#9B8FD9]/30 selection:text-[#3E4A7A] relative">
         {/* Header Sticky con Toggle Deslizante iOS de Nichos */}
         <Navbar />
 

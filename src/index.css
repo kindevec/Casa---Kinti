@@ -283,3 +283,30 @@ body[data-mode="holistica"] .only-educacion {
   }
 }
 
+/* ========================================================
+   HERO ORGANIC BLOB & WAVE CARD STYLES
+   ======================================================== */
+.hero-organic-image-clip {
+  clip-path: url(#hero-organic-blob-mobile);
+  -webkit-clip-path: url(#hero-organic-blob-mobile);
+}
+
+@media (min-width: 1024px) {
+  .hero-organic-image-clip {
+    clip-path: url(#hero-organic-blob-desktop);
+    -webkit-clip-path: url(#hero-organic-blob-desktop);
+  }
+}
+
+.hero-organic-accent-clip {
+  clip-path: url(#hero-organic-blob-accent-mobile);
+  -webkit-clip-path: url(#hero-organic-blob-accent-mobile);
+}
+
+@media (min-width: 1024px) {
+  .hero-organic-accent-clip {
+    clip-path: url(#hero-organic-blob-accent-desktop);
+    -webkit-clip-path: url(#hero-organic-blob-accent-desktop);
+  }
+}
+

@@ -69,8 +69,50 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="relative pt-8 sm:pt-12 pb-8 overflow-hidden">
+    <section id="contacto" className="relative pt-12 sm:pt-16 pb-8 overflow-hidden bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500">
       
+      {/* ========================================================
+          CABECERA PRINCIPAL DE CONTACTO (Diseño unificado)
+         ======================================================== */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16">
+        <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
+        <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
+        <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
+        <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
+
+        <div key={mode + '-contact-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
+            {mode === 'educacion'
+              ? 'ESTAMOS PARA ACOMPAÑARTE'
+              : 'INICIA TU CAMINO DE TRANSFORMACIÓN'}
+          </span>
+
+          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
+            {mode === 'educacion' ? (
+              <>
+                Agenda tu cita{' '}
+                <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                  educativa
+                </span>
+              </>
+            ) : (
+              <>
+                Agenda tu sesión{' '}
+                <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                  holística
+                </span>
+              </>
+            )}
+          </h2>
+
+          <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+            {mode === 'educacion'
+              ? 'Coordina una evaluación psicopedagógica, asesoría para padres o taller de estimulación temprana con Johanna Proaño.'
+              : 'Separa tu espacio para medicina ancestral andina, terapia de flores de Bach, tarot terapéutico o limpias energéticas en Quito o de forma virtual.'}
+          </p>
+        </div>
+      </div>
+
       {/* ========================================================
           FORMULARIO DE CONTACTO + INFORMACIÓN Y MAPA
          ======================================================== */}

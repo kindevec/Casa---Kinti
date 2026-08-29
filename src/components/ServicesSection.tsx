@@ -58,7 +58,7 @@ export const ServicesSection: React.FC = () => {
     <section
       id="servicios"
       data-mode={mode}
-      className="relative pt-3 sm:pt-4 pb-20 sm:pb-24 bg-gradient-to-b from-[#DCEEFB]/40 via-[#FFFFFF] to-[#C9D4F5]/30 overflow-hidden transition-all duration-400"
+      className="relative pt-3 sm:pt-4 pb-20 sm:pb-24 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] overflow-hidden transition-all duration-500"
     >
       {/* Botánicos en fondo */}
       <FloralBouquet className="absolute top-12 left-0 w-44 h-44 opacity-40 -z-5" />
@@ -68,31 +68,44 @@ export const ServicesSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
-        {/* Cabecera Principal de Servicios — Estructura Única y Limpia (Sin insignia) */}
-        <div key={mode} className="text-center max-w-3xl mx-auto space-y-3 animate-in fade-in duration-350">
-          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-            {mode === 'educacion' ? (
-              <>
-                Servicios &{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  Educación
-                </span>
-              </>
-            ) : (
-              <>
-                Servicios &{' '}
-                <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl md:text-6xl font-normal">
-                  Terapias
-                </span>
-              </>
-            )}
-          </h2>
+        {/* Cabecera Principal de Servicios (Diseño unificado) */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-16 sm:mb-20">
+          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
+          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
+          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
+          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
-          <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal max-w-2xl mx-auto">
-            {mode === 'educacion'
-              ? 'Diagnósticos psicopedagógicos, estimulación bilingüe temprana y programas personalizados dirigidos por Máster en Problemas de Aprendizaje.'
-              : 'Limpiezas energéticas, esencias florales de Bach, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio integral.'}
-          </p>
+          <div key={mode + '-services-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
+            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
+              {mode === 'educacion'
+                ? 'ATENCIÓN PERSONALIZADA & EXCELENCIA'
+                : 'SANACIÓN & BIENESTAR INTEGRAL'}
+            </span>
+
+            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
+              {mode === 'educacion' ? (
+                <>
+                  Servicios &{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    Educación
+                  </span>
+                </>
+              ) : (
+                <>
+                  Servicios &{' '}
+                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
+                    Terapias
+                  </span>
+                </>
+              )}
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#3E4A7A]/80 font-normal leading-relaxed max-w-2xl mx-auto">
+              {mode === 'educacion'
+                ? 'Diagnósticos psicopedagógicos, estimulación bilingüe temprana y programas personalizados dirigidos por Máster en Problemas de Aprendizaje.'
+                : 'Limpiezas energéticas, esencias florales de Bach, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio integral.'}
+            </p>
+          </div>
         </div>
 
         {/* Grid de Servicios Directo con Animación Card Curtain Reveal */}
