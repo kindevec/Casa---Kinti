@@ -100,7 +100,7 @@ export const ProductsSection: React.FC = () => {
 
                 <CardCurtainReveal
                   id={`product-card-${product.id}`}
-                  className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 min-h-[370px] sm:min-h-[390px] h-[370px] sm:h-[390px] flex flex-col justify-between"
+                  className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 min-h-[380px] sm:min-h-[400px] flex flex-col justify-between"
                 >
                   {/* ========================================================
                       1. CORTINA FRONTAL QUE SE ABRE EN 2 HOJAS (IZQ Y DER)

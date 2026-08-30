@@ -103,7 +103,7 @@ export const MobileTabBar: React.FC = () => {
   return (
     <aside
       aria-label="Navegación móvil inferior"
-      className="fixed bottom-3.5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-[390px] md:hidden pointer-events-auto"
+      className="fixed bottom-[calc(0.875rem+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-[390px] md:hidden pointer-events-auto"
     >
       <AnimatedTabBar
         items={mobileTabItems}

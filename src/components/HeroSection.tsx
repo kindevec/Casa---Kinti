@@ -162,7 +162,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="inicio"
       data-mode={mode}
-      className="relative min-h-[96vh] pt-28 md:pt-36 pb-0 flex flex-col justify-between overflow-visible z-20 transition-all duration-400"
+      className="relative min-h-[96vh] min-h-[96dvh] pt-24 sm:pt-28 md:pt-36 pb-0 flex flex-col justify-between overflow-visible z-20 transition-all duration-400"
     >
       {/* ========================================================
           FONDO BASE Y SILUETA ORGÁNICA MULTICAPA (REFERENCIA)
@@ -172,8 +172,6 @@ export const HeroSection: React.FC = () => {
 
       {/* Silueta orgánica curva multicapa derecha */}
       <HeroOrganicBackdrop className="-z-10" />
-
-
 
       {/* ========================================================
           MARIPOSAS FLOTANTES Y BOTÁNICOS ORGÁNICOS
@@ -195,16 +193,16 @@ export const HeroSection: React.FC = () => {
       {/* ========================================================
           CONTENEDOR PRINCIPAL EDITORIAL (MÁS ARRIBA, POR ENCIMA DE LA ÓRBITA)
          ======================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 my-auto pt-0 pb-2 -translate-y-8 sm:-translate-y-14 md:-translate-y-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 my-auto pt-0 pb-2 -translate-y-4 sm:-translate-y-10 md:-translate-y-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           
           {/* ----------------------------------------------------
               COLUMNA IZQUIERDA: Textos y CTAs Sincronizados con el Modo Activo
              ---------------------------------------------------- */}
-          <div className="lg:col-span-7 text-center space-y-7 mx-auto lg:mx-0 -translate-x-2 sm:-translate-x-4 lg:-translate-x-6 pr-0 lg:pr-10">
+          <div className="lg:col-span-7 text-center space-y-6 sm:space-y-7 mx-auto lg:mx-0 translate-x-0 lg:-translate-x-4 pr-0 lg:pr-10">
 
             {/* Titular Grande con palabra en script adaptada (florece / crece) */}
-            <h1 className="font-serif-display text-4xl sm:text-5xl md:text-6xl text-[#3E4A7A] leading-[1.12] tracking-tight text-center max-w-xl mx-auto">
+            <h1 className="font-serif-display text-3xl sm:text-5xl md:text-6xl text-[#3E4A7A] leading-[1.12] tracking-tight text-center max-w-xl mx-auto">
               Sana tu cuerpo, educa tu mente y{' '}
               <span
                 key={mode}
@@ -218,7 +216,7 @@ export const HeroSection: React.FC = () => {
             <div className="relative min-h-[90px] sm:min-h-[80px] max-w-xl mx-auto flex items-center justify-center">
               <p
                 key={mode}
-                className="text-base sm:text-lg text-black font-normal leading-relaxed text-justify transition-all duration-400 animate-in fade-in"
+                className="text-sm sm:text-base md:text-lg text-black font-normal leading-relaxed text-justify transition-all duration-400 animate-in fade-in"
               >
                 {mode === 'educacion' ? (
                   <>
@@ -233,12 +231,12 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Botones de acción principales centrados */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2">
               <a
                 href="#contacto"
                 id="hero-cta-agendar"
                 onClick={handleAgendaCita}
-                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
+                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-sm sm:text-base font-bold px-7 sm:px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group min-h-[44px]"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 {mode === 'educacion' ? (
@@ -252,7 +250,7 @@ export const HeroSection: React.FC = () => {
               <a
                 href="#sobre-mi"
                 id="hero-cta-conoce-mas"
-                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-gradient-to-tr hover:from-[#DDEBFC] hover:via-[#ECE6FB] hover:to-[#FCE5F1] text-black hover:text-[#6B7FD1] text-base font-semibold px-7 py-3.5 rounded-full shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 group"
+                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-gradient-to-tr hover:from-[#DDEBFC] hover:via-[#ECE6FB] hover:to-[#FCE5F1] text-black hover:text-[#6B7FD1] text-sm sm:text-base font-semibold px-6 sm:px-7 py-3.5 rounded-full shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 group min-h-[44px]"
               >
                 <span className="relative z-10">Conoce más</span>
                 <ArrowDown className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:translate-y-1 transition-transform duration-300" />
@@ -264,28 +262,28 @@ export const HeroSection: React.FC = () => {
           {/* ----------------------------------------------------
               COLUMNA DERECHA: Órbita Interactiva de Pilares
              ---------------------------------------------------- */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-4 sm:translate-y-8 lg:translate-y-12 pl-0 lg:pl-4">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-2 sm:translate-y-6 lg:translate-y-10 pl-0 lg:pl-4">
             
-            {/* Contenedor de la órbita desplazado más hacia la derecha y abajo */}
-            <div className="w-full flex items-center justify-center lg:justify-start relative z-10 translate-x-24 sm:translate-x-36 lg:translate-x-56">
+            {/* Contenedor de la órbita centrado en móvil y desplazado solo en pantallas grandes */}
+            <div className="w-full flex items-center justify-center lg:justify-start relative z-10 translate-x-0 lg:translate-x-20 xl:translate-x-36 2xl:translate-x-48 max-w-[320px] xs:max-w-[360px] sm:max-w-[420px] md:max-w-[460px] mx-auto lg:mx-0">
               
               {/* Mariposas y flores decorativas alrededor de la órbita */}
-              <FloralBouquet className="absolute -top-8 -left-8 w-24 h-24 z-20 pointer-events-none" />
-              <FloralBouquet className="absolute -top-8 -right-8 w-24 h-24 z-20 pointer-events-none" flip />
-              <ButterflyGraphic className="absolute -top-7 right-14 z-30 pointer-events-none" size={38} color="purple" />
-              <ButterflyGraphic className="absolute bottom-4 -left-6 z-30 pointer-events-none" size={30} color="pink" />
+              <FloralBouquet className="absolute -top-6 -left-4 sm:-top-8 sm:-left-8 w-20 sm:w-24 h-20 sm:h-24 z-20 pointer-events-none" />
+              <FloralBouquet className="absolute -top-6 -right-4 sm:-top-8 sm:-right-8 w-20 sm:w-24 h-20 sm:h-24 z-20 pointer-events-none" flip />
+              <ButterflyGraphic className="absolute -top-6 right-8 sm:right-14 z-30 pointer-events-none" size={34} color="purple" />
+              <ButterflyGraphic className="absolute bottom-4 -left-4 sm:-left-6 z-30 pointer-events-none" size={28} color="pink" />
 
               <OrbitImages
                 customItems={currentOrbitPillars.map((pillar, idx) => (
                   <div
                     key={idx}
-                    className={`group relative overflow-hidden rounded-full aspect-square w-[136px] h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
+                    className={`group relative overflow-hidden rounded-full aspect-square w-[124px] h-[124px] xs:w-[136px] xs:h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-2.5 sm:p-3.5 cursor-pointer select-none`}
                   >
                     {/* Destello de luz diagonal reflectante al pasar el mouse */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
 
                     {/* Icono ilustrado ampliado con giro y escala interactiva */}
-                    <div className="relative z-10 w-13 h-13 sm:w-15 sm:h-15 md:w-17 md:h-17 flex items-center justify-center mb-1">
+                    <div className="relative z-10 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-1">
                       <img
                         src={pillar.iconSrc}
                         alt={pillar.iconAlt}
@@ -295,7 +293,7 @@ export const HeroSection: React.FC = () => {
                     </div>
 
                     {/* Texto destacado y centrado */}
-                    <span className="relative z-10 font-bold text-xs sm:text-[13px] md:text-sm text-black text-center leading-tight px-1.5 line-clamp-2">
+                    <span className="relative z-10 font-bold text-[11px] sm:text-[13px] md:text-sm text-black text-center leading-tight px-1 line-clamp-2">
                       {pillar.text}
                     </span>
                   </div>
@@ -313,8 +311,8 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Árbol botánico acuarelado sutil emergiendo en el lado inferior */}
-            <BloomingBotanicalTree className="absolute -bottom-10 -right-6 w-32 h-32 opacity-70 z-0" />
-            <BloomingBotanicalTree className="absolute -bottom-8 -left-10 w-28 h-28 opacity-60 z-0" flip />
+            <BloomingBotanicalTree className="absolute -bottom-8 -right-4 sm:-bottom-10 sm:-right-6 w-28 sm:w-32 h-28 sm:h-32 opacity-70 z-0 pointer-events-none" />
+            <BloomingBotanicalTree className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-10 w-24 sm:w-28 h-24 sm:h-28 opacity-60 z-0 pointer-events-none" flip />
           </div>
 
         </div>
@@ -324,29 +322,29 @@ export const HeroSection: React.FC = () => {
           STACK DE FOTOS INTERACTIVO (POSICIÓN INFERIOR MÁS ABAJO)
          ======================================================== */}
       <div
-        className="absolute -bottom-52 sm:-bottom-60 md:-bottom-68 left-1/2 -translate-x-1/2 w-full max-w-[380px] sm:max-w-[440px] md:max-w-[480px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
+        className="absolute -bottom-48 sm:-bottom-56 md:-bottom-64 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[340px] sm:max-w-[420px] md:max-w-[460px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
       >
         <div
           key={mode}
-          className="relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] h-[380px] sm:h-[430px] md:h-[455px] transition-all duration-400 animate-in fade-in"
+          className="relative w-full max-w-[320px] xs:max-w-[340px] sm:max-w-[400px] md:max-w-[440px] h-[350px] sm:h-[410px] md:h-[445px] transition-all duration-400 animate-in fade-in"
         >
           {/* Bouquet en esquina superior izquierda */}
-          <FloralBouquet className="absolute -top-6 -left-6 w-20 h-20 z-20 pointer-events-none" />
+          <FloralBouquet className="absolute -top-5 -left-3 sm:-top-6 sm:-left-6 w-16 sm:w-20 h-16 sm:h-20 z-20 pointer-events-none" />
           
           {/* Bouquet en la esquina superior derecha */}
-          <FloralBouquet className="absolute -top-6 -right-6 w-20 h-20 z-20 pointer-events-none" flip />
+          <FloralBouquet className="absolute -top-5 -right-3 sm:-top-6 sm:-right-6 w-16 sm:w-20 h-16 sm:h-20 z-20 pointer-events-none" flip />
 
           {/* Mariposa aleteando arriba al centro-derecha */}
           <ButterflyGraphic
-            className="absolute -top-5 right-10 z-30 pointer-events-none"
-            size={34}
+            className="absolute -top-5 right-6 sm:right-10 z-30 pointer-events-none"
+            size={30}
             color="purple"
           />
 
           {/* Mariposa pequeña abajo a la izquierda */}
           <ButterflyGraphic
-            className="absolute bottom-2 -left-4 z-30 pointer-events-none"
-            size={28}
+            className="absolute bottom-2 -left-3 sm:-left-4 z-30 pointer-events-none"
+            size={24}
             color="pink"
           />
 

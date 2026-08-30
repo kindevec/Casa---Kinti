@@ -27,16 +27,6 @@ export const Navbar: React.FC = () => {
     { label: 'Contacto', href: '#contacto' },
   ];
 
-  const handleLinkClick = (href: string) => {
-    setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MSG)}`;
-
   return (
     <>
       <header
@@ -49,8 +39,8 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[58px]">
           
-          {/* LADO IZQUIERDO: Logo Casa Kinti + Secciones de Navegación (Posición Original Exacta) */}
-          <div className="flex items-center gap-6 sm:gap-8 lg:gap-10 ml-3 sm:ml-8 md:ml-16 lg:ml-20">
+          {/* LADO IZQUIERDO: Logo Casa Kinti + Secciones de Navegación */}
+          <div className="flex items-center gap-4 sm:gap-6 lg:gap-8 shrink-0">
             <a
               href="#inicio"
               id="nav-logo-link"
@@ -60,13 +50,13 @@ export const Navbar: React.FC = () => {
               <CasaKintiLogo size="md" />
             </a>
 
-            {/* Desktop Navigation Links (Posición Original Exacta) */}
-            <nav className="hidden md:flex items-center justify-center gap-6 lg:gap-8 text-center translate-x-3 sm:translate-x-5 lg:translate-x-7">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-7 text-center">
               {navLinks.map((link) => (
                 <a
                   key={link.label + link.href}
                   href={link.href}
-                  className="text-base lg:text-[17px] font-bold text-[#3E4A7A] hover:text-[#6B7FD1] transition-all duration-200 relative py-1 text-center inline-flex items-center justify-center after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2.5px] after:bg-[#9B8FD9] hover:after:w-full after:transition-all after:duration-200"
+                  className="text-sm lg:text-[16px] font-bold text-[#3E4A7A] hover:text-[#6B7FD1] transition-all duration-200 relative py-1 text-center inline-flex items-center justify-center after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2.5px] after:bg-[#9B8FD9] hover:after:w-full after:transition-all after:duration-200"
                 >
                   {link.label}
                 </a>
@@ -74,13 +64,13 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          {/* LADO DERECHO: Selector Horizontal de Nichos (Holística / Educación) + Botón Hamburguesa Móvil */}
-          <div className="flex items-center gap-3 sm:gap-4 z-10">
+          {/* LADO DERECHO: Selector Horizontal de Nichos (Holística / Educación) */}
+          <div className="flex items-center gap-2 sm:gap-3 z-10 shrink-0">
             
             {/* Toggle Horizontal Dual de Nichos (Holística / Educación) */}
             <div
               aria-label="Selector de Nicho: Holística o Educación"
-              className="flex flex-row items-center gap-1.5 bg-white/95 backdrop-blur-md p-1.5 rounded-full border border-[#9B8FD9]/40 shadow-md shadow-[#3E4A7A]/10 select-none translate-x-2 sm:translate-x-4 lg:translate-x-8"
+              className="flex flex-row items-center gap-1 sm:gap-1.5 bg-white/95 backdrop-blur-md p-1 sm:p-1.5 rounded-full border border-[#9B8FD9]/40 shadow-md shadow-[#3E4A7A]/10 select-none"
             >
               {/* Botón Modo Holística (Ícono Flor) */}
               <button

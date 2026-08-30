@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
               COLUMNA 1: Logo Oficial, Misión Dinámica & Redes Sociales (lg:col-span-4)
              ---------------------------------------------------- */}
           <div className="lg:col-span-4 space-y-4 text-left">
-            <div className="flex items-center justify-start ml-[130px] sm:ml-[140px] -mt-5 sm:-mt-7">
+            <div className="flex items-center justify-start ml-0 sm:ml-2 -mt-5 sm:-mt-7">
               <a
                 href="#inicio"
                 onClick={(e) => {

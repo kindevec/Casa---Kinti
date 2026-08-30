@@ -118,7 +118,7 @@ export const AboutSection: React.FC = () => {
                       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
 
                       {/* Mismo icono ilustrado del banner ampliado con rotación y escala */}
-                      <div className="relative z-10 w-11 h-11 sm:w-13 sm:h-13 md:w-15 md:h-15 flex items-center justify-center mb-1 shrink-0">
+                      <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mb-1 shrink-0">
                         <img
                           src={item.iconSrc}
                           alt={item.iconAlt}

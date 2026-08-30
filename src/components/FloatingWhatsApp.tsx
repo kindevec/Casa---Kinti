@@ -7,7 +7,7 @@ export const FloatingWhatsApp: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MSG)}`;
 
   return (
-    <div className="fixed bottom-22 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center">
+    <div className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] md:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] right-[calc(1rem+env(safe-area-inset-right,0px))] md:right-[calc(1.5rem+env(safe-area-inset-right,0px))] z-50 flex items-center">
       {/* Botón Circular con Pulso y Logo Oficial */}
       <a
         href={whatsappUrl}

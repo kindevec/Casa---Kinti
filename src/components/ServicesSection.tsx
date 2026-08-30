@@ -140,7 +140,7 @@ export const ServicesSection: React.FC = () => {
 
               <CardCurtainReveal
                 id={`service-card-${service.id}`}
-                className="relative bg-white rounded-3xl min-h-[370px] sm:min-h-[390px] h-[370px] sm:h-[390px] shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                className="relative bg-white rounded-3xl min-h-[380px] sm:min-h-[400px] shadow-sm hover:shadow-2xl border border-[#C9D4F5] hover:border-[#9B8FD9] transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
                 {/* ========================================================
                     1. CORTINA FRONTAL QUE SE ABRE EN 2 HOJAS (IZQ Y DER)
