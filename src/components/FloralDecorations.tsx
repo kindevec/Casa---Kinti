@@ -11,10 +11,10 @@ export const CasaKintiLogo: React.FC<{
   variant?: 'full' | 'symbol';
   showText?: boolean;
   withShaderEffect?: boolean;
-}> = ({ className = '', size = 'md', variant = 'full', withShaderEffect = false }) => {
+}> = ({ className = '', size = 'md', variant = 'full' }) => {
   const heights = {
     sm: 'h-12 sm:h-14',
-    md: 'h-16 sm:h-20 lg:h-22',
+    md: 'h-[64px] xs:h-[70px] sm:h-20 lg:h-22',
     lg: 'h-24 sm:h-28 lg:h-32',
     xl: 'h-36 sm:h-44',
   }[size];
@@ -23,12 +23,22 @@ export const CasaKintiLogo: React.FC<{
 
   return (
     <div className={`inline-flex items-center justify-center select-none group ${className}`}>
-      {/* Imagen del Logotipo Oficial Transparente Fijo y Nítido */}
+      {/* Imagen del Logotipo Oficial Transparente Fijo y Nítido (Optimizado para Retina / Móviles) */}
       <img
         src={imageSrc}
         alt="Casa Kinti — Medicinas Integrativas"
-        className={`${heights} w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm`}
+        width="720"
+        height="744"
+        className={`${heights} w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter-none`}
+        style={{
+          imageRendering: '-webkit-optimize-contrast',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+        }}
         loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );

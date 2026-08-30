@@ -24,6 +24,7 @@ const curtainVariants: Variants = {
 
 interface CardCurtainRevealContextValue {
   isMouseIn: boolean
+  setIsMouseIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const CardCurtainRevealContext = React.createContext<
@@ -43,21 +44,37 @@ export function useCardCurtainRevealContext() {
 export const CardCurtainReveal = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ children, className, ...props }, ref) => {
+>(({ children, className, onClick, ...props }, ref) => {
   const [isMouseIn, setIsMouseIn] = React.useState(false)
-  const handleMouseEnter = React.useCallback(() => setIsMouseIn(true), [])
-  const handleMouseLeave = React.useCallback(() => setIsMouseIn(false), [])
+
+  const handlePointerEnter = React.useCallback(() => setIsMouseIn(true), [])
+  const handlePointerLeave = React.useCallback(() => setIsMouseIn(false), [])
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement
+      // Si se hizo click en un enlace o botón interno (ej. WhatsApp), permitir su acción
+      if (target.closest('a') || target.closest('button')) {
+        return
+      }
+      // Al tocar cualquier otra parte de la tarjeta, abrir/cerrar la cortina para leer la descripción
+      setIsMouseIn((prev) => !prev)
+      if (onClick) onClick(e)
+    },
+    [onClick]
+  )
 
   return (
-    <CardCurtainRevealContext.Provider value={{ isMouseIn }}>
+    <CardCurtainRevealContext.Provider value={{ isMouseIn, setIsMouseIn }}>
       <div
         ref={ref}
         className={cn(
-          "relative flex flex-col overflow-hidden group cursor-pointer select-none rounded-3xl",
+          "relative flex flex-col overflow-hidden group cursor-pointer select-none rounded-3xl touch-manipulation",
           className
         )}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handlePointerEnter}
+        onMouseLeave={handlePointerLeave}
+        onClick={handleClick}
         {...props}
       >
         {children}
@@ -68,7 +85,7 @@ export const CardCurtainReveal = React.forwardRef<
 CardCurtainReveal.displayName = "CardCurtainReveal"
 
 /**
- * Cortina dividida en dos hojas que se abren hacia los lados al pasar el mouse por encima
+ * Cortina dividida en dos hojas que se abren hacia los lados al pasar el mouse o al tocar la tarjeta
  */
 export const CardCurtainSplitCover = ({
   image,
@@ -89,10 +106,20 @@ export const CardCurtainSplitCover = ({
   category?: string
   icon?: React.ReactNode
 }) => {
-  const { isMouseIn } = useCardCurtainRevealContext()
+  const { isMouseIn, setIsMouseIn } = useCardCurtainRevealContext()
 
   return (
-    <div className="absolute inset-0 z-20 pointer-events-none w-full h-full overflow-hidden">
+    <div
+      className={cn(
+        "absolute inset-0 z-20 w-full h-full overflow-hidden transition-opacity duration-300",
+        isMouseIn ? "pointer-events-none" : "pointer-events-auto cursor-pointer"
+      )}
+      onClick={(e) => {
+        // Bloquear que el clic atraviese al botón de WhatsApp subyacente cuando la cortina está cerrada
+        e.stopPropagation()
+        setIsMouseIn(true)
+      }}
+    >
       {/* Hoja Izquierda de la Cortina (Se desliza hacia la izquierda) */}
       <motion.div
         className="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#EBF3FC] border-r border-[#C9DCF8]/60 shadow-lg"

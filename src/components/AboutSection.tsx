@@ -43,7 +43,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section
       id="sobre-mi"
-      className="relative w-full overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-20 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
+      className="relative w-full overflow-hidden pt-10 sm:pt-16 md:pt-20 pb-4 sm:pb-8 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
     >
       {/* Decoraciones botánicas idénticas al resto de las secciones */}
       <FloralBouquet className="absolute top-8 right-6 w-44 h-44 opacity-35 -z-5" />
@@ -54,19 +54,13 @@ export const AboutSection: React.FC = () => {
         {/* ========================================================
             CABECERA PRINCIPAL: SOBRE MÍ (Diseño unificado)
            ======================================================== */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-8 sm:mb-12 md:mb-16">
           <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
           <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
           <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
           <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
           <div key={mode + '-about-header'} className="space-y-3 relative z-10 animate-in fade-in duration-300">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
-              {mode === 'educacion'
-                ? 'TRAYECTORIA & VOCACIÓN DOCENTE'
-                : 'SABIDURÍA & VOCACIÓN DE SERVICIO'}
-            </span>
-
             <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
               Conoce a Johanna Proaño{' '}
               <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">

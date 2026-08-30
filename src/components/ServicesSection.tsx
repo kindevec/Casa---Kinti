@@ -58,7 +58,7 @@ export const ServicesSection: React.FC = () => {
     <section
       id="servicios"
       data-mode={mode}
-      className="relative pt-3 sm:pt-4 pb-20 sm:pb-24 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] overflow-hidden transition-all duration-500"
+      className="relative pt-10 sm:pt-16 md:pt-20 pb-10 sm:pb-16 md:pb-20 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] overflow-hidden transition-all duration-500"
     >
       {/* Botánicos en fondo */}
       <FloralBouquet className="absolute top-12 left-0 w-44 h-44 opacity-40 -z-5" />
@@ -66,22 +66,16 @@ export const ServicesSection: React.FC = () => {
       <ButterflyGraphic className="absolute top-1/3 right-[8%] opacity-70" size={38} color="purple" />
       <ButterflyGraphic className="absolute bottom-1/4 left-[6%] opacity-60" size={30} color="pink" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10 sm:space-y-16">
         
         {/* Cabecera Principal de Servicios (Diseño unificado) */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-16 sm:mb-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-8 sm:mb-12 md:mb-16">
           <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
           <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
           <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
           <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
 
           <div key={mode + '-services-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1] block">
-              {mode === 'educacion'
-                ? 'ATENCIÓN PERSONALIZADA & EXCELENCIA'
-                : 'SANACIÓN & BIENESTAR INTEGRAL'}
-            </span>
-
             <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
               {mode === 'educacion' ? (
                 <>
@@ -515,9 +509,6 @@ export const ServicesSection: React.FC = () => {
             /* BLOQUE HOLÍSTICA: Historias de Transformación con Animación ScrollReelTestimonials */
             <>
               <div className="text-center max-w-2xl mx-auto space-y-2 animate-in fade-in duration-300">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#9B8FD9]">
-                  TÚ PODRÍAS ESTAR AQUÍ
-                </span>
                 <h3 className="font-serif-display text-3xl sm:text-4xl font-bold text-[#3E4A7A]">
                   Historias de{' '}
                   <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">

@@ -32,7 +32,7 @@ export interface ScrollReelTestimonialsProps {
   testimonials: ScrollReelTestimonial[];
   /** Per-character stagger in ms (default 6) */
   charStaggerMs?: number;
-  /** Auto-play interval in ms (default 3000 for 3 seconds) */
+  /** Auto-play interval in ms (default 3800 for 3.8 seconds) */
   autoPlayInterval?: number;
   /** Extra classes for the outer container */
   className?: string;
@@ -51,7 +51,7 @@ const HOVER_SCROLL_INTERVAL = 1800; // time between transitions while holding cu
 const EASE_INOUT = "cubic-bezier(0.65,0,0.35,1)";
 
 const QUOTE_CLASSES =
-  "m-0 text-base sm:text-lg font-serif-display font-medium leading-[1.6] tracking-[-0.01em] text-black italic text-justify";
+  "m-0 text-sm xs:text-base sm:text-lg font-serif-display font-medium leading-[1.6] tracking-[-0.01em] text-black italic text-justify";
 const AUTHOR_CLASSES =
   "m-0 text-xs sm:text-sm font-bold leading-[1.3] text-[#6B7FD1]";
 
@@ -89,13 +89,14 @@ interface FeaturedProps {
 const Featured: React.FC<FeaturedProps> = ({ src, alt }) => {
   return (
     <div
-      className="relative shrink-0 overflow-hidden rounded-2xl bg-[#DCEEFB] border-2 border-[#9B8FD9]/50 shadow-md"
+      className="relative shrink-0 overflow-hidden rounded-2xl bg-[#DCEEFB] border-2 border-[#9B8FD9]/60 shadow-lg"
       style={{ width: CELL, height: CELL, boxShadow: FEATURED_SHADOW }}
     >
       <img
         src={src}
-        alt={alt ?? ""}
-        loading="lazy"
+        alt={alt ?? "Foto de testimonio Casa Kinti"}
+        loading="eager"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
       />
       {/* subtle saturation blend */}
@@ -166,7 +167,7 @@ function Chars({
 export function ScrollReelTestimonials({
   testimonials,
   charStaggerMs = 6,
-  autoPlayInterval = 3000,
+  autoPlayInterval = 3800,
   className,
 }: ScrollReelTestimonialsProps) {
   /* Navigation state vs display state are kept separate so the
@@ -178,6 +179,10 @@ export function ScrollReelTestimonials({
   const [isHovered, setIsHovered] = React.useState(false);
   const animating = React.useRef(false);
   const timeouts = React.useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  // Touch gesture support
+  const touchStartX = React.useRef<number | null>(null);
+  const touchStartY = React.useRef<number | null>(null);
 
   const count = testimonials.length;
   const currentIndexRef = React.useRef(index);
@@ -247,7 +252,7 @@ export function ScrollReelTestimonials({
     }
   }, []);
 
-  // Auto-play timer every autoPlayInterval ms (3s default), pauses on hover
+  // Auto-play timer every autoPlayInterval ms, pauses on hover
   React.useEffect(() => {
     if (!autoPlayInterval || autoPlayInterval <= 0 || count <= 1 || isHovered) return;
     const timer = setInterval(() => {
@@ -257,14 +262,37 @@ export function ScrollReelTestimonials({
   }, [autoPlayInterval, count, paginate, isHovered]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowRight") {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
       e.preventDefault();
       paginate(1);
     }
-    if (e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
       e.preventDefault();
       paginate(-1);
     }
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
+
+    // Horizontal swipe threshold 40px
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        paginate(1); // Swipe left -> next
+      } else {
+        paginate(-1); // Swipe right -> prev
+      }
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   /* Middle column: 3 leading cells, then featured + 2 cells between
@@ -298,34 +326,34 @@ export function ScrollReelTestimonials({
     <div
       role="region"
       aria-roledescription="carousel"
-      aria-label="Testimonials"
+      aria-label="Historias de Transformación Casa Kinti"
       tabIndex={0}
       onKeyDown={onKeyDown}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
         stopContinuousScroll();
       }}
       className={cn(
-        "group relative flex w-full max-w-[1240px] mx-auto flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 outline-none md:min-h-[340px] md:flex-row",
+        "group relative flex w-full max-w-[1240px] mx-auto flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 outline-hidden md:min-h-[340px] md:flex-row py-2",
         className
       )}
     >
-      {/* Reel de Fotos (Columna Izquierda extra ancha centrada) */}
-      <div className="flex justify-center items-center shrink-0">
+      {/* Reel de Fotos (Columna Izquierda con escala responsive mobile-first y máscara segura) */}
+      <div className="flex justify-center items-center shrink-0 w-full md:w-auto overflow-hidden">
         <div
           aria-hidden="true"
-          className="relative h-72 sm:h-80 md:h-[340px] w-full max-w-[460px] sm:max-w-[500px] md:w-[540px] lg:w-[550px] shrink-0 overflow-hidden"
+          className="relative h-60 xs:h-68 sm:h-76 md:h-[340px] w-full max-w-[340px] xs:max-w-[390px] sm:max-w-[480px] md:w-[540px] shrink-0 overflow-hidden flex items-center justify-center"
           style={{
             WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
             maskImage:
-              "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-            maskComposite: "intersect",
+              "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
           }}
         >
-          <div className="absolute inset-0 flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 scale-[0.62] xs:scale-[0.72] sm:scale-[0.85] md:scale-100 origin-center transition-transform duration-300">
             {/* Left column */}
             <div
               className="flex shrink-0 flex-col gap-3 will-change-transform motion-reduce:[transition:none!important]"
@@ -367,11 +395,12 @@ export function ScrollReelTestimonials({
         </div>
       </div>
 
-      {/* Content section + Flechas de navegación verticales a la derecha (centrado) */}
-      <div className="flex min-w-0 flex-1 items-center justify-center gap-4 self-stretch px-2 py-2 sm:px-4">
+      {/* Content section + Retrato del autor + Flechas de navegación */}
+      <div className="flex min-w-0 flex-1 items-center justify-between gap-4 self-stretch px-2 sm:px-4 w-full">
         
         {/* Bloque de Texto y Estrellas */}
         <div className="flex flex-col gap-3 min-w-0 flex-1">
+          
           {/* 5 Estrellas Doradas arriba del texto */}
           <div className="flex items-center gap-1 text-[#F5C84C] mb-0.5">
             {[...Array(5)].map((_, i) => (
@@ -385,7 +414,7 @@ export function ScrollReelTestimonials({
             ))}
           </div>
 
-          {/* Text stage */}
+          {/* Text stage con quote adaptable */}
           <div
             className="relative w-full max-w-[480px] overflow-hidden"
             aria-live="polite"
@@ -394,7 +423,7 @@ export function ScrollReelTestimonials({
               * quote at any viewport width, so wrapped text never clips. */}
             <div
               aria-hidden="true"
-              className="invisible flex min-h-[120px] flex-col gap-3"
+              className="invisible flex min-h-[110px] flex-col gap-2.5"
             >
               <p className={QUOTE_CLASSES}>{current.quote}</p>
               <div>
@@ -409,7 +438,7 @@ export function ScrollReelTestimonials({
             <div
               key={displayIndex}
               className={cn(
-                "absolute inset-x-0 top-0 flex flex-col gap-3 will-change-[transform,opacity]",
+                "absolute inset-x-0 top-0 flex flex-col gap-2.5 will-change-[transform,opacity]",
                 exiting && "scroll-reel-exit"
               )}
             >
@@ -436,9 +465,32 @@ export function ScrollReelTestimonials({
               </div>
             </div>
           </div>
+
+          {/* Indicadores de Puntos (Dots) para fácil navegación móvil */}
+          <div className="flex items-center gap-1.5 pt-1">
+            {testimonials.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                type="button"
+                onClick={() => {
+                  if (dotIdx !== index) {
+                    paginate(dotIdx > index ? 1 : -1);
+                  }
+                }}
+                className={cn(
+                  "h-2 rounded-full transition-all duration-300 cursor-pointer",
+                  dotIdx === displayIndex
+                    ? "w-6 bg-gradient-to-r from-[#6B7FD1] to-[#9B8FD9]"
+                    : "w-2 bg-[#C9D4F5] hover:bg-[#9B8FD9]/60"
+                )}
+                aria-label={`Ir al testimonio ${dotIdx + 1}`}
+              />
+            ))}
+          </div>
+
         </div>
 
-        {/* Flechas de navegación en sentido vertical en el borde derecho (aparecen juntas al pasar el mouse por la sección) */}
+        {/* Flechas de navegación: ocultas por defecto, aparecen ambas al mismo tiempo cuando se pasa el cursor por la sección */}
         <div
           className={cn(
             "flex flex-col gap-2.5 justify-center items-center shrink-0 transition-all duration-300",
@@ -453,11 +505,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(-1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Historia anterior"
-            className="relative overflow-hidden grid h-10 w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-115 hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] active:scale-95 shadow-xs group"
+            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-xs group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="relative z-10 h-4.5 w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
+              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -474,11 +526,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Siguiente historia"
-            className="relative overflow-hidden grid h-10 w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-115 hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] active:scale-95 shadow-xs group"
+            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-xs group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="relative z-10 h-4.5 w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300"
+              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

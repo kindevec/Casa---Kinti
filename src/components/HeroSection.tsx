@@ -162,7 +162,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="inicio"
       data-mode={mode}
-      className="relative min-h-[96vh] min-h-[96dvh] pt-24 sm:pt-28 md:pt-36 pb-0 flex flex-col justify-between overflow-visible z-20 transition-all duration-400"
+      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-center pt-28 xs:pt-30 sm:pt-28 md:pt-24 lg:pt-16 pb-12 sm:pb-20 overflow-visible z-20 transition-all duration-400"
     >
       {/* ========================================================
           FONDO BASE Y SILUETA ORGÁNICA MULTICAPA (REFERENCIA)
@@ -191,15 +191,15 @@ export const HeroSection: React.FC = () => {
       <ButterflyGraphic className="absolute top-[60%] right-[6%] opacity-85" size={34} color="lavender" />
 
       {/* ========================================================
-          CONTENEDOR PRINCIPAL EDITORIAL (MÁS ARRIBA, POR ENCIMA DE LA ÓRBITA)
+          CONTENEDOR PRINCIPAL (DIMENSIONES Y ANCHO SEGÚN AOVET)
          ======================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 my-auto pt-0 pb-2 -translate-y-4 sm:-translate-y-10 md:-translate-y-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center my-auto pb-6 sm:pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           
           {/* ----------------------------------------------------
               COLUMNA IZQUIERDA: Textos y CTAs Sincronizados con el Modo Activo
              ---------------------------------------------------- */}
-          <div className="lg:col-span-7 text-center space-y-6 sm:space-y-7 mx-auto lg:mx-0 translate-x-0 lg:-translate-x-4 pr-0 lg:pr-10">
+          <div className="lg:col-span-7 text-center space-y-6 sm:space-y-7 mx-auto lg:mx-0 translate-x-0 lg:-translate-x-4 pr-0 lg:pr-10 pt-6 sm:pt-8 md:pt-4 lg:pt-0 translate-y-3 sm:translate-y-4 md:translate-y-0 lg:-translate-y-6 xl:-translate-y-8">
 
             {/* Titular Grande con palabra en script adaptada (florece / crece) */}
             <h1 className="font-serif-display text-3xl sm:text-5xl md:text-6xl text-[#3E4A7A] leading-[1.12] tracking-tight text-center max-w-xl mx-auto">
@@ -262,7 +262,7 @@ export const HeroSection: React.FC = () => {
           {/* ----------------------------------------------------
               COLUMNA DERECHA: Órbita Interactiva de Pilares
              ---------------------------------------------------- */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-2 sm:translate-y-6 lg:translate-y-10 pl-0 lg:pl-4">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-4 xs:translate-y-6 sm:translate-y-4 lg:-translate-y-4 xl:-translate-y-6 pl-0 lg:pl-4">
             
             {/* Contenedor de la órbita centrado en móvil y desplazado solo en pantallas grandes */}
             <div className="w-full flex items-center justify-center lg:justify-start relative z-10 translate-x-0 lg:translate-x-20 xl:translate-x-36 2xl:translate-x-48 max-w-[320px] xs:max-w-[360px] sm:max-w-[420px] md:max-w-[460px] mx-auto lg:mx-0">
@@ -319,10 +319,10 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* ========================================================
-          STACK DE FOTOS INTERACTIVO (POSICIÓN INFERIOR MÁS ABAJO)
+          STACK DE FOTOS INTERACTIVO (POSICIÓN INFERIOR MÁS ABAJO EN MÓVIL)
          ======================================================== */}
       <div
-        className="absolute -bottom-48 sm:-bottom-56 md:-bottom-64 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[340px] sm:max-w-[420px] md:max-w-[460px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
+        className="absolute -bottom-72 xs:-bottom-80 sm:-bottom-60 md:-bottom-64 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[340px] sm:max-w-[420px] md:max-w-[460px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
       >
         <div
           key={mode}

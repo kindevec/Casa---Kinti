@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="main-footer"
-      className="relative z-10 border-t border-[#C9D4F5]/60 bg-gradient-to-br from-[#DCEEFB] via-[#E7F3FC] to-[#F0C6D9]/40 pt-10 sm:pt-12 pb-10 overflow-hidden shadow-xs text-[#3E4A7A]"
+      className="relative z-10 bg-gradient-to-br from-[#DCEEFB] via-[#E7F3FC] to-[#F0C6D9]/40 pt-8 sm:pt-10 pb-20 md:pb-8 overflow-hidden shadow-xs text-[#3E4A7A]"
     >
       {/* Ramillete floral acuarelado en la esquina superior izquierda (según referencia) */}
       <FloralBouquet className="absolute -top-2 -left-2 w-36 sm:w-44 h-36 sm:h-44 opacity-80 pointer-events-none -z-5" />
@@ -38,16 +38,16 @@ export const Footer: React.FC = () => {
       <ButterflyGraphic className="absolute top-1/2 right-[18%] opacity-75 pointer-events-none" size={26} color="purple" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-               {/* ========================================================
-             GRID DE 4 COLUMNAS (ESTRUCTURA ADAPTADA AL PROYECTO)
-            ======================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#C9D4F5]/60">
+        {/* ========================================================
+            GRID DE 4 COLUMNAS (DIMENSIONES Y ANCHO SEGÚN AOVET)
+           ======================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
           
           {/* ----------------------------------------------------
-              COLUMNA 1: Logo Oficial, Misión Dinámica & Redes Sociales (lg:col-span-4)
+              COLUMNA 1: Logo Oficial & Misión Dinámica
              ---------------------------------------------------- */}
-          <div className="lg:col-span-4 space-y-4 text-left">
-            <div className="flex items-center justify-start ml-0 sm:ml-2 -mt-5 sm:-mt-7">
+          <div className="flex flex-col gap-4 text-left">
+            <div className="flex items-center justify-start ml-32 xs:ml-36 sm:ml-12 md:ml-16 lg:ml-20 -mt-5 sm:-mt-7 w-full sm:w-auto">
               <a
                 href="#inicio"
                 onClick={(e) => {
@@ -79,9 +79,9 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 2: Secciones / Navegación (lg:col-span-2)
+              COLUMNA 2: Secciones / Navegación
              ---------------------------------------------------- */}
-          <div className="lg:col-span-2 space-y-3.5 text-left -mt-4 sm:-mt-6">
+          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
             <div className="flex flex-col items-start">
               <ButterflyGraphic size={26} color="purple" className="mb-1 pointer-events-none" />
               <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
@@ -153,9 +153,9 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 3: Líneas de Atención / Especialidades por Nicho (lg:col-span-3)
+              COLUMNA 3: Líneas de Atención / Especialidades por Nicho
              ---------------------------------------------------- */}
-          <div className="lg:col-span-3 space-y-3.5 text-left -mt-4 sm:-mt-6">
+          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
             <div className="flex flex-col items-start">
               <ButterflyGraphic size={26} color="pink" className="mb-1 pointer-events-none" />
               <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
@@ -225,9 +225,9 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 4: Contacto con Insignias (lg:col-span-3)
+              COLUMNA 4: Contacto con Insignias
              ---------------------------------------------------- */}
-          <div className="lg:col-span-3 space-y-3.5 text-left -mt-4 sm:-mt-6">
+          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
             <div className="flex flex-col items-start">
               <ButterflyGraphic size={26} color="blue" className="mb-1 pointer-events-none" />
               <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
@@ -293,16 +293,16 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* ========================================================
-            BARRA INFERIOR / SUB-FOOTER
+            BARRA INFERIOR / SUB-FOOTER (DIMENSIONES SEGÚN AOVET)
            ======================================================== */}
-        <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-center text-xs text-black">
+        <div className="pt-4 text-xs text-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center">
           
-          {/* Izquierda: Copyright y Enlaces Legales (lg:col-span-9) */}
-          <div className="lg:col-span-9 flex flex-col sm:flex-row items-center sm:items-start lg:items-center gap-2 sm:gap-6 text-center sm:text-left">
+          {/* Izquierda: Copyright y Enlaces Legales (md:col-span-1 lg:col-span-3) */}
+          <div className="md:col-span-1 lg:col-span-3 flex flex-col sm:flex-row items-center md:items-start lg:items-center gap-2 sm:gap-6 text-center md:text-left">
             <p>
               © {new Date().getFullYear()} Casa Kinti. Todos los derechos reservados.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex gap-4 text-xs">
               <a
                 href="#contacto"
                 onClick={(e) => {
@@ -327,8 +327,8 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Derecha: Firma Oficial KINDEV a la altura de la columna de Contacto (lg:col-span-3) */}
-          <div className="lg:col-span-3 flex justify-center sm:justify-start">
+          {/* Derecha: Firma Oficial KINDEV (md:col-span-1 lg:col-span-1) */}
+          <div className="md:col-span-1 lg:col-span-1 flex justify-center md:justify-start">
             <a 
               href="https://kindevx.web.app/" 
               target="_blank" 
@@ -352,9 +352,9 @@ export const Footer: React.FC = () => {
                   className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-[0_2px_10px_rgba(0,229,255,0.45)] group-hover:drop-shadow-[0_4px_18px_rgba(0,229,255,0.85)] group-hover:scale-115 group-hover:-rotate-6 group-hover:brightness-110 transition-all duration-300 ease-out inline-block"
                 />
               </div>
-              <span className="text-xs sm:text-sm text-black group-hover:text-black transition-colors">
+              <span className="font-serif-display text-sm sm:text-base text-black group-hover:text-black transition-colors font-semibold tracking-wide">
                 Desarrollado por{" "}
-                <span className="font-extrabold text-[#6B7FD1] drop-shadow-[0_0_8px_rgba(107,127,209,0.35)] group-hover:drop-shadow-[0_0_16px_rgba(107,127,209,0.95)] group-hover:brightness-110 group-hover:tracking-wider inline-block transition-all duration-300">
+                <span className="font-serif-display font-bold text-black inline-block">
                   KINDEV
                 </span>
               </span>
