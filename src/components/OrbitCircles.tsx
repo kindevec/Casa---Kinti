@@ -139,7 +139,7 @@ export default function OrbitImages({
   aspectRatio,
   className = '',
   showPath = true,
-  pathColor = 'rgba(155, 143, 217, 0.25)',
+  pathColor = 'rgba(43, 114, 148, 0.25)',
   pathWidth = 2,
   easing = 'linear',
   paused = false,

@@ -1,142 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
-import OrbitImages from './OrbitCircles';
-import Stack from './Stack';
-import {
-  ButterflyGraphic,
-  FloralBouquet,
-  HeroOrganicBackdrop,
-  BloomingBotanicalTree,
-  AgendarCalendarIcon,
-  SolicitarEvaluacionIcon,
-} from './FloralDecorations';
-import {
-  Calendar,
-  ArrowDown,
-} from 'lucide-react';
-import { CONTACT_INFO, WHATSAPP_PHONE, WHATSAPP_DEFAULT_MSG } from '../data';
+import { HeroAtmosphereAnimation } from './HeroAtmosphereAnimation';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const { mode, setMode } = useNicheMode();
-  const [isOrbitPaused, setIsOrbitPaused] = useState(false);
-  const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MSG)}`;
-
-  // Tarjetas para el modo Holística
-  const cardsHolistica = [
-    {
-      id: 1,
-      image: '/johanna-hero.png',
-      alt: 'Johanna Proaño realizando sesión de medicina integrativa y limpias ancestrales',
-      description: 'Sesión de Medicina Integrativa, Bioenergética & Limpias Ancestrales',
-    },
-    {
-      id: 2,
-      image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
-      alt: 'Flores de Bach y preparados botánicos medicinales',
-      description: 'Terapia con Flores de Bach, Herbolaria & Medicina Andina',
-    },
-    {
-      id: 3,
-      image: '/tarot-hero.png',
-      alt: 'Lectura de tarot terapéutico con cristales, péndulos y runas sagradas',
-      description: 'Lectura de Tarot Terapéutico Evolutivo & Autoconocimiento',
-    },
-    {
-      id: 4,
-      image: '/pulseras-amuletos.png',
-      alt: 'Pulseras Amuletos de piedras naturales consagradas con estudio radiestésico',
-      description: 'Amuletos Consagrados & Protección Energética Personalizada',
-    },
-  ];
-
-  // Tarjetas para el modo Educación
-  const cardsEducacion = [
-    {
-      id: 101,
-      // <!-- reemplazar con foto real: taller de educación bilingüe -->
-      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-      alt: 'Taller de educación infantil bilingüe y estimulación temprana',
-      description: 'Estimulación Temprana & Educación Infantil Bilingüe',
-    },
-    {
-      id: 102,
-      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-      alt: 'Sesión de apoyo para problemas y dificultades de aprendizaje',
-      description: 'Diagnóstico Psicopedagógico & Apoyo en Problemas de Aprendizaje',
-    },
-    {
-      id: 103,
-      image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
-      alt: 'Evaluación psicopedagógica y desarrollo cognitivo infantil',
-      description: 'Evaluación Integral del Aprendizaje & Adecuación Curricular',
-    },
-  ];
-
-  const currentCards = mode === 'educacion' ? cardsEducacion : cardsHolistica;
-
-  const orbitPillarsHolistica = [
-    {
-      text: 'Flores de Bach',
-      iconSrc: '/icons/pillar-flores-bach.png',
-      iconAlt: 'Flores de Bach y Herbolario',
-      bgColor: 'bg-[#D2F4EE]',
-      borderColor: 'border-[#12A89D]/30',
-    },
-    {
-      text: 'Medicina Ancestral',
-      iconSrc: '/icons/pillar-medicina.png',
-      iconAlt: 'Medicina Ancestral',
-      bgColor: 'bg-[#E2DBF7]',
-      borderColor: 'border-[#9B8FD9]/40',
-    },
-    {
-      text: 'Tarot Terapéutico',
-      iconSrc: '/icons/pillar-flores-bach.png',
-      iconAlt: 'Tarot Terapéutico',
-      bgColor: 'bg-[#C9D4F5]',
-      borderColor: 'border-[#9B8FD9]/40',
-    },
-    {
-      text: 'Limpiezas Energéticas',
-      iconSrc: '/icons/pillar-medicina.png',
-      iconAlt: 'Limpiezas Energéticas',
-      bgColor: 'bg-[#F0C6D9]',
-      borderColor: 'border-[#F0C6D9]',
-    },
-  ];
-
-  const orbitPillarsEducacion = [
-    {
-      text: 'Educación Bilingüe',
-      iconSrc: '/icons/pillar-educadora.png',
-      iconAlt: 'Educación Infantil Bilingüe',
-      bgColor: 'bg-[#C9D4F5]',
-      borderColor: 'border-[#9B8FD9]/40',
-    },
-    {
-      text: 'Problemas de Aprendizaje',
-      iconSrc: '/icons/pillar-aprendizaje.png',
-      iconAlt: 'Problemas de Aprendizaje',
-      bgColor: 'bg-[#F0C6D9]',
-      borderColor: 'border-[#F0C6D9]',
-    },
-    {
-      text: 'Estimulación Temprana',
-      iconSrc: '/icons/pillar-educadora.png',
-      iconAlt: 'Estimulación Temprana',
-      bgColor: 'bg-[#D2F4EE]',
-      borderColor: 'border-[#12A89D]/30',
-    },
-    {
-      text: 'Psicopedagogía Máster',
-      iconSrc: '/icons/pillar-aprendizaje.png',
-      iconAlt: 'Psicopedagogía Máster',
-      bgColor: 'bg-[#E2DBF7]',
-      borderColor: 'border-[#9B8FD9]/40',
-    },
-  ];
-
-  const currentOrbitPillars = mode === 'educacion' ? orbitPillarsEducacion : orbitPillarsHolistica;
+  const { mode } = useNicheMode();
 
   /* Manejador de CTA Principal "Agenda tu cita" con preselección del nicho activo */
   const handleAgendaCita = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -162,225 +31,429 @@ export const HeroSection: React.FC = () => {
     <section
       id="inicio"
       data-mode={mode}
-      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-center pt-28 xs:pt-30 sm:pt-28 md:pt-24 lg:pt-16 pb-12 sm:pb-20 overflow-visible z-20 transition-all duration-400"
+      className="relative min-h-[92vh] sm:min-h-[96vh] flex flex-col justify-center pt-24 xs:pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-28 overflow-hidden z-20 transition-all duration-400 bg-[#5CBDB5]"
     >
       {/* ========================================================
-          FONDO BASE Y SILUETA ORGÁNICA MULTICAPA (REFERENCIA)
+          FOTOGRAFÍA CELESTIAL HORIZONTAL DE FONDO (COLOR DEL HEADER #5CBDB5)
          ======================================================== */}
-      {/* Fondo pastel suave izquierdo / base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#DCEEFB] via-[#E7F3FC] to-[#F0C6D9]/40 pointer-events-none -z-20" />
+      <div className="absolute inset-0 -z-20 overflow-hidden bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93]">
+        {/* Imagen Celestial en horizontal fusionada con el color del Header */}
+        <img
+          src="/hero-celestial-bg.jpg"
+          alt="Cielo Celestial Turquesa y Polvo Dorado Casa Kinti"
+          className="w-full h-full object-cover object-center filter brightness-[1.15] contrast-[1.04] opacity-75 mix-blend-screen scale-100 pointer-events-none transition-all duration-700"
+        />
 
-      {/* Silueta orgánica curva multicapa derecha */}
-      <HeroOrganicBackdrop className="-z-10" />
+        {/* Velo luminoso en turquesa del Header para unificar el tono (#5CBDB5) */}
+        <div className="absolute inset-0 bg-[#5CBDB5]/35 mix-blend-color pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#3E9C93]/40 via-transparent to-[#3E9C93]/50 pointer-events-none" />
+        
+        {/* Destellos y auras doradas cálidas de acento luminosas */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#FFF8D6]/25 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-[28rem] h-[28rem] rounded-full bg-[#FFEA79]/25 blur-3xl pointer-events-none" />
+      </div>
 
       {/* ========================================================
-          MARIPOSAS FLOTANTES Y BOTÁNICOS ORGÁNICOS
+          DISEÑOS VECTORIALES ESOTÉRICOS Y SAGRADOS EN DORADO
          ======================================================== */}
-      <FloralBouquet className="absolute top-16 -left-10 w-44 h-44 opacity-75 animate-float-slow -z-5" />
-      <FloralBouquet className="absolute top-1/3 right-4 w-40 h-40 opacity-40 animate-float -z-5" flip />
+      <div className="absolute inset-0 -z-15 pointer-events-none select-none overflow-hidden">
+        <svg
+          viewBox="0 0 1600 900"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full object-cover opacity-45"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            {/* Gradiente dorado metálico brillante para los trazos esotéricos */}
+            <linearGradient id="esotericGoldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFFCE6" stopOpacity="0.95" />
+              <stop offset="25%" stopColor="#FFEA79" stopOpacity="0.9" />
+              <stop offset="60%" stopColor="#E5C985" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#D4B26F" stopOpacity="0.95" />
+            </linearGradient>
 
-      {/* Mariposas flotando libremente con distribución amplia en el espacio */}
-      <ButterflyGraphic className="absolute top-24 left-[14%] opacity-85" size={44} color="purple" />
-      <ButterflyGraphic className="absolute top-[42%] left-[6%] opacity-85" size={38} color="purple" />
-      <ButterflyGraphic className="absolute bottom-[28%] left-[18%] opacity-85" size={34} color="purple" />
-      <ButterflyGraphic className="absolute bottom-[12%] left-[8%] opacity-90" size={40} color="purple" />
-      
-      {/* Otras mariposas complementarias */}
-      <ButterflyGraphic className="absolute top-1/2 left-[38%] opacity-70" size={32} color="pink" />
-      <ButterflyGraphic className="absolute top-28 right-[18%] opacity-90" size={40} color="blue" />
-      <ButterflyGraphic className="absolute top-[60%] right-[6%] opacity-85" size={34} color="lavender" />
+            <linearGradient id="esotericGoldFill" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF5C0" stopOpacity="0.22" />
+              <stop offset="50%" stopColor="#FFEA79" stopOpacity="0.10" />
+              <stop offset="100%" stopColor="#D4B26F" stopOpacity="0.04" />
+            </linearGradient>
+
+            {/* Filtro de resplandor áurico dorado */}
+            <filter id="esotericGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          {/* ----------------------------------------------------
+              1. FASES LUNARES MÍSTICAS Y CORONA CELESTIAL SUPERIOR
+             ---------------------------------------------------- */}
+          <g transform="translate(800, 75)" filter="url(#esotericGlow)" opacity="0.8">
+            {/* Línea orbital conectora */}
+            <path d="M-360,0 C-180,-15 180,-15 360,0" stroke="url(#esotericGoldStroke)" strokeWidth="1" strokeDasharray="5 4" />
+            
+            {/* Luna Creciente Exterior Izquierda */}
+            <g transform="translate(-280, 0)">
+              <circle cx="0" cy="0" r="16" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+              <path d="M-6,-15 A16,16 0 0,0 -6,15 A12,16 0 0,1 -6,-15" fill="url(#esotericGoldStroke)" />
+            </g>
+
+            {/* Cuarto Creciente Izquierdo */}
+            <g transform="translate(-140, -5)">
+              <circle cx="0" cy="0" r="19" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+              <path d="M0,-19 A19,19 0 0,0 0,19 A8,19 0 0,1 0,-19" fill="url(#esotericGoldStroke)" />
+            </g>
+
+            {/* LUNA LLENA SAGRADA CENTRAL CON FLOR DE LOTO Y SOL */}
+            <g transform="translate(0, -8)">
+              <circle cx="0" cy="0" r="26" stroke="url(#esotericGoldStroke)" strokeWidth="1.6" fill="url(#esotericGoldFill)" />
+              <circle cx="0" cy="0" r="18" stroke="url(#esotericGoldStroke)" strokeWidth="0.9" strokeDasharray="3 2" />
+              <circle cx="0" cy="0" r="6" fill="#FFF5C0" />
+              {/* Rayos radiantes de la luna central */}
+              <path d="M0,-36 L0,-28 M0,28 L0,36 M-36,0 L-28,0 M28,0 L36,0 M-24,-24 L-19,-19 M24,24 L19,19 M-24,24 L-19,19 M24,-24 L19,-19" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+              {/* Flor de Loto sagrada bajo la luna */}
+              <path d="M-14,8 Q0,2 14,8 Q8,18 0,22 Q-8,18 -14,8 Z" stroke="url(#esotericGoldStroke)" strokeWidth="1" fill="url(#esotericGoldFill)" />
+            </g>
+
+            {/* Cuarto Menguante Derecho */}
+            <g transform="translate(140, -5)">
+              <circle cx="0" cy="0" r="19" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+              <path d="M0,-19 A19,19 0 0,1 0,19 A8,19 0 0,0 0,-19" fill="url(#esotericGoldStroke)" />
+            </g>
+
+            {/* Luna Menguante Exterior Derecha */}
+            <g transform="translate(280, 0)">
+              <circle cx="0" cy="0" r="16" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+              <path d="M6,-15 A16,16 0 0,1 6,15 A12,16 0 0,0 6,-15" fill="url(#esotericGoldStroke)" />
+            </g>
+          </g>
+
+          {/* ----------------------------------------------------
+              2. OJO MÍSTICO CELESTIAL / TERCER OJO SAGRADO (ZONA IZQUIERDA)
+             ---------------------------------------------------- */}
+          <g transform="translate(190, 220)" filter="url(#esotericGlow)" opacity="0.65">
+            {/* Triángulo sagrado de la providencia */}
+            <polygon points="0,-95 -85,55 85,55" stroke="url(#esotericGoldStroke)" strokeWidth="1.4" fill="url(#esotericGoldFill)" />
+            <polygon points="0,-82 -72,45 72,45" stroke="url(#esotericGoldStroke)" strokeWidth="0.8" strokeDasharray="4 3" />
+            
+            {/* Rayos radiantes del ojo */}
+            <path d="M0,-130 L0,-100 M-55,-105 L-35,-85 M55,-105 L35,-85 M-95,-35 L-70,-25 M95,-35 L70,-25 M-105,25 L-75,20 M105,25 L75,20" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+
+            {/* Contorno del Ojo */}
+            <path d="M-52,10 C-25,-25 25,-25 52,10 C25,45 -25,45 -52,10 Z" stroke="url(#esotericGoldStroke)" strokeWidth="1.6" fill="#0A302A" fillOpacity="0.4" />
+            {/* Iris y Pupila */}
+            <circle cx="0" cy="10" r="17" stroke="url(#esotericGoldStroke)" strokeWidth="1.3" fill="url(#esotericGoldFill)" />
+            <circle cx="0" cy="10" r="9" fill="#FFEA79" />
+            <circle cx="0" cy="10" r="4" fill="#0A2822" />
+            {/* Destello de luz en el iris */}
+            <circle cx="-3" cy="7" r="2.2" fill="#FFFFFF" />
+
+            {/* Estrellas místicas alrededor del triángulo */}
+            <path d="M0,-115 L2,-108 L9,-106 L2,-104 L0,-97 L-2,-104 L-9,-106 L-2,-108 Z" fill="#FFF5C0" />
+            <path d="M-75,70 L-73,75 L-68,77 L-73,79 L-75,84 L-77,79 L-82,77 L-77,75 Z" fill="#FFEA79" />
+            <path d="M75,70 L77,75 L82,77 L77,79 L75,84 L73,79 L68,77 L73,75 Z" fill="#FFEA79" />
+          </g>
+
+          {/* ----------------------------------------------------
+              3. GEOMETRÍA SAGRADA: FLOR DE LA VIDA / SEMILLA CÓSMICA
+             ---------------------------------------------------- */}
+          <g transform="translate(170, 640)" filter="url(#esotericGlow)" opacity="0.45">
+            <circle cx="0" cy="0" r="120" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" strokeDasharray="8 4" />
+            <circle cx="0" cy="0" r="90" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="0" cy="0" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1.4" fill="url(#esotericGoldFill)" />
+            {/* 6 Círculos entrelazados (Flor de la Vida) */}
+            <circle cx="0" cy="-45" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="39" cy="-22.5" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="39" cy="22.5" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="0" cy="45" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="-39" cy="22.5" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            <circle cx="-39" cy="-22.5" r="45" stroke="url(#esotericGoldStroke)" strokeWidth="1" />
+            
+            {/* Hexagrama interior sagrado */}
+            <polygon points="0,-45 39,22.5 -39,22.5" stroke="url(#esotericGoldStroke)" strokeWidth="0.8" />
+            <polygon points="0,45 39,-22.5 -39,-22.5" stroke="url(#esotericGoldStroke)" strokeWidth="0.8" />
+          </g>
+
+
+
+          {/* ----------------------------------------------------
+              5. SÍMBOLOS ALQUÍMICOS Y CONSTELACIONES FLOTANTES
+             ---------------------------------------------------- */}
+          {/* Símbolo de Aire 🜁 y Fuego 🜂 (Centro-Izquierda) */}
+          <g transform="translate(620, 240)" filter="url(#esotericGlow)" opacity="0.55">
+            <polygon points="0,-24 -20,12 20,12" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" fill="none" />
+            <line x1="-14" y1="-3" x2="14" y2="-3" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+          </g>
+
+          {/* Símbolo de Agua 🜄 y Tierra 🜃 (Centro-Abajo) */}
+          <g transform="translate(740, 680)" filter="url(#esotericGlow)" opacity="0.5">
+            <polygon points="0,24 -20,-12 20,-12" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" fill="none" />
+            <line x1="-14" y1="3" x2="14" y2="3" stroke="url(#esotericGoldStroke)" strokeWidth="1.2" />
+          </g>
+
+          {/* Constelación de la Cruz del Sur / Chakana Esotérica (Zona Centro-Arriba) */}
+          <g transform="translate(480, 140)" filter="url(#esotericGlow)" opacity="0.75">
+            <line x1="0" y1="-35" x2="0" y2="35" stroke="url(#esotericGoldStroke)" strokeWidth="0.8" strokeDasharray="3 3" />
+            <line x1="-25" y1="-5" x2="25" y2="-5" stroke="url(#esotericGoldStroke)" strokeWidth="0.8" strokeDasharray="3 3" />
+            {/* 4 Estrellas de 8 puntas */}
+            <path d="M0,-35 L3,-28 L10,-25 L3,-22 L0,-15 L-3,-22 L-10,-25 L-3,-28 Z" fill="#FFF5C0" />
+            <path d="M0,35 L3,42 L10,45 L3,48 L0,55 L-3,48 L-10,45 L-3,42 Z" fill="#FFEA79" />
+            <path d="M-25,-5 L-22,2 L-15,5 L-22,8 L-25,15 L-28,8 L-35,5 L-28,2 Z" fill="#FFF5C0" />
+            <path d="M25,-5 L28,2 L35,5 L28,8 L25,15 L22,8 L15,5 L22,2 Z" fill="#FFEA79" />
+            <circle cx="0" cy="-5" r="4" fill="#FFF8D6" />
+          </g>
+
+          {/* Gran Estrella de 8 Puntas Sagrada (Fondo Central) */}
+          <g transform="translate(920, 360)" filter="url(#esotericGlow)" opacity="0.7">
+            <path
+              d="M0,-40 L6,-12 L34,-34 L12,-6 L40,0 L12,6 L34,34 L6,12 L0,40 L-6,12 L-34,34 L-12,6 L-40,0 L-12,-6 L-34,-34 L-6,-12 Z"
+              fill="url(#esotericGoldStroke)"
+            />
+            <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+          </g>
+
+          {/* Vetas onduladas de energía sutil en oro */}
+          <path
+            d="M-80,480 C320,380 580,620 1020,490 C1380,390 1560,540 1780,460"
+            stroke="url(#esotericGoldStroke)"
+            strokeWidth="1.2"
+            fill="none"
+            filter="url(#esotericGlow)"
+            opacity="0.6"
+          />
+        </svg>
+      </div>
 
       {/* ========================================================
-          CONTENEDOR PRINCIPAL (DIMENSIONES Y ANCHO SEGÚN AOVET)
+          ANIMACIÓN DE ATMÓSFERA: PÉTALOS FLOTANTES, HOJAS Y BRISA
          ======================================================== */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col justify-center my-auto pb-6 sm:pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+      <HeroAtmosphereAnimation />
+
+      {/* ========================================================
+          COMPOSICIÓN EDITORIAL DE 2 COLUMNAS (REFERENCIA LUXE)
+         ======================================================== */}
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* ----------------------------------------------------
-              COLUMNA IZQUIERDA: Textos y CTAs Sincronizados con el Modo Activo
+              COLUMNA IZQUIERDA: TITULAR, DIVISOR FLORAL & 2 BOTONES
              ---------------------------------------------------- */}
-          <div className="lg:col-span-7 text-center space-y-6 sm:space-y-7 mx-auto lg:mx-0 translate-x-0 lg:-translate-x-4 pr-0 lg:pr-10 pt-6 sm:pt-8 md:pt-4 lg:pt-0 translate-y-3 sm:translate-y-4 md:translate-y-0 lg:-translate-y-6 xl:-translate-y-8">
+          <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
+            
+            {/* Titular Principal de 2 Líneas Estilo Luxe */}
+            <motion.div
+              key={mode + '-hero-title'}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-1 sm:space-y-2"
+            >
+              <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl text-[#0A1C24] font-bold leading-[1.15] tracking-tight drop-shadow-[0_1px_4px_rgba(255,255,255,0.4)] whitespace-nowrap">
+                {mode === 'educacion' ? 'Donde el Aprendizaje' : 'Donde el Bienestar'}
+              </h1>
+              <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl font-bold italic leading-[1.15] tracking-tight bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent whitespace-nowrap">
+                {mode === 'educacion' ? 'Encuentra su Potencial' : 'Encuentra la Sanación'}
+              </h2>
+            </motion.div>
 
-            {/* Titular Grande con palabra en script adaptada (florece / crece) */}
-            <h1 className="font-serif-display text-3xl sm:text-5xl md:text-6xl text-[#3E4A7A] leading-[1.12] tracking-tight text-center max-w-xl mx-auto">
-              Sana tu cuerpo, educa tu mente y{' '}
-              <span
-                key={mode}
-                className="font-script text-[#9B8FD9] text-5xl sm:text-6xl md:text-7xl font-normal block sm:inline mt-1 sm:mt-0 drop-shadow-xs inline-block transition-all duration-350 animate-in fade-in"
-              >
-                {mode === 'educacion' ? 'crece' : 'florece'}
+            {/* Divisor Ornamental Dorado con Florón Central */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center gap-3 my-4 sm:my-5.5 w-full max-w-sm sm:max-w-md"
+            >
+              <div className="h-[1.8px] flex-grow bg-gradient-to-r from-transparent via-[#FFEA79] to-[#E5C985]" />
+              <span className="text-[#B88E44] text-xs sm:text-sm tracking-widest select-none font-bold">
+                ✦ ❦ ✦
               </span>
-            </h1>
+              <div className="h-[1.8px] flex-grow bg-gradient-to-l from-transparent via-[#FFEA79] to-[#E5C985]" />
+            </motion.div>
 
-            {/* Párrafo descriptivo con Crossfade según el modo activo */}
-            <div className="relative min-h-[90px] sm:min-h-[80px] max-w-xl mx-auto flex items-center justify-center">
-              <p
-                key={mode}
-                className="text-sm sm:text-base md:text-lg text-black font-normal leading-relaxed text-justify transition-all duration-400 animate-in fade-in"
-              >
-                {mode === 'educacion' ? (
-                  <>
-                    En <strong className="font-semibold text-[#6B7FD1]">Casa Kinti</strong>, Johanna Proaño acompaña el desarrollo de tu hijo con educación bilingüe temprana y asesoría especializada en problemas de aprendizaje, basada en su formación como Máster en la materia.
-                  </>
-                ) : (
-                  <>
-                    En <strong className="font-semibold text-[#6B7FD1]">Casa Kinti</strong>, Johanna Proaño integra la sabiduría de la medicina ancestral andina, la terapia floral de Bach y la herbolaria medicinal en un santuario de sanación y bienestar integral en Quito.
-                  </>
-                )}
-              </p>
-            </div>
+            {/* Párrafo descriptivo narrativo con excelente contraste */}
+            <motion.p
+              key={mode + '-hero-desc'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-sm sm:text-base md:text-lg text-[#0A1C24] font-medium leading-relaxed max-w-xl text-left mb-6 sm:mb-8"
+            >
+              {mode === 'educacion' ? (
+                <>
+                  Acompañamiento psicopedagógico bilingüe y estimulación temprana personalizada en Quito. Guiado por <strong className="font-bold text-[#0A1C24]">Johanna Proaño</strong> para potenciar las capacidades y autonomía de tus hijos.
+                </>
+              ) : (
+                <>
+                  Vive una experiencia de sanación integral, medicina ancestral andina y armonización con flores de Bach en un santuario de profunda paz, armonía y rigurosa calidez en Quito.
+                </>
+              )}
+            </motion.p>
 
-            {/* Botones de acción principales centrados */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2">
-              <a
+            {/* Dos Botones CTA Estilo Luxe */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto"
+            >
+              {/* Botón 1: Primario Dorado Sólido "BOOK NOW 📅" */}
+              <motion.a
                 href="#contacto"
                 id="hero-cta-agendar"
                 onClick={handleAgendaCita}
-                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-sm sm:text-base font-bold px-7 sm:px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group min-h-[44px]"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif font-bold text-xs sm:text-sm px-7 sm:px-8 py-3.5 sm:py-4 rounded-sm uppercase tracking-[0.16em] shadow-[0_6px_25px_rgba(20,70,65,0.35)] hover:shadow-[0_8px_32px_rgba(255,234,121,0.6)] transition-all cursor-pointer select-none"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                {mode === 'educacion' ? (
-                  <SolicitarEvaluacionIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
-                ) : (
-                  <AgendarCalendarIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
-                )}
-                <span className="relative z-10">{mode === 'educacion' ? 'Solicitar evaluación' : 'Agenda tu cita'}</span>
-              </a>
+                <Calendar className="w-4 h-4 text-[#0A1C24] stroke-[2.4]" />
+                <span className="relative z-10">
+                  {mode === 'educacion' ? 'SOLICITAR EVALUACIÓN' : 'AGENDAR AHORA'}
+                </span>
+              </motion.a>
 
-              <a
-                href="#sobre-mi"
-                id="hero-cta-conoce-mas"
-                className="relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/90 hover:bg-gradient-to-tr hover:from-[#DDEBFC] hover:via-[#ECE6FB] hover:to-[#FCE5F1] text-black hover:text-[#6B7FD1] text-sm sm:text-base font-semibold px-6 sm:px-7 py-3.5 rounded-full shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 group min-h-[44px]"
+              {/* Botón 2: Secundario Delineado "EXPLORE SERVICES" */}
+              <motion.a
+                href="#servicios"
+                id="hero-cta-servicios"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative overflow-hidden inline-flex items-center justify-center gap-2 bg-white/80 hover:bg-white text-[#0A1C24] hover:text-[#0A1C24] border border-[#0A1C24]/30 hover:border-[#0A1C24] font-serif font-bold text-xs sm:text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-sm uppercase tracking-[0.16em] backdrop-blur-md shadow-md transition-all cursor-pointer select-none"
               >
-                <span className="relative z-10">Conoce más</span>
-                <ArrowDown className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:translate-y-1 transition-transform duration-300" />
-              </a>
-            </div>
+                <span>{mode === 'educacion' ? 'VER CURSOS' : 'EXPLORAR SERVICIOS'}</span>
+                <ArrowRight className="w-4 h-4 text-[#0A1C24]" />
+              </motion.a>
+            </motion.div>
 
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA DERECHA: Órbita Interactiva de Pilares
+              COLUMNA DERECHA: COMPOSICIÓN DE 2 MARCOS EN ARCO GRANDES Y ANCHOS (DESPLAZADOS A LA DERECHA)
              ---------------------------------------------------- */}
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center relative translate-y-4 xs:translate-y-6 sm:translate-y-4 lg:-translate-y-4 xl:-translate-y-6 pl-0 lg:pl-4">
+          <div className="lg:col-span-6 flex items-center justify-center lg:justify-end relative select-none lg:pl-4 xl:pl-8">
             
-            {/* Contenedor de la órbita centrado en móvil y desplazado solo en pantallas grandes */}
-            <div className="w-full flex items-center justify-center lg:justify-start relative z-10 translate-x-0 lg:translate-x-20 xl:translate-x-36 2xl:translate-x-48 max-w-[320px] xs:max-w-[360px] sm:max-w-[420px] md:max-w-[460px] mx-auto lg:mx-0">
+            {/* Halo de luz cálida y resplandor áurico exterior */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#FFEA79]/30 via-[#5CBDB5]/25 to-transparent blur-3xl rounded-full pointer-events-none transform -translate-y-4" />
+
+            {/* Contenedor relativo amplio para ambos arcos desplazado a la derecha */}
+            <div className="relative w-full max-w-[460px] xs:max-w-[500px] sm:max-w-[580px] md:max-w-[640px] lg:max-w-[680px] h-[520px] xs:h-[560px] sm:h-[620px] md:h-[660px] lg:translate-x-8 xl:translate-x-14">
               
-              {/* Mariposas y flores decorativas alrededor de la órbita */}
-              <FloralBouquet className="absolute -top-6 -left-4 sm:-top-8 sm:-left-8 w-20 sm:w-24 h-20 sm:h-24 z-20 pointer-events-none" />
-              <FloralBouquet className="absolute -top-6 -right-4 sm:-top-8 sm:-right-8 w-20 sm:w-24 h-20 sm:h-24 z-20 pointer-events-none" flip />
-              <ButterflyGraphic className="absolute -top-6 right-8 sm:right-14 z-30 pointer-events-none" size={34} color="purple" />
-              <ButterflyGraphic className="absolute bottom-4 -left-4 sm:-left-6 z-30 pointer-events-none" size={28} color="pink" />
+              {/* ========================================================
+                  1. ARCO PRINCIPAL (SUPERIOR IZQUIERDO): RETRATO DE JOHANNA (MÁS GRANDE Y ANCHO)
+                 ======================================================== */}
+              <motion.div
+                initial={{ opacity: 0, x: -15, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="absolute top-0 left-0 w-[320px] xs:w-[360px] sm:w-[420px] md:w-[460px] lg:w-[490px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_20px_50px_rgba(0,0,0,0.22),0_0_30px_rgba(229,201,133,0.35)] overflow-hidden group z-10"
+              >
+                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[410px] xs:h-[450px] sm:h-[500px] md:h-[540px] lg:h-[570px] bg-transparent">
+                  {/* Foto principal del Banner: Tambor ceremonial para Holística / Retrato para Educación */}
+                  <img
+                    key={mode + '-hero-main-photo'}
+                    src={mode === 'holistica' ? '/hero-holistica-tambor.jpg' : '/johanna-hero.png'}
+                    alt={mode === 'holistica' ? 'Johanna Proaño en Ceremonia Ancestral con Tambor Sagrado' : 'Johanna Proaño - Máster en Psicopedagogía'}
+                    className={`w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 filter brightness-[1.03] contrast-[1.04] ${
+                      mode === 'holistica' ? 'object-[center_28%]' : 'object-[center_18%]'
+                    }`}
+                  />
+                </div>
+              </motion.div>
 
-              <OrbitImages
-                customItems={currentOrbitPillars.map((pillar, idx) => (
-                  <div
-                    key={idx}
-                    className={`group relative overflow-hidden rounded-full aspect-square w-[124px] h-[124px] xs:w-[136px] xs:h-[136px] sm:w-[148px] sm:h-[148px] md:w-[156px] md:h-[156px] ${pillar.bgColor} ${pillar.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-2.5 sm:p-3.5 cursor-pointer select-none`}
-                  >
-                    {/* Destello de luz diagonal reflectante al pasar el mouse */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+              {/* ========================================================
+                  2. ARCO SECUNDARIO (INFERIOR DERECHO): CÍRCULO SAGRADO PARA HOLÍSTICA / RITUAL O EDUCACIÓN
+                 ======================================================== */}
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="absolute bottom-0 right-0 w-[220px] xs:w-[250px] sm:w-[290px] md:w-[320px] lg:w-[350px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_25px_60px_rgba(0,0,0,0.26),0_0_35px_rgba(229,201,133,0.4)] overflow-hidden group z-20"
+              >
+                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[220px] xs:h-[250px] sm:h-[290px] md:h-[320px] lg:h-[340px] bg-transparent">
+                  {/* Foto secundaria del Banner: Tarot Terapéutico para Holística / Pedagogía para Educación */}
+                  <img
+                    key={mode + '-hero-sub-photo'}
+                    src={mode === 'holistica' ? '/tarot-hero.png' : '/johanna-sobre-mi.jpg'}
+                    alt={mode === 'holistica' ? 'Lectura de Tarot Terapéutico y Medicina Sagrada' : 'Acompañamiento Psicopedagógico y Estimulación Infantil'}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[1.03] contrast-[1.05]"
+                  />
+                </div>
 
-                    {/* Icono ilustrado ampliado con giro y escala interactiva */}
-                    <div className="relative z-10 w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-1">
-                      <img
-                        src={pillar.iconSrc}
-                        alt={pillar.iconAlt}
-                        loading="lazy"
-                        className="max-h-full max-w-full object-contain drop-shadow-md group-hover:scale-115 group-hover:rotate-12 transition-transform duration-300"
-                      />
-                    </div>
+                {/* Pequeño destello estrellado dorado en la esquina superior derecha */}
+                <div className="absolute -top-1 -right-1 text-[#FFF8D6] text-xs drop-shadow-[0_0_6px_rgba(255,234,121,1)] select-none pointer-events-none z-30 font-bold">
+                  ✦
+                </div>
+                {/* Pequeño destello estrellado dorado en la esquina inferior izquierda */}
+                <div className="absolute -bottom-1 -left-1 text-[#FFF8D6] text-xs drop-shadow-[0_0_6px_rgba(255,234,121,1)] select-none pointer-events-none z-30 font-bold">
+                  ✦
+                </div>
+              </motion.div>
 
-                    {/* Texto destacado y centrado */}
-                    <span className="relative z-10 font-bold text-[11px] sm:text-[13px] md:text-sm text-black text-center leading-tight px-1 line-clamp-2">
-                      {pillar.text}
-                    </span>
-                  </div>
-                ))}
-                shape="circle"
-                baseWidth={416}
-                radius={124}
-                aspectRatio="1 / 1"
-                itemSize={164}
-                duration={12}
-                rotation={0}
-                paused={false}
-                showPath={false}
-              />
             </div>
 
-            {/* Árbol botánico acuarelado sutil emergiendo en el lado inferior */}
-            <BloomingBotanicalTree className="absolute -bottom-8 -right-4 sm:-bottom-10 sm:-right-6 w-28 sm:w-32 h-28 sm:h-32 opacity-70 z-0 pointer-events-none" />
-            <BloomingBotanicalTree className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-10 w-24 sm:w-28 h-24 sm:h-28 opacity-60 z-0 pointer-events-none" flip />
           </div>
 
         </div>
       </div>
 
       {/* ========================================================
-          STACK DE FOTOS INTERACTIVO (POSICIÓN INFERIOR MÁS ABAJO EN MÓVIL)
+          REMATE INFERIOR: CINTA DE ORO SÓLIDA ONDULADA (FIN DEL BANNER)
          ======================================================== */}
-      <div
-        className="absolute -bottom-72 xs:-bottom-80 sm:-bottom-60 md:-bottom-64 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[340px] sm:max-w-[420px] md:max-w-[460px] px-2 z-10 pointer-events-auto overflow-visible flex items-center justify-center"
-      >
-        <div
-          key={mode}
-          className="relative w-full max-w-[320px] xs:max-w-[340px] sm:max-w-[400px] md:max-w-[440px] h-[350px] sm:h-[410px] md:h-[445px] transition-all duration-400 animate-in fade-in"
+      <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none overflow-hidden leading-none select-none">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-14 sm:h-20 md:h-26"
+          preserveAspectRatio="none"
         >
-          {/* Bouquet en esquina superior izquierda */}
-          <FloralBouquet className="absolute -top-5 -left-3 sm:-top-6 sm:-left-6 w-16 sm:w-20 h-16 sm:h-20 z-20 pointer-events-none" />
-          
-          {/* Bouquet en la esquina superior derecha */}
-          <FloralBouquet className="absolute -top-5 -right-3 sm:-top-6 sm:-right-6 w-16 sm:w-20 h-16 sm:h-20 z-20 pointer-events-none" flip />
+          <defs>
+            {/* Gradiente dorado metálico continuo para la cinta sólida */}
+            <linearGradient id="luxeSolidGoldRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#D4A346" />
+              <stop offset="15%" stopColor="#E5B54E" />
+              <stop offset="35%" stopColor="#FFF2B8" />
+              <stop offset="55%" stopColor="#E2A93A" />
+              <stop offset="75%" stopColor="#FFF5C4" />
+              <stop offset="90%" stopColor="#E5B54E" />
+              <stop offset="100%" stopColor="#C59336" />
+            </linearGradient>
+          </defs>
 
-          {/* Mariposa aleteando arriba al centro-derecha */}
-          <ButterflyGraphic
-            className="absolute -top-5 right-6 sm:right-10 z-30 pointer-events-none"
-            size={30}
-            color="purple"
+          {/* 1. Relleno inferior que conecta fluidamente con el turquesa de la siguiente sección (#4AAEA5) */}
+          <path
+            d="M0,52 C 220,117 480,117 780,62 C 980,24 1200,24 1440,77 L1440,120 L0,120 Z"
+            fill="#4AAEA5"
           />
 
-          {/* Mariposa pequeña abajo a la izquierda */}
-          <ButterflyGraphic
-            className="absolute bottom-2 -left-3 sm:-left-4 z-30 pointer-events-none"
-            size={24}
-            color="pink"
+          {/* 2. CINTA DE ORO METÁLICO SÓLIDA LIMPIA (Banda continua dorada de ~12px) */}
+          <path
+            d="M0,40 C 220,105 480,105 780,50 C 980,12 1200,12 1440,65 L1440,77 C 1200,24 980,24 780,62 C 480,117 220,117 0,52 Z"
+            fill="url(#luxeSolidGoldRibbonGrad)"
           />
 
-          {/* Componente Stack de React Bits con fotografías del nicho activo */}
-          <Stack
-            randomRotation={true}
-            sensitivity={170}
-            sendToBackOnClick={true}
-            autoplay={true}
-            autoplayDelay={3600}
-            pauseOnHover={true}
-            cards={currentCards.map((card, idx) => (
-              <div
-                key={card.id}
-                className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-[#E7F3FC] select-none group cursor-pointer border-0"
-              >
-                {/* Fotografía limpia */}
-                <img
-                  src={card.image}
-                  alt={card.alt}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-700 group-hover:scale-105"
-                />
-
-                {/* Descripción emergente: aparece ÚNICAMENTE al pasar el mouse por encima */}
-                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-[#3E4A7A]/95 via-[#3E4A7A]/80 to-transparent opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
-                  <p className="text-white text-xs sm:text-sm font-semibold leading-snug drop-shadow-md text-center">
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          {/* 3. Línea de bisel superior brillante blanco-oro */}
+          <path
+            d="M0,40 C 220,105 480,105 780,50 C 980,12 1200,12 1440,65"
+            stroke="#FFFCE6"
+            strokeWidth="1.8"
+            strokeOpacity="0.95"
+            fill="none"
           />
-        </div>
+
+          {/* 4. Línea de borde inferior en oro luminoso limpio */}
+          <path
+            d="M0,52 C 220,117 480,117 780,62 C 980,24 1200,24 1440,77"
+            stroke="#E5B54E"
+            strokeWidth="1.2"
+            strokeOpacity="0.9"
+            fill="none"
+          />
+        </svg>
       </div>
 
     </section>
   );
 };
+

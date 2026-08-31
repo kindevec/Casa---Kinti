@@ -18,29 +18,29 @@ export const CredentialsStrip: React.FC = () => {
       text: 'Educación Infantil Bilingüe',
       iconSrc: '/icons/pillar-educadora.png',
       iconAlt: 'Educación Infantil Bilingüe',
-      bgColor: 'bg-[#C9D4F5]',
-      borderColor: 'border-[#9B8FD9]/40',
+      bgColor: 'bg-[#E8F0F5]',
+      borderColor: 'border-[#2B7294]/40',
     },
     {
       text: 'Problemas de Aprendizaje',
       iconSrc: '/icons/pillar-aprendizaje.png',
       iconAlt: 'Problemas de Aprendizaje',
-      bgColor: 'bg-[#F0C6D9]',
-      borderColor: 'border-[#F0C6D9]',
+      bgColor: 'bg-[#CEAB67]',
+      borderColor: 'border-[#CEAB67]',
     },
     {
       text: 'Flores de Bach y Herbolario',
       iconSrc: '/icons/pillar-flores-bach.png',
       iconAlt: 'Flores de Bach y Herbolario',
-      bgColor: 'bg-[#D2F4EE]',
-      borderColor: 'border-[#12A89D]/30',
+      bgColor: 'bg-[#E8F0F5]',
+      borderColor: 'border-[#2B7294]/30',
     },
     {
       text: 'Medicina Ancestral',
       iconSrc: '/icons/pillar-medicina.png',
       iconAlt: 'Medicina Ancestral',
-      bgColor: 'bg-[#E2DBF7]',
-      borderColor: 'border-[#9B8FD9]/40',
+      bgColor: 'bg-[#E8F0F5]',
+      borderColor: 'border-[#2B7294]/40',
     },
   ];
 
@@ -87,10 +87,10 @@ export const CredentialsStrip: React.FC = () => {
             rotation={-4}
             paused={isPaused}
             showPath={true}
-            pathColor="rgba(155, 143, 217, 0.35)"
+            pathColor="rgba(43, 114, 148, 0.35)"
             pathWidth={2}
             centerContent={
-              <div className="p-4 sm:p-6 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-[#C9D4F5] flex flex-col items-center justify-center text-center pointer-events-auto">
+              <div className="p-4 sm:p-6 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-[#E8F0F5] flex flex-col items-center justify-center text-center pointer-events-auto">
                 <CasaKintiLogo size="sm" />
               </div>
             }

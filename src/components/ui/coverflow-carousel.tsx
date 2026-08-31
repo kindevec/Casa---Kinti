@@ -406,7 +406,7 @@ export function CoverflowCarousel({
                   {/* Overlay con información: La imagen en el centro muestra directamente su descripción y botón de WhatsApp */}
                   <div
                     className={cn(
-                      "absolute inset-0 bg-gradient-to-t from-[#1F294D]/95 via-[#1F294D]/80 to-[#1F294D]/15 transition-all duration-300 ease-out flex flex-col justify-end p-5 text-white backdrop-blur-[2px] z-30",
+                      "absolute inset-0 bg-gradient-to-t from-[#133238]/95 via-[#133238]/80 to-[#133238]/15 transition-all duration-300 ease-out flex flex-col justify-end p-5 text-white backdrop-blur-[2px] z-30",
                       isCenter
                         ? "opacity-100 pointer-events-auto translate-y-0"
                         : "opacity-0 pointer-events-none translate-y-2"
@@ -430,7 +430,7 @@ export function CoverflowCarousel({
                             className="inline-flex items-center text-[10px] sm:text-xs bg-white/20 backdrop-blur-xs px-2.5 py-0.5 rounded-full font-medium text-white shadow-xs"
                           >
                             <span className="text-white/75 mr-1">{row.label}:</span>
-                            <span className="font-bold text-[#F5C84C]">{row.value}</span>
+                            <span className="font-bold text-[#CEAB67]">{row.value}</span>
                           </span>
                         ))}
                       </div>
@@ -477,10 +477,10 @@ export function CoverflowCarousel({
                 e.stopPropagation();
                 nudge(-1);
               }}
-              className="overflow-hidden absolute -left-2 sm:-left-6 md:-left-10 lg:-left-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] flex items-center justify-center text-[#6B7FD1] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(107,127,209,0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
+              className="overflow-hidden absolute -left-2 sm:-left-6 md:-left-10 lg:-left-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#E8F0F5] via-[#EDF4F8] to-[#FBF3E1] hover:bg-gradient-to-tr hover:from-[#043651] hover:via-[#2B7294] hover:to-[#CEAB67] flex items-center justify-center text-[#043651] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(4, 54, 81, 0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-              <ChevronLeft className="relative z-10 w-6 h-6 text-[#6B7FD1] group-hover:text-white group-hover:-translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
+              <ChevronLeft className="relative z-10 w-6 h-6 text-[#043651] group-hover:text-white group-hover:-translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
             </button>
             <button
               type="button"
@@ -491,10 +491,10 @@ export function CoverflowCarousel({
                 e.stopPropagation();
                 nudge(1);
               }}
-              className="overflow-hidden absolute -right-2 sm:-right-6 md:-right-10 lg:-right-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] flex items-center justify-center text-[#6B7FD1] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(107,127,209,0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
+              className="overflow-hidden absolute -right-2 sm:-right-6 md:-right-10 lg:-right-12 top-1/2 z-[250] -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-[#E8F0F5] via-[#EDF4F8] to-[#FBF3E1] hover:bg-gradient-to-tr hover:from-[#043651] hover:via-[#2B7294] hover:to-[#CEAB67] flex items-center justify-center text-[#043651] hover:text-white shadow-lg hover:shadow-[0_8px_25px_rgba(4, 54, 81, 0.5)] transition-all duration-300 hover:scale-115 active:scale-95 opacity-0 group-hover/carousel:opacity-100 pointer-events-none group-hover/carousel:pointer-events-auto cursor-pointer group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-              <ChevronRight className="relative z-10 w-6 h-6 text-[#6B7FD1] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
+              <ChevronRight className="relative z-10 w-6 h-6 text-[#043651] group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 stroke-[2.5]" />
             </button>
           </>
         )}
@@ -505,7 +505,7 @@ export function CoverflowCarousel({
           key={selected}
           className="mt-4 flex flex-col items-center px-6 duration-300 animate-in fade-in text-center"
         >
-          <p className="text-xl sm:text-2xl font-serif-display font-bold tracking-tight text-[#3E4A7A]">
+          <p className="text-xl sm:text-2xl font-serif-display font-bold tracking-tight text-[#133238]">
             {active.title}
           </p>
           {active.subtitle && (
@@ -518,10 +518,10 @@ export function CoverflowCarousel({
               {active.meta.map((row) => (
                 <div
                   key={row.label}
-                  className="flex items-center gap-1.5 bg-white/90 rounded-full px-4 py-1.5 text-xs sm:text-sm border border-[#C9D4F5] shadow-xs"
+                  className="flex items-center gap-1.5 bg-white/90 rounded-full px-4 py-1.5 text-xs sm:text-sm border border-[#E8F0F5] shadow-xs"
                 >
                   <span className="text-black font-medium">{row.label}:</span>
-                  <span className="font-bold text-[#6B7FD1]">{row.value}</span>
+                  <span className="font-bold text-[#043651]">{row.value}</span>
                 </div>
               ))}
             </div>
@@ -535,10 +535,10 @@ export function CoverflowCarousel({
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative overflow-hidden inline-flex items-center gap-2 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-sm font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
+                className="relative overflow-hidden inline-flex items-center gap-2 bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] hover:from-[#ECD394] hover:via-[#DDBE7E] hover:to-[#C49B52] text-[#0A1C24] text-sm font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(212,178,111,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                <MessageCircle className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
+                <MessageCircle className="relative z-10 w-4 h-4 text-[#0A1C24] group-hover:rotate-12 transition-all duration-300" />
                 <span className="relative z-10">{active.ctaText || 'Consultar por WhatsApp'}</span>
               </a>
             </div>
@@ -558,8 +558,8 @@ export function CoverflowCarousel({
               className={cn(
                 "h-2 rounded-full transition-all duration-300",
                 index === selected
-                  ? "w-8 bg-[#6B7FD1]"
-                  : "w-2 bg-[#9B8FD9]/40 hover:bg-[#9B8FD9]/70",
+                  ? "w-8 bg-[#043651]"
+                  : "w-2 bg-[#2B7294]/40 hover:bg-[#2B7294]/70",
               )}
             />
           ))}

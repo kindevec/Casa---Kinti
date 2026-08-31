@@ -2,182 +2,21 @@ import React from 'react';
 import {
   PATH_STEPS_HOLISTICA,
   PATH_STEPS_EDUCACION,
-  WHATSAPP_PHONE,
 } from '../data';
 import { useNicheMode } from '../context/NicheContext';
-import { FloralBouquet, ButterflyGraphic } from './FloralDecorations';
-import { CoverflowCarousel, CoverflowSlide } from './ui/coverflow-carousel';
-import {
-  BookOpen,
-  Sparkles,
-  Scale,
-  Flower2,
-  ArrowRight,
-  Eye,
-  Leaf,
-  Brain,
-  GraduationCap,
-} from 'lucide-react';
-
-const HOLISTICA_COVERFLOW_SLIDES: CoverflowSlide[] = [
-  {
-    src: '/tarot-hero.png',
-    alt: 'Lectura Express de Tarot Terapéutico',
-    title: 'Lectura Express de Tarot Terapéutico',
-    subtitle:
-      'Consulta terapéutica y orientación espiritual con preguntas claras, sin adivinar. Enfocada en tu autoconocimiento y desbloqueo de dudas.',
-    meta: [
-      { label: 'Duración', value: '15 min' },
-      { label: 'Modalidad', value: 'Presencial u Online' },
-    ],
-    ctaText: 'Reservar Lectura por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, quiero reservar mi Lectura Express de Tarot Terapéutico.',
-  },
-  {
-    src: '/johanna-hero.png',
-    alt: 'Sesión de Limpia Energética y Medicina Andina',
-    title: 'Limpia Energética & Medicina Andina',
-    subtitle:
-      'Liberación profunda de cargas pesadas, corte de lazos densos y equilibrio bioenergético con sahumerios y plantas sagradas andinas.',
-    meta: [
-      { label: 'Duración', value: '60 min' },
-      { label: 'Técnica', value: 'Medicina Andina' },
-    ],
-    ctaText: 'Agendar Limpia por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, me gustaría agendar una Sesión de Limpia Energética & Armonización Áurica.',
-  },
-  {
-    src: '/pulseras-amuletos.png',
-    alt: 'Pulseras Amuletos de piedras naturales consagradas',
-    title: 'Pulseras Amuletos con Radiestesia',
-    subtitle:
-      'Pulseras de piedras naturales con estudio radiestésico con péndulo para saber cuál es la gema que tu energía necesita.',
-    meta: [
-      { label: 'Estudio Radiestésico', value: 'Personalizado' },
-      { label: 'Piedras', value: '100% Naturales' },
-    ],
-    ctaText: 'Pedir mi Pulsera por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo encargar una Pulsera Amuleto con estudio radiestésico personalizado.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
-    alt: 'Flores de Bach y preparados botánicos medicinales',
-    title: 'Consulta & Fórmula Floral de Bach',
-    subtitle:
-      'Diagnóstico emocional y preparación de gotero personalizado de 30ml con esencias florales de Bach para tratar ansiedad, insomnio y estrés.',
-    meta: [
-      { label: 'Frasco', value: 'Gotero 30ml incluido' },
-      { label: 'Duración', value: '45 min' },
-    ],
-    ctaText: 'Solicitar Terapia Floral por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo una consulta de Flores de Bach con mi fórmula personalizada.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80',
-    alt: 'Sanación y paz interior profunda',
-    title: 'Sanación Bioenergética & Paz Interior',
-    subtitle:
-      'Alineación de chakras, armonización vibracional con cuencos y reconexión espiritual profunda para tu vitalidad diaria.',
-    meta: [
-      { label: 'Sesión', value: '75 min' },
-      { label: 'Efecto', value: 'Armonía & Serenidad' },
-    ],
-    ctaText: 'Reservar Sanación por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo agendar una sesión de Sanación Bioenergética & Paz Interior.',
-  },
-];
-
-const EDUCACION_COVERFLOW_SLIDES: CoverflowSlide[] = [
-  {
-    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-    alt: 'Diagnóstico Psicopedagógico y Evaluación Cognitiva',
-    title: 'Diagnóstico Psicopedagógico Integral',
-    subtitle:
-      'Evaluación personalizada de dificultades de aprendizaje, desarrollo del lenguaje y estilo cognitivo con informe para escuela y hogar.',
-    meta: [
-      { label: 'Duración', value: '60 a 75 min' },
-      { label: 'Especialista', value: 'Máster en Aprendizaje' },
-    ],
-    ctaText: 'Agendar Diagnóstico por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, me gustaría agendar un Diagnóstico Psicopedagógico Integral para mi hijo(a).',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
-    alt: 'Estimulación Temprana e Inmersión Bilingüe Infantil',
-    title: 'Play & Learn: Inmersión Bilingüe',
-    subtitle:
-      'Estimulación temprana del lenguaje en inglés y español a través de canciones, juegos sensoriales y dinámicas vivenciales.',
-    meta: [
-      { label: 'Sesiones', value: '4 al mes' },
-      { label: 'Grupos', value: 'Reducidos por edad' },
-    ],
-    ctaText: 'Inscribir a mi Hijo(a) por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo información para inscribir a mi hijo(a) en el Taller de Inmersión Bilingüe Infantil.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-    alt: 'Asesoría y Acompañamiento para Padres y Familias',
-    title: 'Escuela & Pautas de Estudio en el Hogar',
-    subtitle:
-      'Orientación para padres con estrategias pedagógicas concretas para crear rutinas de estudio amigables y apoyar la autonomía sin frustración.',
-    meta: [
-      { label: 'Duración', value: '60 min' },
-      { label: 'Modalidad', value: 'Presencial u Online' },
-    ],
-    ctaText: 'Solicitar Asesoría por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, quiero una sesión de asesoría pedagógica y pautas para el hogar.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
-    alt: 'Material Didáctico Multisensorial y Kits de Aprendizaje',
-    title: 'Kit Didáctico de Lectoescritura & Atención',
-    subtitle:
-      'Pack de fichas táctiles, tarjetas fonéticas bilingües y juegos de motricidad diseñados para reforzar el aprendizaje lúdico en casa.',
-    meta: [
-      { label: 'Material', value: 'Impreso & Plastificado' },
-      { label: 'Incluye', value: 'Guía para padres' },
-    ],
-    ctaText: 'Adquirir Kit por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo adquirir el Kit Didáctico Multisensorial de Refuerzo.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=800&q=80',
-    alt: 'Seguridad y Éxito Escolar en Niños Felices',
-    title: 'Acompañamiento & Autonomía Escolar',
-    subtitle:
-      'Seguimiento pedagógico continuo para construir seguridad, motivación y felicidad en su etapa escolar con bases sólidas.',
-    meta: [
-      { label: 'Enfoque', value: 'Pedagogía Positiva' },
-      { label: 'Impacto', value: 'Autonomía & Éxito' },
-    ],
-    ctaText: 'Consultar Acompañamiento por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo información sobre el programa de Acompañamiento & Autonomía Escolar.',
-  },
-];
+import { ArrowRight } from 'lucide-react';
 
 export const PathSection: React.FC = () => {
   const { mode } = useNicheMode();
 
   const steps = mode === 'educacion' ? PATH_STEPS_EDUCACION : PATH_STEPS_HOLISTICA;
-  const coverflowSlides =
-    mode === 'educacion' ? EDUCACION_COVERFLOW_SLIDES : HOLISTICA_COVERFLOW_SLIDES;
 
 {/* ========================================================
     ILUSTRACIONES VECTORIALES PARA NICHO HOLÍSTICA
    ======================================================== */}
 
 {/* Paso 1 Holística: Conoce tu Esencia (Péndulo de Radiestesia & Conexión Bioenergética) */}
-const HolisticaGraphic1: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#9B8FD9' }) => (
+const HolisticaGraphic1: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <circle cx="32" cy="10" r="3" stroke={color} strokeWidth="1.8" />
     <path d="M32 13 L32 30" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeDasharray="1 2.5" />
@@ -199,7 +38,7 @@ const HolisticaGraphic1: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 2 Holística: Limpias & Botánica (Sahumerio Ancestral & Humo Sagrado Purificador) */}
-const HolisticaGraphic2: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#12A89D' }) => (
+const HolisticaGraphic2: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M18 42 C18 49, 24 53, 32 53 C40 53, 46 49, 46 42 L18 42 Z"
@@ -235,7 +74,7 @@ const HolisticaGraphic2: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 3 Holística: Armoniza tu Energía (Gotero Floral de Bach & Elixir Sanador) */}
-const HolisticaGraphic3: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#9B8FD9' }) => (
+const HolisticaGraphic3: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path d="M28 8 C28 6, 36 6, 36 8 L36 13 L28 13 Z" fill={color} fillOpacity="0.4" stroke={color} strokeWidth="1.8" />
     <rect x="25" y="13" width="14" height="4" rx="1.5" stroke={color} strokeWidth="1.8" fill={color} fillOpacity="0.2" />
@@ -253,7 +92,7 @@ const HolisticaGraphic3: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 4 Holística: Transformación Plena (Flor de Loto Sagrada & Destellos de Plenitud) */}
-const HolisticaGraphic4: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#6B7FD1' }) => (
+const HolisticaGraphic4: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#043651' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M32 16 C32 16, 26 28, 26 38 C26 44, 29 48, 32 48 C35 48, 38 44, 38 38 C38 28, 32 16, 32 16 Z"
@@ -290,7 +129,7 @@ const HolisticaGraphic4: React.FC<{ className?: string; color?: string }> = ({ c
    ======================================================== */}
 
 {/* Paso 1 Educación: Diagnóstico Integral (Cerebro & Mente Creativa) */}
-const EducacionGraphic1: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#9B8FD9' }) => (
+const EducacionGraphic1: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M32 50 C23 50, 16 43, 16 34 C16 28, 20 23, 25 21 C26 15, 32 12, 38 14 C44 16, 48 22, 47 28 C51 31, 52 38, 48 43 C44 48, 38 50, 32 50 Z"
@@ -311,7 +150,7 @@ const EducacionGraphic1: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 2 Educación: Inmersión Bilingüe (Libro Abierto & Letras Lúdicas A/B) */}
-const EducacionGraphic2: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#12A89D' }) => (
+const EducacionGraphic2: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M32 46 C27 43, 19 43, 14 45 L14 21 C19 19, 27 19, 32 22 C37 19, 45 19, 50 21 L50 45 C45 43, 37 43, 32 46 Z"
@@ -332,7 +171,7 @@ const EducacionGraphic2: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 3 Educación: Pautas para el Hogar (Hogar Protector & Birrete de Estudio) */}
-const EducacionGraphic3: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#9B8FD9' }) => (
+const EducacionGraphic3: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#2B7294' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M14 28 L32 14 L50 28 L50 50 C50 52, 48 54, 46 54 L18 54 C16 54, 14 52, 14 50 Z"
@@ -357,7 +196,7 @@ const EducacionGraphic3: React.FC<{ className?: string; color?: string }> = ({ c
 );
 
 {/* Paso 4 Educación: Seguridad & Éxito (Estrella de Triunfo & Confianza Infantil) */}
-const EducacionGraphic4: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#6B7FD1' }) => (
+const EducacionGraphic4: React.FC<{ className?: string; color?: string }> = ({ className = 'w-12 h-12', color = '#043651' }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     <path
       d="M32 12 L35.5 22.5 L46.5 22.5 L37.5 29 L41 39.5 L32 33 L23 39.5 L26.5 29 L17.5 22.5 L28.5 22.5 Z"
@@ -376,45 +215,44 @@ const EducacionGraphic4: React.FC<{ className?: string; color?: string }> = ({ c
 
 const ARCH_STEP_THEMES = [
   {
-    // Paso 1: Rosa Floral Pastel (#F0C6D9)
-    bg: 'bg-gradient-to-b from-[#FDE8F2] via-[#FDF3F8] to-[#FCEAF3]',
-    border: 'border-[#F0C6D9]',
-    hoverBorder: 'hover:border-[#E8A2C2]',
-    foliageColor: '#9B8FD9',
-    badgeBg: 'bg-[#F0C6D9]/50 text-[#3E4A7A] border-[#F0C6D9]',
+    // Paso 1: Rosa Floral Pastel (#CEAB67)
+    bg: 'bg-gradient-to-b from-[#FBF3E1] via-[#FDF8EC] to-[#FBF3E1]',
+    border: 'border-[#CEAB67]',
+    hoverBorder: 'hover:border-[#CEAB67]',
+    foliageColor: '#2B7294',
+    badgeBg: 'bg-[#CEAB67]/50 text-[#133238] border-[#CEAB67]',
     butterflyColor: 'pink' as const,
     HolisticaIcon: HolisticaGraphic1,
     EducacionIcon: EducacionGraphic1,
   },
   {
-    // Paso 2: Verde Menta / Esmeralda Sagrado (#12A89D)
-    bg: 'bg-gradient-to-b from-[#E2F7F5] via-[#EFFBF9] to-[#E5F7F5]',
-    border: 'border-[#A5E5E0]',
-    hoverBorder: 'hover:border-[#12A89D]',
-    foliageColor: '#12A89D',
-    badgeBg: 'bg-[#12A89D]/15 text-[#0E7069] border-[#12A89D]/30',
+    // Paso 2: Verde Menta / Esmeralda Sagrado (#2B7294)
+    bg: 'bg-gradient-to-b from-[#EDF4F8] via-[#E8F0F5] to-[#EDF4F8]',
+    border: 'border-[#2B7294]',
+    hoverBorder: 'hover:border-[#2B7294]',
+    foliageColor: '#2B7294',
+    badgeBg: 'bg-[#2B7294]/15 text-[#043651] border-[#2B7294]/30',
     butterflyColor: 'blue' as const,
     HolisticaIcon: HolisticaGraphic2,
     EducacionIcon: EducacionGraphic2,
   },
   {
-    // Paso 3: Púrpura Lavanda Encantado (#9B8FD9 / #C9D4F5)
-    bg: 'bg-gradient-to-b from-[#F0EDFC] via-[#F7F5FD] to-[#F1EEFC]',
-    border: 'border-[#C9D4F5]',
-    hoverBorder: 'hover:border-[#9B8FD9]',
-    foliageColor: '#9B8FD9',
-    badgeBg: 'bg-[#9B8FD9]/15 text-[#3E4A7A] border-[#9B8FD9]/35',
+    // Paso 3: Púrpura Lavanda Encantado (#2B7294 / #E8F0F5)
+    bg: 'bg-gradient-to-b from-[#EDF4F8] via-[#F2F7FA] to-[#EDF4F8]',
+    border: 'border-[#E8F0F5]',
+    hoverBorder: 'hover:border-[#2B7294]',
+    foliageColor: '#2B7294',
+    badgeBg: 'bg-[#2B7294]/15 text-[#133238] border-[#2B7294]/35',
     butterflyColor: 'purple' as const,
     HolisticaIcon: HolisticaGraphic3,
     EducacionIcon: EducacionGraphic3,
   },
   {
-    // Paso 4: Azul Cielo & Azul Violeta (#DCEEFB / #6B7FD1)
-    bg: 'bg-gradient-to-b from-[#E6F3FD] via-[#F2F8FE] to-[#E7F3FD]',
-    border: 'border-[#C9D4F5]',
-    hoverBorder: 'hover:border-[#6B7FD1]',
-    foliageColor: '#6B7FD1',
-    badgeBg: 'bg-[#6B7FD1]/15 text-[#3E4A7A] border-[#6B7FD1]/30',
+    // Paso 4: Azul Cielo & Azul Violeta (#FFFFFF / #043651)
+    bg: 'bg-gradient-to-b from-[#EDF4F8] via-[#F2F7FA] to-[#E8F0F5]',
+    border: 'border-[#E8F0F5]',
+    hoverBorder: 'hover:border-[#043651]',
+    foliageColor: '#043651',
     butterflyColor: 'lavender' as const,
     HolisticaIcon: HolisticaGraphic4,
     EducacionIcon: EducacionGraphic4,
@@ -422,165 +260,82 @@ const ARCH_STEP_THEMES = [
 ];
 
   return (
-    <div
-      className="relative pt-88 xs:pt-96 sm:pt-76 md:pt-88 lg:pt-96 pb-2 overflow-hidden bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
+    /* ========================================================
+       SECCIÓN 1: EL VIAJE DE SANACIÓN / PASOS (COLOR DEL HEADER #5CBDB5)
+       ======================================================== */
+    <section
+      id="camino"
+      className="relative -mt-2 sm:-mt-3 md:-mt-4 pt-1 sm:pt-2 md:pt-3 pb-12 sm:pb-16 overflow-hidden select-none bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93] shadow-inner"
     >
-      {/* Elementos botánicos flotantes sutiles */}
-      <FloralBouquet className="absolute top-16 sm:top-24 right-4 w-36 h-36 opacity-40 -z-5" />
-      <FloralBouquet className="absolute bottom-10 left-4 w-36 h-36 opacity-40 -z-5" flip />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* ========================================================
-            SECCIÓN SUPERIOR: 4 Pasos del Proceso (Diseño unificado)
-            ======================================================== */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-8 sm:mb-14 md:mb-20">
-          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
-          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
-          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
-          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
-
-          <div key={mode + '-path-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-              {mode === 'educacion' ? (
-                <>
-                  El aprendizaje sin barreras,{' '}
-                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
-                    es un proceso
-                  </span>
-                </>
-              ) : (
-                <>
-                  El bienestar no es casualidad,{' '}
-                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
-                    es un camino
-                  </span>
-                </>
-              )}
-            </h2>
-
-            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-xl mx-auto">
-              {mode === 'educacion'
-                ? 'Acompañamiento psicopedagógico con calidez para potenciar el talento y autonomía de tus pequeños.'
-                : 'Un camino guiado con empatía y rigor profesional hacia tu equilibrio y bienestar integral.'}
-            </p>
-          </div>
+        {/* Capa de destello áurico sutil y estrellas */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-25">
+          <svg viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
+            <circle cx="120" cy="80" r="1.8" fill="#FFFFFF" opacity="0.9" />
+            <circle cx="340" cy="140" r="2.2" fill="#FFF5C0" opacity="0.9" />
+            <circle cx="680" cy="60" r="1.6" fill="#FFEA79" opacity="0.8" />
+            <circle cx="920" cy="120" r="2" fill="#FFFFFF" opacity="0.9" />
+            <circle cx="1260" cy="90" r="1.8" fill="#FFF5C0" opacity="0.85" />
+            <circle cx="480" cy="220" r="1.9" fill="#FFEA79" opacity="0.8" />
+            <circle cx="1100" cy="240" r="2.2" fill="#FFFFFF" opacity="0.9" />
+          </svg>
         </div>
 
-        {/* Fila de 4 Tarjetas de Pasos en Forma de Arco Arquitectónico (Diseño Editorial Temático) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-7 items-stretch">
-          {steps.map((step, idx) => {
-            const theme = ARCH_STEP_THEMES[idx % ARCH_STEP_THEMES.length];
-            const GraphicComponent = mode === 'educacion' ? theme.EducacionIcon : theme.HolisticaIcon;
+        {/* Contenido de los 4 Pasos */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8 lg:gap-10 items-start mb-12 sm:mb-16">
+            {steps.map((step, idx) => {
+              const theme = ARCH_STEP_THEMES[idx % ARCH_STEP_THEMES.length];
+              const GraphicComponent = mode === 'educacion' ? theme.EducacionIcon : theme.HolisticaIcon;
 
-            return (
-              <div
-                key={step.number}
-                id={`path-step-${step.number}`}
-                className={`relative group ${theme.bg} rounded-t-[120px] xs:rounded-t-[140px] sm:rounded-t-[150px] md:rounded-t-[160px] rounded-b-[2rem] sm:rounded-b-[2.25rem] pt-7 sm:pt-8 pb-7 sm:pb-8 px-5 sm:px-6 shadow-[0_8px_30px_rgba(62,74,122,0.06)] hover:shadow-[0_18px_45px_rgba(107,127,209,0.18)] border ${theme.border} ${theme.hoverBorder} transition-all duration-500 hover:-translate-y-3 flex flex-col items-center text-center select-none overflow-visible`}
-              >
-                {/* Destello de luz diagonal sutil al pasar el cursor */}
-                <div className="absolute inset-0 rounded-t-[120px] xs:rounded-t-[140px] sm:rounded-t-[150px] md:rounded-t-[160px] rounded-b-[2rem] sm:rounded-b-[2.25rem] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-
-                {/* Mariposa decorativa flotante encima de la cúspide del arco */}
-                <div className="absolute -top-6 sm:-top-7 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                  <ButterflyGraphic
-                    size={34}
-                    color={theme.butterflyColor}
-                    className="transition-transform duration-500 group-hover:scale-125 group-hover:-translate-y-1.5 drop-shadow-sm"
-                  />
-                </div>
-
-                {/* Cúspide del Arco: Gráfico Temático */}
-                <div className="w-full flex flex-col items-center justify-center mb-2">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-transform duration-500 group-hover:scale-115 group-hover:-rotate-2">
-                    <GraphicComponent className="w-full h-full drop-shadow-xs" color={theme.foliageColor} />
+              return (
+                <div
+                  key={step.number}
+                  id={`path-step-${step.number}`}
+                  className="group flex flex-col items-center text-center select-none p-2 transition-transform duration-300 hover:-translate-y-2"
+                >
+                  {/* Ícono ilustrativo libre en oro 24k metálico (sin círculos ni contenedores) */}
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-115">
+                    <GraphicComponent className="w-full h-full drop-shadow-[0_4px_16px_rgba(255,215,0,0.95)]" color="#FFD700" />
                   </div>
-                </div>
 
-                {/* Contenido Editorial Central con espaciado compacto y elegante */}
-                <div className="flex flex-col items-center w-full">
-                  {/* Título en Serif Editorial elegante directamente debajo del ícono */}
-                  <h3 className="font-serif-display text-lg sm:text-xl md:text-[21px] font-bold text-[#3E4A7A] mb-2 leading-snug">
-                    {step.title}
+                  {/* Título Principal en Oro 24K Metálico con Tamaño Equilibrado */}
+                  <h3 className="font-serif text-base sm:text-lg md:text-xl font-bold mb-2 leading-snug tracking-[0.16em] uppercase select-none">
+                    <span className="bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                      {step.keyword}
+                    </span>
                   </h3>
 
-                  {/* Divisor botánico sutil */}
-                  <div
-                    className="w-8 h-0.5 rounded-full mb-2.5 opacity-30"
-                    style={{ backgroundColor: theme.foliageColor }}
-                  />
+                  {/* Divisor dorado sutil */}
+                  <div className="w-10 h-[1.5px] bg-gradient-to-r from-transparent via-[#FFD700] to-transparent mb-3 opacity-90" />
 
-                  {/* Descripción en Negro Puro para máxima legibilidad */}
-                  <p className="text-xs sm:text-[13px] text-black leading-relaxed font-normal max-w-[230px] mx-auto">
+                  {/* Descripción nítida en negro con alta legibilidad */}
+                  <p className="text-xs sm:text-[13px] md:text-sm text-[#0A1C24] leading-relaxed font-semibold max-w-[240px] mx-auto">
                     {step.description}
                   </p>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Botón CTA central hacia servicios */}
-        <div className="text-center mt-8 sm:mt-12 mb-10 sm:mb-16 md:mb-20">
-          <a
-            href="#servicios"
-            id="path-cta-button"
-            className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-            <span className="relative z-10">
-              {mode === 'educacion'
-                ? 'Explora nuestros programas educativos'
-                : 'Comienza tu camino de sanación'}
-            </span>
-            <ArrowRight className="relative z-10 w-4 h-4 text-[#6B7FD1] group-hover:text-white group-hover:translate-x-1.5 transition-all duration-300" />
-          </a>
-        </div>
-
-        {/* ========================================================
-            CARRUSEL 3D COVERFLOW: Directo sin contenedor de fondo
-           ======================================================== */}
-        <div className="relative pt-6">
-          {/* Título de la galería interactiva (Sin Insignia) */}
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-6">
-            <h3 className="font-serif-display text-3xl sm:text-4xl text-[#3E4A7A] font-bold">
-              {mode === 'educacion' ? (
-                <>
-                  Programas &{' '}
-                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
-                    Talleres Destacados
-                  </span>
-                </>
-              ) : (
-                <>
-                  Experiencias &{' '}
-                  <span className="font-script text-[#9B8FD9] text-4xl sm:text-5xl font-normal">
-                    Terapias en Promoción
-                  </span>
-                </>
-              )}
-            </h3>
-            <p className="text-xs sm:text-sm text-black">
-              Pasa el cursor sobre las imágenes para ver los detalles y agendar directamente.
-            </p>
+              );
+            })}
           </div>
 
-          {/* Componente 3D CoverflowCarousel con información en Hover */}
-          <CoverflowCarousel
-            slides={coverflowSlides}
-            cardWidth="clamp(240px, 30vw, 360px)"
-            rotate={42}
-            depth={0.6}
-            autoPlayInterval={2400}
-            showCaption={false}
-            showNavigation={true}
-            showPagination={true}
-            whatsappPhone={WHATSAPP_PHONE}
-          />
-        </div>
+          {/* Botón CTA Central en Oro Sólido */}
+          <div className="text-center">
+            <a
+              href="#servicios"
+              id="path-cta-button"
+              className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif font-bold text-xs sm:text-sm px-8 sm:px-10 py-3.5 sm:py-4 rounded-sm uppercase tracking-[0.18em] shadow-[0_6px_25px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgba(229,201,133,0.65)] transition-all duration-300 hover:scale-103 active:scale-97 cursor-pointer select-none group border border-[#FFF8D6]/40"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+              <span className="relative z-10">
+                {mode === 'educacion'
+                  ? 'EXPLORAR PROGRAMAS EDUCATIVOS'
+                  : 'COMENZAR MI CAMINO DE SANACIÓN'}
+              </span>
+              <ArrowRight className="relative z-10 w-4 h-4 text-[#0A1C24] group-hover:translate-x-1 transition-transform duration-300 stroke-[2.4]" />
+            </a>
+          </div>
 
-      </div>
-    </div>
+        </div>
+      </section>
   );
 };

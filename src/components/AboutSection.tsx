@@ -1,39 +1,103 @@
 import React from 'react';
-import { Quote, CheckCircle2, BookOpen, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { FloralBouquet, ButterflyGraphic, AgendarCalendarIcon, SolicitarEvaluacionIcon } from './FloralDecorations';
-import OrbitImages from './OrbitCircles';
-import { AnimatedConstructPhoto } from './AnimatedConstructPhoto';
+import { Calendar } from 'lucide-react';
 import { useNicheMode } from '../context/NicheContext';
+
+// Íconos vectoriales dorados dibujados al estilo de los Pasos
+const IconEducadoraBilingue: React.FC<{ className?: string; color?: string }> = ({
+  className = 'w-9 h-9',
+  color = '#B88E44',
+}) => (
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path
+      d="M32 44 C25 40 16 40 10 42 L10 18 C16 16 25 16 32 20 C39 16 48 16 54 18 L54 42 C48 40 39 40 32 44 Z"
+      stroke={color}
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill={color}
+      fillOpacity="0.18"
+    />
+    <path d="M32 20 L32 44" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <circle cx="32" cy="11" r="3.5" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1.8" />
+    <path d="M32 4 L32 6 M24 7 L26 8.5 M40 7 L38 8.5 M23 14 L25 13 M41 14 L39 13" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+    <path d="M19 28 L23 28 M41 28 L45 28 M18 34 L25 34 M39 34 L46 34" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeDasharray="1 3" />
+  </svg>
+);
+
+const IconMasterAprendizaje: React.FC<{ className?: string; color?: string }> = ({
+  className = 'w-9 h-9',
+  color = '#B88E44',
+}) => (
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <polygon points="32,12 54,22 32,32 10,22" stroke={color} strokeWidth="2.2" strokeLinejoin="round" fill={color} fillOpacity="0.18" />
+    <path d="M18 26 L18 38 C18 44 46 44 46 38 L46 26" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M50 25 L50 40 L52 42 L52 46 L48 46 L48 42 L50 40" stroke={color} strokeWidth="1.8" strokeLinecap="round" fill={color} fillOpacity="0.4" />
+    <circle cx="32" cy="49" r="2.5" fill={color} />
+    <path d="M26 49 L20 49 M38 49 L44 49 M32 43 L32 37 M32 55 L32 58" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+  </svg>
+);
+
+const IconFloresBachHerbolaria: React.FC<{ className?: string; color?: string }> = ({
+  className = 'w-9 h-9',
+  color = '#B88E44',
+}) => (
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path
+      d="M32 48 C32 48 20 42 16 32 C13 24 18 16 26 20 C29 22 32 26 32 26 C32 26 35 22 38 20 C46 16 51 24 48 32 C44 42 32 48 32 48 Z"
+      stroke={color}
+      strokeWidth="2.2"
+      strokeLinejoin="round"
+      fill={color}
+      fillOpacity="0.18"
+    />
+    <path
+      d="M32 16 C32 16 26 24 26 30 C26 34 29 37 32 37 C35 37 38 34 38 30 C38 24 32 16 32 16 Z"
+      stroke={color}
+      strokeWidth="1.8"
+      fill={color}
+      fillOpacity="0.35"
+    />
+    <path d="M12 44 C20 42 26 46 32 54 C38 46 44 42 52 44" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <circle cx="32" cy="11" r="2" fill={color} />
+  </svg>
+);
+
+const IconMedicinaAncestral: React.FC<{ className?: string; color?: string }> = ({
+  className = 'w-9 h-9',
+  color = '#B88E44',
+}) => (
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <path
+      d="M26 12 L38 12 L38 20 L46 20 L46 32 L54 32 L54 44 L46 44 L46 52 L38 52 L38 44 L26 44 L26 52 L18 52 L18 44 L10 44 L10 32 L18 32 L18 20 L26 20 Z"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+      fill={color}
+      fillOpacity="0.15"
+    />
+    <circle cx="32" cy="32" r="6" stroke={color} strokeWidth="2" fill={color} fillOpacity="0.3" />
+    <circle cx="32" cy="32" r="2" fill={color} />
+    <path d="M32 6 L32 9 M57 32 L60 32 M7 32 L4 32 M32 55 L32 58" stroke={color} strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
 
 const ABOUT_CIRCLES = [
   {
     title: 'Educadora Infantil Bilingüe',
-    iconSrc: '/icons/pillar-educadora.png',
-    iconAlt: 'Educadora Infantil Bilingüe',
-    bgColor: 'bg-[#C9D4F5]',
-    borderColor: 'border-[#9B8FD9]/40',
+    IconComponent: IconEducadoraBilingue,
   },
   {
     title: 'Máster en Problemas de Aprendizaje',
-    iconSrc: '/icons/pillar-aprendizaje.png',
-    iconAlt: 'Máster en Problemas de Aprendizaje',
-    bgColor: 'bg-[#F0C6D9]',
-    borderColor: 'border-[#F0C6D9]',
+    IconComponent: IconMasterAprendizaje,
   },
   {
     title: 'Terapeuta en Flores de Bach y Herbolaria',
-    iconSrc: '/icons/pillar-flores-bach.png',
-    iconAlt: 'Terapeuta en Flores de Bach y Herbolaria',
-    bgColor: 'bg-[#D2F4EE]',
-    borderColor: 'border-[#12A89D]/30',
+    IconComponent: IconFloresBachHerbolaria,
   },
   {
-    title: 'Mujer Medicina Certificada en Medicina Ancestral',
-    iconSrc: '/icons/pillar-medicina.png',
-    iconAlt: 'Mujer Medicina Certificada en Medicina Ancestral',
-    bgColor: 'bg-[#E2DBF7]',
-    borderColor: 'border-[#9B8FD9]/40',
+    title: 'Mujer Medicina en Medicina Ancestral',
+    IconComponent: IconMedicinaAncestral,
   },
 ];
 
@@ -41,217 +105,169 @@ export const AboutSection: React.FC = () => {
   const { mode } = useNicheMode();
 
   return (
-    <section
-      id="sobre-mi"
-      className="relative w-full overflow-hidden pt-10 sm:pt-16 md:pt-20 pb-4 sm:pb-8 bg-gradient-to-b from-[#E8F3FD] via-[#F4F9FE] to-[#E8F3FD] transition-colors duration-500"
-    >
-      {/* Decoraciones botánicas idénticas al resto de las secciones */}
-      <FloralBouquet className="absolute top-8 right-6 w-44 h-44 opacity-35 -z-5" />
-      <FloralBouquet className="absolute bottom-8 left-6 w-44 h-44 opacity-35 -z-5" flip />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* ========================================================
-            CABECERA PRINCIPAL: SOBRE MÍ (Diseño unificado)
-           ======================================================== */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-8 sm:mb-12 md:mb-16">
-          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
-          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
-          <ButterflyGraphic className="absolute top-4 right-6 sm:right-10" size={36} color="purple" />
-          <ButterflyGraphic className="absolute bottom-2 left-6 sm:left-10" size={28} color="pink" />
-
-          <div key={mode + '-about-header'} className="space-y-3 relative z-10 animate-in fade-in duration-300">
-            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-              Conoce a Johanna Proaño{' '}
-              <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
-                y Casa Kinti
-              </span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
-              {mode === 'educacion'
-                ? 'Educadora infantil bilingüe y Máster en Problemas de Aprendizaje con más de 15 años guiando a familias y niños hacia su máximo potencial.'
-                : 'Terapeuta floral de Bach, herbolaria medicinal y mujer medicina ancestral consagrada al bienestar integral en Quito.'}
-            </p>
+    <section id="sobre-mi" className="relative w-full overflow-hidden bg-white">
+      {/* ========================================================
+          FONDO DIVIDIDO: TURQUESA A LA IZQUIERDA Y BLANCO A LA DERECHA
+         ======================================================== */}
+      <div className="absolute inset-0 flex pointer-events-none z-0">
+        {/* Bloque Turquesa del Header (Cubre la parte izquierda) */}
+        <div className="w-full lg:w-[30%] xl:w-[28%] bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93] h-[380px] lg:h-full relative overflow-hidden">
+          {/* Destellos estelares sutiles */}
+          <div className="absolute inset-0 opacity-25">
+            <svg viewBox="0 0 400 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
+              <circle cx="70" cy="120" r="2" fill="#FFFFFF" />
+              <circle cx="280" cy="220" r="2.2" fill="#FFF5C0" />
+              <circle cx="110" cy="620" r="1.8" fill="#FFEA79" />
+              <circle cx="300" cy="720" r="2" fill="#FFFFFF" />
+            </svg>
           </div>
         </div>
 
-        {/* ========================================================
-            DISPOSICIÓN EDITORIAL: HISTORIA & CÍRCULOS (IZQ 6) + FOTO & CITA (DER 6)
-           ======================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        {/* Bloque Blanco Puro (Cubre la parte derecha) */}
+        <div className="hidden lg:block lg:w-[70%] xl:w-[72%] bg-white h-full" />
+      </div>
+
+      {/* ========================================================
+          CONTENIDO: FOTO CENTRADA EN EL CORTE & TEXTOS EDITORIALES
+         ======================================================== */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 xl:gap-14 items-center">
           
-          {/* Lado Izquierdo: Historia y Círculos Orbitales Giratorios (lg:col-span-6, 50% ANCHO) */}
-          <div className="lg:col-span-6 space-y-6 text-[#3E4A7A] w-full max-w-[520px] mx-auto lg:mx-0">
+          {/* ------------------------------------------------------
+              FOTO EN ARCO ROMANO CENTRADA EN EL LÍMITE TURQUESA / BLANCO
+             ------------------------------------------------------ */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start lg:-ml-4 xl:-ml-8 w-full">
             
-            {/* Título Principal y 2 Párrafos de Historia (Unificados para ambos nichos, Justificados, 4 líneas cada uno) */}
-            <div className="space-y-3.5">
-              <h3 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#3E4A7A]">
-                Hola, soy Johanna Proaño
-              </h3>
+            {/* Animación de Entrada + Levitación Suave Continua */}
+            <motion.div
+              key={mode + '-about-frame'}
+              initial={{ opacity: 0, x: -30, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
+              className="w-full flex justify-center lg:justify-start"
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0, 6, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-full flex justify-center lg:justify-start"
+              >
+            {/* Contenedor del Marco Arqueado — Mismo Ancho y Centrado en Ambos Nichos */}
+            <div className="relative w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[490px] pt-4 pb-2 px-2 flex justify-center items-center">
               
-              <p className="text-sm sm:text-base text-black leading-relaxed font-normal text-justify">
-                Fundé <strong>Casa Kinti</strong> en Quito con la convicción profunda de que el bienestar emocional y espiritual de la familia es la base indispensable para el desarrollo pleno de los niños. Tras años de experiencia docente y terapéutica, comprendí que mente, corazón y energía deben atenderse en conjunto para desbloquear el verdadero potencial humano.
-              </p>
+              {/* Marco exterior fino en oro con efecto offset */}
+              <div className="absolute inset-0 border-2 border-[#D4A346] rounded-t-[200px] sm:rounded-t-[235px] rounded-b-2xl pointer-events-none transform -translate-x-2.5 translate-y-2.5 z-0 shadow-sm" />
+              
+              {/* 4 Destellos de Estrellas Doradas (✦) exactamente en los 4 ejes */}
+              {/* Estrella Superior (Centro) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-[#D4A346] text-lg drop-shadow-[0_0_8px_rgba(212,163,70,0.9)] select-none font-bold">
+                ✦
+              </div>
+              {/* Estrella Izquierda (Lado Turquesa) */}
+              <div className="absolute top-1/2 -left-3 -translate-y-1/2 z-20 text-[#FFD700] text-lg drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] select-none font-bold">
+                ✦
+              </div>
+              {/* Estrella Derecha (Lado Blanco) */}
+              <div className="absolute top-1/2 -right-3 -translate-y-1/2 z-20 text-[#B88E44] text-lg drop-shadow-[0_0_6px_rgba(184,142,68,0.8)] select-none font-bold">
+                ✦
+              </div>
+              {/* Estrella Inferior */}
+              <div className="absolute bottom-0 right-1/4 translate-y-1/2 z-20 text-[#D4A346] text-sm drop-shadow-[0_0_6px_rgba(212,163,70,0.8)] select-none font-bold">
+                ✦
+              </div>
 
-              <p className="text-sm sm:text-base text-black leading-relaxed font-normal text-justify">
-                En nuestro espacio convergen armónicamente la ciencia del aprendizaje infantil y la sabiduría de la medicina natural. Acompaño de forma cercana a niños, jóvenes y adultos a superar barreras pedagógicas y desequilibrios energéticos, brindando herramientas personalizadas en un entorno seguro, amoroso y de confidencialidad absoluta.
-              </p>
-            </div>
-
-            {/* Círculos con Animación Giratoria Circular (Los 4 Pilares de Johanna) */}
-            <div className="pt-1">
-              <div className="w-full max-w-[460px] sm:max-w-[500px] mx-auto py-2 flex items-center justify-center overflow-visible">
-                <OrbitImages
-                  customItems={ABOUT_CIRCLES.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={`group relative overflow-hidden rounded-full aspect-square w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 ${item.bgColor} ${item.borderColor} border-2 shadow-2xl hover:shadow-[0_10px_30px_rgba(107,127,209,0.45)] hover:scale-110 active:scale-95 transition-all duration-300 flex flex-col justify-center items-center text-center p-3 sm:p-3.5 cursor-pointer select-none`}
-                    >
-                      {/* Destello de luz diagonal reflectante al pasar el mouse */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-
-                      {/* Mismo icono ilustrado del banner ampliado con rotación y escala */}
-                      <div className="relative z-10 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mb-1 shrink-0">
-                        <img
-                          src={item.iconSrc}
-                          alt={item.iconAlt}
-                          loading="lazy"
-                          className="max-h-full max-w-full object-contain drop-shadow-sm group-hover:scale-115 group-hover:rotate-12 transition-transform duration-300"
-                        />
-                      </div>
-
-                      {/* Título completo sin cortes ni truncamientos */}
-                      <span className="relative z-10 font-bold text-[11px] sm:text-xs md:text-[13px] text-black text-center leading-snug px-1.5 break-words">
-                        {item.title}
-                      </span>
-                    </div>
-                  ))}
-                  shape="circle"
-                  baseWidth={450}
-                  radius={136}
-                  aspectRatio="1 / 1"
-                  itemSize={180}
-                  duration={14}
-                  rotation={0}
-                  paused={false}
-                  showPath={false}
+              {/* Marco Principal del Arco Romano con la Fotografía de Johanna */}
+              <div className="relative z-10 w-full h-[400px] xs:h-[440px] sm:h-[480px] md:h-[510px] lg:h-[530px] rounded-t-[190px] sm:rounded-t-[225px] rounded-b-xl overflow-hidden border-[3px] border-[#D4A346] shadow-[0_15px_40px_rgba(0,0,0,0.22)] bg-[#07242C]">
+                <motion.img
+                  key={mode + '-johanna-photo'}
+                  src={mode === 'holistica' ? '/johanna-holistica-sobre-mi.jpg' : '/johanna-sobre-mi.jpg'}
+                  alt={mode === 'holistica' ? 'Johanna Proaño - Medicina Ancestral y Terapeuta' : 'Johanna Proaño - Educadora y Máster en Aprendizaje'}
+                  initial={{ scale: 1.08, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: 'easeOut' }}
+                  whileHover={{ scale: 1.05 }}
+                  className={`w-full h-full object-cover transition-shadow duration-700 ${
+                    mode === 'holistica' ? 'object-[center_18%]' : 'object-[center_20%]'
+                  }`}
                 />
               </div>
+
             </div>
+              </motion.div>
+            </motion.div>
 
           </div>
 
-          {/* Lado Derecho: Foto Animada Construcción/Destrucción, Cita Libre & Barra de Consulta (lg:col-span-6, 50% ANCHO) */}
-          <div className="lg:col-span-6 flex flex-col items-center lg:items-end gap-6 w-full max-w-[520px] mx-auto lg:mx-0">
+          {/* ------------------------------------------------------
+              LADO DERECHO: BLOQUE EDITORIAL SOBRE FONDO BLANCO
+             ------------------------------------------------------ */}
+          <div className="lg:col-span-7 space-y-6 lg:pl-4 xl:pl-8 text-[#133238]">
             
-            {/* Fotografía con animación continua de Construcción y Destrucción por piezas */}
-            <div className="w-full flex justify-center lg:justify-end">
-              <AnimatedConstructPhoto
-                imageSrc="/johanna-sobre-mi.jpg"
-                alt="Johanna Proaño - Casa Kinti"
-                aspectRatio="portrait"
-                className="w-full max-h-[620px]"
-              />
-            </div>
-
-            {/* Cita centrada libre sin contenedor */}
-            <div className="w-full text-center flex flex-col items-center justify-center py-1">
-              <Quote className="w-6 h-6 text-[#9B8FD9] mb-1.5 opacity-80" />
-              <p className="font-script text-2xl sm:text-3xl md:text-4xl text-[#6B7FD1] leading-snug text-center">
-                {mode === 'educacion'
-                  ? 'Acompañar a un niño es sembrar confianza para toda su vida.'
-                  : 'Sanar el presente para florecer el futuro de nuestras familias.'}
-              </p>
-              <span className="text-xs sm:text-sm font-bold text-black uppercase tracking-widest block mt-2 text-center">
-                — Johanna Proaño
+            {/* Gran Título en Serif Mayúscula */}
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#133238] uppercase leading-[1.15] tracking-tight">
+              Mi Historia{' '}
+              <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal normal-case block sm:inline">
+                Personal
               </span>
-            </div>
-
-            {/* Barra de Consulta ubicada después de la frase */}
-            <div className="w-full">
-              <div className="relative group overflow-hidden flex items-center gap-3.5 bg-gradient-to-r from-[#DCEEFB] via-[#E8F4FD] to-[#DCEEFB] p-4 sm:p-5 rounded-2xl border border-[#9B8FD9]/35 w-full shadow-xs hover:shadow-[0_8px_25px_rgba(107,127,209,0.25)] hover:border-[#6B7FD1]/50 transition-all duration-300 hover:scale-[1.02] cursor-default">
-                {/* Destello de luz diagonal reflectante */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                
-                {/* Icono directo sin contenedor con cambio de color, rotación, escala y resplandor */}
-                <CheckCircle2 className="relative z-10 w-6 h-6 text-[#12A89D] group-hover:text-[#6B7FD1] shrink-0 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 drop-shadow-xs group-hover:drop-shadow-[0_4px_12px_rgba(107,127,209,0.55)]" />
-
-                <p className="relative z-10 text-xs sm:text-sm text-black font-medium leading-normal">
-                  {mode === 'educacion'
-                    ? 'Cada valoración y acompañamiento pedagógico se brinda con calidez humana, empatía y compromiso ético con el desarrollo de tu hijo.'
-                    : 'Cada consulta se realiza en un espacio de confidencialidad absoluta, calidez humana y respeto profundo por tu proceso.'}
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ========================================================
-            CTA DE TRANSICIÓN (UBICADO DESPUÉS DE SOBRE MÍ)
-           ======================================================== */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 text-center relative border-t border-[#C9D4F5]/50 mt-16 sm:mt-20">
-          <FloralBouquet className="absolute -top-6 -left-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" />
-          <FloralBouquet className="absolute -bottom-6 -right-6 w-32 h-32 opacity-60 pointer-events-none hidden sm:block" flip />
-          <ButterflyGraphic className="absolute top-8 right-10" size={36} color="purple" />
-          <ButterflyGraphic className="absolute bottom-6 left-10" size={28} color="pink" />
-
-          <div key={mode + '-cta-banner'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#6B7FD1]">
-              {mode === 'educacion'
-                ? 'DESPIERTA SU MÁXIMO POTENCIAL'
-                : 'DA EL PRIMER PASO HOY'}
-            </span>
-
-            <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl text-[#3E4A7A]">
-              {mode === 'educacion' ? (
-                <>
-                  Impulsa su aprendizaje{' '}
-                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
-                    con confianza
-                  </span>
-                </>
-              ) : (
-                <>
-                  Tu bienestar{' '}
-                  <span className="font-script text-[#9B8FD9] text-5xl sm:text-6xl font-normal block sm:inline">
-                    comienza ahora
-                  </span>
-                </>
-              )}
             </h2>
 
-            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-2xl mx-auto">
-              {mode === 'educacion'
-                ? 'Acompañamos a tus hijos con diagnóstico psicopedagógico especializado, estimulación bilingüe temprana y métodos personalizados para que aprendan motivados, seguros y sin bloqueos.'
-                : 'Permítenos acompañarte en un viaje de equilibrio, claridad y desarrollo. Estamos listos para recibirte en nuestro santuario de sanación o de forma virtual.'}
-            </p>
+            {/* Párrafos Biográficos: El camino desde la mente hacia el alma */}
+            <div className="space-y-4 text-sm sm:text-base text-[#2C484E] leading-relaxed font-normal text-justify">
+              <p>
+                Mi vocación al servicio nació a los 16 años desde el amor por la educación infantil, enriquecida por más de dos décadas de maternidad y estudio autodidacta de las metodologías Montessori, Piaget y Pikler. Esta búsqueda por comprender el desarrollo cognitivo me llevó a graduarme con una <strong className="text-[#133238] font-semibold">Maestría en Problemas de Aprendizaje en la Universidad de Salamanca (España)</strong>.
+              </p>
+              <p>
+                Comprendí que sanar la mente exige también abrazar el espíritu. Como mujer medicina iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego de Xochilaclan con la bendición de Taitas, terapeuta floral de Bach y Maestra en Registros Akáshicos, fundé <strong className="text-[#133238] font-semibold">Casa Kinti</strong> para fusionar la ciencia pedagógica con la sabiduría ancestral en un espacio seguro de evolución, amor y luz.
+              </p>
+            </div>
 
-            <div className="pt-3 sm:pt-4">
+            {/* 4 Círculos Dorados Medallón con Íconos Dibujados y Etiquetas */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-3 pt-4">
+              {ABOUT_CIRCLES.map((pillar, pIdx) => {
+                const { IconComponent } = pillar;
+                return (
+                  <div
+                    key={pIdx}
+                    className="flex flex-col items-center gap-2.5 group cursor-default"
+                  >
+                    {/* Círculo dorado con degradado, sombra y borde áureo */}
+                    <div className="relative w-[82px] h-[82px] sm:w-[78px] sm:h-[78px] md:w-[88px] md:h-[88px] shrink-0">
+                      {/* Halo exterior pulsante */}
+                      <div className="absolute inset-[-5px] rounded-full border border-[#FFD700]/30 group-hover:border-[#FFD700]/70 transition-all duration-500" />
+                      {/* Círculo principal con gradiente dorado */}
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-[#FFFBEE] via-[#FFF3C4] to-[#F5E08A] border-[2.5px] border-[#D4A346] shadow-[0_4px_18px_rgba(212,163,70,0.35)] group-hover:shadow-[0_6px_24px_rgba(212,163,70,0.6)] group-hover:scale-105 transition-all duration-400 flex items-center justify-center">
+                        <IconComponent className="w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11" color="#9A6F24" />
+                      </div>
+                      {/* Destello estrellado superior */}
+                      <div className="absolute -top-1.5 -right-1.5 text-[#D4A346] text-[10px] drop-shadow-[0_0_5px_rgba(212,163,70,0.9)] select-none font-bold leading-none">✦</div>
+                    </div>
+                    {/* Etiqueta de texto centrada debajo */}
+                    <span className="text-[11px] sm:text-[10.5px] md:text-xs font-semibold text-[#133238] text-center leading-tight group-hover:text-[#0A343D] transition-colors max-w-[96px] sm:max-w-full">
+                      {pillar.title}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Botón Central Dorado Agendar Consulta */}
+            <div className="pt-6 sm:pt-8 flex justify-center items-center border-t border-[#133238]/10">
               <a
-                href="#booking-form"
-                className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-black hover:text-white text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-[0_8px_25px_rgba(107,127,209,0.45)] transition-all duration-300 hover:scale-105 active:scale-95 group"
+                href="#contacto"
+                className="relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif text-xs sm:text-sm font-bold px-10 sm:px-12 py-3.5 sm:py-4 rounded-sm uppercase tracking-[0.18em] shadow-md hover:shadow-[0_6px_25px_rgba(212,178,111,0.6)] transition-all hover:scale-105 active:scale-95 cursor-pointer group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                {mode === 'educacion' ? (
-                  <>
-                    <SolicitarEvaluacionIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
-                    <span className="relative z-10">Solicitar Evaluación Psicopedagógica</span>
-                  </>
-                ) : (
-                  <>
-                    <AgendarCalendarIcon className="relative z-10 w-5 h-5 text-[#6B7FD1] group-hover:text-white group-hover:rotate-12 transition-all duration-300" />
-                    <span className="relative z-10">Completar Formulario de Reserva</span>
-                  </>
-                )}
+                <Calendar className="w-4 h-4 text-[#0A1C24] shrink-0 stroke-[2.2]" />
+                <span className="relative z-10">Agendar Consulta</span>
               </a>
             </div>
+
           </div>
+
         </div>
 
       </div>
     </section>
   );
 };
+
+export default AboutSection;

@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { PathSection } from './components/PathSection';
 import { AboutSection } from './components/AboutSection';
+import { ExperiencesSection } from './components/ExperiencesSection';
 import { ProductsSection } from './components/ProductsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { ContactSection } from './components/ContactSection';
@@ -14,26 +15,31 @@ import { MobileTabBar } from './components/MobileTabBar';
 export default function App() {
   return (
     <NicheProvider>
-      <div className="min-h-screen flex flex-col bg-[#E8F3FD] selection:bg-[#9B8FD9]/30 selection:text-[#3E4A7A] relative">
+      <div className="min-h-screen flex flex-col bg-[#EDF4F8] selection:bg-[#2B7294]/30 selection:text-[#133238] relative">
         {/* Header Sticky con Toggle Deslizante iOS de Nichos */}
         <Navbar />
 
         {/* Flujo continuo de las secciones adaptadas dinámicamente */}
-        <main className="flex-grow">
-          {/* SECCIÓN 1: INICIO (Hero con contenido sincronizado: Holística vs Educación) */}
+        <main className="flex-grow relative bg-[#EDF4F8]">
+          {/* SECCIÓN 1: INICIO (Hero con contenido sincronizado) */}
           <HeroSection />
+
+          {/* PASOS: Los 4 Pasos del Camino de Transformación */}
           <PathSection />
 
-          {/* SECCIÓN 2: SOBRE MÍ (Biografía de Johanna Proaño) */}
+          {/* SECCIÓN 2: HISTORIA PERSONAL (Johanna Proaño con marco en arco romano) */}
           <AboutSection />
 
-          {/* SECCIÓN 3: PRODUCTOS (Visible ÚNICAMENTE en modo Holística) */}
+          {/* SECCIÓN 3: PROMOCIONES & EXPERIENCIAS (Carrusel 3D Coverflow interactivo) */}
+          <ExperiencesSection />
+
+          {/* SECCIÓN 4: PRODUCTOS & AMULETOS (Visible en modo Holística) */}
           <ProductsSection />
 
-          {/* SECCIÓN 4: SERVICIOS (Bloque A Holística o Bloque B Educación según el modo) */}
+          {/* SECCIÓN 5: SERVICIOS & TERAPIAS — incluye AttentionSection al final */}
           <ServicesSection />
 
-          {/* SECCIÓN 5: CONTÁCTANOS (Compartido con preselección adaptada) */}
+          {/* SECCIÓN 6: CONTÁCTANOS */}
           <ContactSection />
         </main>
 
@@ -49,3 +55,4 @@ export default function App() {
     </NicheProvider>
   );
 }
+

@@ -54,10 +54,10 @@ export const ButterflyGraphic: React.FC<{
   wingFlapSpeed?: string;
 }> = ({ className = '', size = 36, color = 'purple' }) => {
   const colorMap = {
-    purple: { main: '#9B8FD9', second: '#6B7FD1', detail: '#F0C6D9' },
-    blue: { main: '#6B7FD1', second: '#9B8FD9', detail: '#DCEEFB' },
-    lavender: { main: '#C9D4F5', second: '#9B8FD9', detail: '#FFFFFF' },
-    pink: { main: '#F0C6D9', second: '#9B8FD9', detail: '#FFFFFF' },
+    purple: { main: '#2B7294', second: '#043651', detail: '#CEAB67' },
+    blue: { main: '#043651', second: '#2B7294', detail: '#FFFFFF' },
+    lavender: { main: '#E8F0F5', second: '#2B7294', detail: '#FFFFFF' },
+    pink: { main: '#CEAB67', second: '#2B7294', detail: '#FFFFFF' },
   }[color];
 
   return (
@@ -112,14 +112,14 @@ export const ButterflyGraphic: React.FC<{
           {/* Cuerpo y antenas */}
           <path
             d="M32 20 L32 44"
-            stroke="#3E4A7A"
+            stroke="#133238"
             strokeWidth="2.2"
             strokeLinecap="round"
           />
-          <circle cx="32" cy="18" r="2.2" fill="#3E4A7A" />
+          <circle cx="32" cy="18" r="2.2" fill="#133238" />
           <path
             d="M31 16 C27 10, 24 10, 23 11 M33 16 C37 10, 40 10, 41 11"
-            stroke="#3E4A7A"
+            stroke="#133238"
             strokeWidth="1.2"
             strokeLinecap="round"
           />
@@ -153,26 +153,26 @@ export const FloralBouquet: React.FC<{
           {/* Hojas de fondo verdes/lavanda */}
           <path
             d="M60 90 C30 80, 10 50, 20 20 C50 30, 70 60, 60 90 Z"
-            fill="#C9D4F5"
+            fill="#E8F0F5"
             fillOpacity="0.6"
           />
           <path
             d="M80 80 C110 50, 130 20, 110 10 C90 30, 80 60, 80 80 Z"
-            fill="#DCEEFB"
+            fill="#FFFFFF"
             fillOpacity="0.8"
           />
           
           {/* Tallo orgánico */}
           <path
             d="M30 110 Q 70 80, 90 30"
-            stroke="#9B8FD9"
+            stroke="#2B7294"
             strokeWidth="2.5"
             strokeLinecap="round"
             fill="none"
           />
           <path
             d="M50 95 Q 100 90, 120 70"
-            stroke="#9B8FD9"
+            stroke="#2B7294"
             strokeWidth="1.8"
             strokeLinecap="round"
             fill="none"
@@ -181,31 +181,31 @@ export const FloralBouquet: React.FC<{
           {/* Flor principal rosada acuarelada */}
           <g transform="translate(65, 55)">
             {/* Pétalos */}
-            <ellipse cx="0" cy="-16" rx="12" ry="16" fill="#F0C6D9" fillOpacity="0.9" />
-            <ellipse cx="16" cy="-4" rx="16" ry="12" fill="#F0C6D9" fillOpacity="0.85" />
-            <ellipse cx="12" cy="14" rx="14" ry="12" fill="#F0C6D9" fillOpacity="0.9" />
-            <ellipse cx="-12" cy="14" rx="14" ry="12" fill="#F0C6D9" fillOpacity="0.85" />
-            <ellipse cx="-16" cy="-4" rx="16" ry="12" fill="#F0C6D9" fillOpacity="0.9" />
+            <ellipse cx="0" cy="-16" rx="12" ry="16" fill="#CEAB67" fillOpacity="0.9" />
+            <ellipse cx="16" cy="-4" rx="16" ry="12" fill="#CEAB67" fillOpacity="0.85" />
+            <ellipse cx="12" cy="14" rx="14" ry="12" fill="#CEAB67" fillOpacity="0.9" />
+            <ellipse cx="-12" cy="14" rx="14" ry="12" fill="#CEAB67" fillOpacity="0.85" />
+            <ellipse cx="-16" cy="-4" rx="16" ry="12" fill="#CEAB67" fillOpacity="0.9" />
             {/* Centro de la flor */}
-            <circle cx="0" cy="0" r="9" fill="#F5C84C" fillOpacity="0.95" />
-            <circle cx="0" cy="0" r="5" fill="#6B7FD1" fillOpacity="0.6" />
+            <circle cx="0" cy="0" r="9" fill="#CEAB67" fillOpacity="0.95" />
+            <circle cx="0" cy="0" r="5" fill="#043651" fillOpacity="0.6" />
           </g>
 
           {/* Flor secundaria azul-violeta */}
           <g transform="translate(25, 40)">
-            <ellipse cx="0" cy="-10" rx="8" ry="11" fill="#6B7FD1" fillOpacity="0.75" />
-            <ellipse cx="10" cy="-2" rx="11" ry="8" fill="#9B8FD9" fillOpacity="0.8" />
-            <ellipse cx="7" cy="8" rx="9" ry="8" fill="#6B7FD1" fillOpacity="0.7" />
-            <ellipse cx="-7" cy="8" rx="9" ry="8" fill="#9B8FD9" fillOpacity="0.8" />
-            <ellipse cx="-10" cy="-2" rx="11" ry="8" fill="#6B7FD1" fillOpacity="0.75" />
-            <circle cx="0" cy="0" r="5.5" fill="#F5C84C" />
+            <ellipse cx="0" cy="-10" rx="8" ry="11" fill="#043651" fillOpacity="0.75" />
+            <ellipse cx="10" cy="-2" rx="11" ry="8" fill="#2B7294" fillOpacity="0.8" />
+            <ellipse cx="7" cy="8" rx="9" ry="8" fill="#043651" fillOpacity="0.7" />
+            <ellipse cx="-7" cy="8" rx="9" ry="8" fill="#2B7294" fillOpacity="0.8" />
+            <ellipse cx="-10" cy="-2" rx="11" ry="8" fill="#043651" fillOpacity="0.75" />
+            <circle cx="0" cy="0" r="5.5" fill="#CEAB67" />
           </g>
 
           {/* Pequeños capullos y bayas doradas */}
-          <circle cx="110" cy="40" r="4.5" fill="#F0C6D9" />
-          <circle cx="120" cy="32" r="3.5" fill="#F5C84C" />
-          <circle cx="95" cy="20" r="4" fill="#9B8FD9" />
-          <circle cx="40" cy="100" r="3" fill="#F5C84C" />
+          <circle cx="110" cy="40" r="4.5" fill="#CEAB67" />
+          <circle cx="120" cy="32" r="3.5" fill="#CEAB67" />
+          <circle cx="95" cy="20" r="4" fill="#2B7294" />
+          <circle cx="40" cy="100" r="3" fill="#CEAB67" />
         </g>
       </svg>
     </div>
@@ -248,9 +248,9 @@ export const FloralPhotoFrame: React.FC<{
       </div>
 
       {badgeText && (
-        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-30 bg-white/95 px-4 py-1.5 rounded-full shadow-md border border-[#9B8FD9]/30 backdrop-blur-xs whitespace-nowrap">
-          <span className="text-xs font-semibold text-[#6B7FD1] uppercase tracking-wider flex items-center gap-1.5">
-            <span className="text-[#F5C84C]">★</span> {badgeText}
+        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-30 bg-white/95 px-4 py-1.5 rounded-full shadow-md border border-[#2B7294]/30 backdrop-blur-xs whitespace-nowrap">
+          <span className="text-xs font-semibold text-[#043651] uppercase tracking-wider flex items-center gap-1.5">
+            <span className="text-[#D4B26F]">★</span> {badgeText}
           </span>
         </div>
       )}
@@ -273,17 +273,17 @@ export const HeroOrganicBackdrop: React.FC<{ className?: string }> = ({ classNam
       >
         <defs>
           <linearGradient id="grad-purple-deep" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3E4A7A" stopOpacity="0.95" />
-            <stop offset="50%" stopColor="#6B7FD1" stopOpacity="0.92" />
-            <stop offset="100%" stopColor="#9B8FD9" stopOpacity="0.88" />
+            <stop offset="0%" stopColor="#133238" stopOpacity="0.95" />
+            <stop offset="50%" stopColor="#043651" stopOpacity="0.92" />
+            <stop offset="100%" stopColor="#2B7294" stopOpacity="0.88" />
           </linearGradient>
           <linearGradient id="grad-lavender-soft" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6B7FD1" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#C9D4F5" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#043651" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#E8F0F5" stopOpacity="0.5" />
           </linearGradient>
           <linearGradient id="grad-sky-glow" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#9B8FD9" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#F0C6D9" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#2B7294" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#CEAB67" stopOpacity="0.4" />
           </linearGradient>
         </defs>
 
@@ -308,25 +308,25 @@ export const HeroOrganicBackdrop: React.FC<{ className?: string }> = ({ classNam
         {/* Capa 4: Montañas/Nubes celestiales internas en el fondo morado */}
         <path
           d="M620 120 C680 80, 780 90, 840 140 C880 170, 900 220, 900 280 L900 120 Z"
-          fill="#3E4A7A"
+          fill="#133238"
           fillOpacity="0.4"
         />
         <path
           d="M480 320 C540 260, 660 280, 720 360 C760 410, 820 440, 900 450 L900 650 C800 680, 700 620, 620 540 C540 460, 420 380, 480 320 Z"
-          fill="#3E4A7A"
+          fill="#133238"
           fillOpacity="0.25"
         />
         <path
           d="M580 480 C680 420, 800 460, 880 540 L900 560 L900 800 L380 800 C460 700, 500 540, 580 480 Z"
-          fill="#3E4A7A"
+          fill="#133238"
           fillOpacity="0.35"
         />
 
         {/* Destellos celestiales sutiles */}
         <circle cx="680" cy="180" r="3" fill="#FFFFFF" fillOpacity="0.8" />
-        <circle cx="750" cy="240" r="2" fill="#F5C84C" fillOpacity="0.9" />
+        <circle cx="750" cy="240" r="2" fill="#CEAB67" fillOpacity="0.9" />
         <circle cx="820" cy="140" r="4" fill="#FFFFFF" fillOpacity="0.6" />
-        <circle cx="600" cy="300" r="2.5" fill="#F0C6D9" fillOpacity="0.8" />
+        <circle cx="600" cy="300" r="2.5" fill="#CEAB67" fillOpacity="0.8" />
         <circle cx="720" cy="420" r="3" fill="#FFFFFF" fillOpacity="0.7" />
       </svg>
     </div>
@@ -344,12 +344,12 @@ export const CloudThoughtBubble: React.FC<{
   return (
     <div className={`relative inline-flex flex-col items-center select-none ${className}`}>
       {/* Contenedor principal con forma de nube */}
-      <div className="relative bg-white/95 text-[#3E4A7A] px-5 py-2.5 rounded-full shadow-lg border border-[#C9D4F5] backdrop-blur-xs flex flex-col items-center text-center animate-float">
-        <span className="text-xs sm:text-sm font-extrabold tracking-wide text-[#6B7FD1]">
+      <div className="relative bg-white/95 text-[#133238] px-5 py-2.5 rounded-full shadow-lg border border-[#E8F0F5] backdrop-blur-xs flex flex-col items-center text-center animate-float">
+        <span className="text-xs sm:text-sm font-extrabold tracking-wide text-[#043651]">
           {text}
         </span>
         {subtitle && (
-          <span className="text-[10px] uppercase font-bold tracking-widest text-[#9B8FD9] -mt-0.5">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#2B7294] -mt-0.5">
             {subtitle}
           </span>
         )}
@@ -357,8 +357,8 @@ export const CloudThoughtBubble: React.FC<{
 
       {/* Burbujitas conectoras inferiores estilo pensamiento */}
       <div className="flex flex-col items-center gap-1 mt-1 -ml-6 pointer-events-none">
-        <div className="w-2.5 h-2.5 rounded-full bg-white shadow-xs border border-[#C9D4F5]" />
-        <div className="w-1.5 h-1.5 rounded-full bg-white shadow-2xs border border-[#C9D4F5] -ml-2" />
+        <div className="w-2.5 h-2.5 rounded-full bg-white shadow-xs border border-[#E8F0F5]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-white shadow-2xs border border-[#E8F0F5] -ml-2" />
       </div>
     </div>
   );
@@ -380,7 +380,7 @@ export const CloudWaveDivider: React.FC<{ className?: string }> = ({ className =
         {/* Sombra suave de nube detrás */}
         <path
           d="M0,80 C120,40 240,60 360,40 C480,20 600,70 720,45 C840,20 960,65 1080,35 C1200,10 1320,50 1440,30 L1440,140 L0,140 Z"
-          fill="#C9D4F5"
+          fill="#E8F0F5"
           fillOpacity="0.4"
         />
         {/* Nubes blancas esponjosas frontales */}
@@ -416,15 +416,15 @@ export const BloomingBotanicalTree: React.FC<{
           strokeLinecap="round"
         />
         {/* Copa esponjosa rosada / lavanda */}
-        <ellipse cx="65" cy="55" rx="35" ry="30" fill="#F0C6D9" fillOpacity="0.88" />
-        <ellipse cx="120" cy="50" rx="40" ry="32" fill="#F0C6D9" fillOpacity="0.9" />
-        <ellipse cx="90" cy="35" rx="45" ry="35" fill="#C9D4F5" fillOpacity="0.85" />
-        <ellipse cx="95" cy="55" rx="35" ry="28" fill="#F0C6D9" fillOpacity="0.95" />
+        <ellipse cx="65" cy="55" rx="35" ry="30" fill="#CEAB67" fillOpacity="0.88" />
+        <ellipse cx="120" cy="50" rx="40" ry="32" fill="#CEAB67" fillOpacity="0.9" />
+        <ellipse cx="90" cy="35" rx="45" ry="35" fill="#E8F0F5" fillOpacity="0.85" />
+        <ellipse cx="95" cy="55" rx="35" ry="28" fill="#CEAB67" fillOpacity="0.95" />
         
         {/* Detalles florales */}
         <circle cx="70" cy="40" r="4" fill="#FFFFFF" fillOpacity="0.8" />
-        <circle cx="110" cy="35" r="5" fill="#F5C84C" fillOpacity="0.8" />
-        <circle cx="95" cy="65" r="4" fill="#9B8FD9" fillOpacity="0.7" />
+        <circle cx="110" cy="35" r="5" fill="#CEAB67" fillOpacity="0.8" />
+        <circle cx="95" cy="65" r="4" fill="#2B7294" fillOpacity="0.7" />
         <circle cx="135" cy="55" r="4.5" fill="#FFFFFF" fillOpacity="0.8" />
       </svg>
     </div>

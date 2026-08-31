@@ -103,7 +103,7 @@ export const AnimatedConstructPhoto: React.FC<AnimatedConstructPhotoProps> = ({
       className={`relative w-full flex items-center justify-center select-none overflow-visible ${className}`}
     >
       {/* Resplandor ambiental suave pastel */}
-      <div className="absolute w-[110%] h-[110%] bg-[#9B8FD9]/15 blur-[60px] rounded-full pointer-events-none -z-5" />
+      <div className="absolute w-[110%] h-[110%] bg-[#2B7294]/15 blur-[60px] rounded-full pointer-events-none -z-5" />
 
       <svg
         viewBox={isLandscape ? "0 0 560 490" : "0 0 540 680"}

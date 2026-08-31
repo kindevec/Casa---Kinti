@@ -4,19 +4,18 @@ Landing page oficial de **Casa Kinti**, ubicada en **Quito, Ecuador**, dirigida 
 
 ---
 
-## 🌸 Identidad Visual & Paleta "Cielo Encantado"
+## 🌿 Identidad Visual & Paleta Oficial de Marca
 
 | Color | Hex | Uso en el diseño |
 | :--- | :--- | :--- |
-| **Azul cielo pastel** | `#DCEEFB` | Fondo general y atmósfera nublada |
-| **Lavanda claro** | `#C9D4F5` | Fondos degradados y elementos secundarios |
-| **Azul-violeta medio** | `#6B7FD1` | Titulares principales, botones y CTAs |
-| **Púrpura suave** | `#9B8FD9` | Palabras acentuadas en script y detalles |
-| **Rosa pastel floral** | `#F0C6D9` | Detalles botánicos y Nicho Infantil |
-| **Azul-gris oscuro** | `#3E4A7A` | Texto de cuerpo de alta legibilidad |
-| **Dorado suave** | `#F5C84C` | Estrellas de valoración y acentos solares |
-| **Blanco puro** | `#FFFFFF` | Tarjetas y contraste limpio |
-| **Teal sagrado** | `#12A89D` | Logo estilizado de la Cruz Andina |
+| **Deep Sea** | `#006974` | Color principal de marca, titulares y estructura general |
+| **Fiji** | `#00B6B9` | Turquesa brillante, acento secundario y Nicho Holística |
+| **Dorado Luminoso** | `#F2C94C` | Botones de Llamada a la Acción (CTAs) y estrellas de valoración |
+| **Dorado Clásico** | `#CEAB67` | Bordes, acento del Nicho Educación y detalles florales |
+| **Slate** | `#133238` | Texto principal de cuerpo de alta legibilidad |
+| **Night** | `#0A1C24` | Fondo oscuro para secciones de contraste y overlays |
+| **Gris Claro** | `#D6D6D6` | Franjas y separadores neutros |
+| **Blanco Puro** | `#FFFFFF` | Fondo base principal |
 
 ---
 

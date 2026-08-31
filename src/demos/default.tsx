@@ -5,11 +5,11 @@ import { useState } from "react";
 import { AnimatedTabBar, TabItem } from "../components/ui/animated-tab-bar";
 
 // Paleta de colores inspirada en la identidad visual de Casa Kinti
-const bgColorsBody = ["#DCEEFB", "#E8E1FB", "#FCE8F2", "#D2F4EE", "#FFF5D6"];
+const bgColorsBody = ["#FFFFFF", "#EDF4F8", "#FBF3E1", "#E8F0F5", "#FDF8EC"];
 
 const tabItems: TabItem[] = [
   {
-    color: "#6B7FD1",
+    color: "#043651",
     label: "Inicio",
     icon: (
       <svg className="icon" viewBox="0 0 24 24">
@@ -20,7 +20,7 @@ const tabItems: TabItem[] = [
     ),
   },
   {
-    color: "#9B8FD9",
+    color: "#2B7294",
     label: "Sobre Mí",
     icon: (
       <svg className="icon" viewBox="0 0 24 24">
@@ -30,7 +30,7 @@ const tabItems: TabItem[] = [
     ),
   },
   {
-    color: "#E8A2C2",
+    color: "#CEAB67",
     label: "Cursos",
     icon: (
       <svg className="icon" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@ const tabItems: TabItem[] = [
     ),
   },
   {
-    color: "#12A89D",
+    color: "#2B7294",
     label: "Servicios",
     icon: (
       <svg className="icon" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ const tabItems: TabItem[] = [
     ),
   },
   {
-    color: "#F5C84C",
+    color: "#CEAB67",
     label: "Contacto",
     icon: (
       <svg className="icon" viewBox="0 0 24 24">

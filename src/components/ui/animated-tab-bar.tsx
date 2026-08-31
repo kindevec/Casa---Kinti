@@ -185,7 +185,7 @@ export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
     >
       {/* Fondo SVG con muesca controlada imperativamente */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_-4px_24px_rgba(62,74,122,0.14)]"
+        className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_-4px_24px_rgba(19, 50, 56, 0.14)]"
         viewBox={`0 0 ${width} 74`}
         preserveAspectRatio="none"
       >
@@ -198,14 +198,14 @@ export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
 
       {/* Botón Pelotita Flotante con Control Imperativo de Salto */}
       <motion.div
-        className="absolute top-[2px] z-20 w-[52px] h-[52px] rounded-full flex items-center justify-center cursor-pointer overflow-hidden shadow-[0_8px_24px_rgba(107,127,209,0.48)] ring-2 ring-white/85"
+        className="absolute top-[2px] z-20 w-[52px] h-[52px] rounded-full flex items-center justify-center cursor-pointer overflow-hidden shadow-[0_8px_24px_rgba(4, 54, 81, 0.48)] ring-2 ring-white/85"
         style={{
           background:
             activeItem?.color && activeItem.color.startsWith("bg-")
               ? undefined
               : activeItem?.color
-              ? `linear-gradient(135deg, ${activeItem.color}, #8E82DA, #E8A2C2)`
-              : "linear-gradient(135deg, #6B7FD1 0%, #8E82DA 50%, #E8A2C2 100%)",
+              ? `linear-gradient(135deg, ${activeItem.color}, #2B7294, #CEAB67)`
+              : "linear-gradient(135deg, #043651 0%, #2B7294 50%, #CEAB67 100%)",
         }}
         animate={ballControls}
       >
@@ -244,11 +244,11 @@ export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
                     : "opacity-80 group-hover:opacity-100 group-hover:scale-110"
                 }`}
               >
-                <div className="w-6 h-6 text-[#3E4A7A] group-hover:text-[#6B7FD1] transition-colors duration-200 flex items-center justify-center [&_svg]:w-5 [&_svg]:h-5">
+                <div className="w-6 h-6 text-[#133238] group-hover:text-[#043651] transition-colors duration-200 flex items-center justify-center [&_svg]:w-5 [&_svg]:h-5">
                   {item.icon}
                 </div>
                 {item.label && (
-                  <span className="text-[10px] font-bold text-[#3E4A7A] group-hover:text-[#6B7FD1] transition-colors duration-200 mt-1 leading-none">
+                  <span className="text-[10px] font-bold text-[#133238] group-hover:text-[#043651] transition-colors duration-200 mt-1 leading-none">
                     {item.label}
                   </span>
                 )}

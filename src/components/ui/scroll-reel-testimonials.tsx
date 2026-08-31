@@ -51,25 +51,25 @@ const HOVER_SCROLL_INTERVAL = 1800; // time between transitions while holding cu
 const EASE_INOUT = "cubic-bezier(0.65,0,0.35,1)";
 
 const QUOTE_CLASSES =
-  "m-0 text-sm xs:text-base sm:text-lg font-serif-display font-medium leading-[1.6] tracking-[-0.01em] text-black italic text-justify";
+  "m-0 text-sm xs:text-base sm:text-lg font-serif italic leading-[1.6] text-[#133238] text-justify";
 const AUTHOR_CLASSES =
-  "m-0 text-xs sm:text-sm font-bold leading-[1.3] text-[#6B7FD1]";
+  "m-0 text-xs sm:text-sm font-bold font-serif uppercase tracking-wider leading-[1.3] text-[#B88E44]";
 
 const FEATURED_SHADOW =
-  "0 1.008px 0.705px -0.563px rgba(0,0,0,0.18), 0 2.389px 1.672px -1.125px rgba(0,0,0,0.17), 0 4.357px 3.05px -1.688px rgba(0,0,0,0.17), 0 7.244px 5.07px -2.25px rgba(0,0,0,0.16), 0 11.698px 8.188px -2.813px rgba(0,0,0,0.15), 0 19.148px 13.404px -3.375px rgba(0,0,0,0.13), 0 32.972px 23.08px -3.938px rgba(0,0,0,0.09), 0 60px 42px -4.5px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.6)";
+  "0 8px 32px rgba(212,178,111,0.35), 0 0 15px rgba(255,215,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4)";
 
 /* Placeholder cell with visible brand colors */
 function Cell() {
   return (
     <div
       aria-hidden="true"
-      className="shrink-0 rounded-2xl border-2 border-[#9B8FD9]/60 bg-gradient-to-br from-[#C9D4F5] via-[#DCEEFB] to-[#9B8FD9]/35 shadow-md shadow-[#9B8FD9]/15 flex items-center justify-center relative overflow-hidden"
+      className="shrink-0 rounded-2xl border-2 border-[#FFD700]/60 bg-white shadow-md flex items-center justify-center relative overflow-hidden"
       style={{ width: CELL, height: CELL }}
     >
       {/* Decorative subtle radial sheen */}
-      <div className="absolute inset-0 bg-radial from-white/60 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-radial from-[#FFD700]/15 to-transparent pointer-events-none" />
       <svg
-        className="w-7 h-7 text-[#3E4A7A]/30"
+        className="w-7 h-7 text-[#FFD700]/60"
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -89,7 +89,7 @@ interface FeaturedProps {
 const Featured: React.FC<FeaturedProps> = ({ src, alt }) => {
   return (
     <div
-      className="relative shrink-0 overflow-hidden rounded-2xl bg-[#DCEEFB] border-2 border-[#9B8FD9]/60 shadow-lg"
+      className="relative shrink-0 overflow-hidden rounded-2xl bg-[#FFFFFF] border-2 border-[#2B7294]/60 shadow-lg"
       style={{ width: CELL, height: CELL, boxShadow: FEATURED_SHADOW }}
     >
       <img
@@ -110,7 +110,7 @@ const Featured: React.FC<FeaturedProps> = ({ src, alt }) => {
         className="pointer-events-none absolute inset-0 z-[3] blur-[6px] mix-blend-overlay"
         style={{
           background:
-            "linear-gradient(220.99deg, rgba(108,92,255,0) 32%, rgb(108,92,255) 41%, rgb(173,177,255) 47%, rgba(130,189,237,0.57) 54%, rgba(130,189,237,0) 65%)",
+            "linear-gradient(220.99deg, rgba(43, 114, 148, 0) 32%, rgb(43, 114, 148) 41%, rgb(4, 54, 81) 47%, rgba(242, 201, 76, 0.57) 54%, rgba(242, 201, 76, 0) 65%)",
         }}
       />
     </div>
@@ -402,7 +402,7 @@ export function ScrollReelTestimonials({
         <div className="flex flex-col gap-3 min-w-0 flex-1">
           
           {/* 5 Estrellas Doradas arriba del texto */}
-          <div className="flex items-center gap-1 text-[#F5C84C] mb-0.5">
+          <div className="flex items-center gap-1 text-[#D4B26F] mb-0.5">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
@@ -458,7 +458,7 @@ export function ScrollReelTestimonials({
                   />
                 </p>
                 {current.role && (
-                  <span className="text-[11px] text-black font-medium block mt-0.5">
+                  <span className="text-[11px] text-[#2C484E] font-medium block mt-0.5">
                     {current.role}
                   </span>
                 )}
@@ -480,8 +480,8 @@ export function ScrollReelTestimonials({
                 className={cn(
                   "h-2 rounded-full transition-all duration-300 cursor-pointer",
                   dotIdx === displayIndex
-                    ? "w-6 bg-gradient-to-r from-[#6B7FD1] to-[#9B8FD9]"
-                    : "w-2 bg-[#C9D4F5] hover:bg-[#9B8FD9]/60"
+                    ? "w-6 bg-gradient-to-r from-[#FFEA79] via-[#FFD700] to-[#E5A93C]"
+                    : "w-2 bg-[#133238]/25 hover:bg-[#FFD700]"
                 )}
                 aria-label={`Ir al testimonio ${dotIdx + 1}`}
               />
@@ -505,11 +505,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(-1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Historia anterior"
-            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-xs group"
+            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] text-[#0A1C24] transition-all duration-300 hover:scale-110 active:scale-95 shadow-md group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300"
+              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#0A1C24] group-hover:-translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -526,11 +526,11 @@ export function ScrollReelTestimonials({
             onMouseEnter={() => startContinuousScroll(1)}
             onMouseLeave={stopContinuousScroll}
             aria-label="Siguiente historia"
-            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] hover:bg-gradient-to-tr hover:from-[#6B7FD1] hover:via-[#8E82DA] hover:to-[#E8A2C2] text-[#6B7FD1] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-xs group"
+            className="relative overflow-hidden grid h-9 w-9 sm:h-10 sm:w-10 cursor-pointer place-items-center rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] text-[#0A1C24] transition-all duration-300 hover:scale-110 active:scale-95 shadow-md group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
             <svg
-              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#6B7FD1] group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300"
+              className="relative z-10 h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#0A1C24] group-hover:translate-y-0.5 transition-all duration-300"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

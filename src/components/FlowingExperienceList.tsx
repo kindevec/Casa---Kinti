@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 
-// Icono Checkmark Púrpura subido por el usuario (Círculo morado con check lavanda redondeado)
+// Icono Checkmark Dorado Luxe (Círculo oro con check blanco)
 export const PurpleCheckCircleIcon: React.FC<{ className?: string; inverted?: boolean }> = ({
   className = 'w-6 h-6',
   inverted = false,
@@ -12,10 +12,10 @@ export const PurpleCheckCircleIcon: React.FC<{ className?: string; inverted?: bo
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="50" cy="50" r="50" fill={inverted ? '#FFFFFF' : '#4B166F'} />
+    <circle cx="50" cy="50" r="50" fill={inverted ? '#FFFFFF' : '#FFD700'} />
     <path
       d="M33 51L45 63L68 37"
-      stroke={inverted ? '#4B166F' : '#DDB8FF'}
+      stroke={inverted ? '#0A343D' : '#0A1C24'}
       strokeWidth="11"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -132,44 +132,41 @@ export const FlowingBenefitItem: React.FC<FlowingBenefitItemProps> = ({
       ref={itemRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative overflow-hidden rounded-2xl bg-white/90 p-3.5 sm:p-4 border border-[#C9D4F5]/70 shadow-2xs backdrop-blur-xs cursor-pointer transition-all duration-300 hover:shadow-md hover:border-[#9B8FD9]/60 select-none group"
+      className="relative overflow-hidden rounded-xl bg-white p-3.5 sm:p-4 border-2 border-[#FFD700]/70 shadow-[0_4px_16px_rgba(212,178,111,0.2)] backdrop-blur-xs cursor-pointer transition-all duration-300 hover:shadow-[0_6px_25px_rgba(212,178,111,0.45)] hover:border-[#FFD700] select-none group"
     >
-      {/* Capa de Hover en el FONDO (z-0): Efecto Tipo Agua con Sliding Marquee Dinámico */}
+      {/* Capa de Hover en el FONDO (z-0) */}
       <div
         ref={marqueeRef}
-        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-gradient-to-r from-[#DCEEFB] via-[#C9D4F5]/85 to-[#9B8FD9]/50 border border-white/80 rounded-2xl shadow-[inset_0_1px_3px_rgba(255,255,255,0.9),0_4px_20px_rgba(107,127,209,0.18)] flex items-center"
+        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-gradient-to-r from-[#FFF8D6] via-[#FFEA79]/40 to-[#FFF8D6] border border-[#FFD700] rounded-xl flex items-center"
         style={{ transform: 'translate3d(0, 101%, 0)' }}
       >
-        {/* Reflejo acuático superior de brillo */}
-        <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/80 to-transparent pointer-events-none" />
-
         <div
           className="w-full h-full flex items-center relative z-1"
           style={{ transform: 'translate3d(0, -101%, 0)' }}
         >
           <div
             ref={marqueeInnerRef}
-            className="flex items-center whitespace-nowrap will-change-transform opacity-40 select-none"
+            className="flex items-center whitespace-nowrap will-change-transform opacity-80 select-none"
             aria-hidden="true"
           >
             {[...Array(repetitions)].map((_, idx) => (
               <div
                 key={idx}
-                className="marquee__part flex items-center shrink-0 px-6 gap-3 text-xs sm:text-sm font-semibold tracking-wide text-[#4B166F]"
+                className="marquee__part flex items-center shrink-0 px-6 gap-3 text-xs sm:text-sm font-bold tracking-wide text-[#133238]"
               >
-                <PurpleCheckCircleIcon className="w-5 h-5 shrink-0 opacity-70" />
+                <PurpleCheckCircleIcon className="w-5 h-5 shrink-0" />
                 <span>{text}</span>
-                <span className="text-[#6B7FD1] text-base font-normal select-none">•</span>
+                <span className="text-[#B88E44] text-base font-normal select-none">•</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Contenido Principal al FRENTE (z-10): Siempre 100% Nítido y Visible */}
+      {/* Contenido Principal al FRENTE (z-10) */}
       <div className="flex items-center gap-3.5 relative z-10">
-        <PurpleCheckCircleIcon className="w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110 drop-shadow-xs" />
-        <span className="text-xs sm:text-sm text-black font-semibold leading-relaxed group-hover:text-[#2A1045] transition-colors">
+        <PurpleCheckCircleIcon className="w-6 h-6 shrink-0 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_2px_6px_rgba(212,178,111,0.6)]" />
+        <span className="text-xs sm:text-sm text-[#133238] font-semibold leading-relaxed group-hover:text-[#0A1C24] transition-colors">
           {text}
         </span>
       </div>

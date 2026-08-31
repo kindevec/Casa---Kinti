@@ -10,7 +10,7 @@ export const PATH_STEPS_HOLISTICA: PathStep[] = [
     title: 'Conoce tu Esencia',
     description: 'Diagnóstico bioenergético con péndulo para comprender tu momento vital.',
     icon: 'Eye',
-    accentColor: '#9B8FD9',
+    accentColor: '#2B7294',
   },
   {
     number: '02',
@@ -18,7 +18,7 @@ export const PATH_STEPS_HOLISTICA: PathStep[] = [
     title: 'Limpias & Botánica',
     description: 'Liberación de bloqueos mediante limpias ancestrales y plantas sagradas.',
     icon: 'Leaf',
-    accentColor: '#6B7FD1',
+    accentColor: '#043651',
   },
   {
     number: '03',
@@ -26,7 +26,7 @@ export const PATH_STEPS_HOLISTICA: PathStep[] = [
     title: 'Armoniza tu Energía',
     description: 'Terapia personalizada con Flores de Bach y amuletos consagrados.',
     icon: 'Scale',
-    accentColor: '#9B8FD9',
+    accentColor: '#2B7294',
   },
   {
     number: '04',
@@ -34,7 +34,7 @@ export const PATH_STEPS_HOLISTICA: PathStep[] = [
     title: 'Transformación Plena',
     description: 'Paz interior profunda, vitalidad renovada y bienestar integral.',
     icon: 'Flower2',
-    accentColor: '#6B7FD1',
+    accentColor: '#043651',
   },
 ];
 
@@ -45,7 +45,7 @@ export const PATH_STEPS_EDUCACION: PathStep[] = [
     title: 'Diagnóstico Integral',
     description: 'Evaluación psicopedagógica del estilo y potencial de aprendizaje.',
     icon: 'Brain',
-    accentColor: '#6B7FD1',
+    accentColor: '#CEAB67',
   },
   {
     number: '02',
@@ -53,7 +53,7 @@ export const PATH_STEPS_EDUCACION: PathStep[] = [
     title: 'Inmersión Bilingüe',
     description: 'Estimulación temprana y lúdica del lenguaje en inglés y español.',
     icon: 'BookOpen',
-    accentColor: '#9B8FD9',
+    accentColor: '#043651',
   },
   {
     number: '03',
@@ -61,7 +61,7 @@ export const PATH_STEPS_EDUCACION: PathStep[] = [
     title: 'Pautas para el Hogar',
     description: 'Estrategias y rutinas amigables de estudio para toda la familia.',
     icon: 'GraduationCap',
-    accentColor: '#6B7FD1',
+    accentColor: '#CEAB67',
   },
   {
     number: '04',
@@ -69,7 +69,7 @@ export const PATH_STEPS_EDUCACION: PathStep[] = [
     title: 'Seguridad & Éxito',
     description: 'Confianza, autonomía y felicidad en cada etapa escolar.',
     icon: 'Sparkles',
-    accentColor: '#9B8FD9',
+    accentColor: '#D4B26F',
   },
 ];
 

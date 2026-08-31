@@ -1,9 +1,11 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { CONTACT_INFO, WHATSAPP_PHONE } from '../data';
-import { CasaKintiLogo, ButterflyGraphic, HeroOrganicBackdrop, FloralBouquet } from './FloralDecorations';
+import { ButterflyGraphic, HeroOrganicBackdrop, FloralBouquet } from './FloralDecorations';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import kindevIcon from '../assets/kindev_icon.webp';
+
+const kindevIcon = '/kindev_icon.webp';
 
 export const Footer: React.FC = () => {
   const { mode } = useNicheMode();
@@ -18,53 +20,98 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="main-footer"
-      className="relative z-10 bg-gradient-to-br from-[#DCEEFB] via-[#E7F3FC] to-[#F0C6D9]/40 pt-8 sm:pt-10 pb-20 md:pb-8 overflow-hidden shadow-xs text-[#3E4A7A]"
+      className="relative z-10 border-t border-[#FFD700]/40 pt-12 sm:pt-16 pb-20 md:pb-12 overflow-hidden text-[#0A1C24] shadow-[0_-8px_30px_rgba(0,0,0,0.2)] bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93]"
     >
-      {/* Ramillete floral acuarelado en la esquina superior izquierda (según referencia) */}
-      <FloralBouquet className="absolute -top-2 -left-2 w-36 sm:w-44 h-36 sm:h-44 opacity-80 pointer-events-none -z-5" />
+      {/* ========================================================
+          FONDO TURQUESA DEL HEADER (COLOR UNIFICADO)
+         ======================================================== */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93] pointer-events-none">
+        {/* Auras luminosas sutiles */}
+        <div className="absolute top-1/4 left-1/3 w-80 h-80 rounded-full bg-[#FFF8D6]/15 blur-3xl pointer-events-none" />
+      </div>
 
-      {/* Mariposas en movimiento en el lateral izquierdo (según referencia) */}
-      <ButterflyGraphic className="absolute top-6 left-[18%] sm:left-[16%] opacity-85 pointer-events-none" size={28} color="purple" />
-      <ButterflyGraphic className="absolute top-[48%] left-[6%] sm:left-[7%] opacity-80 pointer-events-none" size={24} color="purple" />
-      <ButterflyGraphic className="absolute bottom-6 left-[12%] sm:left-[14%] opacity-85 pointer-events-none" size={26} color="purple" />
-
-      {/* Silueta orgánica curva multicapa desplazada más a la derecha */}
-      <HeroOrganicBackdrop className="-z-5 opacity-90 lg:!w-[42%] translate-x-[20%] lg:translate-x-[28%]" />
-
-      {/* Mariposas en movimiento y aleteo continuo acompañando el fondo derecho */}
-      <ButterflyGraphic className="absolute top-6 right-[4%] opacity-85 pointer-events-none" size={38} color="purple" />
-      <ButterflyGraphic className="absolute bottom-8 right-[14%] opacity-80 pointer-events-none" size={32} color="pink" />
-      <ButterflyGraphic className="absolute bottom-6 right-[2%] opacity-85 pointer-events-none" size={30} color="lavender" />
-      <ButterflyGraphic className="absolute top-1/2 right-[18%] opacity-75 pointer-events-none" size={26} color="purple" />
+      {/* Destellos estelares sutiles */}
+      <div className="absolute inset-0 pointer-events-none opacity-25 -z-5">
+        <svg viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
+          <circle cx="200" cy="100" r="1.8" fill="#FFD700" />
+          <circle cx="700" cy="180" r="1.4" fill="#FFFFFF" />
+          <circle cx="1200" cy="80" r="2.0" fill="#FFEA79" />
+          <circle cx="1000" cy="400" r="1.6" fill="#FFD700" />
+        </svg>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* ========================================================
-            GRID DE 4 COLUMNAS (DIMENSIONES Y ANCHO SEGÚN AOVET)
+            GRID DE 4 COLUMNAS
            ======================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           
           {/* ----------------------------------------------------
               COLUMNA 1: Logo Oficial & Misión Dinámica
              ---------------------------------------------------- */}
           <div className="flex flex-col gap-4 text-left">
-            <div className="flex items-center justify-start ml-32 xs:ml-36 sm:ml-12 md:ml-16 lg:ml-20 -mt-5 sm:-mt-7 w-full sm:w-auto">
-              <a
+            <div className="flex items-center justify-start pb-2">
+              <motion.a
                 href="#inicio"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('#inicio');
                 }}
-                className="inline-block transition-transform duration-300 hover:scale-105"
+                className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer select-none shrink-0 relative"
                 aria-label="Casa Kinti - Volver arriba"
+                whileHover={{ scale: 1.06, y: -2 }}
+                whileTap={{ scale: 0.96 }}
               >
-                <CasaKintiLogo size="md" />
-              </a>
+                <div className="relative flex items-center justify-center">
+                  {/* Efecto de Iluminación Dorada Radiante con Pulso y Acercamiento */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.25, 1.05, 1.2, 1],
+                      opacity: [0.6, 0.95, 0.7, 0.9, 0.6],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-[#FFD700]/60 via-[#FFF2B2]/45 to-[#FFEA79]/30 blur-md pointer-events-none"
+                  />
+                  <div className="absolute -inset-1 rounded-full bg-[#FFD700]/35 blur-xs group-hover:bg-[#FFD700]/60 transition-all duration-300 pointer-events-none" />
+
+                  {/* Símbolo con Animación Orgánica de Levitación, Rotación Sutil y Acercamiento */}
+                  <motion.img
+                    src="/casa-kinti-symbol.png"
+                    alt="Casa Kinti Símbolo"
+                    width="44"
+                    height="44"
+                    animate={{
+                      y: [0, -3.5, 0, 2.5, 0],
+                      rotate: [0, 2, 0, -2, 0],
+                      scale: [1, 1.08, 1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                    className="relative z-10 w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_14px_rgba(255,215,0,0.95)] drop-shadow-[0_0_26px_rgba(255,234,121,0.75)] filter contrast-[1.1] brightness-[1.06]"
+                  />
+                </div>
+                <div className="flex flex-col text-left relative z-10">
+                  <span className="font-serif text-base xs:text-lg sm:text-xl font-black tracking-[0.22em] text-[#052C34] group-hover:text-[#031D22] transition-colors leading-tight drop-shadow-[0_0_8px_rgba(255,215,0,0.45)]">
+                    CASA KINTI
+                  </span>
+                  <span className="text-[11px] xs:text-[12px] sm:text-[13px] tracking-[0.26em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1.5px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_10px_rgba(255,215,0,0.95)] select-none">
+                    JOHANNA PROAÑO
+                  </span>
+                </div>
+              </motion.a>
             </div>
 
-            {/* Misión / Slogan adaptado dinámicamente según el nicho */}
+            {/* Misión adaptada dinámicamente según el nicho */}
             <p
               key={mode}
-              className="text-xs sm:text-[13px] text-black font-normal leading-relaxed max-w-sm text-justify transition-all duration-400 animate-in fade-in"
+              className="text-xs sm:text-[13px] text-[#0A1C24] font-medium leading-relaxed max-w-sm text-justify transition-all duration-400 animate-in fade-in"
             >
               {mode === 'educacion' ? (
                 <>
@@ -81,14 +128,11 @@ export const Footer: React.FC = () => {
           {/* ----------------------------------------------------
               COLUMNA 2: Secciones / Navegación
              ---------------------------------------------------- */}
-          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
-            <div className="flex flex-col items-start">
-              <ButterflyGraphic size={26} color="purple" className="mb-1 pointer-events-none" />
-              <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
-                Secciones
-              </h4>
-            </div>
-            <ul className="space-y-2 text-xs sm:text-[13px]">
+          <div className="space-y-4 text-left">
+            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+              Secciones
+            </h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-medium">
               <li>
                 <a
                   href="#inicio"
@@ -96,7 +140,7 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#inicio');
                   }}
-                  className="text-black hover:text-[#6B7FD1] transition-colors duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
                 >
                   Inicio
                 </a>
@@ -108,7 +152,7 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#sobre-mi');
                   }}
-                  className="text-black hover:text-[#6B7FD1] transition-colors duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
                 >
                   Sobre Mí
                 </a>
@@ -120,7 +164,7 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#productos');
                   }}
-                  className="text-black hover:text-[#6B7FD1] transition-colors duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
                 >
                   {mode === 'educacion' ? 'Cursos & Materiales' : 'Productos & Amuletos'}
                 </a>
@@ -132,7 +176,7 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#servicios');
                   }}
-                  className="text-black hover:text-[#6B7FD1] transition-colors duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
                 >
                   Servicios
                 </a>
@@ -144,7 +188,7 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#contacto');
                   }}
-                  className="text-black hover:text-[#6B7FD1] transition-colors duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
                 >
                   Contacto
                 </a>
@@ -153,110 +197,62 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 3: Líneas de Atención / Especialidades por Nicho
+              COLUMNA 3: Especialidades por Nicho
              ---------------------------------------------------- */}
-          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
-            <div className="flex flex-col items-start">
-              <ButterflyGraphic size={26} color="pink" className="mb-1 pointer-events-none" />
-              <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
-                {mode === 'educacion' ? 'Áreas Pedagógicas' : 'Líneas Holísticas'}
-              </h4>
-            </div>
+          <div className="space-y-4 text-left">
+            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+              {mode === 'educacion' ? 'Áreas Pedagógicas' : 'Líneas Holísticas'}
+            </h4>
             
-            <ul key={mode} className="space-y-2 text-xs sm:text-[13px] animate-in fade-in duration-300 select-none pointer-events-none">
+            <ul key={mode} className="space-y-2.5 text-xs sm:text-[13px] text-[#0A1C24] font-medium animate-in fade-in duration-300">
               {mode === 'educacion' ? (
                 <>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Estimulación Bilingüe Infantil
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Problemas de Aprendizaje & Dislexia
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Fonética & Lectura en Inglés
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Psicopedagogía Máster & TDAH
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Asesoría Pedagógica para Padres
-                    </span>
-                  </li>
+                  <li>Estimulación Bilingüe Infantil</li>
+                  <li>Problemas de Aprendizaje & Dislexia</li>
+                  <li>Fonética & Lectura en Inglés</li>
+                  <li>Psicopedagogía Máster & TDAH</li>
+                  <li>Asesoría Pedagógica para Padres</li>
                 </>
               ) : (
                 <>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Limpias & Medicina Ancestral
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Flores de Bach & Herbolaria
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Tarot Terapéutico
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Sanación Bioenergética & Chakras
-                    </span>
-                  </li>
-                  <li className="select-none">
-                    <span className="text-black select-none cursor-default inline-block py-0.5">
-                      Pulseras & Amuletos Consagrados
-                    </span>
-                  </li>
+                  <li>Limpias & Medicina Ancestral</li>
+                  <li>Flores de Bach & Herbolaria</li>
+                  <li>Tarot Terapéutico</li>
+                  <li>Sanación Bioenergética & Chakras</li>
+                  <li>Pulseras & Amuletos Consagrados</li>
                 </>
               )}
             </ul>
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 4: Contacto con Insignias
+              COLUMNA 4: Contacto
              ---------------------------------------------------- */}
-          <div className="space-y-3.5 text-left -mt-4 sm:-mt-6">
-            <div className="flex flex-col items-start">
-              <ButterflyGraphic size={26} color="blue" className="mb-1 pointer-events-none" />
-              <h4 className="font-serif-display text-xl font-bold text-black tracking-normal">
-                Contacto
-              </h4>
-            </div>
+          <div className="space-y-4 text-left">
+            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+              Contacto
+            </h4>
 
-            <div className="space-y-3.5 text-xs sm:text-[13px]">
+            <div className="space-y-3.5 text-xs sm:text-[13px] font-medium">
               
               {/* Ubicación */}
               <div className="flex items-start gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[14px] sm:rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:bg-gradient-to-tr group-hover:from-[#6B7FD1] group-hover:via-[#8E82DA] group-hover:to-[#E8A2C2] group-hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                  <MapPin className="relative z-10 w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#6B7FD1] group-hover:text-white group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 stroke-[2.2]" />
+                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
+                  <MapPin className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
                 </div>
-                <div className="leading-snug text-black pt-1 group-hover:text-[#6B7FD1] transition-colors">
+                <div className="leading-snug text-[#0A1C24] pt-1 group-hover:text-[#B88E44] transition-colors">
                   <span>{CONTACT_INFO.address}</span>
                 </div>
               </div>
 
               {/* Teléfono */}
               <div className="flex items-center gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[14px] sm:rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:bg-gradient-to-tr group-hover:from-[#6B7FD1] group-hover:via-[#8E82DA] group-hover:to-[#E8A2C2] group-hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                  <Phone className="relative z-10 w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#6B7FD1] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 stroke-[2.2]" />
+                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
+                  <Phone className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
                 </div>
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/[^0-9+]/g, '')}`}
-                  className="text-black group-hover:text-[#6B7FD1] transition-colors font-medium"
+                  className="text-[#0A1C24] group-hover:text-[#B88E44] transition-colors font-medium"
                 >
                   {CONTACT_INFO.phone}
                 </a>
@@ -264,13 +260,12 @@ export const Footer: React.FC = () => {
 
               {/* Email */}
               <div className="flex items-center gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[14px] sm:rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:bg-gradient-to-tr group-hover:from-[#6B7FD1] group-hover:via-[#8E82DA] group-hover:to-[#E8A2C2] group-hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                  <Mail className="relative z-10 w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#6B7FD1] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 stroke-[2.2]" />
+                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
+                  <Mail className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
                 </div>
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="text-black group-hover:text-[#6B7FD1] transition-colors truncate max-w-[200px] font-medium"
+                  className="text-[#0A1C24] group-hover:text-[#B88E44] transition-colors truncate max-w-[200px] font-medium"
                 >
                   {CONTACT_INFO.email}
                 </a>
@@ -278,11 +273,10 @@ export const Footer: React.FC = () => {
 
               {/* Horarios de Atención */}
               <div className="flex items-start gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-[14px] sm:rounded-2xl bg-gradient-to-tr from-[#DDEBFC] via-[#ECE6FB] to-[#FCE5F1] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:bg-gradient-to-tr group-hover:from-[#6B7FD1] group-hover:via-[#8E82DA] group-hover:to-[#E8A2C2] group-hover:shadow-[0_6px_18px_rgba(107,127,209,0.45)] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                  <Clock className="relative z-10 w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#6B7FD1] group-hover:text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 stroke-[2.2]" />
+                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
+                  <Clock className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
                 </div>
-                <div className="leading-snug text-black pt-1 group-hover:text-[#6B7FD1] transition-colors">
+                <div className="leading-snug text-[#0A1C24] pt-1 group-hover:text-[#B88E44] transition-colors">
                   <span>Lun - Sáb: 8:00 AM - 6:00 PM</span>
                 </div>
               </div>
@@ -293,11 +287,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* ========================================================
-            BARRA INFERIOR / SUB-FOOTER (DIMENSIONES SEGÚN AOVET)
+            BARRA INFERIOR / SUB-FOOTER
            ======================================================== */}
-        <div className="pt-4 text-xs text-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center">
+        <div className="pt-8 border-t border-[#0A1C24]/15 text-xs text-[#0A1C24]/80 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center font-medium">
           
-          {/* Izquierda: Copyright y Enlaces Legales (md:col-span-1 lg:col-span-3) */}
+          {/* Izquierda: Copyright y Enlaces Legales */}
           <div className="md:col-span-1 lg:col-span-3 flex flex-col sm:flex-row items-center md:items-start lg:items-center gap-2 sm:gap-6 text-center md:text-left">
             <p>
               © {new Date().getFullYear()} Casa Kinti. Todos los derechos reservados.
@@ -309,7 +303,7 @@ export const Footer: React.FC = () => {
                   e.preventDefault();
                   handleLinkClick('#contacto');
                 }}
-                className="text-black hover:text-[#6B7FD1] transition-colors underline-offset-4 hover:underline"
+                className="text-[#0A1C24]/80 hover:text-[#B88E44] transition-colors underline-offset-4 hover:underline"
               >
                 Política de Privacidad
               </a>
@@ -320,27 +314,25 @@ export const Footer: React.FC = () => {
                   e.preventDefault();
                   handleLinkClick('#contacto');
                 }}
-                className="text-black hover:text-[#6B7FD1] transition-colors underline-offset-4 hover:underline"
+                className="text-[#0A1C24]/80 hover:text-[#B88E44] transition-colors underline-offset-4 hover:underline"
               >
                 Términos de Servicio
               </a>
             </div>
           </div>
 
-          {/* Derecha: Firma Oficial KINDEV (md:col-span-1 lg:col-span-1) */}
+          {/* Derecha: Firma Oficial KINDEV */}
           <div className="md:col-span-1 lg:col-span-1 flex justify-center md:justify-start">
             <a 
               href="https://kindevx.web.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:opacity-90 transition-all text-sm flex items-center gap-2.5 group"
+              className="hover:opacity-95 transition-all text-sm flex items-center gap-2.5 group"
               title="Desarrollado por KINDEV"
               aria-label="Desarrollado por KINDEV"
             >
-              {/* Logo de Colibrí KINDEV estático con efectos visuales de resplandor y hover */}
-              <div className="relative inline-flex items-center justify-center shrink-0 group/icon">
-                {/* Halo de luz de fondo con efecto de respiración sutil */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00E5FF]/20 to-[#00B0FF]/20 blur-md opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
+              <div className="relative inline-flex items-center justify-center shrink-0">
+                <div className="absolute inset-0 rounded-full bg-[#FFD700]/30 blur-md opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 pointer-events-none" />
                 
                 <img 
                   src={kindevIcon} 
@@ -349,12 +341,12 @@ export const Footer: React.FC = () => {
                   height="44" 
                   loading="lazy" 
                   decoding="async" 
-                  className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-[0_2px_10px_rgba(0,229,255,0.45)] group-hover:drop-shadow-[0_4px_18px_rgba(0,229,255,0.85)] group-hover:scale-115 group-hover:-rotate-6 group-hover:brightness-110 transition-all duration-300 ease-out inline-block"
+                  className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-[0_2px_10px_rgba(255,215,0,0.5)] group-hover:scale-115 group-hover:-rotate-6 transition-all duration-300 ease-out inline-block"
                 />
               </div>
-              <span className="font-serif-display text-sm sm:text-base text-black group-hover:text-black transition-colors font-semibold tracking-wide">
+              <span className="font-serif text-sm sm:text-base text-[#0A1C24] group-hover:text-[#B88E44] transition-colors font-semibold tracking-wide">
                 Desarrollado por{" "}
-                <span className="font-serif-display font-bold text-black inline-block">
+                <span className="font-serif font-bold text-[#0A1C24] inline-block">
                   KINDEV
                 </span>
               </span>

@@ -71,25 +71,25 @@ export const MobileTabBar: React.FC = () => {
     {
       label: 'Inicio',
       href: '#inicio',
-      color: '#6B7FD1', // Azul Periwinkle
+      color: '#043651', // Azul Periwinkle
       icon: <Home className="icon" />,
     },
     {
       label: 'Sobre Mí',
       href: '#sobre-mi',
-      color: '#9B8FD9', // Púrpura Lavanda
+      color: '#2B7294', // Púrpura Lavanda
       icon: <User className="icon" />,
     },
     {
       label: mode === 'educacion' ? 'Cursos' : 'Productos',
       href: '#productos',
-      color: '#E8A2C2', // Rosa Floral
+      color: '#CEAB67', // Rosa Floral
       icon: mode === 'educacion' ? <BookOpen className="icon" /> : <ShoppingBag className="icon" />,
     },
     {
       label: 'Servicios',
       href: '#servicios',
-      color: '#12A89D', // Verde Esmeralda / Teal
+      color: '#2B7294', // Verde Esmeralda / Teal
       icon: <Flower2 className="icon" />,
     },
     {

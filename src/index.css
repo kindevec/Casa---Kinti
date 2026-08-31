@@ -2,16 +2,15 @@
 
 @layer base {
   :root {
-    /* Paleta "Cielo Encantado" - Casa Kinti */
-    --color-sky-pastel: #DCEEFB;
-    --color-lavender-light: #C9D4F5;
-    --color-blue-violet: #6B7FD1;
-    --color-purple-soft: #9B8FD9;
-    --color-pink-floral: #F0C6D9;
-    --color-dark-slate: #3E4A7A;
-    --color-gold-soft: #F5C84C;
+    /* Paleta oficial de marca - Casa Kinti */
+    --color-deep-sea: #043651;
+    --color-fiji: #2B7294;
+    --color-gold-luminous: #D4B26F;
+    --color-gold-classic: #CEAB67;
+    --color-night: #0A1C24;
+    --color-slate: #133238;
+    --color-light-gray: #D6D6D6;
     --color-white: #FFFFFF;
-    --color-teal-accent: #12A89D;
     
     /* Tipografías:
        - Script/Manuscrita (Reemplazo para Verandah Reverie): 'Alex Brush', 'Great Vibes', cursive
@@ -19,19 +18,19 @@
        - Sans-Serif Redondeada (Reemplazo para Caviar Dreams): 'Quicksand', 'Poppins', sans-serif
     */
     --font-script: 'Alex Brush', 'Great Vibes', cursive;
-    --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    --font-serif: 'Cinzel', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Quicksand', 'Poppins', system-ui, -apple-system, sans-serif;
   }
 
   body {
     font-family: var(--font-sans);
-    color: var(--color-dark-slate);
-    background-color: var(--color-sky-pastel);
+    color: var(--color-slate);
+    background-color: var(--color-white);
     background-image: 
-      radial-gradient(at 0% 0%, rgba(201, 212, 245, 0.6) 0px, transparent 50%),
-      radial-gradient(at 100% 20%, rgba(240, 198, 217, 0.4) 0px, transparent 50%),
-      radial-gradient(at 50% 60%, rgba(220, 238, 251, 0.7) 0px, transparent 50%),
-      radial-gradient(at 100% 90%, rgba(201, 212, 245, 0.5) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(43, 114, 148, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 20%, rgba(206, 171, 103, 0.10) 0px, transparent 50%),
+      radial-gradient(at 50% 60%, rgba(4, 54, 81, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 90%, rgba(43, 114, 148, 0.06) 0px, transparent 50%);
     background-attachment: fixed;
   }
 }
@@ -83,11 +82,11 @@
 @keyframes pulse-soft {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(107, 127, 209, 0.4);
+    box-shadow: 0 0 0 0 rgba(4, 54, 81, 0.4);
   }
   50% {
     transform: scale(1.04);
-    box-shadow: 0 0 0 14px rgba(107, 127, 209, 0);
+    box-shadow: 0 0 0 14px rgba(4, 54, 81, 0);
   }
 }
 
@@ -150,7 +149,7 @@
 
 /* Efecto halo de luz celestial */
 .celestial-glow {
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(220, 238, 251, 0.2) 70%, transparent 100%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(234, 247, 247, 0.2) 70%, transparent 100%);
 }
 
 /* Scrollbar personalizada suave */
@@ -158,14 +157,14 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #DCEEFB;
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #9B8FD9;
+  background: #2B7294;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6B7FD1;
+  background: #043651;
 }
 
 /* ========================================================
@@ -323,7 +322,7 @@ body[data-mode="holistica"] .only-educacion {
 
 .animated-tab-bar-wrapper {
   user-select: none;
-  filter: drop-shadow(0 12px 30px rgba(62, 74, 122, 0.20));
+  filter: drop-shadow(0 12px 30px rgba(19, 50, 56, 0.20));
 }
 
 .menu {
@@ -336,8 +335,8 @@ body[data-mode="holistica"] .only-educacion {
   -webkit-backdrop-filter: blur(20px);
   height: 4.5em;
   border-radius: 9999px;
-  border: 1.5px solid rgba(155, 143, 217, 0.45);
-  box-shadow: 0 8px 25px rgba(62, 74, 122, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  border: 1.5px solid rgba(43, 114, 148, 0.45);
+  box-shadow: 0 8px 25px rgba(19, 50, 56, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8);
   align-items: center;
   justify-content: space-around;
   width: 100%;
@@ -380,7 +379,7 @@ body[data-mode="holistica"] .only-educacion {
 .menu__item svg {
   width: 1.45em;
   height: 1.45em;
-  stroke: #3E4A7A;
+  stroke: #133238;
   fill: none;
   stroke-width: 2.2;
   stroke-linecap: round;
@@ -391,21 +390,21 @@ body[data-mode="holistica"] .only-educacion {
 
 .menu__item:hover .icon,
 .menu__item:hover svg {
-  stroke: #3E4A7A;
+  stroke: #133238;
 }
 
 .menu__item.active .icon,
 .menu__item.active svg {
   transform: translateY(-0.15em) scale(1.22);
-  stroke: #6B7FD1 !important;
-  color: #6B7FD1 !important;
-  filter: drop-shadow(0 0 10px rgba(107, 127, 209, 0.55));
+  stroke: #043651 !important;
+  color: #043651 !important;
+  filter: drop-shadow(0 0 10px rgba(4, 54, 81, 0.55));
 }
 
 .menu__label {
   font-size: 9.5px;
   font-weight: 700;
-  color: #3E4A7A;
+  color: #133238;
   margin-top: 3px;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -413,11 +412,11 @@ body[data-mode="holistica"] .only-educacion {
 }
 
 .menu__item:hover .menu__label {
-  color: #6B7FD1;
+  color: #043651;
 }
 
 .menu__item.active .menu__label {
-  color: #6B7FD1;
+  color: #043651;
   font-weight: 800;
   transform: translateY(0.05em);
 }
@@ -430,8 +429,8 @@ body[data-mode="holistica"] .only-educacion {
   width: 4em;
   height: 100%;
   border-radius: 1.6em;
-  background: linear-gradient(180deg, rgba(155, 143, 217, 0.32) 0%, rgba(107, 127, 209, 0.18) 50%, rgba(240, 198, 217, 0.1) 85%, transparent 100%);
-  box-shadow: 0 0 24px 8px rgba(155, 143, 217, 0.32);
+  background: linear-gradient(180deg, rgba(43, 114, 148, 0.32) 0%, rgba(4, 54, 81, 0.18) 50%, rgba(206, 171, 103, 0.1) 85%, transparent 100%);
+  box-shadow: 0 0 24px 8px rgba(43, 114, 148, 0.32);
   border: none;
   filter: blur(4px);
   transition: transform var(--timeOut, 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275));
@@ -444,4 +443,146 @@ body[data-mode="holistica"] .only-educacion {
     stroke-dashoffset: 400;
   }
 }
+
+/* ========================================================
+   ANIMACIONES VIVAS DEL HERO (CRISTALES ILUMINADOS Y HUMO)
+   ======================================================== */
+
+@keyframes crystalAmberPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+}
+
+@keyframes crystalCyanPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.22);
+  }
+}
+
+@keyframes crystalVioletPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes crystalSparkleTwinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.35) rotate(45deg);
+  }
+}
+
+@keyframes crystalSparkleDelayed {
+  0%, 100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.25) rotate(30deg);
+  }
+  50% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(0.55) rotate(-15deg);
+  }
+}
+
+@keyframes smokeDriftMotion {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(60px, -25px) scale(1.15);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(120px, -50px) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes crystalGoldWarmPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.93);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.animate-crystal-amber {
+  animation: crystalAmberPulse 4.5s ease-in-out infinite;
+}
+
+.animate-crystal-gold-warm {
+  animation: crystalGoldWarmPulse 4.8s ease-in-out infinite 0.5s;
+}
+
+.animate-crystal-cyan {
+  animation: crystalCyanPulse 5.2s ease-in-out infinite 0.9s;
+}
+
+.animate-crystal-violet {
+  animation: crystalVioletPulse 5.8s ease-in-out infinite 1.4s;
+}
+
+.animate-smoke-drift {
+  animation: smokeDriftMotion 10s ease-in-out infinite;
+}
+
+/* ========================================================
+   FONDO CELESTIAL DE ESPIRALES Y DESTELLOS EN LAS SECCIONES
+   ======================================================== */
+
+.section-celestial-bg {
+  background-image: 
+    linear-gradient(to bottom, rgba(237, 244, 248, 0.75), rgba(242, 247, 250, 0.68), rgba(237, 244, 248, 0.75)),
+    url('/section-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ========================================================
+   ESTILOS DE LUJO PARA HEADER Y HERO BANNER (REFERENCIA LUXE)
+   ======================================================== */
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF0A8 0%, #E5C985 35%, #D4B26F 65%, #B88E44 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #F3DE9A 0%, #E5C985 30%, #D4B26F 70%, #B88E44 100%);
+}
+
+.gold-border-luxury {
+  border-color: rgba(229, 201, 133, 0.65);
+}
+
+.gold-glow-subtle {
+  box-shadow: 0 0 25px rgba(229, 201, 133, 0.35);
+}
+
+
 

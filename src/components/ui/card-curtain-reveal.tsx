@@ -122,7 +122,7 @@ export const CardCurtainSplitCover = ({
     >
       {/* Hoja Izquierda de la Cortina (Se desliza hacia la izquierda) */}
       <motion.div
-        className="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#EBF3FC] border-r border-[#C9DCF8]/60 shadow-lg"
+        className="absolute top-0 left-0 w-1/2 h-full overflow-hidden bg-[#E8F0F5] border-r border-[#E8F0F5]/60 shadow-lg"
         initial={false}
         animate={{
           x: isMouseIn ? "-102%" : "0%",
@@ -139,15 +139,15 @@ export const CardCurtainSplitCover = ({
             className="w-full h-full object-cover"
           />
           {/* Degradado sutil y claro en la base para lectura de texto, imagen 100% clara y nítida arriba */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C3B63]/85 via-[#2C3B63]/25 via-40% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#133238]/85 via-[#133238]/25 via-40% to-transparent" />
         </div>
         {/* Sombra de pliegue sutil en azul claro */}
-        <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#3E4D7A]/20 to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#133238]/20 to-transparent" />
       </motion.div>
 
       {/* Hoja Derecha de la Cortina (Se desliza hacia la derecha) */}
       <motion.div
-        className="absolute top-0 right-0 w-1/2 h-full overflow-hidden bg-[#EBF3FC] border-l border-[#C9DCF8]/60 shadow-lg"
+        className="absolute top-0 right-0 w-1/2 h-full overflow-hidden bg-[#E8F0F5] border-l border-[#E8F0F5]/60 shadow-lg"
         initial={false}
         animate={{
           x: isMouseIn ? "102%" : "0%",
@@ -164,10 +164,10 @@ export const CardCurtainSplitCover = ({
             className="w-full h-full object-cover"
           />
           {/* Degradado sutil y claro en la base para lectura de texto, imagen 100% clara y nítida arriba */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C3B63]/85 via-[#2C3B63]/25 via-40% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#133238]/85 via-[#133238]/25 via-40% to-transparent" />
         </div>
         {/* Sombra de pliegue sutil en azul claro */}
-        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#3E4D7A]/20 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#133238]/20 to-transparent" />
       </motion.div>
 
       {/* Textos de la Portada (Título y Precio en la parte inferior, desaparecen suavemente al abrir la cortina) */}
@@ -193,7 +193,7 @@ export const CardCurtainSplitCover = ({
                   {promoPrice}
                 </span>
               )}
-              <span className="text-2xl font-bold font-serif-display text-[#FBE4F0] drop-shadow-md">
+              <span className="text-2xl font-bold font-serif-display text-[#FBF3E1] drop-shadow-md">
                 {price}
               </span>
             </div>
