@@ -250,34 +250,34 @@ export const ExperiencesSection: React.FC = () => {
   return (
     <section
       id="experiencias"
-      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-[#020B0E] via-[#041A20] to-[#07242B] text-white border-t border-[#D4A346]/25"
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-[#3E9C93] via-[#4AAEA5] to-[#368F87] text-white border-t border-[#FFEA79]/30 border-b border-[#2C7872]/40"
     >
-      {/* Destellos ambientales de fondo con el turquesa del header y dorado */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#00D2B4]/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#D4A346]/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Destellos ambientales de luz y polvo dorado sobre el fondo turquesa del header */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-white/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FFD700]/15 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Cabecera de la Sección (Sin el texto previo eliminado) */}
+        {/* Cabecera de la Sección con contraste perfecto sobre fondo turquesa */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
-          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight drop-shadow-xs">
+          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
               <>
                 Programas &{' '}
-                <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] bg-clip-text text-transparent font-normal">
+                <span className="italic text-[#FFF8D6] drop-shadow-[0_2px_8px_rgba(5,44,52,0.35)] font-normal">
                   Talleres de Casa Kinti
                 </span>
               </>
             ) : (
               <>
                 Kits Abre Caminos de{' '}
-                <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] bg-clip-text text-transparent font-normal">
+                <span className="italic text-[#FFF8D6] drop-shadow-[0_2px_8px_rgba(5,44,52,0.35)] font-normal">
                   Casa Kinti
                 </span>
               </>
             )}
           </h3>
-          <p className="text-xs sm:text-sm md:text-base text-[#D4E4E7] font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-[#052C34]/95 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
             Experimenta el gozo de liberar emociones bloqueadas para abrir los nuevos caminos de prosperidad.
           </p>
         </div>
