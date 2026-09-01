@@ -31,7 +31,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="inicio"
       data-mode={mode}
-      className="relative min-h-[92vh] sm:min-h-[96vh] flex flex-col justify-center pt-24 xs:pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-28 overflow-hidden z-20 transition-all duration-400 bg-[#5CBDB5]"
+      className="relative min-h-[92dvh] sm:min-h-[96dvh] flex flex-col justify-center pt-24 xs:pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-28 overflow-hidden z-20 transition-all duration-400 bg-[#5CBDB5]"
     >
       {/* ========================================================
           FOTOGRAFÍA CELESTIAL HORIZONTAL DE FONDO (COLOR DEL HEADER #5CBDB5)
@@ -249,10 +249,10 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="space-y-1 sm:space-y-2"
             >
-              <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl text-[#0A1C24] font-bold leading-[1.15] tracking-tight drop-shadow-[0_1px_4px_rgba(255,255,255,0.4)] whitespace-nowrap">
+              <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl text-[#0A1C24] font-bold leading-[1.15] tracking-tight drop-shadow-[0_1px_4px_rgba(255,255,255,0.4)] sm:whitespace-nowrap">
                 {mode === 'educacion' ? 'Donde el Aprendizaje' : 'Donde el Bienestar'}
               </h1>
-              <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl font-bold italic leading-[1.15] tracking-tight bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent whitespace-nowrap">
+              <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-[44px] lg:text-[42px] xl:text-5xl font-bold italic leading-[1.15] tracking-tight bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent sm:whitespace-nowrap">
                 {mode === 'educacion' ? 'Encuentra su Potencial' : 'Encuentra la Sanación'}
               </h2>
             </motion.div>
@@ -337,7 +337,7 @@ export const HeroSection: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#FFEA79]/30 via-[#5CBDB5]/25 to-transparent blur-3xl rounded-full pointer-events-none transform -translate-y-4" />
 
             {/* Contenedor relativo amplio para ambos arcos desplazado a la derecha */}
-            <div className="relative w-full max-w-[460px] xs:max-w-[500px] sm:max-w-[580px] md:max-w-[640px] lg:max-w-[680px] h-[520px] xs:h-[560px] sm:h-[620px] md:h-[660px] lg:translate-x-8 xl:translate-x-14">
+            <div className="relative w-full max-w-[460px] xs:max-w-[500px] sm:max-w-[580px] md:max-w-[640px] lg:max-w-[680px] h-[460px] xs:h-[530px] sm:h-[620px] md:h-[660px] lg:translate-x-8 xl:translate-x-14">
               
               {/* ========================================================
                   1. ARCO PRINCIPAL (SUPERIOR IZQUIERDO): RETRATO DE JOHANNA (MÁS GRANDE Y ANCHO)
@@ -346,9 +346,9 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, x: -15, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="absolute top-0 left-0 w-[320px] xs:w-[360px] sm:w-[420px] md:w-[460px] lg:w-[490px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_20px_50px_rgba(0,0,0,0.22),0_0_30px_rgba(229,201,133,0.35)] overflow-hidden group z-10"
+                className="absolute top-0 left-0 w-[275px] xs:w-[340px] sm:w-[420px] md:w-[460px] lg:w-[490px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_20px_50px_rgba(0,0,0,0.22),0_0_30px_rgba(229,201,133,0.35)] overflow-hidden group z-10"
               >
-                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[410px] xs:h-[450px] sm:h-[500px] md:h-[540px] lg:h-[570px] bg-transparent">
+                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[360px] xs:h-[430px] sm:h-[500px] md:h-[540px] lg:h-[570px] bg-transparent">
                   {/* Foto principal del Banner: Tambor ceremonial para Holística / Retrato para Educación */}
                   <img
                     key={mode + '-hero-main-photo'}
@@ -368,9 +368,9 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, x: 20, y: 20, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="absolute bottom-0 right-0 w-[220px] xs:w-[250px] sm:w-[290px] md:w-[320px] lg:w-[350px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_25px_60px_rgba(0,0,0,0.26),0_0_35px_rgba(229,201,133,0.4)] overflow-hidden group z-20"
+                className="absolute bottom-0 right-0 w-[185px] xs:w-[230px] sm:w-[290px] md:w-[320px] lg:w-[350px] rounded-t-full rounded-b-xl p-[3.5px] sm:p-[4.5px] bg-gradient-to-b from-[#FFF8D6] via-[#E5C985] to-[#B88E44] shadow-[0_25px_60px_rgba(0,0,0,0.26),0_0_35px_rgba(229,201,133,0.4)] overflow-hidden group z-20"
               >
-                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[220px] xs:h-[250px] sm:h-[290px] md:h-[320px] lg:h-[340px] bg-transparent">
+                <div className="relative rounded-t-full rounded-b-lg overflow-hidden w-full h-[185px] xs:h-[230px] sm:h-[290px] md:h-[320px] lg:h-[340px] bg-transparent">
                   {/* Foto secundaria del Banner: Tarot Terapéutico para Holística / Pedagogía para Educación */}
                   <img
                     key={mode + '-hero-sub-photo'}

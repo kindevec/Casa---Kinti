@@ -20,10 +20,10 @@ export const FloatingWhatsApp: React.FC = () => {
         id="floating-whatsapp-button"
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
-        className={`relative group flex items-center justify-center transition-all duration-400 ease-out cursor-pointer drop-shadow-lg hover:drop-shadow-[0_8px_25px_rgba(37,211,102,0.6)] ${
+        className={`relative group flex items-center justify-center min-w-[48px] min-h-[48px] transition-all duration-400 ease-out cursor-pointer drop-shadow-lg hover:drop-shadow-[0_8px_25px_rgba(37,211,102,0.6)] active:scale-95 ${
           isHovered
-            ? '-translate-x-3 sm:-translate-x-4 md:-translate-x-5 scale-110'
-            : 'translate-x-6 sm:translate-x-7 md:translate-x-8 hover:translate-x-0'
+            ? '-translate-x-3 sm:-translate-x-4 md:-translate-x-5 md:scale-110'
+            : '-translate-x-3 sm:-translate-x-4 md:translate-x-8 md:hover:translate-x-0'
         }`}
         aria-label="Contactar por WhatsApp a Casa Kinti"
       >

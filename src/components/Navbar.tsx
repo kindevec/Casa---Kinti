@@ -163,7 +163,7 @@ export const Navbar: React.FC = () => {
             ZONA CENTRAL: ENLACES DE NAVEGACIÓN REFINADOS
            ======================================================== */}
         <nav className="hidden md:flex items-center justify-center">
-          <ul className="flex items-center justify-center gap-6 lg:gap-9">
+          <ul className="flex items-center justify-center gap-3.5 md:gap-4 lg:gap-8">
             {currentNavLinks.map((link) => {
               const isSelected = activeSection === link.href;
               return (
@@ -171,7 +171,7 @@ export const Navbar: React.FC = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`font-serif text-sm md:text-[15px] lg:text-[16.5px] tracking-[0.14em] uppercase transition-all duration-300 block select-none px-1 ${
+                    className={`font-serif text-sm md:text-[13.5px] lg:text-[16px] tracking-[0.11em] md:tracking-[0.14em] uppercase transition-all duration-300 block select-none px-1 ${
                       isSelected
                         ? 'text-[#0A1C24] font-black'
                         : 'text-[#0A1C24]/90 font-bold hover:text-[#8C6420] hover:scale-105'
@@ -248,7 +248,7 @@ export const Navbar: React.FC = () => {
             onClick={handleAgendaClick}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="hidden xs:inline-flex items-center gap-2 bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] hover:from-[#F0D896] hover:via-[#DEC080] hover:to-[#C69C50] text-[#0A1C24] font-bold text-xs sm:text-[13px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-sm uppercase tracking-[0.14em] font-serif shadow-[0_4px_16px_rgba(0,0,0,0.35)] hover:shadow-[0_6px_22px_rgba(212,178,111,0.55)] transition-all select-none cursor-pointer"
+            className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] hover:from-[#F0D896] hover:via-[#DEC080] hover:to-[#C69C50] text-[#0A1C24] font-bold text-xs sm:text-[13px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-sm uppercase tracking-[0.14em] font-serif shadow-[0_4px_16px_rgba(0,0,0,0.35)] hover:shadow-[0_6px_22px_rgba(212,178,111,0.55)] transition-all select-none cursor-pointer"
           >
             <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A1C24] stroke-[2.4]" />
             <span>{mode === 'educacion' ? 'Agendar Cita' : 'Agendar Cita'}</span>
