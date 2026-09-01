@@ -72,11 +72,11 @@ export const MissionVisionSection: React.FC = () => {
 
             {/* Cuerpo de la Tarjeta (Sin insignias) */}
             <div className="p-6 sm:p-8 flex flex-col justify-center flex-1 text-center space-y-3.5">
-              <span className="inline-block font-serif text-xs sm:text-[13px] font-black tracking-[0.28em] text-[#B88E44] uppercase">
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-[32px] font-black tracking-[0.2em] text-[#B88E44] uppercase drop-shadow-xs">
                 MISIÓN
-              </span>
+              </h3>
               
-              <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#D4B26F] to-transparent mx-auto" />
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#D4B26F] to-transparent mx-auto" />
 
               <p className="text-xs sm:text-sm md:text-[14.5px] text-[#2C484E] font-normal leading-relaxed text-justify sm:text-center pt-1">
                 Acompañar el desarrollo integral y la sanación del ser humano en todas sus etapas. Fusionamos la ciencia de la educación y la terapia de lenguaje con la sabiduría de las medicinas ancestrales para nutrir el cuerpo, la mente, la voz y el espíritu, creando un espacio seguro de evolución personal.
@@ -113,11 +113,11 @@ export const MissionVisionSection: React.FC = () => {
 
             {/* Cuerpo de la Tarjeta (Sin insignias) */}
             <div className="p-6 sm:p-8 flex flex-col justify-center flex-1 text-center space-y-3.5">
-              <span className="inline-block font-serif text-xs sm:text-[13px] font-black tracking-[0.28em] text-[#2B7294] uppercase">
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-[32px] font-black tracking-[0.2em] text-[#2B7294] uppercase drop-shadow-xs">
                 VISIÓN
-              </span>
+              </h3>
               
-              <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-[#2B7294] to-transparent mx-auto" />
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#2B7294] to-transparent mx-auto" />
 
               <p className="text-xs sm:text-sm md:text-[14.5px] text-[#2C484E] font-normal leading-relaxed text-justify sm:text-center pt-1">
                 Consolidar a Casa Kinti como un refugio holístico de referencia, donde niños y adultos encuentren las herramientas, terapias y productos de la tierra necesarios para su expresión auténtica, sanación profunda y bienestar absoluto.
