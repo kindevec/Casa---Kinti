@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { PathSection } from './components/PathSection';
 import { AboutSection } from './components/AboutSection';
+import { MissionVisionSection } from './components/MissionVisionSection';
 import { ExperiencesSection } from './components/ExperiencesSection';
 import { ProductsSection } from './components/ProductsSection';
 import { ServicesSection } from './components/ServicesSection';
@@ -29,6 +30,9 @@ export default function App() {
 
           {/* SECCIÓN 2: HISTORIA PERSONAL (Johanna Proaño con marco en arco romano) */}
           <AboutSection />
+
+          {/* MISIÓN & VISIÓN (Estilo tarjetas arqueadas con fotos reales) */}
+          <MissionVisionSection />
 
           {/* SECCIÓN 3: PROMOCIONES & EXPERIENCIAS (Carrusel 3D Coverflow interactivo) */}
           <ExperiencesSection />
