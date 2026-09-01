@@ -2,10 +2,16 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { CONTACT_INFO, WHATSAPP_PHONE } from '../data';
-import { ButterflyGraphic, HeroOrganicBackdrop, FloralBouquet } from './FloralDecorations';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { ButterflyGraphic, HeroOrganicBackdrop, FloralBouquet, WhatsAppOfficialIcon } from './FloralDecorations';
+import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
 
 const kindevIcon = '/kindev_icon.webp';
+
+const TikTokIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.34a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3 15.63a6.34 6.34 0 0 0 10.74 4.54 6.27 6.27 0 0 0 1.95-4.57V8.58a8.3 8.3 0 0 0 3.9 1.02V6.69z"/>
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   const { mode } = useNicheMode();
@@ -243,11 +249,11 @@ export const Footer: React.FC = () => {
                 <motion.div
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FF512F] via-[#F09819] to-[#FFD700] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(240,152,25,0.45)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ scale: 1.15 }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <MapPin className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <MapPin className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
                 </motion.div>
                 <div className="leading-snug text-[#0A1C24] pt-1 select-none pointer-events-none">
                   <span className="select-none pointer-events-none">{CONTACT_INFO.address}</span>
@@ -262,11 +268,11 @@ export const Footer: React.FC = () => {
                 <motion.div
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#059669] via-[#10B981] to-[#00D2B4] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.45)] transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ scale: 1.15 }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300 ease-out overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Phone className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Phone className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
                 </motion.div>
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/[^0-9+]/g, '')}`}
@@ -284,11 +290,11 @@ export const Footer: React.FC = () => {
                 <motion.div
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 4.1, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0284C7] via-[#38BDF8] to-[#00D2B4] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.45)] transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ scale: 1.15 }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300 ease-out overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Mail className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Mail className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
                 </motion.div>
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
@@ -306,11 +312,11 @@ export const Footer: React.FC = () => {
                 <motion.div
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
-                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C3AED] via-[#A855F7] to-[#F59E0B] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,85,247,0.45)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ scale: 1.15 }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Clock className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Clock className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
                 </motion.div>
                 <div className="leading-snug text-[#0A1C24] pt-1 select-none">
                   <span>Lun - Sáb: 8:00 AM - 6:00 PM</span>
@@ -318,6 +324,63 @@ export const Footer: React.FC = () => {
               </motion.div>
 
             </div>
+
+            {/* Botones de Redes Sociales (Iconos Negros con Fondo Dorado) */}
+            <div className="pt-3 border-t border-[#0A1C24]/10">
+              <span className="block text-[11px] font-bold uppercase tracking-wider text-[#0A1C24] mb-2.5">
+                Redes Sociales
+              </span>
+              <div className="flex items-center gap-2.5">
+                <motion.a
+                  href={CONTACT_INFO.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok Casa Kinti"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
+                >
+                  <TikTokIcon className="w-4.5 h-4.5 text-[#0A1C24]" />
+                </motion.a>
+
+                <motion.a
+                  href={CONTACT_INFO.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Casa Kinti"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
+                >
+                  <Instagram className="w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+
+                <motion.a
+                  href={CONTACT_INFO.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Casa Kinti"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
+                >
+                  <Facebook className="w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+
+                <motion.a
+                  href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp Casa Kinti"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
+                >
+                  <WhatsAppOfficialIcon className="w-4.5 h-4.5 text-[#0A1C24]" />
+                </motion.a>
+              </div>
+            </div>
+
           </div>
 
         </div>
