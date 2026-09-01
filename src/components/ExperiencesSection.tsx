@@ -288,25 +288,15 @@ export const ExperiencesSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles con Animaciones de Levitación y Movimiento */}
+        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
           {MYSTICAL_KITS_DATA.map((kit, idx) => {
             const isFlipped = flippedCardId === kit.id;
 
             return (
-              <motion.div
+              <div
                 key={kit.id}
                 onClick={() => toggleFlip(kit.id)}
-                animate={{
-                  y: [0, idx === 1 ? -9 : -6, 0],
-                }}
-                transition={{
-                  duration: 4.5 + idx * 0.6,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: idx * 0.35,
-                }}
-                whileHover={{ scale: 1.025 }}
                 className="group relative h-[470px] sm:h-[490px] w-full [perspective:1000px] cursor-pointer select-none"
               >
                 {/* Contenedor Giratorio 3D con animación suave */}
@@ -382,7 +372,7 @@ export const ExperiencesSection: React.FC = () => {
                   </div>
 
                   {/* ========================================================
-                      CARA TRASERA: DESCRIPCIÓN, PRECIOS Y BOTÓN DE PEDIR
+                      CARA TRASERA: DESCRIPCIÓN ESTÁTICA Y NÍTIDA (SIN CONTENEDOR)
                      ======================================================== */}
                   <div
                     className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
@@ -398,16 +388,17 @@ export const ExperiencesSection: React.FC = () => {
                       {/* Marco interior fino dorado */}
                       <div className="absolute inset-3 rounded-xl border border-[#D4B26F]/30 pointer-events-none" />
 
-                      {/* Encabezado del Dorso (sin decir Kit 1) */}
+                      {/* Encabezado del Dorso en dorado nítido */}
                       <div className="relative z-10 pt-1">
-                        <h4 className="font-serif text-base sm:text-lg font-bold text-white leading-snug">
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-[#FFD700] leading-snug drop-shadow-xs">
                           {kit.title}
                         </h4>
+                        <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#D4B26F]/60 to-transparent mx-auto mt-2" />
                       </div>
 
-                      {/* Descripción breve y concisa */}
-                      <div className="relative z-10 my-auto py-2 text-left bg-[#020B0E]/70 border border-[#D4B26F]/25 rounded-xl p-4">
-                        <p className="text-xs sm:text-[13px] text-[#E2EEF0] leading-relaxed font-normal">
+                      {/* Descripción breve y concisa: Sin contenedor, texto blanco de alta claridad y nitidez */}
+                      <div className="relative z-10 my-auto py-2 px-1 text-center">
+                        <p className="text-[13px] sm:text-[14px] text-white font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                           {kit.consistsOf}
                         </p>
                       </div>
@@ -442,7 +433,7 @@ export const ExperiencesSection: React.FC = () => {
                   </div>
 
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
