@@ -90,7 +90,7 @@ export const ServicesSection: React.FC = () => {
             <p className="text-base sm:text-lg md:text-xl text-[#2C484E] font-light leading-relaxed max-w-3xl mx-auto">
               {mode === 'educacion'
                 ? 'Diagnósticos psicopedagógicos, estimulación bilingüe temprana y programas personalizados dirigidos por Máster en Problemas de Aprendizaje.'
-                : 'Limpiezas energéticas, esencias florales de Bach, herbolaria sagrada y tarot terapéutico para restaurar tu equilibrio integral.'}
+                : 'Limpiezas energéticas, ceremonias con plantas sagradas del Pensamiento con preparación y acompañamiento antes, durante y después, sabiduría ancestral y tarot terapéutico para restaurar tu equilibrio integral.'}
             </p>
           </div>
         </div>

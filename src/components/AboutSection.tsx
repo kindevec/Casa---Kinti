@@ -92,7 +92,7 @@ const ABOUT_CIRCLES = [
     IconComponent: IconMasterAprendizaje,
   },
   {
-    title: 'Terapeuta en Flores de Bach y Herbolaria',
+    title: 'Ceremonias con Plantas Sagradas del Pensamiento',
     IconComponent: IconFloresBachHerbolaria,
   },
   {
@@ -216,7 +216,7 @@ export const AboutSection: React.FC = () => {
                 Mi vocación al servicio nació a los 16 años desde el amor por la educación infantil, enriquecida por más de dos décadas de maternidad y estudio autodidacta de las metodologías Montessori, Piaget y Pikler. Esta búsqueda por comprender el desarrollo cognitivo me llevó a graduarme con una <strong className="text-[#133238] font-semibold">Maestría en Problemas de Aprendizaje en la Universidad de Salamanca (España)</strong>.
               </p>
               <p>
-                Comprendí que sanar la mente exige también abrazar el espíritu. Como mujer medicina iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego de Xochilaclan con la bendición de Taitas, terapeuta floral de Bach y Maestra en Registros Akáshicos, fundé <strong className="text-[#133238] font-semibold">Casa Kinti</strong> para fusionar la ciencia pedagógica con la sabiduría ancestral en un espacio seguro de evolución, amor y luz.
+                Comprendí que sanar la mente exige también abrazar el espíritu. Como mujer medicina iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego de Xochilaclan con la bendición de Taitas, guía en ceremonias con Plantas Sagradas del Pensamiento y Maestra en Registros Akáshicos, fundé <strong className="text-[#133238] font-semibold">Casa Kinti</strong> para fusionar la ciencia pedagógica con la sabiduría ancestral en un espacio seguro de evolución, amor y luz.
               </p>
             </div>
 

@@ -285,7 +285,7 @@ export const HeroSection: React.FC = () => {
                 </>
               ) : (
                 <>
-                  Vive una experiencia de sanación integral, medicina ancestral andina y armonización con flores de Bach en un santuario de profunda paz, armonía y rigurosa calidez en Quito.
+                  Vive una experiencia de sanación integral, medicina ancestral andina y ceremonias con plantas sagradas del Pensamiento con preparación y acompañamiento antes, durante y después en un santuario de profunda paz, armonía y rigurosa calidez en Quito.
                 </>
               )}
             </motion.p>

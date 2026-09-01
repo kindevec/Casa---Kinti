@@ -126,7 +126,7 @@ export const ContactSection: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-[#052C34]/95 font-medium leading-relaxed max-w-3xl mx-auto">
             {mode === 'educacion'
               ? 'Coordina una evaluación psicopedagógica, asesoría para padres o taller de estimulación temprana con Johanna Proaño.'
-              : 'Separa tu espacio para medicina ancestral andina, terapia de flores de Bach, tarot terapéutico o limpias energéticas en Quito o de forma virtual.'}
+              : 'Separa tu espacio para medicina ancestral andina, ceremonias con plantas sagradas del Pensamiento, tarot terapéutico o limpias energéticas en Quito o de forma virtual.'}
           </p>
         </div>
       </div>

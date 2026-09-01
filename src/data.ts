@@ -23,8 +23,8 @@ export const PATH_STEPS_HOLISTICA: PathStep[] = [
   {
     number: '03',
     keyword: 'EQUILIBRA',
-    title: 'Armoniza tu Energía',
-    description: 'Terapia personalizada con Flores de Bach y amuletos consagrados.',
+    title: 'Plantas Sagradas del Pensamiento',
+    description: 'Ceremonias sagradas con preparación y acompañamiento integral antes, durante y después.',
     icon: 'Scale',
     accentColor: '#2B7294',
   },
@@ -89,10 +89,10 @@ export const CERTIFICATIONS: CertificationItem[] = [
     highlight: 'Diagnóstico psicopedagógico y adecuación curricular personalizada',
   },
   {
-    title: 'Terapeuta en Flores de Bach y Herbolaria',
-    institution: 'Certificación Terapéutica Holística',
+    title: 'Ceremonias con Plantas Sagradas del Pensamiento',
+    institution: 'Casa Kinti',
     icon: 'Leaf',
-    highlight: 'Formulación de elixires florales y botánica sagrada',
+    highlight: 'Preparación y acompañamiento antes, durante y después',
   },
   {
     title: 'Mujer Medicina Certificada',
@@ -360,11 +360,11 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: 'test-2',
     name: 'Andrea Salazar',
-    role: 'Terapia con Flores de Bach',
-    text: 'Las Flores de Bach personalizadas me ayudaron a manejar mi ansiedad y el insomnio de una forma muy natural y respetuosa. La calidez y escucha de Johanna es incomparable.',
+    role: 'Ceremonias con Plantas Sagradas del Pensamiento',
+    text: 'La ceremonia con Plantas Sagradas del Pensamiento fue profundamente sanadora. La preparación previa y el acompañamiento amoroso de Johanna antes, durante y después me brindaron una contención, seguridad y paz invaluables.',
     rating: 5,
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
-    area: 'flores',
+    area: 'ancestral',
   },
   {
     id: 'test-3',

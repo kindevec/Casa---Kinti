@@ -29,9 +29,9 @@ export const CredentialsStrip: React.FC = () => {
       borderColor: 'border-[#CEAB67]',
     },
     {
-      text: 'Flores de Bach y Herbolario',
+      text: 'Plantas Sagradas del Pensamiento',
       iconSrc: '/icons/pillar-flores-bach.png',
-      iconAlt: 'Flores de Bach y Herbolario',
+      iconAlt: 'Ceremonias con Plantas Sagradas del Pensamiento',
       bgColor: 'bg-[#E8F0F5]',
       borderColor: 'border-[#2B7294]/30',
     },

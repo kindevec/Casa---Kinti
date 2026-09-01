@@ -125,7 +125,7 @@ export const Footer: React.FC = () => {
                 </>
               ) : (
                 <>
-                  Santuario de sanación integral, medicina ancestral andina, terapia floral de Bach y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johanna Proaño.
+                  Santuario de sanación integral, medicina ancestral andina, ceremonias con plantas sagradas del Pensamiento y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johanna Proaño.
                 </>
               )}
             </p>
@@ -222,7 +222,7 @@ export const Footer: React.FC = () => {
               ) : (
                 <>
                   <li>Limpias & Medicina Ancestral</li>
-                  <li>Flores de Bach & Herbolaria</li>
+                  <li>Ceremonias con Plantas Sagradas del Pensamiento</li>
                   <li>Tarot Terapéutico</li>
                   <li>Sanación Bioenergética & Chakras</li>
                   <li>Pulseras & Amuletos Consagrados</li>
