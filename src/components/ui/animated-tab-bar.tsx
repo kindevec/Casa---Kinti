@@ -183,42 +183,47 @@ export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
       className={`relative w-full select-none ${className}`}
       style={{ height: "74px" }}
     >
-      {/* Fondo SVG con muesca controlada imperativamente */}
+      {/* Fondo SVG con muesca interactiva en degradado dorado */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_-4px_24px_rgba(19, 50, 56, 0.14)]"
+        className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)] drop-shadow-[0_0_15px_rgba(212,178,111,0.35)]"
         viewBox={`0 0 ${width} 74`}
         preserveAspectRatio="none"
       >
+        <defs>
+          <linearGradient id="mobileTabBarGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFF2B2" />
+            <stop offset="25%" stopColor="#E5C985" />
+            <stop offset="60%" stopColor="#D4B26F" />
+            <stop offset="100%" stopColor="#B88E44" />
+          </linearGradient>
+        </defs>
         <motion.path
           d={generatePath(activeCenterX, width, 48)}
-          fill="#FFFFFF"
+          fill="url(#mobileTabBarGold)"
+          stroke="#FFF8D6"
+          strokeWidth="1.2"
           animate={pathControls}
         />
       </svg>
 
       {/* Botón Pelotita Flotante con Control Imperativo de Salto */}
       <motion.div
-        className="absolute top-[2px] z-20 w-[52px] h-[52px] rounded-full flex items-center justify-center cursor-pointer overflow-hidden shadow-[0_8px_24px_rgba(4, 54, 81, 0.48)] ring-2 ring-white/85"
+        className="absolute top-[2px] z-20 w-[52px] h-[52px] rounded-full flex items-center justify-center cursor-pointer overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.45)] ring-2 ring-[#0A1C24]/85"
         style={{
-          background:
-            activeItem?.color && activeItem.color.startsWith("bg-")
-              ? undefined
-              : activeItem?.color
-              ? `linear-gradient(135deg, ${activeItem.color}, #2B7294, #CEAB67)`
-              : "linear-gradient(135deg, #043651 0%, #2B7294 50%, #CEAB67 100%)",
+          background: "linear-gradient(135deg, #FFFDF0 0%, #E5C985 45%, #D4B26F 75%, #B88E44 100%)",
         }}
         animate={ballControls}
       >
         {/* Destello de luz reflectante diagonal */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse pointer-events-none" />
 
-        {/* Ícono Activo en Blanco Brillante con aparición suave */}
+        {/* Ícono Activo en Negro con aparición suave */}
         <motion.div
           key={activeIndex}
           initial={{ scale: 0.4, opacity: 0, y: 10 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 440, damping: 22, delay: 0.08 }}
-          className="relative z-10 text-white [&_svg]:stroke-white [&_svg]:fill-white [&_svg]:w-6 [&_svg]:h-6 drop-shadow-sm flex items-center justify-center"
+          className="relative z-10 text-[#0A1C24] [&_svg]:stroke-current [&_svg]:w-6 [&_svg]:h-6 [&_svg]:stroke-[2.4] drop-shadow-xs flex items-center justify-center"
         >
           {activeItem?.icon}
         </motion.div>
@@ -241,14 +246,14 @@ export const AnimatedTabBar: React.FC<AnimatedTabBarProps> = ({
                 className={`transition-all duration-300 flex flex-col items-center justify-center ${
                   isActive
                     ? "opacity-0 pointer-events-none translate-y-3 scale-75"
-                    : "opacity-80 group-hover:opacity-100 group-hover:scale-110"
+                    : "opacity-85 group-hover:opacity-100 group-hover:scale-110"
                 }`}
               >
-                <div className="w-6 h-6 text-[#133238] group-hover:text-[#043651] transition-colors duration-200 flex items-center justify-center [&_svg]:w-5 [&_svg]:h-5">
+                <div className="w-6 h-6 text-[#0A1C24] font-black group-hover:text-black transition-colors duration-200 flex items-center justify-center [&_svg]:w-5 [&_svg]:h-5 [&_svg]:stroke-current [&_svg]:stroke-[2.2]">
                   {item.icon}
                 </div>
                 {item.label && (
-                  <span className="text-[10px] font-bold text-[#133238] group-hover:text-[#043651] transition-colors duration-200 mt-1 leading-none">
+                  <span className="text-[10px] font-extrabold text-[#0A1C24] group-hover:text-black transition-colors duration-200 mt-1 leading-none tracking-tight">
                     {item.label}
                   </span>
                 )}

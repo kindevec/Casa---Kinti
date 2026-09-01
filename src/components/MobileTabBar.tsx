@@ -71,31 +71,31 @@ export const MobileTabBar: React.FC = () => {
     {
       label: 'Inicio',
       href: '#inicio',
-      color: '#043651', // Azul Periwinkle
+      color: '#D4B26F',
       icon: <Home className="icon" />,
     },
     {
       label: 'Sobre Mí',
       href: '#sobre-mi',
-      color: '#2B7294', // Púrpura Lavanda
+      color: '#D4B26F',
       icon: <User className="icon" />,
     },
     {
       label: mode === 'educacion' ? 'Cursos' : 'Productos',
       href: '#productos',
-      color: '#CEAB67', // Rosa Floral
+      color: '#D4B26F',
       icon: mode === 'educacion' ? <BookOpen className="icon" /> : <ShoppingBag className="icon" />,
     },
     {
       label: 'Servicios',
       href: '#servicios',
-      color: '#2B7294', // Verde Esmeralda / Teal
+      color: '#D4B26F',
       icon: <Flower2 className="icon" />,
     },
     {
       label: 'WhatsApp',
       href: '#contacto',
-      color: '#25D366', // Verde Oficial WhatsApp
+      color: '#D4B26F',
       icon: <WhatsAppOfficialIcon className="w-5 h-5 fill-current" />,
     },
   ];
