@@ -43,7 +43,7 @@ export const ProductsSection: React.FC = () => {
               {mode === 'educacion' ? '✦ FORMACIÓN & ESTIMULACIÓN INFANTIL ✦' : '✦ ELEMENTOS SAGRADOS & PROTECCIÓN ✦'}
             </span>
 
-            <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-white font-bold leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+            <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#052C34] font-bold leading-tight drop-shadow-xs">
               {mode === 'educacion' ? (
                 <>
                   Cursos &{' '}
@@ -61,7 +61,7 @@ export const ProductsSection: React.FC = () => {
               )}
             </h2>
 
-            <p className="text-base sm:text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-[#052C34]/95 font-medium leading-relaxed max-w-3xl mx-auto">
               {mode === 'educacion'
                 ? 'Programas de inmersión bilingüe, escuela para familias y kits didácticos multisensoriales para potenciar el aprendizaje y desarrollo infantil.'
                 : 'Elementos naturales consagrados, aceites puros y amuletos con estudio radiestésico para proteger y armonizar tu energía.'}

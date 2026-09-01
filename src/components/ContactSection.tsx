@@ -105,7 +105,7 @@ export const ContactSection: React.FC = () => {
             ✦ RESERVAS & ASESORÍA PERSONALIZADA ✦
           </span>
 
-          <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-white font-bold leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+          <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#052C34] font-bold leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
               <>
                 Agenda tu cita{' '}
@@ -123,7 +123,7 @@ export const ContactSection: React.FC = () => {
             )}
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#052C34]/95 font-medium leading-relaxed max-w-3xl mx-auto">
             {mode === 'educacion'
               ? 'Coordina una evaluación psicopedagógica, asesoría para padres o taller de estimulación temprana con Johanna Proaño.'
               : 'Separa tu espacio para medicina ancestral andina, terapia de flores de Bach, tarot terapéutico o limpias energéticas en Quito o de forma virtual.'}

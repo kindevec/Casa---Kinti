@@ -269,15 +269,15 @@ export const ExperiencesSection: React.FC = () => {
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
               <>
-                Programas &{' '}
-                <span className="italic text-[#FFF8D6] drop-shadow-[0_2px_8px_rgba(5,44,52,0.35)] font-normal">
-                  Talleres de Casa Kinti
+                Programas & Talleres de{' '}
+                <span className="italic text-[#FFD700] drop-shadow-[0_2px_8px_rgba(5,44,52,0.4)] font-normal">
+                  Casa Kinti
                 </span>
               </>
             ) : (
               <>
                 Kits Abre Caminos de{' '}
-                <span className="italic text-[#FFF8D6] drop-shadow-[0_2px_8px_rgba(5,44,52,0.35)] font-normal">
+                <span className="italic text-[#FFD700] drop-shadow-[0_2px_8px_rgba(5,44,52,0.4)] font-normal">
                   Casa Kinti
                 </span>
               </>
@@ -291,7 +291,6 @@ export const ExperiencesSection: React.FC = () => {
         {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles (Flip Card) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
           {MYSTICAL_KITS_DATA.map((kit) => {
-            const isFeatured = kit.isFeatured;
             const isFlipped = flippedCardId === kit.id;
 
             return (
@@ -311,11 +310,7 @@ export const ExperiencesSection: React.FC = () => {
                       CARA FRONTAL: SOLO KIT, DIBUJO Y NOMBRE
                      ======================================================== */}
                   <div
-                    className={`absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col ${
-                      isFeatured
-                        ? 'bg-gradient-to-b from-[#E5C985]/80 via-[#D4B26F]/45 to-[#B88E44]/80 shadow-[0_0_35px_rgba(212,178,111,0.35),0_18px_45px_rgba(0,0,0,0.45)]'
-                        : 'bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]'
-                    }`}
+                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
                   >
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between items-center text-center overflow-hidden border border-[#D4B26F]/40">
                       
@@ -333,15 +328,10 @@ export const ExperiencesSection: React.FC = () => {
 
                       {/* Parte Alta: KIT 1 / KIT 2 / KIT 3 */}
                       <div className="relative z-10 pt-2">
-                        <div className="flex items-center justify-center gap-2">
+                        <div className="flex items-center justify-center">
                           <span className="font-serif text-sm sm:text-base font-bold tracking-[0.28em] text-[#00D2B4] uppercase px-3 py-1 rounded-full bg-[#00D2B4]/10 border border-[#00D2B4]/35 shadow-xs">
                             ✦ {kit.kitNumber} ✦
                           </span>
-                          {isFeatured && (
-                            <span className="bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs">
-                              Más Completo
-                            </span>
-                          )}
                         </div>
                       </div>
 
@@ -368,11 +358,7 @@ export const ExperiencesSection: React.FC = () => {
                       CARA TRASERA: DESCRIPCIÓN, PRECIOS Y BOTÓN DE PEDIR
                      ======================================================== */}
                   <div
-                    className={`absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col ${
-                      isFeatured
-                        ? 'bg-gradient-to-b from-[#E5C985]/80 via-[#D4B26F]/45 to-[#B88E44]/80 shadow-[0_0_35px_rgba(212,178,111,0.35),0_18px_45px_rgba(0,0,0,0.45)]'
-                        : 'bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]'
-                    }`}
+                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
                   >
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between overflow-hidden border border-[#D4B26F]/40 text-center">
                       
@@ -434,7 +420,7 @@ export const ExperiencesSection: React.FC = () => {
           })}
         </div>
 
-        {/* Cuadro Inferior con Efectos de Colores y Animaciones Dinámicas (Sin Insignia) */}
+        {/* Cuadro Inferior con Efectos de Colores y Animaciones Dinámicas (Sin Insignia y sin Redes Sociales) */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -502,19 +488,6 @@ export const ExperiencesSection: React.FC = () => {
               <p className="text-xs sm:text-sm md:text-base text-[#D4E4E7] max-w-2xl mx-auto leading-relaxed font-normal">
                 Por cada kit recibe un amuleto de protección como regalo o si deseas una lectura de péndulo de 3 preguntas.
               </p>
-
-              {/* Canales de Contacto con Efecto de Píldoras Brillantes */}
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00D2B4]/15 border border-[#00D2B4]/40 text-[#E2EEF0] shadow-[0_0_15px_rgba(0,210,180,0.25)] hover:scale-105 transition-transform">
-                  WhatsApp: <strong className="text-white">0983 442 341</strong>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFD700]/15 border border-[#FFD700]/40 text-[#FFF8D6] shadow-[0_0_15px_rgba(255,215,0,0.25)] hover:scale-105 transition-transform">
-                  Facebook: <strong className="text-white">casakinti</strong>
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00D2B4]/15 border border-[#00D2B4]/40 text-[#E2EEF0] shadow-[0_0_15px_rgba(0,210,180,0.25)] hover:scale-105 transition-transform">
-                  Instagram: <strong className="text-white">@casa_kinti_</strong>
-                </span>
-              </div>
             </div>
           </div>
         </motion.div>
