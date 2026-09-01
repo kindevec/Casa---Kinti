@@ -235,51 +235,87 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-3.5 text-xs sm:text-[13px] font-medium">
               
-              {/* Ubicación */}
-              <div className="flex items-start gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
-                  <MapPin className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
+              {/* Ubicación (Completamente NO seleccionable con animación de movimiento) */}
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-start gap-3.5 group cursor-default select-none"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FF512F] via-[#F09819] to-[#FFD700] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(240,152,25,0.45)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <MapPin className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                </motion.div>
+                <div className="leading-snug text-[#0A1C24] pt-1 select-none pointer-events-none">
+                  <span className="select-none pointer-events-none">{CONTACT_INFO.address}</span>
                 </div>
-                <div className="leading-snug text-[#0A1C24] pt-1 group-hover:text-[#B88E44] transition-colors">
-                  <span>{CONTACT_INFO.address}</span>
-                </div>
-              </div>
+              </motion.div>
 
               {/* Teléfono */}
-              <div className="flex items-center gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
-                  <Phone className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
-                </div>
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-center gap-3.5 group cursor-pointer"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#059669] via-[#10B981] to-[#00D2B4] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.45)] transition-all duration-300 ease-out overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Phone className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                </motion.div>
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/[^0-9+]/g, '')}`}
-                  className="text-[#0A1C24] group-hover:text-[#B88E44] transition-colors font-medium"
+                  className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors font-semibold"
                 >
                   {CONTACT_INFO.phone}
                 </a>
-              </div>
+              </motion.div>
 
               {/* Email */}
-              <div className="flex items-center gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
-                  <Mail className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
-                </div>
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-center gap-3.5 group cursor-pointer"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 4.1, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0284C7] via-[#38BDF8] to-[#00D2B4] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.45)] transition-all duration-300 ease-out overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Mail className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                </motion.div>
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="text-[#0A1C24] group-hover:text-[#B88E44] transition-colors truncate max-w-[200px] font-medium"
+                  className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors truncate max-w-[200px] font-semibold"
                 >
                   {CONTACT_INFO.email}
                 </a>
-              </div>
+              </motion.div>
 
               {/* Horarios de Atención */}
-              <div className="flex items-start gap-3.5 group cursor-pointer">
-                <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs mt-0.5 transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
-                  <Clock className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
-                </div>
-                <div className="leading-snug text-[#0A1C24] pt-1 group-hover:text-[#B88E44] transition-colors">
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-start gap-3.5 group cursor-default select-none"
+              >
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C3AED] via-[#A855F7] to-[#F59E0B] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(168,85,247,0.45)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Clock className="relative z-10 w-4.5 h-4.5 text-white stroke-[2.4]" />
+                </motion.div>
+                <div className="leading-snug text-[#0A1C24] pt-1 select-none">
                   <span>Lun - Sáb: 8:00 AM - 6:00 PM</span>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>

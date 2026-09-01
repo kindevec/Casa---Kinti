@@ -288,15 +288,25 @@ export const ExperiencesSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles (Flip Card) */}
+        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles con Animaciones de Levitación y Movimiento */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
-          {MYSTICAL_KITS_DATA.map((kit) => {
+          {MYSTICAL_KITS_DATA.map((kit, idx) => {
             const isFlipped = flippedCardId === kit.id;
 
             return (
-              <div
+              <motion.div
                 key={kit.id}
                 onClick={() => toggleFlip(kit.id)}
+                animate={{
+                  y: [0, idx === 1 ? -9 : -6, 0],
+                }}
+                transition={{
+                  duration: 4.5 + idx * 0.6,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: idx * 0.35,
+                }}
+                whileHover={{ scale: 1.025 }}
                 className="group relative h-[470px] sm:h-[490px] w-full [perspective:1000px] cursor-pointer select-none"
               >
                 {/* Contenedor Giratorio 3D con animación suave */}
@@ -307,10 +317,10 @@ export const ExperiencesSection: React.FC = () => {
                 >
                   
                   {/* ========================================================
-                      CARA FRONTAL: SOLO KIT, DIBUJO Y NOMBRE
+                      CARA FRONTAL: SOLO KIT, DIBUJO Y NOMBRE CON EFECTOS
                      ======================================================== */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
+                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)] group-hover:shadow-[0_0_35px_rgba(255,215,0,0.35)] transition-shadow duration-500"
                   >
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between items-center text-center overflow-hidden border border-[#D4B26F]/40">
                       
@@ -323,8 +333,15 @@ export const ExperiencesSection: React.FC = () => {
                       {/* Marco interior fino dorado */}
                       <div className="absolute inset-3 rounded-xl border border-[#D4B26F]/30 pointer-events-none" />
                       
-                      {/* Resplandor ambiental de luz */}
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#00D2B4]/10 blur-2xl pointer-events-none" />
+                      {/* Resplandor ambiental de luz pulsante */}
+                      <motion.div
+                        animate={{
+                          opacity: [0.15, 0.35, 0.15],
+                          scale: [1, 1.15, 1],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                        className="absolute top-0 left-1/2 -translate-x-1/2 w-52 h-36 bg-[#00D2B4]/20 blur-2xl pointer-events-none"
+                      />
 
                       {/* Parte Alta: KIT 1 / KIT 2 / KIT 3 */}
                       <div className="relative z-10 pt-2">
@@ -335,10 +352,20 @@ export const ExperiencesSection: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Centro: Dibujo Místico (Sol, Luna o Estrella) */}
-                      <div className="relative z-10 my-auto py-4 transition-transform duration-500 group-hover:scale-110">
+                      {/* Centro: Dibujo Místico con Animación Suave (Sol, Luna o Estrella) */}
+                      <motion.div
+                        animate={
+                          idx === 0
+                            ? { rotate: [0, 4, -4, 0], scale: [1, 1.03, 1] }
+                            : idx === 1
+                            ? { y: [0, -4, 0], rotate: [0, 2.5, 0] }
+                            : { scale: [1, 1.05, 0.98, 1], rotate: [0, 6, -6, 0] }
+                        }
+                        transition={{ duration: 6 + idx, repeat: Infinity, ease: 'easeInOut' }}
+                        className="relative z-10 my-auto py-4 transition-transform duration-500 group-hover:scale-110"
+                      >
                         {kit.emblem}
-                      </div>
+                      </motion.div>
 
                       {/* Parte Baja: Nombre del Kit & Pista de Volteo */}
                       <div className="relative z-10 pb-2 w-full">
@@ -358,7 +385,7 @@ export const ExperiencesSection: React.FC = () => {
                       CARA TRASERA: DESCRIPCIÓN, PRECIOS Y BOTÓN DE PEDIR
                      ======================================================== */}
                   <div
-                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
+                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
                   >
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between overflow-hidden border border-[#D4B26F]/40 text-center">
                       
@@ -415,18 +442,23 @@ export const ExperiencesSection: React.FC = () => {
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Cuadro Inferior con Efectos de Colores y Animaciones Dinámicas (Sin Insignia y sin Redes Sociales) */}
+        {/* Cuadro Inferior con Animaciones de Movimiento Flotante y Efectos de Color */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative max-w-4xl mx-auto mt-12 sm:mt-16 p-[2.5px] rounded-3xl overflow-hidden group shadow-[0_12px_45px_rgba(0,0,0,0.35),0_0_35px_rgba(0,210,180,0.25)] hover:shadow-[0_16px_55px_rgba(255,215,0,0.35),0_0_45px_rgba(0,210,180,0.45)] transition-all duration-500"
+          animate={{
+            y: [0, -9, 0],
+          }}
+          transition={{
+            duration: 5.2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          whileHover={{ scale: 1.02 }}
+          className="relative max-w-4xl mx-auto mt-12 sm:mt-16 p-[2.5px] rounded-3xl overflow-hidden group shadow-[0_14px_45px_rgba(0,0,0,0.35),0_0_35px_rgba(0,210,180,0.25)] hover:shadow-[0_18px_60px_rgba(255,215,0,0.4),0_0_50px_rgba(0,210,180,0.5)] transition-all duration-500"
         >
           {/* Borde Animado Conic Multicolor (Turquesa, Oro, Ámbar, Esmeralda en Giro Continuo) */}
           <motion.div
