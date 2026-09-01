@@ -1,282 +1,166 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNicheMode } from '../context/NicheContext';
-import { CoverflowCarousel, CoverflowSlide } from './ui/coverflow-carousel';
 import { WHATSAPP_PHONE } from '../data';
+import { Check, Sparkles, Gift, Tag, ExternalLink, X, ZoomIn } from 'lucide-react';
+import { WhatsAppOfficialIcon } from './FloralDecorations';
 
-const HOLISTICA_COVERFLOW_SLIDES: CoverflowSlide[] = [
+interface KitCardData {
+  id: string;
+  kitNumber: string;
+  title: string;
+  subtitle: string;
+  price: string;
+  badge: string;
+  isFeatured?: boolean;
+  image: string;
+  duration: string;
+  description: string;
+  features: string[];
+  whatsappMessage: string;
+}
+
+const KITS_ABRE_CAMINOS: KitCardData[] = [
   {
-    src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
-    alt: 'Kit de Sahumerios Naturales & Sales de Baño',
-    title: 'Kit de Sahumerios & Sales de Baño',
-    price: '$12.00',
-    badge: 'Kit Purificación',
-    subtitle:
-      'Kit ritual completo con sahumerios de hierbas naturales y sales de baño con aceites esenciales para baños de limpieza y purificación en casa.',
-    meta: [
-      { label: 'Contenido', value: 'Sahumerio + Sales' },
-      { label: 'Esencias', value: 'Aceites Puros' },
+    id: 'kit-1',
+    kitNumber: 'KIT 1',
+    title: 'Baños de Despojo & Florecimiento',
+    subtitle: 'Armonización Canalizada Personal',
+    price: '50 usd',
+    badge: 'Acompañamiento Terapéutico',
+    image: '/kit-1-abre-caminos.jpg',
+    duration: '2 a 3 horas de duración',
+    description:
+      'Baños de despojo y florecimiento con aceites y plantas, armonización canalizada personal de centros energéticos: consiste en una limpia energética con plantas y sahumos naturales con previo acompañamiento terapéutico para diagnosticar qué centro energético está bloqueado por medio del péndulo. Totalmente personalizado.',
+    features: [
+      'Limpia energética con plantas y sahumos naturales',
+      'Diagnóstico previo con péndulo de centros bloqueados',
+      'Baños de despojo y florecimiento con aceites',
+      'Sesión totalmente personalizada (2 a 3 horas)',
     ],
-    ctaText: 'Pedir Kit por WhatsApp',
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit de Sahumerios Naturales & Sales de Baño ($12 USD).',
+      'Hola Johanna, deseo adquirir el Kit 1 Abre Caminos ($50 USD): Baños de despojo, florecimiento y armonización personal.',
   },
   {
-    src: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
-    alt: 'Aceites Esenciales Personalizados 20ml',
-    title: 'Aceites Esenciales Personalizados',
-    price: '$15.00',
-    badge: 'Mezclas Personales',
-    subtitle:
-      'Mezclas personales formuladas a medida según tu energía y necesidad terapéutica en frasco de vidrio de 20ml con esencias puras.',
-    meta: [
-      { label: 'Presentación', value: 'Frasco 20ml' },
-      { label: 'Fórmula', value: 'Personalizada' },
+    id: 'kit-2',
+    kitNumber: 'KIT 2',
+    title: 'Limpia Integral & Armonización de Espacio',
+    subtitle: 'Equilibrio de los 7 Chakras y tu Hogar',
+    price: '100 usd',
+    badge: 'Más Completo',
+    isFeatured: true,
+    image: '/kit-2-abre-caminos.jpg',
+    duration: 'Sesión Integral Personal + Espacio',
+    description:
+      'Limpia con plantas, humos + armonización canalizada personal + limpia y armonización de espacio: Un kit completo para equilibrar tus 7 centros energéticos y el espacio inmediato en el que habitas.',
+    features: [
+      'Limpia profunda con plantas y humos sagrados',
+      'Armonización canalizada personal de alta vibración',
+      'Equilibrio completo de tus 7 centros energéticos',
+      'Limpia y armonización energética del espacio/hogar',
     ],
-    ctaText: 'Pedir mi Aceite por WhatsApp',
     whatsappMessage:
-      'Hola Johanna, deseo pedir un frasco de Aceite Esencial Personalizado de 20ml ($15 USD).',
+      'Hola Johanna, deseo adquirir el Kit 2 Abre Caminos ($100 USD): Limpia integral de 7 centros y armonización de espacio.',
   },
   {
-    src: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80',
-    alt: 'Cuarzos Consagrados para Protección',
-    title: 'Cuarzos Consagrados de Protección',
-    price: '$15.00',
-    badge: 'Consagración Ritual',
-    subtitle:
-      'Cristales naturales activados y consagrados ritualmente para actuar como escudo protector y transmutar energías densas.',
-    meta: [
-      { label: 'Piedra', value: '100% Natural' },
-      { label: 'Energía', value: 'Escudo Protector' },
+    id: 'kit-3',
+    kitNumber: 'KIT 3',
+    title: 'Limpias con Medicina del Rapé',
+    subtitle: 'Cuencos Tibetanos & Ondas Binaurales',
+    price: '50 usd',
+    badge: 'Medicina Sagrada',
+    image: '/kit-3-abre-caminos.jpg',
+    duration: 'Ceremonia & Meditación Profunda',
+    description:
+      'Limpias Abre caminos con medicina del Rapé, medicina milenaria que libera patrones de comportamiento obsoletos y memorias erróneas, se complementa con una meditación profunda canalizada mientras tus centros energéticos se limpian con cuarzos, acompañada de los sonidos de los cuencos y ondas binaurales.',
+    features: [
+      'Medicina milenaria de Rapé sagrado liberador',
+      'Liberación de patrones y memorias erróneas',
+      'Limpieza de centros energéticos con cuarzos',
+      'Meditación con cuencos sagrados y ondas binaurales',
     ],
-    ctaText: 'Pedir Cuarzo por WhatsApp',
     whatsappMessage:
-      'Hola Johanna, deseo encargar un Cuarzo Consagrado para Protección ($15 USD).',
-  },
-  {
-    src: '/pulseras-amuletos.png',
-    alt: 'Pulseras de Protección Consagradas',
-    title: 'Pulseras de Protección Consagradas',
-    price: '$12.00',
-    badge: 'Amuleto Protector',
-    subtitle:
-      'Pulseras protectoras consagradas elaboradas con elementos de poder natural para acompañarte en tu día a día blindando tu aura.',
-    meta: [
-      { label: 'Cuentas', value: 'Piedras Naturales' },
-      { label: 'Intención', value: 'Blindaje Áurico' },
-    ],
-    ctaText: 'Pedir mi Pulsera por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, deseo encargar una Pulsera de Protección Consagrada ($12 USD).',
-  },
-  {
-    src: '/tarot-hero.png',
-    alt: 'Lectura de Tarot Completa',
-    title: 'Lectura de Tarot Completa',
-    price: '$35.00',
-    badge: 'Más Solicitada',
-    subtitle:
-      'Sesión profunda que incluye lectura general de tu momento vital, respuesta a 6 preguntas específicas y lectura de Ángeles y Ancestros.',
-    meta: [
-      { label: 'Preguntas', value: '6 Específicas' },
-      { label: 'Canalización', value: 'Ángeles & Ancestros' },
-    ],
-    ctaText: 'Reservar Tarot Completo',
-    whatsappMessage:
-      'Hola Johanna, deseo reservar la Lectura de Tarot Completa con 6 preguntas y Ángeles/Ancestros ($35 USD).',
-  },
-  {
-    src: '/johanna-hero.png',
-    alt: 'Lectura Express de Tarot',
-    title: 'Lectura Express de Tarot',
-    price: '$20.00',
-    badge: 'Sesión Express',
-    subtitle:
-      'Orientación clara y al punto para resolver dudas inmediatas. Incluye lectura general del panorama y 3 preguntas específicas.',
-    meta: [
-      { label: 'Preguntas', value: '3 Específicas' },
-      { label: 'Enfoque', value: 'Directo y Ágil' },
-    ],
-    ctaText: 'Reservar Lectura Express',
-    whatsappMessage:
-      'Hola Johanna, deseo reservar la Lectura Express de Tarot ($20 USD).',
-  },
-  {
-    src: '/hero-holistica-tambor.jpg',
-    alt: 'Psicoterapia Asistida con Honguitos',
-    title: 'Psicoterapia Asistida con Honguitos',
-    price: '$120.00',
-    badge: '4 Sesiones',
-    subtitle:
-      'Proceso terapéutico profundo de medicina enteógena guiada por Johanna Proaño. Paquete integral de 4 sesiones de sanación e integración.',
-    meta: [
-      { label: 'Paquete', value: '4 Sesiones' },
-      { label: 'Guía', value: 'Terapéutica Experta' },
-    ],
-    ctaText: 'Consultar por WhatsApp',
-    whatsappMessage:
-      'Hola Johanna, me interesa el Paquete de 4 sesiones de Psicoterapia Asistida con Honguitos ($120 USD).',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
-    alt: 'Psicoterapia con Registros Akáshicos',
-    title: 'Psicoterapia con Registros Akáshicos',
-    price: '$80.00',
-    badge: '2 Sesiones',
-    subtitle:
-      'Apertura de tus memorias del alma para comprender el origen de bloqueos, patrones repetitivos y sanar contratos kármicos.',
-    meta: [
-      { label: 'Paquete', value: '2 Sesiones' },
-      { label: 'Enfoque', value: 'Memorias del Alma' },
-    ],
-    ctaText: 'Reservar Registros Akáshicos',
-    whatsappMessage:
-      'Hola Johanna, deseo reservar las 2 sesiones de Psicoterapia con Registros Akáshicos ($80 USD).',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80',
-    alt: 'Ceremonia de Ayahuasca en el Puyo',
-    title: 'Ceremonia de Ayahuasca en el Puyo',
-    price: '$160.00',
-    badge: 'Retiro 2 Días',
-    subtitle:
-      'Inmersión ceremonial de 2 días en la selva del Puyo con la medicina sagrada Ayahuasca, purga, dietas y acompañamiento chamánico.',
-    meta: [
-      { label: 'Lugar', value: 'Puyo (Selva)' },
-      { label: 'Duración', value: '2 Días Completos' },
-    ],
-    ctaText: 'Reservar Retiro en Puyo',
-    whatsappMessage:
-      'Hola Johanna, deseo reservar mi cupo para la Ceremonia de Ayahuasca en el Puyo ($160 USD).',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
-    alt: 'Ceremonia de Unión de Pareja',
-    title: 'Ceremonia de Unión de Pareja',
-    price: '$120.00',
-    badge: 'Ritual Sagrado',
-    subtitle:
-      'Ritual de bendición consciente de almas con los cuatro elementos sagrados, armonización energética y consagración de votos de amor.',
-    meta: [
-      { label: 'Elementos', value: 'Fuego, Agua, Tierra, Aire' },
-      { label: 'Duración', value: '90 - 120 min' },
-    ],
-    ctaText: 'Agendar Ceremonia de Unión',
-    whatsappMessage:
-      'Hola Johanna, deseo agendar una Ceremonia de Unión de Pareja ($120 USD).',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
-    alt: 'Ceremonia de Cacao y Círculo de Mujeres',
-    title: 'Ceremonia de Cacao & Círculo de Mujeres',
-    price: '$120.00',
-    badge: 'Círculo Sagrado',
-    subtitle:
-      'Medicina del corazón con cacao puro ceremonial, cantos sagrados, meditación, danza y tejido de sabiduría femenina compartida.',
-    meta: [
-      { label: 'Medicina', value: 'Cacao Puro Ancestral' },
-      { label: 'Duración', value: '3 Horas' },
-    ],
-    ctaText: 'Participar en Círculo de Cacao',
-    whatsappMessage:
-      'Hola Johanna, deseo participar en la Ceremonia de Cacao y Círculo de Mujeres ($120 USD).',
+      'Hola Johanna, deseo adquirir el Kit 3 Abre Caminos ($50 USD): Limpias con medicina del Rapé, cuencos y ondas binaurales.',
   },
 ];
 
-const EDUCACION_COVERFLOW_SLIDES: CoverflowSlide[] = [
+const KITS_EDUCACION: KitCardData[] = [
   {
-    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-    alt: 'Diagnóstico Psicopedagógico Integral',
+    id: 'edu-1',
+    kitNumber: 'PROGRAMA 1',
     title: 'Diagnóstico Psicopedagógico Integral',
-    price: '$40.00',
+    subtitle: 'Evaluación Cognitiva y del Lenguaje',
+    price: '40 usd',
     badge: 'Evaluación Completa',
-    subtitle:
-      'Evaluación especializada de dificultades de aprendizaje, desarrollo del lenguaje y estilo cognitivo con informe para escuela y hogar.',
-    meta: [
-      { label: 'Duración', value: '60 a 75 min' },
-      { label: 'Informe', value: 'Completo Incluido' },
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    duration: '60 a 75 min',
+    description:
+      'Evaluación especializada de dificultades de aprendizaje, desarrollo del lenguaje y estilo cognitivo. Incluye informe pedagógico detallado con pautas para la escuela y el hogar.',
+    features: [
+      'Evaluación personalizada de estilo cognitivo',
+      'Detección temprana de bloqueos de aprendizaje',
+      'Informe psicopedagógico formal para escuela y hogar',
+      'Plan de intervención y recomendaciones familiares',
     ],
-    ctaText: 'Agendar Diagnóstico',
     whatsappMessage:
-      'Hola Johanna, me gustaría agendar un Diagnóstico Psicopedagógico Integral para mi hijo(a).',
+      'Hola Johanna, me gustaría agendar un Diagnóstico Psicopedagógico Integral para mi hijo(a) ($40 USD).',
   },
   {
-    src: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
-    alt: 'Play & Learn: Inmersión Bilingüe',
+    id: 'edu-2',
+    kitNumber: 'PROGRAMA 2',
     title: 'Play & Learn: Inmersión Bilingüe',
-    price: '$45.00',
-    badge: 'Taller Continuo',
-    subtitle:
-      'Estimulación temprana del lenguaje en inglés y español a través de canciones, juegos sensoriales y dinámicas vivenciales.',
-    meta: [
-      { label: 'Edades', value: '2 a 6 años' },
-      { label: 'Grupos', value: 'Personalizados' },
+    subtitle: 'Estimulación Temprana Lúdica',
+    price: '45 usd',
+    badge: 'Más Solicitado',
+    isFeatured: true,
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+    duration: 'Taller Continuo Mensual',
+    description:
+      'Estimulación temprana del lenguaje en inglés y español a través de canciones, dinámicas sensoriales y juegos vivenciales que potencian la plasticidad neuronal en edades tempranas (2 a 6 años).',
+    features: [
+      'Inmersión lingüística natural e interactiva',
+      'Desarrollo de motricidad fina y socialización',
+      'Grupos reducidos con seguimiento cercano',
+      'Material sensorial y lúdico incluido',
     ],
-    ctaText: 'Inscribir a mi Hijo(a)',
     whatsappMessage:
-      'Hola Johanna, deseo información para inscribir a mi hijo(a) en el Taller de Inmersión Bilingüe Infantil.',
+      'Hola Johanna, deseo información para inscribir a mi hijo(a) en el Taller de Inmersión Bilingüe ($45 USD).',
   },
   {
-    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-    alt: 'Asesoría y Pautas de Estudio en el Hogar',
-    title: 'Escuela & Pautas de Estudio en el Hogar',
-    price: '$35.00',
-    badge: 'Pautas para Padres',
-    subtitle:
-      'Orientación para padres con estrategias pedagógicas concretas para crear rutinas de estudio amigables y apoyar la autonomía.',
-    meta: [
-      { label: 'Duración', value: '60 min' },
-      { label: 'Modalidad', value: 'Presencial u Online' },
+    id: 'edu-3',
+    kitNumber: 'PROGRAMA 3',
+    title: 'Kit Didáctico Multisensorial',
+    subtitle: 'Lectoescritura & Atención en Casa',
+    price: '28 usd',
+    badge: 'Material Físico',
+    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
+    duration: 'Pack de Material + Guía Familiar',
+    description:
+      'Pack de fichas táctiles, tarjetas fonéticas bilingües y juegos de concentración diseñados para reforzar el aprendizaje lúdico en casa sin estrés ni frustración.',
+    features: [
+      'Fichas sensoriales plastificadas de alta duración',
+      'Tarjetas fonéticas bilingües inglés/español',
+      'Guía paso a paso para padres con dinámicas de juego',
+      'Foco en lectoescritura, memoria y atención',
     ],
-    ctaText: 'Solicitar Asesoría',
     whatsappMessage:
-      'Hola Johanna, quiero una sesión de asesoría pedagógica y pautas para el hogar.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
-    alt: 'Kit Didáctico de Lectoescritura & Atención',
-    title: 'Kit Didáctico de Lectoescritura & Atención',
-    price: '$28.00',
-    badge: 'Kit Didáctico',
-    subtitle:
-      'Pack de fichas táctiles, tarjetas fonéticas bilingües y juegos de motricidad diseñados para reforzar el aprendizaje lúdico en casa.',
-    meta: [
-      { label: 'Material', value: 'Sensorial Plastificado' },
-      { label: 'Guía', value: 'Para Padres Incluida' },
-    ],
-    ctaText: 'Adquirir Kit Didáctico',
-    whatsappMessage:
-      'Hola Johanna, deseo adquirir el Kit Didáctico Multisensorial de Refuerzo.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=800&q=80',
-    alt: 'Seguridad y Éxito Escolar en Niños Felices',
-    title: 'Acompañamiento & Autonomía Escolar',
-    price: '$60.00',
-    badge: 'Acompañamiento',
-    subtitle:
-      'Seguimiento pedagógico continuo para construir seguridad, motivación y felicidad en su etapa escolar con bases sólidas.',
-    meta: [
-      { label: 'Enfoque', value: 'Pedagogía Positiva' },
-      { label: 'Impacto', value: 'Autonomía & Éxito' },
-    ],
-    ctaText: 'Solicitar Acompañamiento',
-    whatsappMessage:
-      'Hola Johanna, deseo información sobre el plan de Acompañamiento y Autonomía Escolar.',
+      'Hola Johanna, deseo adquirir el Kit Didáctico Multisensorial de Refuerzo ($28 USD).',
   },
 ];
 
 export const ExperiencesSection: React.FC = () => {
   const { mode } = useNicheMode();
-  const coverflowSlides = mode === 'educacion' ? EDUCACION_COVERFLOW_SLIDES : HOLISTICA_COVERFLOW_SLIDES;
+  const [selectedFlyer, setSelectedFlyer] = useState<{ src: string; alt: string; title: string } | null>(null);
+
+  const kits = mode === 'educacion' ? KITS_EDUCACION : KITS_ABRE_CAMINOS;
 
   return (
     <section id="experiencias" className="relative py-14 sm:py-18 md:py-24 overflow-hidden bg-[#FAFCFD] text-[#133238] border-t border-[#D4A346]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Título de las Promociones y Carrusel */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-8 sm:mb-12">
+        {/* Cabecera de la Sección */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-14">
           <span className="text-[11px] sm:text-xs font-serif tracking-[0.22em] text-[#B88E44] uppercase font-bold drop-shadow-xs block">
-            ✦ PROMOCIONES & EXPERIENCIAS DESTACADAS ✦
+            ✦ PROMOCIONES & KITS DESTACADOS ✦
           </span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#133238] font-bold leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
@@ -288,33 +172,200 @@ export const ExperiencesSection: React.FC = () => {
               </>
             ) : (
               <>
-                Kits &{' '}
+                Kits Abre Caminos de{' '}
                 <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal">
-                  Terapias en Promoción
+                  Casa Kinti
                 </span>
               </>
             )}
           </h3>
-          <p className="text-xs sm:text-sm text-[#2C484E] font-light max-w-md mx-auto leading-relaxed">
-            Explora las tarjetas interactivas de nuestros kits y experiencias sagradas, con sus precios oficiales y reserva directa por WhatsApp.
+          <p className="text-xs sm:text-sm md:text-base text-[#2C484E] font-light max-w-2xl mx-auto leading-relaxed">
+            {mode === 'educacion'
+              ? 'Programas especializados diseñados para acompañar el neurodesarrollo y la autonomía escolar con amor y rigor científico.'
+              : 'Experimenta el gozo de liberar emociones bloqueadas para abrir los nuevos caminos de prosperidad.'}
           </p>
         </div>
 
-        {/* Componente 3D CoverflowCarousel con información estructurada en tarjetas */}
-        <CoverflowCarousel
-          slides={coverflowSlides}
-          cardWidth="clamp(260px, 28vw, 330px)"
-          cardHeight="clamp(410px, 44vw, 475px)"
-          rotate={36}
-          depth={0.55}
-          autoPlayInterval={2800}
-          showCaption={false}
-          showNavigation={true}
-          showPagination={true}
-          whatsappPhone={WHATSAPP_PHONE}
-        />
+        {/* Cuadrícula de 3 Tarjetas de Kits */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+          {kits.map((kit) => {
+            const isKit2 = kit.isFeatured;
+            return (
+              <div
+                key={kit.id}
+                className={`group relative rounded-3xl overflow-hidden bg-white transition-all duration-400 flex flex-col justify-between ${
+                  isKit2
+                    ? 'border-2 border-[#D4A346] shadow-[0_16px_40px_rgba(212,163,70,0.24)] ring-1 ring-[#FFD700]/50 md:-translate-y-2'
+                    : 'border border-[#D4A346]/30 shadow-[0_10px_28px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_35px_rgba(212,178,111,0.18)] hover:-translate-y-1'
+                }`}
+              >
+                {/* Zona Superior: Imagen con Badges y Precio */}
+                <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-[#041A20] shrink-0">
+                  <img
+                    src={kit.image}
+                    alt={kit.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  {/* Sombra sutil para legibilidad de badges */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/35 pointer-events-none" />
+
+                  {/* Insignia de Número de Kit / Categoría */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                    <span className="bg-[#052C34]/90 backdrop-blur-md text-[#FFEA79] font-serif text-[11px] sm:text-xs font-bold tracking-wider px-3 py-1 rounded-full border border-[#FFEA79]/40 shadow-sm">
+                      {kit.kitNumber}
+                    </span>
+                    {kit.isFeatured && (
+                      <span className="bg-gradient-to-r from-[#D4A346] to-[#B88E44] text-[#0A1C24] font-serif text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
+                        ★ Más Completo
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Cápsula de Precio Oficial */}
+                  <span className="absolute top-3 right-3 bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#0A1C24] font-serif font-black text-xs sm:text-sm px-3.5 py-1 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.35)] border border-white/70">
+                    Precio: {kit.price}
+                  </span>
+
+                  {/* Botón de lupa para ver flyer completo */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedFlyer({ src: kit.image, alt: kit.title, title: kit.title })}
+                    className="absolute bottom-3 right-3 bg-black/60 hover:bg-black/85 text-white/90 hover:text-white p-2 rounded-full backdrop-blur-md border border-white/30 transition-all hover:scale-110 cursor-pointer"
+                    title="Ver flyer completo"
+                    aria-label="Ver flyer completo"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </button>
+
+                  {/* Duración en la parte inferior de la foto */}
+                  <div className="absolute bottom-3 left-3">
+                    <span className="bg-white/85 backdrop-blur-sm text-[#133238] font-medium text-[11px] px-2.5 py-0.5 rounded-md border border-[#D4A346]/40 shadow-xs">
+                      ⏱ {kit.duration}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Zona Inferior: Contenido Estructurado */}
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-white via-[#FCFDFE] to-[#F7FAFA] border-t border-[#E5C985]/30">
+                  <div>
+                    {/* Título & Subtítulo */}
+                    <div className="mb-3">
+                      <h4 className="font-serif text-lg sm:text-xl font-bold text-[#0A1C24] group-hover:text-[#8C6420] transition-colors leading-snug">
+                        {kit.title}
+                      </h4>
+                      <p className="text-xs sm:text-[13px] text-[#B88E44] font-semibold tracking-wide mt-0.5">
+                        {kit.subtitle}
+                      </p>
+                    </div>
+
+                    {/* Descripción completa */}
+                    <p className="text-xs sm:text-[13px] text-[#2C484E] leading-relaxed mb-4 font-normal">
+                      {kit.description}
+                    </p>
+
+                    {/* Lista de Puntos Clave */}
+                    <div className="space-y-1.5 mb-5">
+                      {kit.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-xs sm:text-[12.5px] text-[#133238]">
+                          <Check className="w-3.5 h-3.5 text-[#25D366] shrink-0 mt-0.5" />
+                          <span className="leading-tight">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Beneficio de Regalo y Botón WhatsApp */}
+                  <div className="pt-3 border-t border-[#E5C985]/30 space-y-3">
+                    {mode === 'holistica' && (
+                      <div className="bg-[#FFF8D6]/80 border border-[#E5C985]/60 rounded-xl p-2.5 text-[11px] sm:text-xs text-[#133238] flex items-center gap-2">
+                        <Gift className="w-4 h-4 text-[#B88E44] shrink-0" />
+                        <span>
+                          <strong>Regalo:</strong> Amuleto protector o lectura de péndulo (3 preguntas).
+                        </span>
+                      </div>
+                    )}
+
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(kit.whatsappMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-r from-[#25D366] to-[#1EBE5D] hover:from-[#20bd5a] hover:to-[#17a84e] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-md shadow-[#25D366]/20 transition-all duration-200 hover:scale-102 active:scale-98 flex items-center justify-center gap-2 cursor-pointer select-none"
+                    >
+                      <WhatsAppOfficialIcon className="w-4 h-4 text-white shrink-0" />
+                      <span>Pedir {kit.kitNumber} por WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Banner de Promoción Especial */}
+        {mode === 'holistica' && (
+          <div className="max-w-4xl mx-auto mt-10 sm:mt-14 bg-gradient-to-r from-[#041A20] via-[#072B33] to-[#041A20] border-2 border-[#E5C985]/40 rounded-3xl p-6 sm:p-8 text-center text-white shadow-2xl relative overflow-hidden">
+            {/* Decoración de fondo */}
+            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-[#FFD700]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-48 h-48 bg-[#25D366]/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 space-y-2.5">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFD700] uppercase tracking-wider bg-[#FFF8D6]/10 px-3 py-1 rounded-full border border-[#FFD700]/30">
+                <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" /> Promoción de Apertura de Caminos
+              </span>
+
+              <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#FFF8D6]">
+                Con la compra de 2 kits obtendrás el 10% de descuento
+              </h4>
+
+              <p className="text-xs sm:text-sm text-[#D7E3E5] max-w-2xl mx-auto leading-relaxed">
+                Por cada kit recibe un amuleto de protección como regalo o si deseas una lectura de péndulo de 3 preguntas.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-[#E5C985]">
+                <span>WhatsApp: <strong>0983 442 341</strong></span>
+                <span>•</span>
+                <span>Facebook: <strong>casakinti</strong></span>
+                <span>•</span>
+                <span>Instagram: <strong>@casa_kinti_</strong></span>
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
+
+      {/* Modal Lightbox para ver flyer en grande */}
+      {selectedFlyer && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+          onClick={() => setSelectedFlyer(null)}
+        >
+          <div
+            className="relative max-w-lg w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-3 bg-[#041A20] text-white flex items-center justify-between border-b border-[#D4A346]/40">
+              <span className="font-serif text-sm font-bold text-[#FFD700]">{selectedFlyer.title}</span>
+              <button
+                type="button"
+                onClick={() => setSelectedFlyer(null)}
+                className="p-1 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Cerrar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-2 overflow-y-auto flex items-center justify-center bg-[#07242B]">
+              <img
+                src={selectedFlyer.src}
+                alt={selectedFlyer.alt}
+                className="w-full h-auto max-h-[78vh] object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
