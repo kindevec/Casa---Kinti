@@ -258,17 +258,14 @@ export const ExperiencesSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Cabecera de la Sección */}
+        {/* Cabecera de la Sección (Sin el texto previo eliminado) */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
-          <span className="text-xs font-serif tracking-[0.28em] text-[#00D2B4] uppercase font-bold drop-shadow-xs block">
-            ✦ KITS ABRE CAMINOS DE CASA KINTI ✦
-          </span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
               <>
                 Programas &{' '}
                 <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] bg-clip-text text-transparent font-normal">
-                  Talleres en Promoción
+                  Talleres de Casa Kinti
                 </span>
               </>
             ) : (
@@ -313,16 +310,12 @@ export const ExperiencesSection: React.FC = () => {
                   {/* Resplandor ambiental superior turquesa/dorado */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#00D2B4]/10 blur-2xl pointer-events-none" />
 
-                  {/* Parte Superior: Emblema Celestial & Títulos */}
+                  {/* Parte Superior: KIT 1 / KIT 2 / KIT 3 arriba de todo */}
                   <div className="relative z-10 text-center">
-                    {/* Emblema Celestial */}
-                    <div className="mb-3 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-1">
-                      {kit.emblem}
-                    </div>
-
-                    {/* Número de Kit en Turquesa del Header */}
-                    <div className="flex items-center justify-center gap-2 mb-1.5">
-                      <span className="font-serif text-xs sm:text-sm font-bold tracking-[0.25em] text-[#00D2B4] uppercase">
+                    
+                    {/* Arriba de cada tarjeta: KIT 1, KIT 2 o KIT 3 */}
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <span className="font-serif text-sm sm:text-base font-bold tracking-[0.25em] text-[#00D2B4] uppercase px-3 py-0.5 rounded-full bg-[#00D2B4]/10 border border-[#00D2B4]/30 shadow-xs">
                         ✦ {kit.kitNumber} ✦
                       </span>
                       {isFeatured && (
@@ -330,6 +323,11 @@ export const ExperiencesSection: React.FC = () => {
                           Más Completo
                         </span>
                       )}
+                    </div>
+
+                    {/* Emblema Celestial */}
+                    <div className="mb-3 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-1">
+                      {kit.emblem}
                     </div>
 
                     {/* Título de la Carta */}
@@ -355,21 +353,15 @@ export const ExperiencesSection: React.FC = () => {
                     {/* Divisor Ornamental */}
                     <div className="w-28 h-px bg-gradient-to-r from-transparent via-[#D4B26F]/60 to-transparent mx-auto mb-4" />
 
-                    {/* En qué consiste (Descripción Breve y Directa) */}
+                    {/* Descripción Breve y Directa (sin la palabra 'En qué consiste') */}
                     <div className="text-left bg-[#020B0E]/60 border border-[#D4B26F]/20 rounded-xl p-3.5 mb-4">
-                      <span className="text-[10px] font-bold text-[#00D2B4] uppercase tracking-wider block mb-1">
-                        En qué consiste:
-                      </span>
                       <p className="text-xs sm:text-[12.5px] text-[#E2EEF0] leading-relaxed font-normal">
                         {kit.consistsOf}
                       </p>
                     </div>
 
-                    {/* Promociones dentro del Kit */}
+                    {/* Beneficios y Regalo incluidos (sin la palabra 'promociones') */}
                     <div className="text-left bg-[#07242B]/80 border border-[#D4A346]/35 rounded-xl p-3 mb-5 space-y-1.5">
-                      <span className="text-[10px] font-bold text-[#FFD700] uppercase tracking-wider flex items-center gap-1.5">
-                        <Gift className="w-3.5 h-3.5 text-[#FFD700]" /> Promociones del Kit:
-                      </span>
                       {kit.promotions.map((promo, idx) => (
                         <div key={idx} className="flex items-start gap-1.5 text-[11px] sm:text-xs text-[#FFF8D6] leading-tight">
                           <span className="text-[#00D2B4] font-bold">✓</span>
@@ -398,13 +390,13 @@ export const ExperiencesSection: React.FC = () => {
           })}
         </div>
 
-        {/* Banner Promocional Inferior */}
+        {/* Banner Inferior Informativo */}
         <div className="max-w-4xl mx-auto mt-12 sm:mt-16 bg-gradient-to-r from-[#021014] via-[#041A20] to-[#07242B] border border-[#D4A346]/40 rounded-3xl p-6 sm:p-8 text-center text-white shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#00D2B4]/10 via-transparent to-transparent pointer-events-none" />
           
           <div className="relative z-10 space-y-2.5">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00D2B4] uppercase tracking-wider bg-[#00D2B4]/10 border border-[#00D2B4]/30 px-3.5 py-1 rounded-full">
-              <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" /> Promoción Apertura de Caminos 2024
+              <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" /> Apertura de Nuevos Caminos
             </span>
 
             <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#FFF8D6]">
