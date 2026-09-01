@@ -1,40 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { WHATSAPP_PHONE, WHATSAPP_DEFAULT_MSG } from '../data';
 import { WhatsAppOfficialIcon } from './FloralDecorations';
 
 export const FloatingWhatsApp: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MSG)}`;
   const [isHovered, setIsHovered] = useState(false);
-  const [isAutoVisible, setIsAutoVisible] = useState(false);
+  const [isRevealedMobile, setIsRevealedMobile] = useState(false);
+  const hideTimerRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Cerrar el botón si el usuario hace click/touch fuera en móvil
   useEffect(() => {
-    // Comportamiento móvil: inicia oculto, emerge a los 2.5s por 5s para decisión del cliente y luego se vuelve a ocultar
-    const initialShowTimer = window.setTimeout(() => {
-      setIsAutoVisible(true);
-    }, 2500);
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsRevealedMobile(false);
+        if (hideTimerRef.current) window.clearTimeout(hideTimerRef.current);
+      }
+    };
 
-    const initialHideTimer = window.setTimeout(() => {
-      setIsAutoVisible(false);
-    }, 7500);
-
-    const interval = window.setInterval(() => {
-      setIsAutoVisible(true);
-      window.setTimeout(() => {
-        setIsAutoVisible(false);
-      }, 5000);
-    }, 24000);
-
+    document.addEventListener('touchstart', handleOutsideClick, { passive: true });
+    document.addEventListener('mousedown', handleOutsideClick);
     return () => {
-      window.clearTimeout(initialShowTimer);
-      window.clearTimeout(initialHideTimer);
-      window.clearInterval(interval);
+      document.removeEventListener('touchstart', handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
+      if (hideTimerRef.current) window.clearTimeout(hideTimerRef.current);
     };
   }, []);
 
-  const isOpen = isHovered || isAutoVisible;
+  const handleButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const isMobileView = typeof window !== 'undefined' && window.innerWidth < 768;
+
+    if (isMobileView) {
+      // Si en móvil está recogido, el primer toque NO va a WhatsApp, solo lo revela
+      if (!isRevealedMobile) {
+        e.preventDefault();
+        setIsRevealedMobile(true);
+
+        // Si el cliente no lo aplasta, vuelve a ocultarse tras 5.5 segundos
+        if (hideTimerRef.current) window.clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = window.setTimeout(() => {
+          setIsRevealedMobile(false);
+        }, 5500);
+        return;
+      }
+
+      // Si ya estaba revelado y el cliente lo aplasta, navega normalmente a WhatsApp
+      if (hideTimerRef.current) window.clearTimeout(hideTimerRef.current);
+    }
+  };
+
+  const isVisible = isHovered || isRevealedMobile;
 
   return (
     <div
+      ref={containerRef}
       className="fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom,0px))] md:bottom-[calc(1.75rem+env(safe-area-inset-bottom,0px))] right-0 z-50 flex items-center select-none pointer-events-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -45,10 +64,11 @@ export const FloatingWhatsApp: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="floating-whatsapp-button"
+        onClick={handleButtonClick}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
-        className={`relative group flex items-center justify-center w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#E5C985] via-[#D4B26F] to-[#B88E44] border-2 border-[#FFF8D6]/80 shadow-[0_6px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(212,178,111,0.5)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.45),0_0_22px_rgba(212,178,111,0.7)] transition-all duration-500 ease-out cursor-pointer active:scale-95 ${
-          isOpen
+        className={`relative group flex items-center justify-center w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#E5C985] via-[#D4B26F] to-[#B88E44] border-2 border-[#FFF8D6]/80 shadow-[0_6px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(212,178,111,0.5)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.45),0_0_22px_rgba(212,178,111,0.7)] transition-all duration-400 ease-out cursor-pointer active:scale-95 ${
+          isVisible
             ? '-translate-x-3 sm:-translate-x-4 md:-translate-x-5 md:scale-110'
             : 'translate-x-6 sm:translate-x-7 md:translate-x-8 md:hover:translate-x-0'
         }`}
@@ -57,7 +77,7 @@ export const FloatingWhatsApp: React.FC = () => {
         {/* Anillo de pulso dorado cuando está en reposo */}
         <span
           className={`absolute inset-0 rounded-full bg-[#E5C985] transition-opacity duration-300 pointer-events-none ${
-            isHovered ? 'opacity-0' : 'opacity-40 animate-ping'
+            isVisible ? 'opacity-0' : 'opacity-40 animate-ping'
           }`}
         />
 

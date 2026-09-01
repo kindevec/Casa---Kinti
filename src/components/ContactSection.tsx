@@ -291,21 +291,21 @@ export const ContactSection: React.FC = () => {
                       </>
                     ) : (
                       <>
-                        <optgroup label="Terapias Holísticas y Sanación Energética" className="bg-[#041A20] text-[#FFD700]">
-                          <option value="Sesión de Limpia Energética y Medicina Andina" className="bg-[#041A20] text-white">Sesión de Limpia Energética y Medicina Andina</option>
-                          <option value="Consulta y Terapia con Flores de Bach" className="bg-[#041A20] text-white">Consulta y Terapia con Flores de Bach</option>
-                          <option value="Lectura Express de Tarot Terapéutico" className="bg-[#041A20] text-white">Lectura Express de Tarot Terapéutico</option>
-                          <option value="Sanación Bioenergética y Alineación de Chakras" className="bg-[#041A20] text-white">Sanación Bioenergética y Alineación de Chakras</option>
-                          <option value="Diagnóstico Radiestésico con Péndulo" className="bg-[#041A20] text-white">Diagnóstico Radiestésico con Péndulo</option>
-                          <option value="Herbolaria Ancestral y Fitoterapia" className="bg-[#041A20] text-white">Herbolaria Ancestral y Fitoterapia</option>
+                        <optgroup label="Servicios & Ceremonias Holísticas" className="bg-[#041A20] text-[#FFD700]">
+                          <option value="Lectura de Tarot Completa ($35)" className="bg-[#041A20] text-white">Lectura de Tarot Completa ($35)</option>
+                          <option value="Lectura Express de Tarot ($20)" className="bg-[#041A20] text-white">Lectura Express de Tarot ($20)</option>
+                          <option value="Psicoterapia Asistida con Honguitos (4 Sesiones - $120)" className="bg-[#041A20] text-white">Psicoterapia Asistida con Honguitos (4 Sesiones - $120)</option>
+                          <option value="Psicoterapia con Registros Akáshicos (2 Sesiones - $80)" className="bg-[#041A20] text-white">Psicoterapia con Registros Akáshicos (2 Sesiones - $80)</option>
+                          <option value="Ceremonia de Ayahuasca en el Puyo (2 Días - $160)" className="bg-[#041A20] text-white">Ceremonia de Ayahuasca en el Puyo (2 Días - $160)</option>
+                          <option value="Ceremonia de Unión de Pareja ($120)" className="bg-[#041A20] text-white">Ceremonia de Unión de Pareja ($120)</option>
+                          <option value="Ceremonia de Cacao y Círculo de Mujeres ($120)" className="bg-[#041A20] text-white">Ceremonia de Cacao y Círculo de Mujeres ($120)</option>
                         </optgroup>
 
-                        <optgroup label="Amuletos, Botánica Sagrada y Kits" className="bg-[#041A20] text-[#FFD700]">
-                          <option value="Pulseras Amuletos con Estudio Radiestésico" className="bg-[#041A20] text-white">Pulseras Amuletos con Estudio Radiestésico</option>
-                          <option value="Kit de Limpieza Energética y Sahumerios" className="bg-[#041A20] text-white">Kit de Limpieza Energética y Sahumerios</option>
-                          <option value="Fórmula Floral Personalizada en Gotero 30ml" className="bg-[#041A20] text-white">Fórmula Floral Personalizada en Gotero 30ml</option>
-                          <option value="Aceites Esenciales Sagrados y Velas Terapéuticas" className="bg-[#041A20] text-white">Aceites Esenciales Sagrados y Velas Terapéuticas</option>
-                          <option value="Cristales y Cuarzos Consagrados" className="bg-[#041A20] text-white">Cristales y Cuarzos Consagrados</option>
+                        <optgroup label="Productos & Elementos Sagrados" className="bg-[#041A20] text-[#FFD700]">
+                          <option value="Aceites Esenciales Personalizados 20ml ($15)" className="bg-[#041A20] text-white">Aceites Esenciales Personalizados 20ml ($15)</option>
+                          <option value="Cuarzos Consagrados para Protección ($15)" className="bg-[#041A20] text-white">Cuarzos Consagrados para Protección ($15)</option>
+                          <option value="Kit de Sahumerios Naturales & Sales de Baño ($12)" className="bg-[#041A20] text-white">Kit de Sahumerios Naturales & Sales de Baño ($12)</option>
+                          <option value="Pulseras de Protección ($12)" className="bg-[#041A20] text-white">Pulseras de Protección ($12)</option>
                         </optgroup>
                       </>
                     )}
