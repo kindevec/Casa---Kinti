@@ -20,10 +20,10 @@ export const FloatingWhatsApp: React.FC = () => {
         id="floating-whatsapp-button"
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
-        className={`relative group flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#E5C985] via-[#D4B26F] to-[#B88E44] border-2 border-[#FFF8D6]/80 shadow-[0_8px_25px_rgba(0,0,0,0.35),0_0_18px_rgba(212,178,111,0.55)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.45),0_0_26px_rgba(212,178,111,0.75)] transition-all duration-400 ease-out cursor-pointer active:scale-95 ${
+        className={`relative group flex items-center justify-center w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#E5C985] via-[#D4B26F] to-[#B88E44] border-2 border-[#FFF8D6]/80 shadow-[0_6px_20px_rgba(0,0,0,0.35),0_0_15px_rgba(212,178,111,0.5)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.45),0_0_22px_rgba(212,178,111,0.7)] transition-all duration-400 ease-out cursor-pointer active:translate-x-0 ${
           isHovered
-            ? '-translate-x-3 sm:-translate-x-4 md:-translate-x-5 md:scale-110'
-            : '-translate-x-3 sm:-translate-x-4 md:translate-x-8 md:hover:translate-x-0'
+            ? '-translate-x-2 sm:-translate-x-3 md:-translate-x-5 md:scale-110'
+            : 'translate-x-6 sm:translate-x-7 md:translate-x-8 hover:translate-x-0'
         }`}
         aria-label="Contactar por WhatsApp a Casa Kinti"
       >

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
-import { Calendar } from 'lucide-react';
 
 const navLinks = [
   { label: 'INICIO', href: '#inicio' },
@@ -68,19 +67,6 @@ export const Navbar: React.FC = () => {
     }
   };
 
-  const handleAgendaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const contactElement = document.getElementById('contacto');
-    if (contactElement) {
-      const headerOffset = 80;
-      const elementPosition = contactElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   // Adaptar dinámicamente la etiqueta de productos/cursos según el nicho activo
   const currentNavLinks = navLinks.map((link) => {
@@ -241,18 +227,6 @@ export const Navbar: React.FC = () => {
               <span>Educación</span>
             </button>
           </div>
-
-          {/* Botón Dorado Estilo Luxe "BOOK APPOINTMENT" */}
-          <motion.a
-            href="#contacto"
-            onClick={handleAgendaClick}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] hover:from-[#F0D896] hover:via-[#DEC080] hover:to-[#C69C50] text-[#0A1C24] font-bold text-xs sm:text-[13px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-sm uppercase tracking-[0.14em] font-serif shadow-[0_4px_16px_rgba(0,0,0,0.35)] hover:shadow-[0_6px_22px_rgba(212,178,111,0.55)] transition-all select-none cursor-pointer"
-          >
-            <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0A1C24] stroke-[2.4]" />
-            <span>{mode === 'educacion' ? 'Agendar Cita' : 'Agendar Cita'}</span>
-          </motion.a>
 
         </div>
 
