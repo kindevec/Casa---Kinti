@@ -193,7 +193,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setMode('holistica')}
-              className={`px-2.5 sm:px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-serif tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1.5 ${
+              className={`px-2 xs:px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-serif tracking-normal sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1 sm:gap-1.5 ${
                 mode === 'holistica'
                   ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] font-bold shadow-md shadow-[#D4B26F]/30'
                   : 'text-white/80 hover:text-white'
@@ -202,7 +202,7 @@ export const Navbar: React.FC = () => {
               <img
                 src="/icons/flor.png"
                 alt=""
-                className={`w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
+                className={`w-3 h-3 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
                   mode === 'holistica' ? 'opacity-90' : 'invert opacity-80'
                 }`}
               />
@@ -211,7 +211,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setMode('educacion')}
-              className={`px-2.5 sm:px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-serif tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1.5 ${
+              className={`px-2 xs:px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-serif tracking-normal sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1 sm:gap-1.5 ${
                 mode === 'educacion'
                   ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] font-bold shadow-md shadow-[#D4B26F]/30'
                   : 'text-white/80 hover:text-white'
@@ -220,7 +220,7 @@ export const Navbar: React.FC = () => {
               <img
                 src="/icons/birrete.png"
                 alt=""
-                className={`w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
+                className={`w-3 h-3 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
                   mode === 'educacion' ? 'opacity-90' : 'invert opacity-80'
                 }`}
               />
