@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { WHATSAPP_PHONE } from '../data';
-import { Sparkles, Gift, Clock, Tag } from 'lucide-react';
+import { Clock, Tag } from 'lucide-react';
 import { WhatsAppOfficialIcon } from './FloralDecorations';
 
 // Filigrana ornamental para las 4 esquinas de cada carta estilo tarot místico
@@ -384,11 +385,8 @@ export const ExperiencesSection: React.FC = () => {
                       {/* Marco interior fino dorado */}
                       <div className="absolute inset-3 rounded-xl border border-[#D4B26F]/30 pointer-events-none" />
 
-                      {/* Encabezado del Dorso */}
+                      {/* Encabezado del Dorso (sin decir Kit 1) */}
                       <div className="relative z-10 pt-1">
-                        <span className="font-serif text-xs font-bold tracking-[0.25em] text-[#00D2B4] uppercase block mb-1">
-                          ✦ {kit.kitNumber} ✦
-                        </span>
                         <h4 className="font-serif text-base sm:text-lg font-bold text-white leading-snug">
                           {kit.title}
                         </h4>
@@ -423,7 +421,7 @@ export const ExperiencesSection: React.FC = () => {
                           className="w-full bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] hover:from-white hover:via-[#FFF8D6] hover:to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-[0_4px_16px_rgba(212,178,111,0.35)] hover:shadow-[0_0_24px_rgba(255,215,0,0.5)] transition-all duration-200 hover:scale-102 active:scale-98 flex items-center justify-center gap-2 cursor-pointer select-none"
                         >
                           <WhatsAppOfficialIcon className="w-4 h-4 text-[#041A20] shrink-0" />
-                          <span>Pedir {kit.kitNumber} por WhatsApp</span>
+                          <span>Pedir por WhatsApp</span>
                         </a>
                       </div>
 
@@ -436,32 +434,90 @@ export const ExperiencesSection: React.FC = () => {
           })}
         </div>
 
-        {/* Banner Inferior Informativo */}
-        <div className="max-w-4xl mx-auto mt-12 sm:mt-16 bg-gradient-to-r from-[#021014] via-[#041A20] to-[#07242B] border border-[#D4A346]/40 rounded-3xl p-6 sm:p-8 text-center text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#00D2B4]/10 via-transparent to-transparent pointer-events-none" />
-          
-          <div className="relative z-10 space-y-2.5">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00D2B4] uppercase tracking-wider bg-[#00D2B4]/10 border border-[#00D2B4]/30 px-3.5 py-1 rounded-full">
-              <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" /> Apertura de Nuevos Caminos
-            </span>
+        {/* Cuadro Inferior con Efectos de Colores y Animaciones Dinámicas (Sin Insignia) */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative max-w-4xl mx-auto mt-12 sm:mt-16 p-[2.5px] rounded-3xl overflow-hidden group shadow-[0_12px_45px_rgba(0,0,0,0.35),0_0_35px_rgba(0,210,180,0.25)] hover:shadow-[0_16px_55px_rgba(255,215,0,0.35),0_0_45px_rgba(0,210,180,0.45)] transition-all duration-500"
+        >
+          {/* Borde Animado Conic Multicolor (Turquesa, Oro, Ámbar, Esmeralda en Giro Continuo) */}
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+            className="absolute -inset-[160%] bg-[conic-gradient(from_0deg,_#00D2B4,_#FFD700,_#00F5D4,_#E5A824,_#38BDF8,_#00D2B4)] opacity-75 group-hover:opacity-100 blur-sm pointer-events-none"
+          />
 
-            <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#FFF8D6]">
-              Con la compra de 2 kits obtendrás el 10% de descuento
-            </h4>
+          {/* Contenedor Interior con Orbes Flotantes de Luz y Brillo */}
+          <div className="relative rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-9 text-center text-white overflow-hidden border border-[#D4A346]/40">
+            
+            {/* Orbe de Luz 1: Turquesa Brillante Flotante */}
+            <motion.div
+              animate={{
+                scale: [1, 1.35, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0],
+                opacity: [0.25, 0.55, 0.25],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -top-12 -left-12 w-72 h-72 bg-[#00D2B4]/30 rounded-full blur-3xl pointer-events-none"
+            />
 
-            <p className="text-xs sm:text-sm text-[#D4E4E7] max-w-2xl mx-auto leading-relaxed">
-              Por cada kit recibe un amuleto de protección como regalo o si deseas una lectura de péndulo de 3 preguntas.
-            </p>
+            {/* Orbe de Luz 2: Oro Cálido Flotante */}
+            <motion.div
+              animate={{
+                scale: [1.2, 1, 1.2],
+                x: [0, -35, 0],
+                y: [0, 25, 0],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              className="absolute -bottom-12 -right-12 w-72 h-72 bg-[#FFD700]/30 rounded-full blur-3xl pointer-events-none"
+            />
 
-            <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-[#E5C985]">
-              <span>WhatsApp: <strong>0983 442 341</strong></span>
-              <span>•</span>
-              <span>Facebook: <strong>casakinti</strong></span>
-              <span>•</span>
-              <span>Instagram: <strong>@casa_kinti_</strong></span>
+            {/* Velo de estrellas sutiles */}
+            <div className="absolute inset-0 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
+
+            {/* Contenido Central */}
+            <div className="relative z-10 space-y-3.5">
+              {/* Título con Texto en Degradado Animado Multicolor */}
+              <motion.h4
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                style={{ backgroundSize: '200% 200%' }}
+                className="font-serif text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] via-[#00D2B4] to-[#FFF8D6] bg-clip-text text-transparent drop-shadow-sm tracking-wide"
+              >
+                Con la compra de 2 kits obtendrás el 10% de descuento
+              </motion.h4>
+
+              <p className="text-xs sm:text-sm md:text-base text-[#D4E4E7] max-w-2xl mx-auto leading-relaxed font-normal">
+                Por cada kit recibe un amuleto de protección como regalo o si deseas una lectura de péndulo de 3 preguntas.
+              </p>
+
+              {/* Canales de Contacto con Efecto de Píldoras Brillantes */}
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00D2B4]/15 border border-[#00D2B4]/40 text-[#E2EEF0] shadow-[0_0_15px_rgba(0,210,180,0.25)] hover:scale-105 transition-transform">
+                  WhatsApp: <strong className="text-white">0983 442 341</strong>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFD700]/15 border border-[#FFD700]/40 text-[#FFF8D6] shadow-[0_0_15px_rgba(255,215,0,0.25)] hover:scale-105 transition-transform">
+                  Facebook: <strong className="text-white">casakinti</strong>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00D2B4]/15 border border-[#00D2B4]/40 text-[#E2EEF0] shadow-[0_0_15px_rgba(0,210,180,0.25)] hover:scale-105 transition-transform">
+                  Instagram: <strong className="text-white">@casa_kinti_</strong>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
