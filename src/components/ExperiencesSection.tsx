@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNicheMode } from '../context/NicheContext';
 import { WHATSAPP_PHONE } from '../data';
 import { Sparkles, Gift, Clock, Tag } from 'lucide-react';
@@ -246,6 +246,11 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
 
 export const ExperiencesSection: React.FC = () => {
   const { mode } = useNicheMode();
+  const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
+
+  const toggleFlip = (id: string) => {
+    setFlippedCardId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <section
@@ -282,106 +287,147 @@ export const ExperiencesSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot Sagrado */}
+        {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles (Flip Card) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
           {MYSTICAL_KITS_DATA.map((kit) => {
             const isFeatured = kit.isFeatured;
+            const isFlipped = flippedCardId === kit.id;
+
             return (
               <div
                 key={kit.id}
-                className={`relative rounded-3xl p-2 sm:p-2.5 transition-all duration-500 flex flex-col group ${
-                  isFeatured
-                    ? 'bg-gradient-to-b from-[#E5C985]/70 via-[#D4B26F]/40 to-[#B88E44]/70 shadow-[0_0_35px_rgba(212,178,111,0.28),0_18px_45px_rgba(0,0,0,0.5)] md:-translate-y-2.5'
-                    : 'bg-gradient-to-b from-[#D4B26F]/40 via-[#D4B26F]/20 to-[#D4B26F]/35 shadow-[0_12px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_0_28px_rgba(0,210,180,0.22)] hover:-translate-y-1.5'
-                }`}
+                onClick={() => toggleFlip(kit.id)}
+                className="group relative h-[470px] sm:h-[490px] w-full [perspective:1000px] cursor-pointer select-none"
               >
-                {/* Contenedor Interior de la Carta (Azul Contáctanos profundo con destellos turquesa y marcos dobles) */}
-                <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between overflow-hidden border border-[#D4B26F]/40">
+                {/* Contenedor Giratorio 3D con animación suave */}
+                <div
+                  className={`relative w-full h-full duration-700 [transform-style:preserve-3d] transition-transform ${
+                    isFlipped ? '[transform:rotateY(180deg)]' : 'group-hover:[transform:rotateY(180deg)]'
+                  }`}
+                >
                   
-                  {/* Filigranas doradas en las 4 esquinas interiores (estilo carta de tarot) */}
-                  <CornerOrnament className="absolute top-2 left-2 pointer-events-none" />
-                  <CornerOrnament className="absolute top-2 right-2 -scale-x-100 pointer-events-none" />
-                  <CornerOrnament className="absolute bottom-2 left-2 -scale-y-100 pointer-events-none" />
-                  <CornerOrnament className="absolute bottom-2 right-2 -scale-x-100 -scale-y-100 pointer-events-none" />
+                  {/* ========================================================
+                      CARA FRONTAL: SOLO KIT, DIBUJO Y NOMBRE
+                     ======================================================== */}
+                  <div
+                    className={`absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col ${
+                      isFeatured
+                        ? 'bg-gradient-to-b from-[#E5C985]/80 via-[#D4B26F]/45 to-[#B88E44]/80 shadow-[0_0_35px_rgba(212,178,111,0.35),0_18px_45px_rgba(0,0,0,0.45)]'
+                        : 'bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]'
+                    }`}
+                  >
+                    <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between items-center text-center overflow-hidden border border-[#D4B26F]/40">
+                      
+                      {/* Filigranas doradas en las 4 esquinas */}
+                      <CornerOrnament className="absolute top-2 left-2 pointer-events-none" />
+                      <CornerOrnament className="absolute top-2 right-2 -scale-x-100 pointer-events-none" />
+                      <CornerOrnament className="absolute bottom-2 left-2 -scale-y-100 pointer-events-none" />
+                      <CornerOrnament className="absolute bottom-2 right-2 -scale-x-100 -scale-y-100 pointer-events-none" />
 
-                  {/* Línea interior dorada inset con esquinas estilizadas */}
-                  <div className="absolute inset-3.5 rounded-xl border border-[#D4B26F]/25 pointer-events-none" />
+                      {/* Marco interior fino dorado */}
+                      <div className="absolute inset-3 rounded-xl border border-[#D4B26F]/30 pointer-events-none" />
+                      
+                      {/* Resplandor ambiental de luz */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#00D2B4]/10 blur-2xl pointer-events-none" />
 
-                  {/* Resplandor ambiental superior turquesa/dorado */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#00D2B4]/10 blur-2xl pointer-events-none" />
-
-                  {/* Parte Superior: KIT 1 / KIT 2 / KIT 3 arriba de todo */}
-                  <div className="relative z-10 text-center">
-                    
-                    {/* Arriba de cada tarjeta: KIT 1, KIT 2 o KIT 3 */}
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <span className="font-serif text-sm sm:text-base font-bold tracking-[0.25em] text-[#00D2B4] uppercase px-3 py-0.5 rounded-full bg-[#00D2B4]/10 border border-[#00D2B4]/30 shadow-xs">
-                        ✦ {kit.kitNumber} ✦
-                      </span>
-                      {isFeatured && (
-                        <span className="bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs">
-                          Más Completo
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Emblema Celestial */}
-                    <div className="mb-3 transition-transform duration-500 group-hover:scale-108 group-hover:rotate-1">
-                      {kit.emblem}
-                    </div>
-
-                    {/* Título de la Carta */}
-                    <h4 className="font-serif text-lg sm:text-xl font-bold text-white leading-snug tracking-wide mb-3 min-h-[52px] flex items-center justify-center">
-                      {kit.title}
-                    </h4>
-
-                    {/* Fila de Precio & Duración en Relieve */}
-                    <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-                      {/* Cápsula Dorada con Precio Oficial */}
-                      <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm px-3.5 py-1 rounded-full shadow-md">
-                        <Tag className="w-3 h-3 text-[#041A20]" />
-                        Precio: {kit.price}
-                      </span>
-
-                      {/* Cápsula de Duración */}
-                      <span className="inline-flex items-center gap-1 bg-[#052C34] text-[#E2EEF0] border border-[#00D2B4]/40 font-medium text-[11px] px-2.5 py-1 rounded-full shadow-xs">
-                        <Clock className="w-3 h-3 text-[#00D2B4]" />
-                        {kit.duration}
-                      </span>
-                    </div>
-
-                    {/* Divisor Ornamental */}
-                    <div className="w-28 h-px bg-gradient-to-r from-transparent via-[#D4B26F]/60 to-transparent mx-auto mb-4" />
-
-                    {/* Descripción Breve y Directa (sin la palabra 'En qué consiste') */}
-                    <div className="text-left bg-[#020B0E]/60 border border-[#D4B26F]/20 rounded-xl p-3.5 mb-4">
-                      <p className="text-xs sm:text-[12.5px] text-[#E2EEF0] leading-relaxed font-normal">
-                        {kit.consistsOf}
-                      </p>
-                    </div>
-
-                    {/* Beneficios y Regalo incluidos (sin la palabra 'promociones') */}
-                    <div className="text-left bg-[#07242B]/80 border border-[#D4A346]/35 rounded-xl p-3 mb-5 space-y-1.5">
-                      {kit.promotions.map((promo, idx) => (
-                        <div key={idx} className="flex items-start gap-1.5 text-[11px] sm:text-xs text-[#FFF8D6] leading-tight">
-                          <span className="text-[#00D2B4] font-bold">✓</span>
-                          <span>{promo}</span>
+                      {/* Parte Alta: KIT 1 / KIT 2 / KIT 3 */}
+                      <div className="relative z-10 pt-2">
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="font-serif text-sm sm:text-base font-bold tracking-[0.28em] text-[#00D2B4] uppercase px-3 py-1 rounded-full bg-[#00D2B4]/10 border border-[#00D2B4]/35 shadow-xs">
+                            ✦ {kit.kitNumber} ✦
+                          </span>
+                          {isFeatured && (
+                            <span className="bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs">
+                              Más Completo
+                            </span>
+                          )}
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Centro: Dibujo Místico (Sol, Luna o Estrella) */}
+                      <div className="relative z-10 my-auto py-4 transition-transform duration-500 group-hover:scale-110">
+                        {kit.emblem}
+                      </div>
+
+                      {/* Parte Baja: Nombre del Kit & Pista de Volteo */}
+                      <div className="relative z-10 pb-2 w-full">
+                        <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#D4B26F]/60 to-transparent mx-auto mb-3" />
+                        <h4 className="font-serif text-lg sm:text-xl font-bold text-white leading-snug tracking-wide min-h-[50px] flex items-center justify-center">
+                          {kit.title}
+                        </h4>
+                        <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-[#00D2B4] tracking-wider font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+                          ↻ Pasa el cursor para ver detalles
+                        </span>
+                      </div>
+
                     </div>
                   </div>
 
-                  {/* Botón WhatsApp Dorado con Ícono en Negro */}
-                  <div className="relative z-10 pt-2">
-                    <a
-                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(kit.whatsappMessage)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] hover:from-white hover:via-[#FFF8D6] hover:to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-[0_4px_16px_rgba(212,178,111,0.35)] hover:shadow-[0_0_24px_rgba(255,215,0,0.5)] transition-all duration-200 hover:scale-102 active:scale-98 flex items-center justify-center gap-2 cursor-pointer select-none"
-                    >
-                      <WhatsAppOfficialIcon className="w-4 h-4 text-[#041A20] shrink-0" />
-                      <span>Pedir {kit.kitNumber} por WhatsApp</span>
-                    </a>
+                  {/* ========================================================
+                      CARA TRASERA: DESCRIPCIÓN, PRECIOS Y BOTÓN DE PEDIR
+                     ======================================================== */}
+                  <div
+                    className={`absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col ${
+                      isFeatured
+                        ? 'bg-gradient-to-b from-[#E5C985]/80 via-[#D4B26F]/45 to-[#B88E44]/80 shadow-[0_0_35px_rgba(212,178,111,0.35),0_18px_45px_rgba(0,0,0,0.45)]'
+                        : 'bg-gradient-to-b from-[#D4B26F]/45 via-[#D4B26F]/20 to-[#D4B26F]/40 shadow-[0_14px_34px_rgba(0,0,0,0.35)]'
+                    }`}
+                  >
+                    <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between overflow-hidden border border-[#D4B26F]/40 text-center">
+                      
+                      {/* Filigranas doradas en las 4 esquinas */}
+                      <CornerOrnament className="absolute top-2 left-2 pointer-events-none" />
+                      <CornerOrnament className="absolute top-2 right-2 -scale-x-100 pointer-events-none" />
+                      <CornerOrnament className="absolute bottom-2 left-2 -scale-y-100 pointer-events-none" />
+                      <CornerOrnament className="absolute bottom-2 right-2 -scale-x-100 -scale-y-100 pointer-events-none" />
+
+                      {/* Marco interior fino dorado */}
+                      <div className="absolute inset-3 rounded-xl border border-[#D4B26F]/30 pointer-events-none" />
+
+                      {/* Encabezado del Dorso */}
+                      <div className="relative z-10 pt-1">
+                        <span className="font-serif text-xs font-bold tracking-[0.25em] text-[#00D2B4] uppercase block mb-1">
+                          ✦ {kit.kitNumber} ✦
+                        </span>
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-white leading-snug">
+                          {kit.title}
+                        </h4>
+                      </div>
+
+                      {/* Descripción breve y concisa */}
+                      <div className="relative z-10 my-auto py-2 text-left bg-[#020B0E]/70 border border-[#D4B26F]/25 rounded-xl p-4">
+                        <p className="text-xs sm:text-[13px] text-[#E2EEF0] leading-relaxed font-normal">
+                          {kit.consistsOf}
+                        </p>
+                      </div>
+
+                      {/* Precio & Duración */}
+                      <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 mb-3">
+                        <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm px-3.5 py-1 rounded-full shadow-md">
+                          <Tag className="w-3 h-3 text-[#041A20]" />
+                          Precio: {kit.price}
+                        </span>
+                        <span className="inline-flex items-center gap-1 bg-[#052C34] text-[#E2EEF0] border border-[#00D2B4]/40 font-medium text-[11px] px-2.5 py-1 rounded-full shadow-xs">
+                          <Clock className="w-3 h-3 text-[#00D2B4]" />
+                          {kit.duration}
+                        </span>
+                      </div>
+
+                      {/* Botón de Pedir por WhatsApp */}
+                      <div className="relative z-10">
+                        <a
+                          href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(kit.whatsappMessage)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] hover:from-white hover:via-[#FFF8D6] hover:to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-[0_4px_16px_rgba(212,178,111,0.35)] hover:shadow-[0_0_24px_rgba(255,215,0,0.5)] transition-all duration-200 hover:scale-102 active:scale-98 flex items-center justify-center gap-2 cursor-pointer select-none"
+                        >
+                          <WhatsAppOfficialIcon className="w-4 h-4 text-[#041A20] shrink-0" />
+                          <span>Pedir {kit.kitNumber} por WhatsApp</span>
+                        </a>
+                      </div>
+
+                    </div>
                   </div>
 
                 </div>
