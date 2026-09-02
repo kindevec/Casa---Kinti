@@ -37,8 +37,8 @@ interface CardCarouselProps {
   subtitle?: string;
 }
 
-const SLIDE_SPEED = 600;   // animation duration ms
-const SLIDE_INTERVAL = 850; // interval between auto-steps ms while hovering
+const SLIDE_SPEED = 700;   // animation duration ms - smooth and fluid
+const SLIDE_INTERVAL = 1100; // interval between auto-steps ms while hovering
 
 export const CardCarousel: React.FC<CardCarouselProps> = ({
   items,
@@ -54,6 +54,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<number | null>(null);
   const currentDirRef = useRef<"prev" | "next" | null>(null);
+  const isDraggingRef = useRef<boolean>(false);
 
   const cardItems: CarouselCardItem[] =
     items ||
@@ -68,12 +69,13 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   --------------------------------------------------------------- */
   const doSlide = (dir: "prev" | "next") => {
     const swiper = swiperRef.current;
-    if (!swiper || swiper.animating) return;
+    if (!swiper || swiper.animating || isDraggingRef.current) return;
     if (dir === "prev") swiper.slidePrev(SLIDE_SPEED);
     else swiper.slideNext(SLIDE_SPEED);
   };
 
   const startContinuous = (dir: "prev" | "next") => {
+    if (isDraggingRef.current) return;
     if (currentDirRef.current === dir) return; // already running this direction
     stopContinuous();
     currentDirRef.current = dir;
@@ -91,17 +93,21 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
 
   /* ---------------------------------------------------------------
      Mouse-zone detection on the container
-     Left 40% → slidePrev | Right 40% → slideNext | Center → pause
+     Leaves a generous central calm zone and disables during drag
   --------------------------------------------------------------- */
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isDraggingRef.current) {
+      stopContinuous();
+      return;
+    }
     const el = containerRef.current;
     if (!el) return;
     const { left, width } = el.getBoundingClientRect();
     const x = e.clientX - left;
     const pct = x / width;
-    if (pct < 0.40) {
+    if (pct < 0.28) {
       startContinuous("prev");
-    } else if (pct > 0.60) {
+    } else if (pct > 0.72) {
       startContinuous("next");
     } else {
       stopContinuous();
@@ -111,7 +117,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   const handleMouseLeave = () => stopContinuous();
 
   /* ---------------------------------------------------------------
-     CSS
+     CSS — Ultra-fluid bezier curve and zero bounce
   --------------------------------------------------------------- */
   const css = `
   .card-carousel-swiper {
@@ -119,6 +125,10 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
     padding-top: 24px;
     padding-bottom: 56px;
     overflow: visible !important;
+  }
+
+  .card-carousel-swiper .swiper-wrapper {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .card-carousel-swiper .swiper-slide {
@@ -129,7 +139,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
     will-change: transform, opacity;
     opacity: 0.58;
     filter: brightness(0.88);
-    transition: opacity 0.45s ease, filter 0.45s ease;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (min-width: 640px) {
@@ -204,7 +214,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
 
       {/* Instrucción de navegación */}
       <p className="text-center text-[11px] sm:text-xs text-[#133238]/55 font-medium pb-1 tracking-wide">
-        ← Mueve el cursor a los lados para navegar →
+        ← Desliza o usa las flechas para explorar →
       </p>
 
       {/* Carousel container — mouse zones for navigation */}
@@ -219,6 +229,12 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
           className="card-carousel-swiper"
           speed={SLIDE_SPEED}
           spaceBetween={20}
+          resistance={false}
+          resistanceRatio={0}
+          touchRatio={1}
+          touchAngle={45}
+          touchReleaseOnEdges={true}
+          threshold={3}
           autoplay={{
             delay: autoplayDelay,
             disableOnInteraction: false,
@@ -233,10 +249,23 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 140,
-            modifier: 1.3,
-            scale: 0.85,
+            depth: 80,
+            modifier: 1,
+            scale: 0.88,
             slideShadows: false,
+          }}
+          onTouchStart={() => {
+            isDraggingRef.current = true;
+            stopContinuous();
+          }}
+          onTouchEnd={() => {
+            setTimeout(() => {
+              isDraggingRef.current = false;
+            }, 250);
+          }}
+          onSliderMove={() => {
+            isDraggingRef.current = true;
+            stopContinuous();
           }}
           pagination={showPagination ? { clickable: true } : false}
           modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}

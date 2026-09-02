@@ -453,13 +453,18 @@ export const TESTIMONIALS: TestimonialItem[] = [
 ];
 
 export const CONTACT_INFO = {
-  address: 'Av. Eloy Alfaro N32-15 y Av. Amazonas, Quito, Ecuador',
+  address: 'La Merced, Valle de los Chillos, calle César Enrique Balseca y 3 de Mayo, Quito, Ecuador',
   hours: 'Lunes a Viernes 9:00 – 18:00 | Sábados 9:00 – 14:00 | Domingos cerrado',
   phone: '+593 96 266 9994',
   whatsappRaw: '593962669994',
+  secondaryPhone: '0983442341',
+  secondaryPhoneFormatted: '098 344 2341',
+  secondaryWhatsappRaw: '593983442341',
   email: 'contacto@casakinti.com',
   tiktok: 'https://www.tiktok.com/@johapro3',
   instagram: 'https://www.instagram.com/casa_kinti_',
   facebook: 'https://www.facebook.com/casakinti',
-  googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7901198544976!2d-78.4878!3d-0.1807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a7a67f1b2ef%3A0x7d94d3c333240e8a!2sAv.%20Eloy%20Alfaro%20%26%20Av.%20Amazonas%2C%20Quito%2C%20Ecuador!5e0!3m2!1ses!2sec!4v1700000000000!5m2!1ses!2sec',
+  googleMapsUrl: 'https://maps.app.goo.gl/3uZ38akEC6FCT4SU9',
+  googleMapsEmbed: 'https://maps.google.com/maps?q=-0.295320,-78.405527&hl=es&z=16&output=embed',
 };
+

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNicheMode } from '../context/NicheContext';
 import { CONTACT_INFO, WHATSAPP_PHONE } from '../data';
 import { ContactFormData } from '../types';
-import { CasaKintiLogo, ButterflyGraphic, FloralBouquet, HeroOrganicBackdrop, AgendarCalendarIcon, SolicitarEvaluacionIcon } from './FloralDecorations';
-import { MapPin, Clock, Phone, Send, CheckCircle2, MessageCircle, Instagram, Facebook, Calendar, Sparkles, Heart, BookOpen, GraduationCap } from 'lucide-react';
+import { CasaKintiLogo, ButterflyGraphic, FloralBouquet, HeroOrganicBackdrop, AgendarCalendarIcon, SolicitarEvaluacionIcon, WhatsAppOfficialIcon } from './FloralDecorations';
+import { MapPin, Clock, Phone, Send, CheckCircle2, MessageCircle, Instagram, Facebook, Calendar, Sparkles, Heart, BookOpen, GraduationCap, ExternalLink } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const { mode } = useNicheMode();
@@ -69,7 +69,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="relative pt-14 sm:pt-20 md:pt-24 pb-16 sm:pb-24 overflow-hidden text-white transition-colors duration-500">
+    <section id="contacto" className="relative pt-12 sm:pt-20 md:pt-24 pb-8 sm:pb-16 md:pb-20 overflow-hidden text-white transition-colors duration-500">
       {/* ========================================================
           FONDO: COLOR DEL HEADER TURQUESA (#4AAEA5)
          ======================================================== */}
@@ -365,19 +365,110 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-4 text-xs sm:text-sm text-white/90">
                 
-                {/* Dirección */}
-                <div className="flex items-start gap-3.5 group cursor-pointer">
+                {/* Dirección con enlace a Google Maps */}
+                <a
+                  href={CONTACT_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3.5 group p-2.5 -mx-2.5 rounded-xl hover:bg-white/5 transition-all cursor-pointer"
+                  title="Abrir ubicación en Google Maps"
+                >
                   <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
                     <MapPin className="relative z-10 w-5 h-5 text-[#0A1C24] stroke-[2.2]" />
                   </div>
-                  <div className="pt-0.5">
-                    <strong className="block text-[#FFD700] font-serif uppercase tracking-wider font-bold">Ubicación:</strong>
-                    <span className="text-white/95">{CONTACT_INFO.address}</span>
+                  <div className="pt-0.5 flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <strong className="block text-[#FFD700] font-serif uppercase tracking-wider font-bold">Ubicación:</strong>
+                      <span className="inline-flex items-center gap-1 text-[11px] text-[#FFD700]/90 font-medium group-hover:underline">
+                        Abrir mapa <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </div>
+                    <span className="text-white/95 leading-relaxed block mt-0.5">{CONTACT_INFO.address}</span>
+                  </div>
+                </a>
+
+                {/* Contacto Principal (WhatsApp + Llamadas) */}
+                <div className="p-3.5 rounded-xl bg-[#041A20]/80 border border-[#FFD700]/30 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-[#FFD700]" />
+                      <strong className="text-[#FFD700] text-xs font-serif uppercase tracking-wider font-bold">
+                        Contacto Principal
+                      </strong>
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/40">
+                      WhatsApp Principal
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
+                    <span className="font-serif font-bold text-base sm:text-lg text-white tracking-wide">
+                      {CONTACT_INFO.phone}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/${CONTACT_INFO.whatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
+                        aria-label="Escribir al WhatsApp principal"
+                      >
+                        <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                        <span>WhatsApp</span>
+                      </a>
+                      <a
+                        href={`tel:${CONTACT_INFO.whatsappRaw}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all cursor-pointer"
+                        aria-label="Llamar al número principal"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>Llamar</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Segunda Opción de Contacto (Solo en apartado de contactos) */}
+                <div className="p-3.5 rounded-xl bg-[#041A20]/60 border border-white/15 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-[#00D2B4]" />
+                      <strong className="text-[#00D2B4] text-xs font-serif uppercase tracking-wider font-bold">
+                        Segunda Opción
+                      </strong>
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#00D2B4]/15 text-[#00D2B4] border border-[#00D2B4]/30">
+                      Alternativa
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
+                    <span className="font-serif font-bold text-base sm:text-lg text-white/95 tracking-wide">
+                      {CONTACT_INFO.secondaryPhoneFormatted}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/${CONTACT_INFO.secondaryWhatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me comunico por este medio alternativo.')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#25D366]/90 hover:bg-[#25D366] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
+                        aria-label="Escribir al WhatsApp secundario"
+                      >
+                        <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                        <span>WhatsApp</span>
+                      </a>
+                      <a
+                        href={`tel:${CONTACT_INFO.secondaryPhone}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all cursor-pointer"
+                        aria-label="Llamar a la segunda opción"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>Llamar</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
                 {/* Horarios */}
-                <div className="flex items-start gap-3.5 group cursor-pointer">
+                <div className="flex items-start gap-3.5 group">
                   <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs transition-all duration-300 ease-out group-hover:scale-110 overflow-hidden">
                     <Clock className="relative z-10 w-5 h-5 text-[#0A1C24] stroke-[2.2]" />
                   </div>
@@ -437,15 +528,34 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Mapa Embebido de Quito */}
-            <div className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.6)] border border-[#FFD700]/40 h-52 relative">
-              <iframe
-                title="Ubicación Casa Kinti Quito Ecuador"
-                src={CONTACT_INFO.googleMapsEmbed}
-                className="w-full h-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            {/* Mapa Embebido de La Merced, Valle de los Chillos */}
+            <div className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.6)] border border-[#FFD700]/40 relative group bg-[#041A20]">
+              <div className="h-60 sm:h-64 relative">
+                <iframe
+                  title="Ubicación Casa Kinti - La Merced, Valle de los Chillos"
+                  src={CONTACT_INFO.googleMapsEmbed}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="p-3 bg-[#041A20] border-t border-[#FFD700]/30 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2 text-xs text-white/90">
+                  <MapPin className="w-4 h-4 text-[#FFD700] shrink-0" />
+                  <span className="font-medium text-white/90">
+                    La Merced, Valle de los Chillos
+                  </span>
+                </div>
+                <a
+                  href={CONTACT_INFO.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif font-bold text-xs shadow-xs hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  <span>Cómo llegar en Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#0A1C24]" />
+                </a>
+              </div>
             </div>
 
           </div>

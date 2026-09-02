@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="main-footer"
-      className="relative z-10 border-t border-[#FFD700]/40 pt-12 sm:pt-16 pb-20 md:pb-12 overflow-hidden text-[#0A1C24] shadow-[0_-8px_30px_rgba(0,0,0,0.2)] bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93]"
+      className="relative z-10 border-t border-[#FFD700]/40 pt-5 sm:pt-8 pb-28 md:pb-8 overflow-hidden text-[#0A1C24] shadow-[0_-8px_30px_rgba(0,0,0,0.15)] bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93]"
     >
       {/* ========================================================
           FONDO TURQUESA DEL HEADER (COLOR UNIFICADO)
@@ -48,97 +48,196 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* ========================================================
-            GRID DE 4 COLUMNAS
+            GRID DE 4 COLUMNAS BALANCEADO
            ======================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 mb-4 sm:mb-7 items-start">
           
           {/* ----------------------------------------------------
-              COLUMNA 1: Logo Oficial & Misión Dinámica
+              COLUMNA 1: Logo Oficial, Misión & Redes Sociales
              ---------------------------------------------------- */}
-          <div className="flex flex-col gap-4 text-left">
-            <div className="flex items-center justify-start pb-2">
+          <div className="col-span-1 md:col-span-1 lg:col-span-1 flex flex-col gap-2 sm:gap-3 text-left">
+            <div className="flex items-center justify-between sm:justify-start gap-2">
               <motion.a
                 href="#inicio"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('#inicio');
                 }}
-                className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer select-none shrink-0 relative"
+                className="flex items-center gap-2 sm:gap-3 group cursor-pointer select-none shrink-0 relative"
                 aria-label="Casa Kinti - Volver arriba"
-                whileHover={{ scale: 1.06, y: -2 }}
+                whileHover={{ scale: 1.04, y: -1 }}
                 whileTap={{ scale: 0.96 }}
               >
                 <div className="relative flex items-center justify-center">
-                  {/* Efecto de Iluminación Dorada Radiante con Pulso y Acercamiento */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.25, 1.05, 1.2, 1],
-                      opacity: [0.6, 0.95, 0.7, 0.9, 0.6],
+                      scale: [1, 1.2, 1.05, 1.15, 1],
+                      opacity: [0.5, 0.85, 0.6, 0.8, 0.5],
                     }}
                     transition={{
                       duration: 4,
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-[#FFD700]/60 via-[#FFF2B2]/45 to-[#FFEA79]/30 blur-md pointer-events-none"
+                    className="absolute -inset-2 rounded-full bg-gradient-to-tr from-[#FFD700]/60 via-[#FFF2B2]/45 to-[#FFEA79]/30 blur-md pointer-events-none"
                   />
-                  <div className="absolute -inset-1 rounded-full bg-[#FFD700]/35 blur-xs group-hover:bg-[#FFD700]/60 transition-all duration-300 pointer-events-none" />
+                  <div className="absolute -inset-0.5 rounded-full bg-[#FFD700]/35 blur-xs group-hover:bg-[#FFD700]/60 transition-all duration-300 pointer-events-none" />
 
-                  {/* Símbolo con Animación Orgánica de Levitación, Rotación Sutil y Acercamiento */}
                   <motion.img
                     src="/casa-kinti-symbol.png"
                     alt="Casa Kinti Símbolo"
-                    width="44"
-                    height="44"
+                    width="36"
+                    height="36"
                     animate={{
-                      y: [0, -3.5, 0, 2.5, 0],
-                      rotate: [0, 2, 0, -2, 0],
-                      scale: [1, 1.08, 1, 1.05, 1],
+                      y: [0, -2.5, 0, 1.5, 0],
+                      rotate: [0, 1.5, 0, -1.5, 0],
+                      scale: [1, 1.05, 1, 1.03, 1],
                     }}
                     transition={{
                       duration: 5,
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="relative z-10 w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_14px_rgba(255,215,0,0.95)] drop-shadow-[0_0_26px_rgba(255,234,121,0.75)] filter contrast-[1.1] brightness-[1.06]"
+                    className="relative z-10 w-7.5 h-7.5 sm:w-9 sm:h-9 object-contain drop-shadow-[0_0_10px_rgba(255,215,0,0.9)] filter contrast-[1.1] brightness-[1.06]"
                   />
                 </div>
                 <div className="flex flex-col text-left relative z-10">
-                  <span className="font-serif text-base xs:text-lg sm:text-xl font-black tracking-[0.22em] text-[#052C34] group-hover:text-[#031D22] transition-colors leading-tight drop-shadow-[0_0_8px_rgba(255,215,0,0.45)]">
+                  <span className="font-serif text-sm sm:text-base lg:text-lg font-black tracking-[0.2em] text-[#052C34] group-hover:text-[#031D22] transition-colors leading-tight drop-shadow-[0_0_6px_rgba(255,215,0,0.4)]">
                     CASA KINTI
                   </span>
-                  <span className="text-[11px] xs:text-[12px] sm:text-[13px] tracking-[0.26em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1.5px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_10px_rgba(255,215,0,0.95)] select-none">
+                  <span className="text-[9.5px] sm:text-[11px] tracking-[0.24em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] select-none">
                     JOHANNA PROAÑO
                   </span>
                 </div>
               </motion.a>
+
+              {/* En móvil: redes sociales compactas en la misma fila para ahorrar espacio */}
+              <div className="flex sm:hidden items-center gap-1.5 shrink-0">
+                <motion.a
+                  href={CONTACT_INFO.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok Casa Kinti"
+                  whileTap={{ scale: 0.95 }}
+                  className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center text-[#0A1C24] shadow-xs"
+                >
+                  <TikTokIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                </motion.a>
+                <motion.a
+                  href={CONTACT_INFO.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Casa Kinti"
+                  whileTap={{ scale: 0.95 }}
+                  className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center text-[#0A1C24] shadow-xs"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+                <motion.a
+                  href={CONTACT_INFO.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Casa Kinti"
+                  whileTap={{ scale: 0.95 }}
+                  className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center text-[#0A1C24] shadow-xs"
+                >
+                  <Facebook className="w-3.5 h-3.5 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+                <motion.a
+                  href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp Casa Kinti"
+                  whileTap={{ scale: 0.95 }}
+                  className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center text-[#0A1C24] shadow-xs"
+                >
+                  <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                </motion.a>
+              </div>
             </div>
 
             {/* Misión adaptada dinámicamente según el nicho */}
             <p
               key={mode}
-              className="text-xs sm:text-[13px] text-[#0A1C24] font-medium leading-relaxed max-w-sm text-justify transition-all duration-400 animate-in fade-in"
+              className="text-[11px] sm:text-[12.5px] text-[#0A1C24] font-medium leading-snug sm:leading-relaxed max-w-sm text-left transition-all duration-300 animate-in fade-in"
             >
               {mode === 'educacion' ? (
                 <>
-                  Centro psicopedagógico y estimulación bilingüe infantil. Diagnóstico, nivelación y acompañamiento especializado en problemas de aprendizaje en Quito. Guiado por Johanna Proaño.
+                  Centro psicopedagógico y estimulación bilingüe infantil. Diagnóstico, nivelación y acompañamiento especializado en Quito. Guiado por Johanna Proaño.
                 </>
               ) : (
                 <>
-                  Santuario de sanación integral, medicina ancestral andina, ceremonias con plantas sagradas del Pensamiento y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johanna Proaño.
+                  Santuario de sanación integral, medicina ancestral andina y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johanna Proaño.
                 </>
               )}
             </p>
+
+            {/* Redes Sociales Oficiales en PC/Tablet */}
+            <div className="hidden sm:block pt-1">
+              <span className="block text-[11px] font-bold uppercase tracking-wider text-[#052C34] mb-2">
+                Síguenos en Redes
+              </span>
+              <div className="flex items-center gap-2">
+                <motion.a
+                  href={CONTACT_INFO.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok Casa Kinti"
+                  whileHover={{ scale: 1.12, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_10px_rgba(255,215,0,0.35)] transition-all"
+                >
+                  <TikTokIcon className="w-4 h-4 text-[#0A1C24]" />
+                </motion.a>
+
+                <motion.a
+                  href={CONTACT_INFO.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Casa Kinti"
+                  whileHover={{ scale: 1.12, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_10px_rgba(255,215,0,0.35)] transition-all"
+                >
+                  <Instagram className="w-4 h-4 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+
+                <motion.a
+                  href={CONTACT_INFO.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Casa Kinti"
+                  whileHover={{ scale: 1.12, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_10px_rgba(255,215,0,0.35)] transition-all"
+                >
+                  <Facebook className="w-4 h-4 text-[#0A1C24] stroke-[2.2]" />
+                </motion.a>
+
+                <motion.a
+                  href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp Casa Kinti"
+                  whileHover={{ scale: 1.12, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_10px_rgba(255,215,0,0.35)] transition-all"
+                >
+                  <WhatsAppOfficialIcon className="w-4 h-4 text-[#0A1C24]" />
+                </motion.a>
+              </div>
+            </div>
+
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 2: Secciones / Navegación
+              COLUMNA 2: Secciones / Navegación (Solo PC / Tablet)
              ---------------------------------------------------- */}
-          <div className="space-y-4 text-left">
-            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+          <div className="hidden md:block col-span-1 space-y-1.5 sm:space-y-2.5 text-left">
+            <h4 className="font-serif text-xs sm:text-base font-bold uppercase tracking-wider text-[#0A1C24] pb-0.5 sm:pb-1 border-b border-[#0A1C24]/15">
               Secciones
             </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13px] font-medium">
+            <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-[13px] font-medium">
               <li>
                 <a
                   href="#inicio"
@@ -146,9 +245,10 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#inicio');
                   }}
-                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5 py-0.5"
                 >
-                  Inicio
+                  <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                  <span>Inicio</span>
                 </a>
               </li>
               <li>
@@ -158,9 +258,10 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#sobre-mi');
                   }}
-                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5 py-0.5"
                 >
-                  Sobre Mí
+                  <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                  <span>Sobre Mí</span>
                 </a>
               </li>
               <li>
@@ -170,9 +271,10 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#productos');
                   }}
-                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5 py-0.5"
                 >
-                  {mode === 'educacion' ? 'Cursos & Materiales' : 'Productos & Amuletos'}
+                  <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                  <span>{mode === 'educacion' ? 'Cursos & Materiales' : 'Productos & Amuletos'}</span>
                 </a>
               </li>
               <li>
@@ -182,9 +284,10 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#servicios');
                   }}
-                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5 py-0.5"
                 >
-                  Servicios
+                  <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                  <span>Servicios</span>
                 </a>
               </li>
               <li>
@@ -194,191 +297,153 @@ export const Footer: React.FC = () => {
                     e.preventDefault();
                     handleLinkClick('#contacto');
                   }}
-                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-block py-0.5"
+                  className="text-[#0A1C24] hover:text-[#B88E44] hover:translate-x-1 transition-all duration-200 inline-flex items-center gap-1 sm:gap-1.5 py-0.5"
                 >
-                  Contacto
+                  <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                  <span>Contacto</span>
                 </a>
               </li>
             </ul>
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 3: Especialidades por Nicho
+              COLUMNA 3: Especialidades por Nicho (Solo PC / Tablet)
              ---------------------------------------------------- */}
-          <div className="space-y-4 text-left">
-            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+          <div className="hidden md:block col-span-1 space-y-1.5 sm:space-y-2.5 text-left">
+            <h4 className="font-serif text-xs sm:text-base font-bold uppercase tracking-wider text-[#0A1C24] pb-0.5 sm:pb-1 border-b border-[#0A1C24]/15">
               {mode === 'educacion' ? 'Áreas Pedagógicas' : 'Líneas Holísticas'}
             </h4>
             
-            <ul key={mode} className="space-y-2.5 text-xs sm:text-[13px] text-[#0A1C24] font-medium animate-in fade-in duration-300">
+            <ul key={mode} className="space-y-1 sm:space-y-2 text-[11px] sm:text-[13px] text-[#0A1C24] font-medium animate-in fade-in duration-300">
               {mode === 'educacion' ? (
                 <>
-                  <li>Estimulación Bilingüe Infantil</li>
-                  <li>Problemas de Aprendizaje & Dislexia</li>
-                  <li>Fonética & Lectura en Inglés</li>
-                  <li>Psicopedagogía Máster & TDAH</li>
-                  <li>Asesoría Pedagógica para Padres</li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Estimulación Bilingüe</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Problemas de Aprendizaje</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Fonética & Lectura en Inglés</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Psicopedagogía & TDAH</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Asesoría para Padres</span>
+                  </li>
                 </>
               ) : (
                 <>
-                  <li>Limpias & Medicina Ancestral</li>
-                  <li>Ceremonias con Plantas Sagradas del Pensamiento</li>
-                  <li>Tarot Terapéutico</li>
-                  <li>Sanación Bioenergética & Chakras</li>
-                  <li>Pulseras & Amuletos Consagrados</li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Medicina Ancestral</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Plantas del Pensamiento</span>
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Tarot Terapéutico</span>
+                  </li>
+                  <li className="flex items-center gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Sanación Bioenergética</span>
+                  </li>
+                  <li className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[#FFD700] text-[9px] sm:text-[10px]">✦</span>
+                    <span>Pulseras & Amuletos</span>
+                  </li>
                 </>
               )}
             </ul>
           </div>
 
           {/* ----------------------------------------------------
-              COLUMNA 4: Contacto
+              COLUMNA 4: Contacto & Horarios
              ---------------------------------------------------- */}
-          <div className="space-y-4 text-left">
-            <h4 className="font-serif text-lg font-bold uppercase tracking-wider text-[#0A1C24]">
+          <div className="col-span-1 md:col-span-1 lg:col-span-1 space-y-1.5 sm:space-y-2.5 text-left">
+            <h4 className="font-serif text-xs sm:text-base font-bold uppercase tracking-wider text-[#0A1C24] pb-0.5 sm:pb-1 border-b border-[#0A1C24]/15">
               Contacto
             </h4>
 
-            <div className="space-y-3.5 text-xs sm:text-[13px] font-medium">
+            <div className="space-y-1.5 sm:space-y-2 text-[11px] sm:text-[12.5px] font-medium">
               
-              {/* Ubicación (Completamente NO seleccionable con animación de movimiento) */}
+              {/* Ubicación */}
               <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-start gap-3.5 group cursor-default select-none"
+                whileHover={{ x: 3 }}
+                className="flex items-start gap-2 sm:gap-2.5 group cursor-default select-none"
               >
-                <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-                  whileHover={{ scale: 1.15 }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <MapPin className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
-                </motion.div>
-                <div className="leading-snug text-[#0A1C24] pt-1 select-none pointer-events-none">
-                  <span className="select-none pointer-events-none">{CONTACT_INFO.address}</span>
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0A1C24] stroke-[2.4]" />
+                </div>
+                <div className="leading-snug pt-0.5">
+                  <a
+                    href={CONTACT_INFO.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0A1C24] hover:text-[#052C34] transition-colors block font-medium hover:underline"
+                    title="Abrir ubicación en Google Maps"
+                  >
+                    {CONTACT_INFO.address}
+                  </a>
                 </div>
               </motion.div>
 
-              {/* Teléfono */}
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3.5 group cursor-pointer"
-              >
+              {/* Fila compacta de Teléfono y Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-1.5 sm:gap-2">
+                {/* Teléfono */}
                 <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                  whileHover={{ scale: 1.15 }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ x: 3 }}
+                  className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Phone className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
+                  <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs">
+                    <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0A1C24] stroke-[2.4]" />
+                  </div>
+                  <a
+                    href={`tel:${CONTACT_INFO.phone.replace(/[^0-9+]/g, '')}`}
+                    className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors font-semibold"
+                  >
+                    {CONTACT_INFO.phone}
+                  </a>
                 </motion.div>
-                <a
-                  href={`tel:${CONTACT_INFO.phone.replace(/[^0-9+]/g, '')}`}
-                  className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors font-semibold"
-                >
-                  {CONTACT_INFO.phone}
-                </a>
-              </motion.div>
 
-              {/* Email */}
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3.5 group cursor-pointer"
-              >
+                {/* Email */}
                 <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 4.1, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                  whileHover={{ scale: 1.15 }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300 ease-out overflow-hidden"
+                  whileHover={{ x: 3 }}
+                  className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
                 >
-                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Mail className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
+                  <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs">
+                    <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0A1C24] stroke-[2.4]" />
+                  </div>
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors truncate max-w-[220px] font-semibold"
+                  >
+                    {CONTACT_INFO.email}
+                  </a>
                 </motion.div>
-                <a
-                  href={`mailto:${CONTACT_INFO.email}`}
-                  className="text-[#0A1C24] group-hover:text-[#052C34] transition-colors truncate max-w-[200px] font-semibold"
-                >
-                  {CONTACT_INFO.email}
-                </a>
-              </motion.div>
+              </div>
 
               {/* Horarios de Atención */}
               <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-start gap-3.5 group cursor-default select-none"
+                whileHover={{ x: 3 }}
+                className="flex items-center gap-2 sm:gap-2.5 group cursor-default select-none"
               >
-                <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
-                  whileHover={{ scale: 1.15 }}
-                  className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,215,0,0.35)] mt-0.5 transition-all duration-300 ease-out overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-white/25 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Clock className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] stroke-[2.4]" />
-                </motion.div>
-                <div className="leading-snug text-[#0A1C24] pt-1 select-none">
+                <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] flex items-center justify-center shrink-0 shadow-xs">
+                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0A1C24] stroke-[2.4]" />
+                </div>
+                <div className="leading-snug text-[#0A1C24] select-none">
                   <span>Lun - Sáb: 8:00 AM - 6:00 PM</span>
                 </div>
               </motion.div>
 
-            </div>
-
-            {/* Botones de Redes Sociales (Iconos Negros con Fondo Dorado) */}
-            <div className="pt-3 border-t border-[#0A1C24]/10">
-              <span className="block text-[11px] font-bold uppercase tracking-wider text-[#0A1C24] mb-2.5">
-                Redes Sociales
-              </span>
-              <div className="flex items-center gap-2.5">
-                <motion.a
-                  href={CONTACT_INFO.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok Casa Kinti"
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
-                >
-                  <TikTokIcon className="w-4.5 h-4.5 text-[#0A1C24]" />
-                </motion.a>
-
-                <motion.a
-                  href={CONTACT_INFO.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram Casa Kinti"
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
-                >
-                  <Instagram className="w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
-                </motion.a>
-
-                <motion.a
-                  href={CONTACT_INFO.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook Casa Kinti"
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
-                >
-                  <Facebook className="w-4.5 h-4.5 text-[#0A1C24] stroke-[2.2]" />
-                </motion.a>
-
-                <motion.a
-                  href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp Casa Kinti"
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#FFD700] hover:to-[#E5A824] flex items-center justify-center text-[#0A1C24] shadow-[0_0_12px_rgba(255,215,0,0.35)] transition-all duration-300"
-                >
-                  <WhatsAppOfficialIcon className="w-4.5 h-4.5 text-[#0A1C24]" />
-                </motion.a>
-              </div>
             </div>
 
           </div>
@@ -388,14 +453,14 @@ export const Footer: React.FC = () => {
         {/* ========================================================
             BARRA INFERIOR / SUB-FOOTER
            ======================================================== */}
-        <div className="pt-8 border-t border-[#0A1C24]/15 text-xs text-[#0A1C24]/80 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 items-center font-medium">
+        <div className="pt-2.5 sm:pt-4 border-t border-[#0A1C24]/15 text-[10.5px] sm:text-xs text-[#0A1C24]/80 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 font-medium">
           
           {/* Izquierda: Copyright y Enlaces Legales */}
-          <div className="md:col-span-1 lg:col-span-3 flex flex-col sm:flex-row items-center md:items-start lg:items-center gap-2 sm:gap-6 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-center sm:text-left">
             <p>
               © {new Date().getFullYear()} Casa Kinti. Todos los derechos reservados.
             </p>
-            <div className="flex gap-4 text-xs">
+            <div className="flex items-center gap-2">
               <a
                 href="#contacto"
                 onClick={(e) => {
@@ -404,7 +469,7 @@ export const Footer: React.FC = () => {
                 }}
                 className="text-[#0A1C24]/80 hover:text-[#B88E44] transition-colors underline-offset-4 hover:underline"
               >
-                Política de Privacidad
+                Privacidad
               </a>
               <span>·</span>
               <a
@@ -415,18 +480,18 @@ export const Footer: React.FC = () => {
                 }}
                 className="text-[#0A1C24]/80 hover:text-[#B88E44] transition-colors underline-offset-4 hover:underline"
               >
-                Términos de Servicio
+                Términos
               </a>
             </div>
           </div>
 
           {/* Derecha: Firma Oficial KINDEV */}
-          <div className="md:col-span-1 lg:col-span-1 flex justify-center md:justify-start">
+          <div className="flex justify-center">
             <a 
               href="https://kindevx.web.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:opacity-95 transition-all text-sm flex items-center gap-2.5 group"
+              className="hover:opacity-95 transition-all text-[11px] sm:text-sm flex items-center gap-1.5 sm:gap-2 group"
               title="Desarrollado por KINDEV"
               aria-label="Desarrollado por KINDEV"
             >
@@ -436,14 +501,14 @@ export const Footer: React.FC = () => {
                 <img 
                   src={kindevIcon} 
                   alt="KINDEV Logo" 
-                  width="44" 
-                  height="44" 
+                  width="28" 
+                  height="28" 
                   loading="lazy" 
                   decoding="async" 
-                  className="relative z-10 w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow-[0_2px_10px_rgba(255,215,0,0.5)] group-hover:scale-115 group-hover:-rotate-6 transition-all duration-300 ease-out inline-block"
+                  className="relative z-10 w-6 h-6 sm:w-7.5 sm:h-7.5 object-contain drop-shadow-[0_2px_8px_rgba(255,215,0,0.5)] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 ease-out inline-block"
                 />
               </div>
-              <span className="font-serif text-sm sm:text-base text-[#0A1C24] group-hover:text-[#B88E44] transition-colors font-semibold tracking-wide">
+              <span className="font-serif text-[10.5px] sm:text-xs text-[#0A1C24] group-hover:text-[#B88E44] transition-colors font-semibold tracking-wide">
                 Desarrollado por{" "}
                 <span className="font-serif font-bold text-[#0A1C24] inline-block">
                   KINDEV

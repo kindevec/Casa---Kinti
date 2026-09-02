@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
           : 'bg-gradient-to-b from-[#3E9C93]/80 via-[#5CBDB5]/40 to-transparent border-b-0 py-3 sm:py-4.5'
       }`}
     >
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex items-center justify-between gap-4">
+      <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* ========================================================
             ZONA IZQUIERDA: LOGOTIPO OFICIAL CON ANIMACIÓN DE ACERCAMIENTO Y MOVIMIENTO
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
         <motion.a
           href="#inicio"
           onClick={(e) => handleNavClick(e, '#inicio')}
-          className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer select-none shrink-0 relative"
+          className="flex items-center gap-2 sm:gap-3.5 group cursor-pointer select-none shrink-0 relative"
           aria-label="Casa Kinti - Volver al Inicio"
           whileHover={{ scale: 1.06, y: -2 }}
           whileTap={{ scale: 0.96 }}
@@ -133,14 +133,14 @@ export const Navbar: React.FC = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="relative z-10 w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_14px_rgba(255,215,0,0.95)] drop-shadow-[0_0_26px_rgba(255,234,121,0.75)] filter contrast-[1.1] brightness-[1.06]"
+              className="relative z-10 w-8 h-8 xs:w-9 xs:h-9 sm:w-11 sm:h-11 object-contain drop-shadow-[0_0_14px_rgba(255,215,0,0.95)] drop-shadow-[0_0_26px_rgba(255,234,121,0.75)] filter contrast-[1.1] brightness-[1.06]"
             />
           </div>
           <div className="flex flex-col text-left relative z-10">
-            <span className="font-serif text-base xs:text-lg sm:text-xl font-black tracking-[0.22em] text-[#052C34] group-hover:text-[#031D22] transition-colors leading-tight drop-shadow-[0_0_8px_rgba(255,215,0,0.45)]">
+            <span className="font-serif text-sm xs:text-base sm:text-xl font-black tracking-[0.18em] sm:tracking-[0.22em] text-[#052C34] group-hover:text-[#031D22] transition-colors leading-tight drop-shadow-[0_0_8px_rgba(255,215,0,0.45)]">
               CASA KINTI
             </span>
-            <span className="text-[11px] xs:text-[12px] sm:text-[13px] tracking-[0.26em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1.5px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_10px_rgba(255,215,0,0.95)] select-none">
+            <span className="text-[10px] xs:text-[11px] sm:text-[13px] tracking-[0.20em] sm:tracking-[0.26em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1.5px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_10px_rgba(255,215,0,0.95)] select-none">
               JOHANNA PROAÑO
             </span>
           </div>
@@ -184,48 +184,52 @@ export const Navbar: React.FC = () => {
         {/* ========================================================
             ZONA DERECHA: SELECTOR DE NICHO + BOTÓN DORADO LUXE
            ======================================================== */}
-        <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
+        <div className="flex items-center shrink-0">
           
-          {/* Selector Dual de Nicho Compacto */}
+          {/* Selector Dual de Nicho Compacto y Responsivo */}
           <div
             aria-label="Selector de Nicho"
-            className="flex items-center p-0.5 sm:p-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md select-none gap-0.5 shadow-inner"
+            className="flex items-center p-0.5 sm:p-1 rounded-full bg-black/45 border border-white/25 backdrop-blur-md select-none gap-1 shadow-inner shrink-0"
           >
             <button
               type="button"
               onClick={() => setMode('holistica')}
-              className={`px-2 xs:px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-serif tracking-normal sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1 sm:gap-1.5 ${
+              aria-label="Modo Holística"
+              title="Modo Holística"
+              className={`w-7.5 h-7.5 sm:w-auto sm:h-auto sm:px-3.5 sm:py-1 rounded-full text-xs font-serif font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
                 mode === 'holistica'
-                  ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] font-bold shadow-md shadow-[#D4B26F]/30'
-                  : 'text-white/80 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] shadow-md shadow-[#D4B26F]/30'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <img
                 src="/icons/flor.png"
-                alt=""
-                className={`w-3 h-3 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
-                  mode === 'holistica' ? 'opacity-90' : 'invert opacity-80'
+                alt="Holística"
+                className={`w-4 h-4 object-contain shrink-0 transition-all duration-300 ${
+                  mode === 'holistica' ? 'opacity-95' : 'invert opacity-80'
                 }`}
               />
-              <span>Holística</span>
+              <span className="hidden sm:inline leading-none pt-0.5">Holística</span>
             </button>
             <button
               type="button"
               onClick={() => setMode('educacion')}
-              className={`px-2 xs:px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[9px] xs:text-[10px] sm:text-xs font-serif tracking-normal sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center gap-1 sm:gap-1.5 ${
+              aria-label="Modo Educación"
+              title="Modo Educación"
+              className={`w-7.5 h-7.5 sm:w-auto sm:h-auto sm:px-3.5 sm:py-1 rounded-full text-xs font-serif font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
                 mode === 'educacion'
-                  ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] font-bold shadow-md shadow-[#D4B26F]/30'
-                  : 'text-white/80 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] shadow-md shadow-[#D4B26F]/30'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <img
                 src="/icons/birrete.png"
-                alt=""
-                className={`w-3 h-3 sm:w-4 sm:h-4 object-contain transition-all duration-300 ${
-                  mode === 'educacion' ? 'opacity-90' : 'invert opacity-80'
+                alt="Educación"
+                className={`w-4 h-4 object-contain shrink-0 transition-all duration-300 ${
+                  mode === 'educacion' ? 'opacity-95' : 'invert opacity-80'
                 }`}
               />
-              <span>Educación</span>
+              <span className="hidden sm:inline leading-none pt-0.5">Educación</span>
             </button>
           </div>
 
