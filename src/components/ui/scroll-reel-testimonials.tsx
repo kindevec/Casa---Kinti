@@ -38,11 +38,13 @@ export interface ScrollReelTestimonialsProps {
   className?: string;
 }
 
-/* Geometry — middle column pitch between portrait centers:
- * 3 * (cell 168px + gap 12px) = 540px */
-const CELL = 168;
-const GAP = 12;
-const STEP = 3 * (CELL + GAP);
+/* Geometry — horizontal expanded middle column and narrow side reels:
+ * 3 * (cell 175px + gap 14px) = 567px */
+const FEATURED_W = 280;
+const SIDE_W = 140;
+const CELL_H = 175;
+const GAP = 14;
+const STEP = 3 * (CELL_H + GAP);
 
 const EXIT_MS = 280; // old text removed / new text mounted
 const SLIDE_MS = 900; // column slide duration + interaction lock
@@ -59,12 +61,12 @@ const FEATURED_SHADOW =
   "0 8px 32px rgba(212,178,111,0.35), 0 0 15px rgba(255,215,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4)";
 
 /* Placeholder cell with visible brand colors */
-function Cell() {
+function Cell({ width = SIDE_W }: { width?: number }) {
   return (
     <div
       aria-hidden="true"
       className="shrink-0 rounded-2xl border-2 border-[#FFD700]/60 bg-white shadow-md flex items-center justify-center relative overflow-hidden"
-      style={{ width: CELL, height: CELL }}
+      style={{ width, height: CELL_H }}
     >
       {/* Decorative subtle radial sheen */}
       <div className="absolute inset-0 bg-radial from-[#FFD700]/15 to-transparent pointer-events-none" />
@@ -90,14 +92,14 @@ const Featured: React.FC<FeaturedProps> = ({ src, alt }) => {
   return (
     <div
       className="relative shrink-0 overflow-hidden rounded-2xl bg-[#FFFFFF] border-2 border-[#2B7294]/60 shadow-lg"
-      style={{ width: CELL, height: CELL, boxShadow: FEATURED_SHADOW }}
+      style={{ width: FEATURED_W, height: CELL_H, boxShadow: FEATURED_SHADOW }}
     >
       <img
         src={src}
         alt={alt ?? "Foto de testimonio Casa Kinti"}
         loading="eager"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+        className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
       />
       {/* subtle saturation blend */}
       <div
@@ -337,7 +339,7 @@ export function ScrollReelTestimonials({
         stopContinuousScroll();
       }}
       className={cn(
-        "group relative flex w-full max-w-[1240px] mx-auto flex-col items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 outline-hidden md:min-h-[340px] md:flex-row py-2",
+        "group relative flex w-full max-w-[1380px] mx-auto flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-14 outline-hidden md:min-h-[370px] md:flex-row py-4",
         className
       )}
     >
@@ -345,18 +347,18 @@ export function ScrollReelTestimonials({
       <div className="flex justify-center items-center shrink-0 w-full md:w-auto overflow-hidden">
         <div
           aria-hidden="true"
-          className="relative h-60 xs:h-68 sm:h-76 md:h-[340px] w-full max-w-[340px] xs:max-w-[390px] sm:max-w-[480px] md:w-[540px] shrink-0 overflow-hidden flex items-center justify-center"
+          className="relative h-64 xs:h-72 sm:h-80 md:h-[370px] w-full max-w-[360px] xs:max-w-[440px] sm:max-w-[560px] md:w-[670px] shrink-0 overflow-hidden flex items-center justify-center"
           style={{
             WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
             maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
           }}
         >
-          <div className="flex items-center justify-center gap-2.5 sm:gap-3 scale-[0.62] xs:scale-[0.72] sm:scale-[0.85] md:scale-100 origin-center transition-transform duration-300">
+          <div className="flex items-center justify-center gap-3 sm:gap-3.5 scale-[0.62] xs:scale-[0.72] sm:scale-[0.84] md:scale-100 origin-center transition-transform duration-300">
             {/* Left column */}
             <div
-              className="flex shrink-0 flex-col gap-3 will-change-transform motion-reduce:[transition:none!important]"
+              className="flex shrink-0 flex-col gap-3.5 will-change-transform motion-reduce:[transition:none!important]"
               style={colStyle(sideY)}
             >
               {Array.from({ length: sideCellCount }).map((_, i) => (
@@ -366,7 +368,7 @@ export function ScrollReelTestimonials({
 
             {/* Middle column */}
             <div
-              className="flex shrink-0 flex-col gap-3 will-change-transform motion-reduce:[transition:none!important]"
+              className="flex shrink-0 flex-col gap-3.5 will-change-transform motion-reduce:[transition:none!important]"
               style={colStyle(middleY)}
             >
               {middleItems.map((item, i) =>
@@ -377,14 +379,14 @@ export function ScrollReelTestimonials({
                     alt={testimonials[item.i].alt}
                   />
                 ) : (
-                  <Cell key={`mid-${i}`} />
+                  <Cell key={`mid-${i}`} width={FEATURED_W} />
                 )
               )}
             </div>
 
             {/* Right column */}
             <div
-              className="flex shrink-0 flex-col gap-3 will-change-transform motion-reduce:[transition:none!important]"
+              className="flex shrink-0 flex-col gap-3.5 will-change-transform motion-reduce:[transition:none!important]"
               style={colStyle(sideY)}
             >
               {Array.from({ length: sideCellCount }).map((_, i) => (
@@ -396,7 +398,7 @@ export function ScrollReelTestimonials({
       </div>
 
       {/* Content section + Retrato del autor + Flechas de navegación */}
-      <div className="flex min-w-0 flex-1 items-center justify-between gap-4 self-stretch px-2 sm:px-4 w-full">
+      <div className="flex min-w-0 flex-1 items-center justify-between gap-4 self-stretch px-2 sm:px-6 w-full">
         
         {/* Bloque de Texto y Estrellas */}
         <div className="flex flex-col gap-3 min-w-0 flex-1">
@@ -416,7 +418,7 @@ export function ScrollReelTestimonials({
 
           {/* Text stage con quote adaptable */}
           <div
-            className="relative w-full max-w-[480px] overflow-hidden"
+            className="relative w-full max-w-[580px] lg:max-w-[640px] overflow-hidden"
             aria-live="polite"
           >
             {/* Invisible in-flow copy sizes the stage to the current

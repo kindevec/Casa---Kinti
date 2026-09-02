@@ -1,12 +1,13 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNicheMode } from '../context/NicheContext';
-import { INCLUDED_EXPERIENCE_ITEMS } from '../data';
+import { INCLUDED_EXPERIENCE_HOLISTICA, INCLUDED_EXPERIENCE_EDUCACION } from '../data';
 import { AgendarCalendarIcon } from './FloralDecorations';
 import { AnimatedConstructPhoto } from './AnimatedConstructPhoto';
 import { FlowingExperienceList } from './FlowingExperienceList';
 
 export const AttentionSection: React.FC = () => {
   const { mode } = useNicheMode();
+  const experienceItems = mode === 'educacion' ? INCLUDED_EXPERIENCE_EDUCACION : INCLUDED_EXPERIENCE_HOLISTICA;
 
   return (
     <section id="atencion-personalizada" className="relative w-full overflow-hidden bg-white">
@@ -27,7 +28,7 @@ export const AttentionSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-          <div className="lg:col-span-5 flex flex-col justify-start items-center lg:items-start w-full lg:pt-4">
+          <div className="lg:col-span-5 flex flex-col justify-start items-center lg:items-start w-full lg:pt-28">
             <div className="w-full max-w-[480px] rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.18)] border-[3px] border-[#FFD700]">
               <AnimatedConstructPhoto
                 aspectRatio="landscape"
@@ -40,23 +41,20 @@ export const AttentionSection: React.FC = () => {
                         'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
                       ]
                     : [
-                        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80',
+                        '/experiencia-fuego-sagrado.jpg',
+                        '/experiencia-circulo-mandala.jpg',
+                        '/experiencia-comunidad-botica.jpg',
+                        '/experiencia-diagnostico-pendulo.jpg',
                       ]
                 }
-                alt="Atencion Personalizada Casa Kinti"
+                alt="Lo que incluye tu experiencia en Casa Kinti"
                 className="w-full"
               />
             </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-5">
+          <div className="lg:col-span-7 space-y-6">
             <div>
-              <span className="text-xs font-serif font-bold uppercase tracking-[0.25em] text-[#B88E44] block mb-1">
-                Atencion Personalizada
-              </span>
               <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#133238] leading-tight">
                 Lo que incluye tu experiencia en{' '}
                 <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal">
@@ -65,9 +63,9 @@ export const AttentionSection: React.FC = () => {
               </h3>
             </div>
 
-            <FlowingExperienceList items={INCLUDED_EXPERIENCE_ITEMS} />
+            <FlowingExperienceList items={experienceItems} />
 
-            <div className="pt-4 flex justify-center lg:justify-start items-center w-full">
+            <div className="pt-6 flex justify-center items-center w-full">
               <a
                 href="#contacto"
                 id="attention-cta-btn"

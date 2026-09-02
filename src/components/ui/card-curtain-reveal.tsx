@@ -180,12 +180,12 @@ export const CardCurtainSplitCover = ({
         }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        {/* Footer Inferior: Título y Precio */}
+        {/* Footer Inferior: Título + Precio */}
         <div className="space-y-1.5">
-          <h3 className="font-serif-display text-2xl font-bold text-white leading-snug drop-shadow-md">
+          {/* Título en blanco encima del precio */}
+          <h3 className="font-serif text-lg sm:text-xl font-bold text-white leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
             {title}
           </h3>
-
           <div className="flex items-center justify-between pt-0.5">
             <div>
               {promoPrice && (

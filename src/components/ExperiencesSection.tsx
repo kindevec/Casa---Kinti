@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
-import { WHATSAPP_PHONE } from '../data';
-import { Clock, Tag } from 'lucide-react';
+import { WHATSAPP_PHONE, COURSES_EDUCACION } from '../data';
+import { Clock, Tag, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
 import { WhatsAppOfficialIcon } from './FloralDecorations';
+import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
 
 // Filigrana ornamental para las 4 esquinas de cada carta estilo tarot místico
 const CornerOrnament = ({ className }: { className?: string }) => (
@@ -248,6 +249,88 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
 export const ExperiencesSection: React.FC = () => {
   const { mode } = useNicheMode();
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
+
+  // En el modo educación mostramos la sección Cursos con tarjetas de cortina
+  if (mode === 'educacion') {
+    return (
+      <section
+        id="cursos"
+        className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-[#3E9C93] via-[#4AAEA5] to-[#368F87] text-white border-t border-[#FFEA79]/30"
+      >
+        {/* Luces ambientales */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-white/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FFD700]/15 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Encabezado limpio: solo el título Cursos */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
+              Cursos
+            </h3>
+          </div>
+
+          {/* Grid de cursos con tarjetas de cortina */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-350">
+            {COURSES_EDUCACION.map((course) => (
+              <div key={course.id} className="relative overflow-visible">
+                <CardCurtainReveal
+                  id={`course-curtain-${course.id}`}
+                  className="relative bg-white rounded-2xl min-h-[380px] sm:min-h-[400px] shadow-[0_8px_30px_rgba(212,178,111,0.25)] hover:shadow-[0_12px_40px_rgba(212,178,111,0.45)] border-2 border-[#FFD700] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                >
+                  {/* ========================================================
+                      1. CORTINA FRONTAL: UN SOLO TÍTULO SOBRE LA IMAGEN
+                     ======================================================== */}
+                  <CardCurtainSplitCover
+                    image={course.image || '/tarot-hero.png'}
+                    title={course.name}
+                    price=""
+                    badge={course.badge}
+                    category={course.category || 'Curso Formativo'}
+                  />
+
+                  {/* ========================================================
+                      2. CONTENIDO INTERIOR REVELADO (DESCRIPCIÓN Y BOTÓN)
+                     ======================================================== */}
+                  <div className="absolute inset-0 z-10 p-6 sm:p-7 flex flex-col justify-center items-center gap-5 w-full bg-gradient-to-b from-white via-[#F8FBFC] to-[#EFF6F8] text-[#133238]">
+                    
+                    {/* Categoría e Insignia */}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 shrink-0 w-full">
+                      {course.badge && (
+                        <span className="bg-[#FFD700] text-[#0A1C24] text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs uppercase tracking-wider">
+                          {course.badge}
+                        </span>
+                      )}
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#133238] bg-[#FFF8D6] px-3 py-1 rounded-full border border-[#FFD700] shadow-xs">
+                        {course.category || 'Curso Formativo'}
+                      </span>
+                    </div>
+
+                    {/* Descripción centrada */}
+                    <p className="text-xs sm:text-sm text-[#2C484E] leading-relaxed font-light max-w-xs mx-auto text-center">
+                      {course.description}
+                    </p>
+
+                    {/* Botón de Contactar en Oro */}
+                    <a
+                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(`Hola Johanna, deseo más información sobre el curso: *${course.name}*.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative overflow-hidden w-full inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] text-xs sm:text-sm font-serif font-bold uppercase tracking-wider py-3.5 px-4 rounded-sm shadow-md hover:shadow-[0_6px_22px_rgba(212,178,111,0.5)] transition-all hover:scale-[1.02] active:scale-97 group/btn cursor-pointer"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                      <WhatsAppOfficialIcon className="w-5 h-5 text-[#0A1C24] shrink-0" />
+                      <span>Consultar por WhatsApp</span>
+                    </a>
+
+                  </div>
+                </CardCurtainReveal>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const toggleFlip = (id: string) => {
     setFlippedCardId((prev) => (prev === id ? null : id));

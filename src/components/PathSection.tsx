@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import {
   PATH_STEPS_HOLISTICA,
   PATH_STEPS_EDUCACION,
@@ -294,12 +295,12 @@ const ARCH_STEP_THEMES = [
                   id={`path-step-${step.number}`}
                   className="group flex flex-col items-center text-center select-none p-2 transition-transform duration-300 hover:-translate-y-2"
                 >
-                  {/* Ícono ilustrativo libre en oro 24k metálico (sin círculos ni contenedores) */}
+                  {/* Ícono ilustrativo en oro 24k metálico */}
                   <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-115">
                     <GraphicComponent className="w-full h-full drop-shadow-[0_4px_16px_rgba(255,215,0,0.95)]" color="#FFD700" />
                   </div>
 
-                  {/* Título Principal en Oro 24K Metálico con Tamaño Equilibrado */}
+                  {/* Título Principal en Oro 24K Metálico */}
                   <h3 className="font-serif text-base sm:text-lg md:text-xl font-bold mb-2 leading-snug tracking-[0.16em] uppercase select-none">
                     <span className="bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                       {step.keyword}
@@ -309,7 +310,7 @@ const ARCH_STEP_THEMES = [
                   {/* Divisor dorado sutil */}
                   <div className="w-10 h-[1.5px] bg-gradient-to-r from-transparent via-[#FFD700] to-transparent mb-3 opacity-90" />
 
-                  {/* Descripción nítida en negro con alta legibilidad */}
+                  {/* Descripción */}
                   <p className="text-xs sm:text-[13px] md:text-sm text-[#0A1C24] leading-relaxed font-semibold max-w-[240px] mx-auto">
                     {step.description}
                   </p>

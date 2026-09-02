@@ -28,102 +28,106 @@ export const MissionVisionSection: React.FC = () => {
       <div className="absolute -bottom-10 right-10 w-80 h-80 bg-[#00D2B4]/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Cabecera de la Sección (Sin la insignia de arriba) */}
+        {/* Cabecera de la Sección */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-14 sm:mb-20">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
             Nuestra <span className="italic text-[#B88E44] font-normal">Misión</span> &{' '}
             <span className="italic text-[#2B7294] font-normal">Visión</span>
           </h2>
-
-          <p className="text-xs sm:text-sm md:text-base text-[#2C484E] font-medium max-w-2xl mx-auto leading-relaxed">
-            El puente sagrado donde la ciencia pedagógica y la medicina ancestral andina se unen para nutrir todas las dimensiones de tu ser.
-          </p>
         </div>
 
-        {/* Tarjetas Arqueadas con Contorno Grueso y Dorado (Sin insignias) */}
+        {/* Tarjetas con estilo TeachingMethods: flotación + brillo + borde dorado + footer amarillo animado */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto items-stretch">
           
-          {/* ========================================================
-              TARJETA 1: MISIÓN
-             ======================================================== */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            whileHover={{ y: -6 }}
-            className="group flex flex-col rounded-t-[140px] sm:rounded-t-[160px] rounded-b-3xl overflow-hidden bg-[#FAF8F5] border-4 sm:border-[5px] border-[#D4A346] shadow-[0_16px_40px_rgba(0,0,0,0.1),0_0_30px_rgba(212,178,111,0.35)] hover:shadow-[0_20px_50px_rgba(212,178,111,0.5)] hover:border-[#FFD700] transition-all duration-400"
-          >
-            {/* Arco Superior con Fotografía */}
-            <div className="relative h-72 sm:h-80 w-full overflow-hidden rounded-t-[132px] sm:rounded-t-[152px] bg-[#E8E4DA]">
-              <img
-                key={misionImage}
-                src={misionImage}
-                alt={misionAlt}
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106 animate-in fade-in duration-500"
-                loading="lazy"
+          {[
+            {
+              label: 'MISIÓN',
+              image: misionImage,
+              alt: misionAlt,
+              titleColor: '#B88E44',
+              dividerColor: '#D4B26F',
+              glowColor: 'rgba(255, 215, 0, 0.65)',
+              floatY: [0, -8, 0, -5, 0],
+              floatDuration: 5.4,
+              delay: 0,
+              text: 'Acompañar el desarrollo integral y la sanación del ser humano en todas sus etapas. Fusionamos la ciencia de la educación y la terapia de lenguaje con la sabiduría de las medicinas ancestrales para nutrir el cuerpo, la mente, la voz y el espíritu, creando un espacio seguro de evolución personal.',
+            },
+            {
+              label: 'VISIÓN',
+              image: visionImage,
+              alt: visionAlt,
+              titleColor: '#2B7294',
+              dividerColor: '#2B7294',
+              glowColor: 'rgba(43, 114, 148, 0.6)',
+              floatY: [0, -6, 2, -9, 0],
+              floatDuration: 5.9,
+              delay: 0.15,
+              text: 'Consolidar a Casa Kinti como un refugio holístico de referencia, donde niños y adultos encuentren las herramientas, terapias y productos de la tierra necesarios para su expresión auténtica, sanación profunda y bienestar absoluto.',
+            },
+          ].map((card, idx) => (
+            <motion.div
+              key={card.label}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: card.delay }}
+              whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.28, ease: 'easeOut' } }}
+              className="group relative flex flex-col rounded-t-[140px] sm:rounded-t-[160px] rounded-b-3xl overflow-hidden border-2 border-[#FFD700] cursor-default"
+            >
+              {/* Pulsing glow behind card on hover */}
+              <motion.div
+                className="absolute -inset-1 rounded-t-[145px] rounded-b-3xl pointer-events-none z-0 blur-xl opacity-0 group-hover:opacity-80"
+                animate={{ boxShadow: [`0 0 20px ${card.glowColor}`, `0 0 45px ${card.glowColor}`, `0 0 20px ${card.glowColor}`] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ backgroundColor: card.glowColor }}
               />
-              {/* Velo gradiente fino en la base de la foto */}
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF8F5] to-transparent pointer-events-none" />
-              
-              {/* Marco interior arqueado fino decorativo */}
-              <div className="absolute inset-2.5 rounded-t-[125px] sm:rounded-t-[145px] border border-white/40 pointer-events-none" />
-            </div>
-
-            {/* Cuerpo de la Tarjeta (Sin insignias) */}
-            <div className="p-6 sm:p-8 flex flex-col justify-center flex-1 text-center space-y-3.5">
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-[32px] font-black tracking-[0.2em] text-[#B88E44] uppercase drop-shadow-xs">
-                MISIÓN
-              </h3>
-              
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#D4B26F] to-transparent mx-auto" />
-
-              <p className="text-xs sm:text-sm md:text-[14.5px] text-[#2C484E] font-normal leading-relaxed text-justify sm:text-center pt-1">
-                Acompañar el desarrollo integral y la sanación del ser humano en todas sus etapas. Fusionamos la ciencia de la educación y la terapia de lenguaje con la sabiduría de las medicinas ancestrales para nutrir el cuerpo, la mente, la voz y el espíritu, creando un espacio seguro de evolución personal.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* ========================================================
-              TARJETA 2: VISIÓN
-             ======================================================== */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            whileHover={{ y: -6 }}
-            className="group flex flex-col rounded-t-[140px] sm:rounded-t-[160px] rounded-b-3xl overflow-hidden bg-[#FAF8F5] border-4 sm:border-[5px] border-[#D4A346] shadow-[0_16px_40px_rgba(0,0,0,0.1),0_0_30px_rgba(212,178,111,0.35)] hover:shadow-[0_20px_50px_rgba(212,178,111,0.5)] hover:border-[#FFD700] transition-all duration-400"
-          >
-            {/* Arco Superior con Fotografía */}
-            <div className="relative h-72 sm:h-80 w-full overflow-hidden rounded-t-[132px] sm:rounded-t-[152px] bg-[#E8E4DA]">
-              <img
-                key={visionImage}
-                src={visionImage}
-                alt={visionAlt}
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106 animate-in fade-in duration-500"
-                loading="lazy"
+              {/* Animated shadow */}
+              <motion.div
+                className="absolute inset-0 rounded-t-[140px] rounded-b-3xl pointer-events-none"
+                animate={{ boxShadow: ['0 8px 25px rgba(0,0,0,0.12)', '0 16px 40px rgba(212,178,111,0.45)', '0 8px 25px rgba(0,0,0,0.12)'] }}
+                transition={{ duration: 3 + idx * 0.4, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.5 }}
               />
-              {/* Velo gradiente fino en la base de la foto */}
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF8F5] to-transparent pointer-events-none" />
-              
-              {/* Marco interior arqueado fino decorativo */}
-              <div className="absolute inset-2.5 rounded-t-[125px] sm:rounded-t-[145px] border border-white/40 pointer-events-none" />
-            </div>
+              {/* Shimmer sweep on hover */}
+              <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
 
-            {/* Cuerpo de la Tarjeta (Sin insignias) */}
-            <div className="p-6 sm:p-8 flex flex-col justify-center flex-1 text-center space-y-3.5">
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-[32px] font-black tracking-[0.2em] text-[#2B7294] uppercase drop-shadow-xs">
-                VISIÓN
-              </h3>
-              
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#2B7294] to-transparent mx-auto" />
+              {/* Arco Superior con Fotografía */}
+              <div className="relative h-72 sm:h-80 w-full overflow-hidden rounded-t-[132px] sm:rounded-t-[152px] bg-[#E8E4DA]">
+                <motion.img
+                  key={card.image}
+                  src={card.image}
+                  alt={card.alt}
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                />
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FFFDE7] to-transparent pointer-events-none" />
+                <div className="absolute inset-2.5 rounded-t-[125px] sm:rounded-t-[145px] border border-white/40 pointer-events-none" />
+              </div>
 
-              <p className="text-xs sm:text-sm md:text-[14.5px] text-[#2C484E] font-normal leading-relaxed text-justify sm:text-center pt-1">
-                Consolidar a Casa Kinti como un refugio holístico de referencia, donde niños y adultos encuentren las herramientas, terapias y productos de la tierra necesarios para su expresión auténtica, sanación profunda y bienestar absoluto.
-              </p>
-            </div>
-          </motion.div>
+              {/* Footer animado en amarillo pastel pulsante */}
+              <motion.div
+                className="relative p-6 sm:p-8 border-t-2 border-[#FFD700]/60 text-center flex flex-col items-center space-y-3.5"
+                animate={{ backgroundColor: ['#FFFDE7', '#FFF9C4', '#FFEE58', '#FFF9C4', '#FFFDE7'] }}
+                transition={{ duration: 4 + idx * 0.6, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.4 }}
+              >
+                {/* Reflejo dorado animado */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  animate={{ opacity: [0, 0.18, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.6 }}
+                  style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,215,0,0.5) 0%, transparent 70%)' }}
+                />
+                <h3 className="relative z-10 font-serif text-2xl sm:text-3xl font-black tracking-[0.2em] uppercase" style={{ color: card.titleColor }}>
+                  {card.label}
+                </h3>
+                <div className="w-16 h-0.5 mx-auto" style={{ background: `linear-gradient(to right, transparent, ${card.dividerColor}, transparent)` }} />
+                <p className="relative z-10 text-xs sm:text-sm md:text-[14.5px] text-[#2C484E] font-normal leading-relaxed text-justify sm:text-center">
+                  {card.text}
+                </p>
+              </motion.div>
+            </motion.div>
+          ))}
 
         </div>
       </div>

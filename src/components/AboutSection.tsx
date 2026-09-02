@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Calendar } from 'lucide-react';
 import { useNicheMode } from '../context/NicheContext';
+
 
 // Íconos vectoriales dorados dibujados al estilo de los Pasos
 const IconEducadoraBilingue: React.FC<{ className?: string; color?: string }> = ({
@@ -82,7 +83,7 @@ const IconMedicinaAncestral: React.FC<{ className?: string; color?: string }> = 
   </svg>
 );
 
-const ABOUT_CIRCLES = [
+const ABOUT_CIRCLES_EDUCACION = [
   {
     title: 'Educadora Infantil Bilingüe',
     IconComponent: IconEducadoraBilingue,
@@ -91,15 +92,19 @@ const ABOUT_CIRCLES = [
     title: 'Máster en Problemas de Aprendizaje',
     IconComponent: IconMasterAprendizaje,
   },
+];
+
+const ABOUT_CIRCLES_HOLISTICA = [
   {
-    title: 'Ceremonias con Plantas Sagradas del Pensamiento',
+    title: 'Terapeuta en Flores de Bach',
     IconComponent: IconFloresBachHerbolaria,
   },
   {
-    title: 'Mujer Medicina en Medicina Ancestral',
+    title: 'Médica andina certificada en medicina ancestral por el Ministerio de Salud con código ACESS',
     IconComponent: IconMedicinaAncestral,
   },
 ];
+
 
 export const AboutSection: React.FC = () => {
   const { mode } = useNicheMode();
@@ -210,44 +215,54 @@ export const AboutSection: React.FC = () => {
               </span>
             </h2>
 
-            {/* Párrafos Biográficos: El camino desde la mente hacia el alma */}
+            {/* Párrafos Biográficos: Adaptados según el modo */}
             <div className="space-y-4 text-sm sm:text-base text-[#2C484E] leading-relaxed font-normal text-justify">
-              <p>
-                Mi vocación al servicio nació a los 16 años desde el amor por la educación infantil, enriquecida por más de dos décadas de maternidad y estudio autodidacta de las metodologías Montessori, Piaget y Pikler. Esta búsqueda por comprender el desarrollo cognitivo me llevó a graduarme con una <strong className="text-[#133238] font-semibold">Maestría en Problemas de Aprendizaje en la Universidad de Salamanca (España)</strong>.
-              </p>
-              <p>
-                Comprendí que sanar la mente exige también abrazar el espíritu. Como mujer medicina iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego de Xochilaclan con la bendición de Taitas, guía en ceremonias con Plantas Sagradas del Pensamiento y Maestra en Registros Akáshicos, fundé <strong className="text-[#133238] font-semibold">Casa Kinti</strong> para fusionar la ciencia pedagógica con la sabiduría ancestral en un espacio seguro de evolución, amor y luz.
-              </p>
+              {mode === 'educacion' ? (
+                <>
+                  <p>
+                    Mi vocación al servicio nació desde el profundo amor por la educación infantil, enriquecida por más de dos décadas de experiencia y estudio de metodologías activas y respetuosas como Montessori, Piaget y Pikler. Esta búsqueda por comprender el desarrollo integral y el potencial de cada niño me llevó a graduarme con una <strong className="text-[#133238] font-semibold">Maestría en Problemas de Aprendizaje en la Universidad de Salamanca (España)</strong>.
+                  </p>
+                  <p>
+                    En <strong className="text-[#133238] font-semibold">Casa Kinti</strong> creamos un espacio de acompañamiento educativo y terapéutico donde cada niño es visto como un ser único, con su propio ritmo, intereses y talentos. Integramos educación alternativa, estrategias personalizadas y herramientas integrativas desde una mirada respetuosa y humana para que gane confianza, descubra sus capacidades y vuelva a disfrutar el aprendizaje.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Mi camino de sanación comenzó desde adentro: como mujer, como madre y como buscadora del espíritu. Iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego Sagrado de Xochilaclan con la bendición de Taitas, aprendí a escuchar la voz de la tierra y de los ancestros. Soy <strong className="text-[#133238] font-semibold">Terapeuta en Flores de Bach</strong> y <strong className="text-[#133238] font-semibold">Médica Andina certificada en medicina ancestral por el Ministerio de Salud con código ACESS</strong>.
+                  </p>
+                  <p>
+                    En <strong className="text-[#133238] font-semibold">Casa Kinti</strong> ofrezco terapias integrativas, productos sagrados de la tierra y ceremonias de sanación para quienes desean reconectar con su esencia, liberar bloqueos y caminar hacia el bienestar del cuerpo, la mente y el espíritu. Cada sesión es un espacio de amor, respeto y transformación profunda.
+                  </p>
+                </>
+              )}
             </div>
 
-            {/* 4 Círculos Dorados Medallón con Íconos Dibujados y Etiquetas */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-3 pt-4">
-              {ABOUT_CIRCLES.map((pillar, pIdx) => {
+
+            {/* Círculos Dorados Medallón: 2 Centrados en Ambos Nichos */}
+            <div className="flex justify-center items-center gap-8 sm:gap-14 max-w-md mx-auto w-full pt-4">
+              {(mode === 'educacion' ? ABOUT_CIRCLES_EDUCACION : ABOUT_CIRCLES_HOLISTICA).map((pillar, pIdx) => {
                 const { IconComponent } = pillar;
                 return (
                   <div
                     key={pIdx}
                     className="flex flex-col items-center gap-2.5 group cursor-default"
                   >
-                    {/* Círculo dorado con degradado, sombra y borde áureo */}
-                    <div className="relative w-[82px] h-[82px] sm:w-[78px] sm:h-[78px] md:w-[88px] md:h-[88px] shrink-0">
-                      {/* Halo exterior pulsante */}
+                    <div className="relative w-[86px] h-[86px] sm:w-[82px] sm:h-[82px] md:w-[92px] md:h-[92px] shrink-0">
                       <div className="absolute inset-[-5px] rounded-full border border-[#FFD700]/30 group-hover:border-[#FFD700]/70 transition-all duration-500" />
-                      {/* Círculo principal con gradiente dorado */}
                       <div className="w-full h-full rounded-full bg-gradient-to-br from-[#FFFBEE] via-[#FFF3C4] to-[#F5E08A] border-[2.5px] border-[#D4A346] shadow-[0_4px_18px_rgba(212,163,70,0.35)] group-hover:shadow-[0_6px_24px_rgba(212,163,70,0.6)] group-hover:scale-105 transition-all duration-400 flex items-center justify-center">
                         <IconComponent className="w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11" color="#9A6F24" />
                       </div>
-                      {/* Destello estrellado superior */}
                       <div className="absolute -top-1.5 -right-1.5 text-[#D4A346] text-[10px] drop-shadow-[0_0_5px_rgba(212,163,70,0.9)] select-none font-bold leading-none">✦</div>
                     </div>
-                    {/* Etiqueta de texto centrada debajo */}
-                    <span className="text-[11px] sm:text-[10.5px] md:text-xs font-semibold text-[#133238] text-center leading-tight group-hover:text-[#0A343D] transition-colors max-w-[96px] sm:max-w-full">
+                    <span className="text-[11px] sm:text-[11px] md:text-xs font-semibold text-[#133238] text-center leading-tight group-hover:text-[#0A343D] transition-colors max-w-[150px] sm:max-w-[170px]">
                       {pillar.title}
                     </span>
                   </div>
                 );
               })}
             </div>
+
 
             {/* Botón Central Dorado Agendar Consulta */}
             <div className="pt-6 sm:pt-8 flex justify-center items-center border-t border-[#133238]/10">

@@ -71,20 +71,24 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contacto" className="relative pt-14 sm:pt-20 md:pt-24 pb-16 sm:pb-24 overflow-hidden text-white transition-colors duration-500">
       {/* ========================================================
-          FOTOGRAFÍA CELESTIAL HORIZONTAL DE FONDO (COLOR DEL HEADER)
+          FONDO: COLOR DEL HEADER TURQUESA (#4AAEA5)
          ======================================================== */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93] pointer-events-none">
-        <img
-          src="/hero-celestial-bg.jpg"
-          alt="Cielo Celestial Turquesa y Polvo Dorado Casa Kinti"
-          className="w-full h-full object-cover object-center filter brightness-[1.12] contrast-[1.04] opacity-75 mix-blend-screen scale-100 pointer-events-none"
-        />
+        {/* Imagen de fondo celestial — solo en holística */}
+        {mode !== 'educacion' && (
+          <img
+            src="/hero-celestial-bg.jpg"
+            alt="Cielo Celestial Turquesa y Polvo Dorado Casa Kinti"
+            className="w-full h-full object-cover object-center filter brightness-[1.12] contrast-[1.04] opacity-75 mix-blend-screen scale-100 pointer-events-none"
+          />
+        )}
         {/* Velo turquesa luminoso del header y gradientes de realce */}
         <div className="absolute inset-0 bg-[#5CBDB5]/40 mix-blend-color pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#3E9C93]/50 via-transparent to-[#3E9C93]/60 pointer-events-none" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#FFF8D6]/20 blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/3 right-1/4 w-[28rem] h-[28rem] rounded-full bg-[#FFEA79]/20 blur-3xl pointer-events-none" />
       </div>
+
 
       {/* Destellos y polvo estelar dorado */}
       <div className="absolute inset-0 pointer-events-none opacity-25 -z-5">
@@ -101,33 +105,23 @@ export const ContactSection: React.FC = () => {
          ======================================================== */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16 md:mb-20">
         <div key={mode + '-contact-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-          <span className="text-[11px] sm:text-xs font-serif tracking-[0.24em] text-[#FFD700] uppercase font-bold drop-shadow-xs block">
-            ✦ RESERVAS & ASESORÍA PERSONALIZADA ✦
-          </span>
-
           <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#052C34] font-bold leading-tight drop-shadow-xs">
             {mode === 'educacion' ? (
               <>
-                Agenda tu cita{' '}
+                Reservas &{' '}
                 <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal block sm:inline">
-                  educativa
+                  Asesoría Pedagógica
                 </span>
               </>
             ) : (
               <>
-                Agenda tu sesión{' '}
+                Reservas &{' '}
                 <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal block sm:inline">
-                  holística
+                  Asesoría Personalizada
                 </span>
               </>
             )}
           </h2>
-
-          <p className="text-base sm:text-lg md:text-xl text-[#052C34]/95 font-medium leading-relaxed max-w-3xl mx-auto">
-            {mode === 'educacion'
-              ? 'Coordina una evaluación psicopedagógica, asesoría para padres o taller de estimulación temprana con Johanna Proaño.'
-              : 'Separa tu espacio para medicina ancestral andina, ceremonias con plantas sagradas del Pensamiento, tarot terapéutico o limpias energéticas en Quito o de forma virtual.'}
-          </p>
         </div>
       </div>
 

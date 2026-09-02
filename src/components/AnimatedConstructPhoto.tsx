@@ -64,24 +64,24 @@ export const AnimatedConstructPhoto: React.FC<AnimatedConstructPhotoProps> = ({
         // 1. IN: Construcción de la imagen (Expo Out con entrada aleatoria)
         tl.to(selector, {
           scale: 1,
-          duration: 0.95,
-          stagger: { amount: 0.45, from: 'random' },
+          duration: 0.65,
+          stagger: { amount: 0.3, from: 'random' },
           ease: 'expo.out',
         })
         // 2. IDLE: Respiración y visualización nítida
         .to(selector, {
           scale: 1.03,
-          duration: 2.2,
+          duration: 1.2,
           yoyo: true,
           repeat: 1,
           ease: 'sine.inOut',
-          stagger: { amount: 0.2, from: 'center' },
+          stagger: { amount: 0.15, from: 'center' },
         })
         // 3. OUT: Destrucción / desintegración de la imagen (Expo In)
         .to(selector, {
           scale: 0,
-          duration: 0.75,
-          stagger: { amount: 0.35, from: 'center' },
+          duration: 0.5,
+          stagger: { amount: 0.25, from: 'center' },
           ease: 'expo.in',
         });
 

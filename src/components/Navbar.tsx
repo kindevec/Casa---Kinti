@@ -5,8 +5,8 @@ import { useNicheMode } from '../context/NicheContext';
 const navLinks = [
   { label: 'INICIO', href: '#inicio' },
   { label: 'SOBRE MÍ', href: '#sobre-mi' },
-  { label: 'SERVICIOS', href: '#servicios' },
   { label: 'PRODUCTOS', href: '#productos' },
+  { label: 'SERVICIOS', href: '#servicios' },
   { label: 'CONTACTO', href: '#contacto' },
 ];
 
@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
 
       if (isClickingRef.current) return;
 
-      const sections = ['contacto', 'productos', 'servicios', 'sobre-mi', 'inicio'];
+      const sections = ['contacto', 'cursos', 'programas-talleres', 'productos', 'servicios', 'sobre-mi', 'inicio'];
       const scrollPosition = window.scrollY + 180;
 
       for (const sectionId of sections) {
@@ -68,12 +68,13 @@ export const Navbar: React.FC = () => {
   };
 
 
-  // Adaptar dinámicamente la etiqueta de productos/cursos según el nicho activo
+  // Adaptar dinámicamente la etiqueta y href de productos/cursos según el nicho activo
   const currentNavLinks = navLinks.map((link) => {
     if (link.href === '#productos') {
       return {
         ...link,
         label: mode === 'educacion' ? 'CURSOS' : 'PRODUCTOS',
+        href: mode === 'educacion' ? '#cursos' : '#productos',
       };
     }
     return link;
@@ -84,7 +85,7 @@ export const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? 'bg-[#4AAEA5]/95 backdrop-blur-md border-b border-[#FFEA79]/40 shadow-[0_4px_20px_rgba(40,110,105,0.3)] py-2.5 sm:py-3'
-          : 'bg-gradient-to-b from-[#3E9C93]/80 via-[#5CBDB5]/40 to-transparent border-b border-white/20 py-3 sm:py-4.5'
+          : 'bg-gradient-to-b from-[#3E9C93]/80 via-[#5CBDB5]/40 to-transparent border-b-0 py-3 sm:py-4.5'
       }`}
     >
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex items-center justify-between gap-4">
