@@ -26,7 +26,7 @@ Landing page oficial de **Casa Kinti**, ubicada en **Quito, Ecuador**, dirigida 
 3. **#productos — Productos:** Catálogo editorial de 6 productos (Pulseras Amuletos con estudio radiestésico GRATIS, Aceite de Lavanda, Palo Santo, Sahumerio Siete Poderes, Kit de Limpieza y Cristales sueltos) con modal de detalles y botón de pedido por WhatsApp.
 4. **#servicios — Servicios:** Dos bloques claramente diferenciados:
    - **Bloque A (Medicina Ancestral):** Limpias energéticas, Flores de Bach, Herbolaria y Tarot Terapéutico.
-   - **Bloque B (Educación Infantil):** Asesoría en Problemas de Aprendizaje, Talleres Bilingües y Evaluación Psicopedagógica.
+   - **Bloque B (Educación Infantil):** Nivelación Escolar, Terapia de Lenguaje, Acompañamiento Psicopedagógico, Asesoría en Problemas de Aprendizaje, Talleres Bilingües y Evaluación Psicopedagógica.
    - Bloque *"Lo que incluye tu experiencia"* con mockup y checklist.
    - Bloque *"Historias de Transformación"* con testimonios de 5 estrellas.
 5. **#contacto — Contáctanos:** CTA final *"Tu bienestar comienza ahora"*, formulario de reserva con `<optgroup>` por nicho y confirmación simulada, información de horarios, WhatsApp directo (+593 96 266 9994), redes sociales (TikTok, Instagram, Facebook), Google Maps embebido y footer con sello script *"Hecho con cariño por Casa Kinti"*.

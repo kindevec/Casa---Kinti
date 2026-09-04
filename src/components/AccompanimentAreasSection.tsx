@@ -10,6 +10,11 @@ const ACCOMPANIMENT_AREAS_ITEMS: CarouselCardItem[] = [
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
   },
   {
+    id: 'area-terapia-lenguaje',
+    title: 'Terapia de Lenguaje',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+  },
+  {
     id: 'area-matematica',
     title: 'Matemática',
     image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=800&q=80',
@@ -88,12 +93,18 @@ export const AccompanimentAreasSection: React.FC = () => {
       ))}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Encabezado limpio: solo título */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        {/* Encabezado limpio: solo título con animación de entrada */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+        >
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
             Áreas de Acompañamiento
           </h3>
-        </div>
+        </motion.div>
 
         {/* Carrusel 3D coverflow */}
         <CardCarousel items={ACCOMPANIMENT_AREAS_ITEMS} title="" />

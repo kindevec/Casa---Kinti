@@ -366,6 +366,18 @@ export const SERVICES_EDUCACION: ServiceItem[] = [
     keyBenefits: ['Diagnóstico psicopedagógico integral', 'Plan de intervención personalizado', 'Asesoría y orientación a padres y docentes'],
   },
   {
+    id: 'terapia-lenguaje',
+    title: 'Terapia de Lenguaje',
+    price: '$40.00',
+    description: 'Intervención especializada para estimular el desarrollo de la articulación, fluidez verbal, pronunciación y comprensión lingüística infantil mediante estrategias respetuosas y lúdicas.',
+    category: 'educacion',
+    icon: 'Languages',
+    badge: 'Desarrollo del Habla',
+    duration: '60 min',
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+    keyBenefits: ['Estimulación del habla, articulación y fluidez', 'Desarrollo de comprensión y expresión verbal', 'Pautas prácticas y orientación familiar para el hogar'],
+  },
+  {
     id: 'asesoria-aprendizaje',
     title: 'Asesoría en Problemas de Aprendizaje',
     price: '$35.00',

@@ -11,7 +11,7 @@ const navLinks = [
 ];
 
 export const Navbar: React.FC = () => {
-  const { mode, setMode } = useNicheMode();
+  const { mode, setMode, triggerNav } = useNicheMode();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#inicio');
   const isClickingRef = useRef(false);
@@ -48,6 +48,7 @@ export const Navbar: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setActiveSection(href);
+    triggerNav(href);
     isClickingRef.current = true;
     if (clickTimeoutRef.current) window.clearTimeout(clickTimeoutRef.current);
     clickTimeoutRef.current = window.setTimeout(() => {

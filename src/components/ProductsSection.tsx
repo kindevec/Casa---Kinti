@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { PRODUCTS, TEACHING_METHODS_EDUCACION, WHATSAPP_PHONE } from '../data';
 import { ProductItem } from '../types';
@@ -8,9 +8,10 @@ import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reve
 import { MessageCircle, Sparkles, Check, Eye, X, Shield, ArrowUpRight } from 'lucide-react';
 
 import { CardCarousel } from './ui/card-carousel';
+import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 
 export const ProductsSection: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, targetSection } = useNicheMode();
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
 
   // En el modo educación se elimina la sección de productos / programas y talleres
@@ -42,37 +43,50 @@ export const ProductsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {mode === 'educacion' ? (
-          /* ========================================================
-             CARRUSEL FLOTANTE DE MÉTODOS DE ENSEÑANZA (EDUCACIÓN)
-             ======================================================== */
-          <div className="py-4">
-            <CardCarousel
-              items={TEACHING_METHODS_EDUCACION}
-              badgeText="✨ Métodos de Enseñanza"
-              title="Nuestros Métodos de Enseñanza"
-              subtitle="Integramos educación alternativa, principios Montessori, estrategias pedagógicas personalizadas y herramientas de terapias integrativas para acompañar los procesos de aprendizaje."
-            />
-          </div>
-        ) : (
-          <>
-            {/* Cabecera Principal de Productos (Estilo Luxe Turquesa & Oro) */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16 md:mb-20">
-              <div key={mode + '-products-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-                <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#052C34] font-bold leading-tight drop-shadow-xs">
-                  Elementos Sagrados &{' '}
-                  <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal block sm:inline">
-                    Protección
-                  </span>
-                </h2>
-              </div>
+        <>
+          {/* Cabecera Principal de Productos (Estilo Luxe Turquesa & Oro) */}
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16 md:mb-20">
+              <motion.div
+                key={`${mode}-products-header-${targetSection?.startsWith('productos') ? targetSection : 'default'}`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.65, ease: 'easeOut' }}
+                className="space-y-4 relative z-10"
+              >
+                {/* Separador celestial centrado arriba del título solo en móviles */}
+                <div className="flex md:hidden justify-center items-center mb-3 w-full">
+                  <CelestialTitleGraphic side="full" className="w-52 xs:w-64 h-auto" />
+                </div>
+
+                <div className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 flex-wrap md:flex-nowrap w-full">
+                  <CelestialTitleGraphic side="left" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+                  <h2 className="font-serif text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#052C34] font-bold leading-tight drop-shadow-xs whitespace-normal md:whitespace-nowrap text-center">
+                    Elementos Sagrados &{' '}
+                    <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal inline">
+                      Protección
+                    </span>
+                  </h2>
+                  <CelestialTitleGraphic side="right" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+                </div>
+              </motion.div>
             </div>
 
             {/* Grid de Productos con Animación Card Curtain Reveal */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {currentItems.map((product) => {
+            <div
+              key={`${mode}-products-grid-${targetSection?.startsWith('productos') ? targetSection : 'default'}`}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {currentItems.map((product, idx) => {
                 return (
-                  <div key={product.id} className="relative overflow-visible">
+                  <motion.div
+                    key={`${product.id}-${targetSection?.startsWith('productos') ? targetSection : 'default'}`}
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.6, delay: idx * 0.12, ease: 'easeOut' }}
+                    className="relative overflow-visible"
+                  >
                     <CardCurtainReveal
                       id={`product-card-${product.id}`}
                       className="group relative bg-[#07242C]/90 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_40px_rgba(255,215,0,0.35)] border border-[#FFD700]/40 hover:border-[#FFD700] transition-all duration-300 min-h-[380px] sm:min-h-[400px] flex flex-col justify-between"
@@ -90,13 +104,6 @@ export const ProductsSection: React.FC = () => {
                           <span className="text-[11px] font-bold uppercase tracking-wider text-[#FFF8D6] bg-[#0A343D] px-3 py-1 rounded-full border border-[#FFD700]/30 shadow-xs">
                             {product.category}
                           </span>
-
-                          {product.badge && (
-                            <div className="px-2.5 py-0.5 rounded-full text-[10px] font-bold shadow-xs uppercase tracking-wider flex items-center gap-1 bg-[#FFD700] text-[#0A1C24]">
-                              <Sparkles className="w-2.5 h-2.5" />
-                              <span>{product.badge}</span>
-                            </div>
-                          )}
                         </div>
 
                         <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-light max-w-xs mx-auto text-center">
@@ -115,12 +122,11 @@ export const ProductsSection: React.FC = () => {
                         </a>
                       </div>
                     </CardCurtainReveal>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
           </>
-        )}
       </div>
 
       {/* Modal Detalle de Producto o Curso */}
@@ -171,7 +177,7 @@ export const ProductsSection: React.FC = () => {
               {selectedProduct.benefits && (
                 <div className="space-y-2 pt-3 border-t border-[#E8F0F5]/40">
                   <span className="text-xs font-bold uppercase text-black block">
-                    {mode === 'educacion' ? 'Lo que incluye el curso / material:' : 'Propiedades & Beneficios:'}
+                    Propiedades & Beneficios:
                   </span>
                   <ul className="space-y-1.5">
                     {selectedProduct.benefits.map((b, idx) => (
@@ -193,11 +199,7 @@ export const ProductsSection: React.FC = () => {
                 className="w-full py-3 px-6 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-black text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 text-black" />
-                <span>
-                  {mode === 'educacion'
-                    ? 'Inscribirme por WhatsApp'
-                    : 'Comprar por WhatsApp'}
-                </span>
+                <span>Comprar por WhatsApp</span>
               </a>
             </div>
           </div>

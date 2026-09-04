@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { INCLUDED_EXPERIENCE_HOLISTICA, INCLUDED_EXPERIENCE_EDUCACION } from '../data';
 import { AgendarCalendarIcon } from './FloralDecorations';
@@ -28,7 +29,13 @@ export const AttentionSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
 
-          <div className="lg:col-span-5 flex flex-col justify-start items-center lg:items-start w-full lg:pt-28">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="lg:col-span-5 flex flex-col justify-start items-center lg:items-start w-full lg:pt-28"
+          >
             <div className="w-full max-w-[480px] rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.18)] border-[3px] border-[#FFD700]">
               <AnimatedConstructPhoto
                 aspectRatio="landscape"
@@ -51,9 +58,15 @@ export const AttentionSection: React.FC = () => {
                 className="w-full"
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="lg:col-span-7 space-y-6"
+          >
             <div>
               <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#133238] leading-tight">
                 Lo que incluye tu experiencia en{' '}
@@ -69,14 +82,14 @@ export const AttentionSection: React.FC = () => {
               <a
                 href="#contacto"
                 id="attention-cta-btn"
-                className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif text-sm font-bold px-8 py-3.5 rounded-sm uppercase tracking-[0.16em] shadow-md hover:shadow-[0_8px_28px_rgba(212,178,111,0.6)] transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
+                className="relative overflow-hidden inline-flex items-center justify-center text-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif text-sm font-bold px-8 py-3.5 rounded-sm uppercase tracking-[0.16em] shadow-md hover:shadow-[0_8px_28px_rgba(212,178,111,0.6)] transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer w-full xs:w-auto"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                <AgendarCalendarIcon className="relative z-10 w-4.5 h-4.5 text-[#0A1C24]" />
-                <span className="relative z-10">Agenda tu diagnostico inicial</span>
+                <AgendarCalendarIcon className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] shrink-0" />
+                <span className="relative z-10 text-center">Agenda tu diagnóstico inicial</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

@@ -247,10 +247,10 @@ export const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className={`text-sm sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-6 sm:mb-8 font-normal ${
+              className={`text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-6 sm:mb-8 font-normal ${
                 mode === 'educacion'
-                  ? 'text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.7)]'
-                  : 'text-[#0A1C24] font-medium'
+                  ? 'text-left text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.7)]'
+                  : 'text-justify text-[#0A1C24] font-medium'
               }`}
             >
               {mode === 'educacion' ? (

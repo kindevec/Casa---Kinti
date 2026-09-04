@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar } from 'lucide-react';
 import { useNicheMode } from '../context/NicheContext';
+import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 
 
 // Íconos vectoriales dorados dibujados al estilo de los Pasos
@@ -107,7 +108,7 @@ const ABOUT_CIRCLES_HOLISTICA = [
 
 
 export const AboutSection: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, targetSection } = useNicheMode();
 
   return (
     <section id="sobre-mi" className="relative w-full overflow-hidden bg-white">
@@ -143,12 +144,13 @@ export const AboutSection: React.FC = () => {
              ------------------------------------------------------ */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start lg:-ml-4 xl:-ml-8 w-full">
             
-            {/* Animación de Entrada + Levitación Suave Continua */}
+            {/* Animación de Entrada hacia la derecha al hacer scroll + Levitación Suave Continua */}
             <motion.div
-              key={mode + '-about-frame'}
-              initial={{ opacity: 0, x: -30, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.75, ease: 'easeOut' }}
+              key={`${mode}-about-frame-${targetSection?.startsWith('sobre-mi') ? targetSection : 'default'}`}
+              initial={{ opacity: 0, x: -70, scale: 0.92 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="w-full flex justify-center lg:justify-start"
             >
               <motion.div
@@ -205,10 +207,24 @@ export const AboutSection: React.FC = () => {
           {/* ------------------------------------------------------
               LADO DERECHO: BLOQUE EDITORIAL SOBRE FONDO BLANCO
              ------------------------------------------------------ */}
-          <div className="lg:col-span-7 space-y-6 lg:pl-4 xl:pl-8 text-[#133238]">
+          <motion.div
+            key={`${mode}-about-text-${targetSection?.startsWith('sobre-mi') ? targetSection : 'default'}`}
+            initial={{ opacity: 0, x: 70 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 space-y-6 lg:pl-4 xl:pl-8 text-[#133238]"
+          >
             
-            {/* Gran Título en Serif Mayúscula */}
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#133238] uppercase leading-[1.15] tracking-tight">
+            {/* Gráfico Celestial Superior arriba del título centrado (solo nicho holístico) */}
+            {mode !== 'educacion' && (
+              <div className="flex justify-center items-center mb-4 sm:mb-6 w-full">
+                <CelestialTitleGraphic side="full" className="w-48 xs:w-60 sm:w-72 md:w-84 lg:w-96 h-auto" />
+              </div>
+            )}
+
+            {/* Gran Título en Serif Mayúscula Centrado */}
+            <h2 className="text-center font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#133238] uppercase leading-[1.15] tracking-tight">
               Mi Historia{' '}
               <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal normal-case block sm:inline">
                 Personal
@@ -229,7 +245,7 @@ export const AboutSection: React.FC = () => {
               ) : (
                 <>
                   <p>
-                    Mi camino de sanación comenzó desde adentro: como mujer, como madre y como buscadora del espíritu. Iniciada en el <strong className="text-[#133238] font-semibold">Camino Rojo</strong> y el Fuego Sagrado de Xochilaclan con la bendición de Taitas, aprendí a escuchar la voz de la tierra y de los ancestros. Soy <strong className="text-[#133238] font-semibold">Terapeuta en Flores de Bach</strong> y <strong className="text-[#133238] font-semibold">Médica Andina certificada en medicina ancestral por el Ministerio de Salud con código ACESS</strong>.
+                    Mi camino de sanación comenzó desde adentro: como mujer, como madre y como buscadora del espíritu. Caminante en las <strong className="text-[#133238] font-semibold">medicinas de tradiciones indígenas milenarias de toda Latinoamérica</strong>, aprendí a escuchar la voz de la tierra y de los ancestros. Soy <strong className="text-[#133238] font-semibold">Terapeuta en Flores de Bach</strong> y <strong className="text-[#133238] font-semibold">Médica Andina certificada en medicina ancestral por el Ministerio de Salud con código ACESS</strong>.
                   </p>
                   <p>
                     En <strong className="text-[#133238] font-semibold">Casa Kinti</strong> ofrezco terapias integrativas, productos sagrados de la tierra y ceremonias de sanación para quienes desean reconectar con su esencia, liberar bloqueos y caminar hacia el bienestar del cuerpo, la mente y el espíritu. Cada sesión es un espacio de amor, respeto y transformación profunda.
@@ -239,7 +255,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
 
-            {/* Círculos Dorados Medallón: 2 Centrados en Ambos Nichos */}
+            {/* Círculos Dorados Medallón: 2 Centrados en Ambos Nichos con Animaciones, Iluminación y Cambio de Color */}
             <div className="flex justify-center items-center gap-8 sm:gap-14 max-w-md mx-auto w-full pt-4">
               {(mode === 'educacion' ? ABOUT_CIRCLES_EDUCACION : ABOUT_CIRCLES_HOLISTICA).map((pillar, pIdx) => {
                 const { IconComponent } = pillar;
@@ -248,13 +264,149 @@ export const AboutSection: React.FC = () => {
                     key={pIdx}
                     className="flex flex-col items-center gap-2.5 group cursor-default"
                   >
-                    <div className="relative w-[86px] h-[86px] sm:w-[82px] sm:h-[82px] md:w-[92px] md:h-[92px] shrink-0">
-                      <div className="absolute inset-[-5px] rounded-full border border-[#FFD700]/30 group-hover:border-[#FFD700]/70 transition-all duration-500" />
-                      <div className="w-full h-full rounded-full bg-gradient-to-br from-[#FFFBEE] via-[#FFF3C4] to-[#F5E08A] border-[2.5px] border-[#D4A346] shadow-[0_4px_18px_rgba(212,163,70,0.35)] group-hover:shadow-[0_6px_24px_rgba(212,163,70,0.6)] group-hover:scale-105 transition-all duration-400 flex items-center justify-center">
-                        <IconComponent className="w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11" color="#9A6F24" />
-                      </div>
-                      <div className="absolute -top-1.5 -right-1.5 text-[#D4A346] text-[10px] drop-shadow-[0_0_5px_rgba(212,163,70,0.9)] select-none font-bold leading-none">✦</div>
-                    </div>
+                    <motion.div
+                      animate={{
+                        y: [0, -6, 0, -4, 0],
+                        scale: [1, 1.03, 1, 1.02, 1],
+                      }}
+                      transition={{
+                        duration: 4.5 + pIdx * 0.8,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: pIdx * 0.4,
+                      }}
+                      whileHover={{
+                        scale: 1.12,
+                        y: -8,
+                        transition: { duration: 0.25 },
+                      }}
+                      className="relative w-[86px] h-[86px] sm:w-[82px] sm:h-[82px] md:w-[92px] md:h-[92px] shrink-0"
+                    >
+                      {/* Aura de Iluminación pulsante de fondo con cambio de tono */}
+                      <motion.div
+                        className="absolute -inset-2 rounded-full blur-md pointer-events-none"
+                        animate={{
+                          scale: [0.9, 1.2, 0.9],
+                          opacity: [0.4, 0.85, 0.4],
+                          backgroundColor: [
+                            'rgba(255, 215, 0, 0.45)',
+                            'rgba(255, 248, 214, 0.7)',
+                            'rgba(0, 210, 180, 0.35)',
+                            'rgba(212, 163, 70, 0.55)',
+                            'rgba(255, 215, 0, 0.45)',
+                          ],
+                        }}
+                        transition={{
+                          duration: 4 + pIdx * 0.6,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: pIdx * 0.3,
+                        }}
+                      />
+
+                      {/* Anillo exterior rotatorio con cambio de color en borde */}
+                      <motion.div
+                        className="absolute inset-[-6px] rounded-full border-2 border-dashed pointer-events-none"
+                        animate={{
+                          rotate: pIdx % 2 === 0 ? 360 : -360,
+                          borderColor: [
+                            'rgba(255, 215, 0, 0.65)',
+                            'rgba(255, 248, 214, 0.9)',
+                            'rgba(0, 210, 180, 0.7)',
+                            'rgba(212, 163, 70, 0.85)',
+                            'rgba(255, 215, 0, 0.65)',
+                          ],
+                        }}
+                        transition={{
+                          rotate: { duration: 18 + pIdx * 3, repeat: Infinity, ease: 'linear' },
+                          borderColor: { duration: 4 + pIdx * 0.6, repeat: Infinity, ease: 'easeInOut' },
+                        }}
+                      />
+
+                      {/* Medallón central con iluminación de borde y sombra */}
+                      <motion.div
+                        className="w-full h-full rounded-full bg-gradient-to-br from-[#FFFBEE] via-[#FFF3C4] to-[#F5E08A] border-[2.5px] flex items-center justify-center relative overflow-hidden"
+                        animate={{
+                          borderColor: [
+                            '#D4A346',
+                            '#FFD700',
+                            '#00D2B4',
+                            '#FFA000',
+                            '#D4A346',
+                          ],
+                          boxShadow: [
+                            '0 4px 18px rgba(212,163,70,0.4)',
+                            '0 8px 28px rgba(255,215,0,0.75)',
+                            '0 4px 20px rgba(0,210,180,0.45)',
+                            '0 6px 24px rgba(255,160,0,0.6)',
+                            '0 4px 18px rgba(212,163,70,0.4)',
+                          ],
+                        }}
+                        transition={{
+                          duration: 4.2 + pIdx * 0.7,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: pIdx * 0.2,
+                        }}
+                      >
+                        {/* Brillo dinámico pasando sobre el medallón */}
+                        <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/35 to-transparent -rotate-45 group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+
+                        {/* Ícono animado con cambio de color y resplandor */}
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.08, 1, 1.04, 1],
+                            color: [
+                              '#8C6420',
+                              '#B88E44',
+                              '#043651',
+                              '#B8860B',
+                              '#8C6420',
+                            ],
+                            filter: [
+                              'drop-shadow(0 0 2px rgba(255,215,0,0.4))',
+                              'drop-shadow(0 0 8px rgba(255,215,0,0.9))',
+                              'drop-shadow(0 0 6px rgba(0,210,180,0.6))',
+                              'drop-shadow(0 0 7px rgba(255,160,0,0.8))',
+                              'drop-shadow(0 0 2px rgba(255,215,0,0.4))',
+                            ],
+                          }}
+                          transition={{
+                            duration: 3.6 + pIdx * 0.6,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                            delay: pIdx * 0.25,
+                          }}
+                          className="flex items-center justify-center"
+                        >
+                          <IconComponent className="w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11" color="currentColor" />
+                        </motion.div>
+                      </motion.div>
+
+                      {/* Estrellita mágica ✦ pulsando e iluminada */}
+                      <motion.div
+                        className="absolute -top-1.5 -right-1.5 text-[11px] select-none font-bold leading-none pointer-events-none"
+                        animate={{
+                          scale: [0.85, 1.35, 0.85],
+                          rotate: [0, 20, -20, 0],
+                          opacity: [0.7, 1, 0.7],
+                          color: ['#D4A346', '#FFD700', '#00D2B4', '#FFA000', '#D4A346'],
+                          filter: [
+                            'drop-shadow(0 0 4px rgba(212,163,70,0.9))',
+                            'drop-shadow(0 0 10px rgba(255,215,0,1))',
+                            'drop-shadow(0 0 8px rgba(0,210,180,0.9))',
+                            'drop-shadow(0 0 4px rgba(212,163,70,0.9))',
+                          ],
+                        }}
+                        transition={{
+                          duration: 2.8 + pIdx * 0.4,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      >
+                        ✦
+                      </motion.div>
+                    </motion.div>
                     <span className="text-[11px] sm:text-[11px] md:text-xs font-semibold text-[#133238] text-center leading-tight group-hover:text-[#0A343D] transition-colors max-w-[150px] sm:max-w-[170px]">
                       {pillar.title}
                     </span>
@@ -276,7 +428,7 @@ export const AboutSection: React.FC = () => {
               </a>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 

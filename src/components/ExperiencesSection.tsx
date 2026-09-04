@@ -5,6 +5,7 @@ import { WHATSAPP_PHONE, COURSES_EDUCACION } from '../data';
 import { Clock, Tag, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
 import { WhatsAppOfficialIcon } from './FloralDecorations';
 import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
+import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 
 // Filigrana ornamental para las 4 esquinas de cada carta estilo tarot místico
 const CornerOrnament = ({ className }: { className?: string }) => (
@@ -203,13 +204,13 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
     consistsOf:
       'Limpia energética personal con plantas medicinales y sahumos naturales, con previo diagnóstico terapéutico mediante péndulo para detectar y desbloquear centros de energía.',
     duration: '2 a 3 horas de sesión personalizada',
-    price: '50 usd',
+    price: '80 usd',
     promotions: [
       'Amuleto de protección consagrado de regalo (o lectura de péndulo de 3 preguntas)',
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 1 Abre Caminos ($50 USD): Baños de despojo, florecimiento y armonización personal.',
+      'Hola Johanna, deseo encargar el Kit 1 Abre Caminos ($80 USD): Baños de despojo, florecimiento y armonización personal.',
   },
   {
     id: 'kit-2',
@@ -219,13 +220,13 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
     consistsOf:
       'Limpia profunda con plantas y humos sagrados + armonización canalizada personal para equilibrar tus 7 chakras + limpia y consagración energética del hogar o espacio que habitas.',
     duration: 'Sesión Integral (Personal + Espacio)',
-    price: '100 usd',
+    price: '200 usd',
     promotions: [
       'Amuleto de protección consagrado de regalo (o lectura de péndulo de 3 preguntas)',
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 2 Abre Caminos ($100 USD): Limpia integral de 7 centros y armonización de espacio.',
+      'Hola Johanna, deseo encargar el Kit 2 Abre Caminos ($200 USD): Limpia integral de 7 centros y armonización de espacio.',
     isFeatured: true,
   },
   {
@@ -234,7 +235,7 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
     title: 'Limpias Abre Caminos con Rapé',
     emblem: <MysticStarEmblem />,
     consistsOf:
-      'Toma ceremonial de medicina ancestral de Rapé para liberar patrones obsoletos y memorias erróneas, complementada con meditación profunda canalizada, cuarzos, cuencos tibetanos y ondas binaurales.',
+      'Toma de proyección con rapé, medicina sagrada del Brasil, para liberar patrones obsoletos y memorias erróneas, complementada con meditación profunda canalizada, cuarzos, cuencos tibetanos y ondas binaurales.',
     duration: 'Ceremonia & Meditación Profunda',
     price: '50 usd',
     promotions: [
@@ -242,12 +243,12 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 3 Abre Caminos ($50 USD): Limpias con medicina del Rapé, cuencos y ondas binaurales.',
+      'Hola Johanna, deseo encargar el Kit 3 Abre Caminos ($50 USD): Toma de proyección con rapé (medicina sagrada del Brasil), cuencos y ondas binaurales.',
   },
 ];
 
 export const ExperiencesSection: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, targetSection } = useNicheMode();
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
 
   // En el modo educación mostramos la sección Cursos con tarjetas de cortina
@@ -262,17 +263,34 @@ export const ExperiencesSection: React.FC = () => {
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FFD700]/15 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Encabezado limpio: solo el título Cursos */}
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          {/* Encabezado limpio: solo el título Cursos con animación de entrada */}
+          <motion.div
+            key={`educacion-courses-header-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.65, ease: 'easeOut' }}
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          >
             <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
               Cursos
             </h3>
-          </div>
+          </motion.div>
 
           {/* Grid de cursos con tarjetas de cortina */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-350">
-            {COURSES_EDUCACION.map((course) => (
-              <div key={course.id} className="relative overflow-visible">
+          <div
+            key={`educacion-courses-grid-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-350"
+          >
+            {COURSES_EDUCACION.map((course, idx) => (
+              <motion.div
+                key={`${course.id}-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: idx * 0.15, ease: 'easeOut' }}
+                className="relative overflow-visible"
+              >
                 <CardCurtainReveal
                   id={`course-curtain-${course.id}`}
                   className="relative bg-white rounded-2xl min-h-[380px] sm:min-h-[400px] shadow-[0_8px_30px_rgba(212,178,111,0.25)] hover:shadow-[0_12px_40px_rgba(212,178,111,0.45)] border-2 border-[#FFD700] transition-all duration-300 flex flex-col justify-between overflow-hidden"
@@ -293,13 +311,8 @@ export const ExperiencesSection: React.FC = () => {
                      ======================================================== */}
                   <div className="absolute inset-0 z-10 p-6 sm:p-7 flex flex-col justify-center items-center gap-5 w-full bg-gradient-to-b from-white via-[#F8FBFC] to-[#EFF6F8] text-[#133238]">
                     
-                    {/* Categoría e Insignia */}
+                    {/* Categoría */}
                     <div className="flex flex-wrap items-center justify-center gap-1.5 shrink-0 w-full">
-                      {course.badge && (
-                        <span className="bg-[#FFD700] text-[#0A1C24] text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-xs uppercase tracking-wider">
-                          {course.badge}
-                        </span>
-                      )}
                       <span className="text-[11px] font-bold uppercase tracking-wider text-[#133238] bg-[#FFF8D6] px-3 py-1 rounded-full border border-[#FFD700] shadow-xs">
                         {course.category || 'Curso Formativo'}
                       </span>
@@ -324,7 +337,7 @@ export const ExperiencesSection: React.FC = () => {
 
                   </div>
                 </CardCurtainReveal>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -346,40 +359,51 @@ export const ExperiencesSection: React.FC = () => {
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FFD700]/15 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Cabecera de la Sección con contraste perfecto sobre fondo turquesa */}
-        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12 sm:mb-16">
-          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
-            {mode === 'educacion' ? (
-              <>
-                Programas & Talleres de{' '}
-                <span className="italic text-[#FFD700] drop-shadow-[0_2px_8px_rgba(5,44,52,0.4)] font-normal">
-                  Casa Kinti
-                </span>
-              </>
-            ) : (
-              <>
-                Kits Abre Caminos de{' '}
-                <span className="italic text-[#FFD700] drop-shadow-[0_2px_8px_rgba(5,44,52,0.4)] font-normal">
-                  Casa Kinti
-                </span>
-              </>
-            )}
-          </h3>
+        <motion.div
+          key={`holistica-kits-header-${targetSection?.startsWith('experiencias') ? targetSection : 'default'}`}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="text-center max-w-6xl mx-auto space-y-3.5 mb-12 sm:mb-16"
+        >
+          {/* Separador celestial centrado arriba del título solo en móviles */}
+          <div className="flex md:hidden justify-center items-center mb-3 w-full">
+            <CelestialTitleGraphic side="full" className="w-52 xs:w-64 h-auto" />
+          </div>
+
+          <div className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 flex-wrap md:flex-nowrap w-full">
+            <CelestialTitleGraphic side="left" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+            <h3 className="font-serif text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs whitespace-normal md:whitespace-nowrap text-center">
+              Kits Abre Caminos de{' '}
+              <span className="italic text-[#FFD700] drop-shadow-[0_2px_8px_rgba(5,44,52,0.4)] font-normal inline">
+                Casa Kinti
+              </span>
+            </h3>
+            <CelestialTitleGraphic side="right" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+          </div>
           <p className="text-xs sm:text-sm md:text-base text-[#052C34]/95 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
             Experimenta el gozo de liberar emociones bloqueadas para abrir los nuevos caminos de prosperidad.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cuadrícula de 3 Tarjetas Estilo Cartas de Tarot 3D Reversibles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+        <div
+          key={`holistica-kits-grid-${targetSection?.startsWith('experiencias') ? targetSection : 'default'}`}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch"
+        >
           {MYSTICAL_KITS_DATA.map((kit, idx) => {
             const isFlipped = flippedCardId === kit.id;
 
             return (
-              <div
-                key={kit.id}
+              <motion.div
+                key={`${kit.id}-${targetSection?.startsWith('experiencias') ? targetSection : 'default'}`}
                 onClick={() => toggleFlip(kit.id)}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: idx * 0.15, ease: 'easeOut' }}
                 className="group relative h-[470px] sm:h-[490px] w-full [perspective:1000px] cursor-pointer select-none"
               >
                 {/* Contenedor Giratorio 3D con animación suave */}
@@ -516,7 +540,7 @@ export const ExperiencesSection: React.FC = () => {
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

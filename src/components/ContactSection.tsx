@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
 import { CONTACT_INFO, WHATSAPP_PHONE } from '../data';
 import { ContactFormData } from '../types';
 import { CasaKintiLogo, ButterflyGraphic, FloralBouquet, HeroOrganicBackdrop, AgendarCalendarIcon, SolicitarEvaluacionIcon, WhatsAppOfficialIcon } from './FloralDecorations';
+import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 import { MapPin, Clock, Phone, Send, CheckCircle2, MessageCircle, Instagram, Facebook, Calendar, Sparkles, Heart, BookOpen, GraduationCap, ExternalLink } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, targetSection } = useNicheMode();
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     phone: '',
@@ -103,26 +105,42 @@ export const ContactSection: React.FC = () => {
       {/* ========================================================
           CABECERA PRINCIPAL DE CONTACTO (Estilo Luxe Turquesa & Oro)
          ======================================================== */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16 md:mb-20">
-        <div key={mode + '-contact-header'} className="space-y-4 relative z-10 animate-in fade-in duration-300">
-          <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#052C34] font-bold leading-tight drop-shadow-xs">
-            {mode === 'educacion' ? (
-              <>
-                Reservas &{' '}
-                <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal block sm:inline">
-                  Asesoría Pedagógica
-                </span>
-              </>
-            ) : (
-              <>
-                Reservas &{' '}
-                <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal block sm:inline">
-                  Asesoría Personalizada
-                </span>
-              </>
-            )}
-          </h2>
-        </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative mb-12 sm:mb-16 md:mb-20">
+        <motion.div
+          key={`${mode}-contact-header-${targetSection?.startsWith('contacto') ? targetSection : 'default'}`}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="space-y-4 relative z-10"
+        >
+          {/* Separador celestial centrado arriba del título solo en móviles */}
+          <div className="flex md:hidden justify-center items-center mb-3 w-full">
+            <CelestialTitleGraphic side="full" className="w-52 xs:w-64 h-auto" />
+          </div>
+
+          <div className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 flex-wrap md:flex-nowrap w-full">
+            <CelestialTitleGraphic side="left" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+            <h2 className="font-serif text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#052C34] font-bold leading-tight drop-shadow-xs whitespace-normal md:whitespace-nowrap text-center">
+              {mode === 'educacion' ? (
+                <>
+                  Reservas &{' '}
+                  <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal inline">
+                    Asesoría Pedagógica
+                  </span>
+                </>
+              ) : (
+                <>
+                  Reservas &{' '}
+                  <span className="italic bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#FFA000] bg-clip-text text-transparent font-normal inline">
+                    Asesoría Personalizada
+                  </span>
+                </>
+              )}
+            </h2>
+            <CelestialTitleGraphic side="right" className="hidden md:block w-14 xs:w-20 sm:w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+          </div>
+        </motion.div>
       </div>
 
       {/* ========================================================
@@ -132,7 +150,14 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* Columna Formulario */}
-          <div className="lg:col-span-7 relative bg-[#07242C]/90 p-6 sm:p-8 md:p-9 rounded-2xl border border-[#FFD700]/40 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+          <motion.div
+            key={`${mode}-contact-form-${targetSection?.startsWith('contacto') ? targetSection : 'default'}`}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="lg:col-span-7 relative bg-[#07242C]/90 p-6 sm:p-8 md:p-9 rounded-2xl border border-[#FFD700]/40 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+          >
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2 drop-shadow-xs">
               {mode === 'educacion'
                 ? 'Agenda tu Evaluación o Consulta Educativa'
@@ -265,6 +290,7 @@ export const ContactSection: React.FC = () => {
                     {mode === 'educacion' ? (
                       <>
                         <optgroup label="Evaluaciones y Terapias Psicopedagógicas" className="bg-[#041A20] text-[#FFD700]">
+                          <option value="Terapia de Lenguaje ($40)" className="bg-[#041A20] text-white">Terapia de Lenguaje ($40)</option>
                           <option value="Evaluación Psicopedagógica Integral" className="bg-[#041A20] text-white">Evaluación Psicopedagógica Integral</option>
                           <option value="Terapia de Problemas de Aprendizaje y Dislexia" className="bg-[#041A20] text-white">Terapia de Problemas de Aprendizaje y Dislexia</option>
                           <option value="Entrenamiento en Funciones Ejecutivas y TDAH" className="bg-[#041A20] text-white">Entrenamiento en Funciones Ejecutivas y TDAH</option>
@@ -353,10 +379,17 @@ export const ContactSection: React.FC = () => {
                 </p>
               </form>
             )}
-          </div>
+          </motion.div>
 
           {/* Columna Información de Contacto + Mapa */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div
+            key={`${mode}-contact-info-${targetSection?.startsWith('contacto') ? targetSection : 'default'}`}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="lg:col-span-5 space-y-8"
+          >
             
             <div className="bg-[#07242C]/90 p-6 sm:p-8 rounded-2xl border border-[#FFD700]/40 shadow-[0_8px_32px_rgba(0,0,0,0.6)] space-y-6 text-white">
               <h4 className="font-serif text-2xl font-bold text-white drop-shadow-xs">
@@ -387,83 +420,53 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </a>
 
-                {/* Contacto Principal (WhatsApp + Llamadas) */}
+                {/* Contacto Principal (WhatsApp) */}
                 <div className="p-3.5 rounded-xl bg-[#041A20]/80 border border-[#FFD700]/30 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-[#FFD700]" />
-                      <strong className="text-[#FFD700] text-xs font-serif uppercase tracking-wider font-bold">
-                        Contacto Principal
-                      </strong>
-                    </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/40">
-                      WhatsApp Principal
-                    </span>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-[#FFD700]" />
+                    <strong className="text-[#FFD700] text-xs font-serif uppercase tracking-wider font-bold">
+                      Contacto Principal
+                    </strong>
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
                     <span className="font-serif font-bold text-base sm:text-lg text-white tracking-wide">
                       {CONTACT_INFO.phone}
                     </span>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={`https://wa.me/${CONTACT_INFO.whatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
-                        aria-label="Escribir al WhatsApp principal"
-                      >
-                        <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
-                        <span>WhatsApp</span>
-                      </a>
-                      <a
-                        href={`tel:${CONTACT_INFO.whatsappRaw}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all cursor-pointer"
-                        aria-label="Llamar al número principal"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                        <span>Llamar</span>
-                      </a>
-                    </div>
+                    <a
+                      href={`https://wa.me/${CONTACT_INFO.whatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me gustaría información.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
+                      aria-label="Escribir al WhatsApp principal"
+                    >
+                      <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                      <span>WhatsApp</span>
+                    </a>
                   </div>
                 </div>
 
                 {/* Segunda Opción de Contacto (Solo en apartado de contactos) */}
                 <div className="p-3.5 rounded-xl bg-[#041A20]/60 border border-white/15 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-[#00D2B4]" />
-                      <strong className="text-[#00D2B4] text-xs font-serif uppercase tracking-wider font-bold">
-                        Segunda Opción
-                      </strong>
-                    </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#00D2B4]/15 text-[#00D2B4] border border-[#00D2B4]/30">
-                      Alternativa
-                    </span>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-[#00D2B4]" />
+                    <strong className="text-[#00D2B4] text-xs font-serif uppercase tracking-wider font-bold">
+                      Segunda Opción
+                    </strong>
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-2 pt-0.5">
                     <span className="font-serif font-bold text-base sm:text-lg text-white/95 tracking-wide">
                       {CONTACT_INFO.secondaryPhoneFormatted}
                     </span>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={`https://wa.me/${CONTACT_INFO.secondaryWhatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me comunico por este medio alternativo.')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#25D366]/90 hover:bg-[#25D366] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
-                        aria-label="Escribir al WhatsApp secundario"
-                      >
-                        <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
-                        <span>WhatsApp</span>
-                      </a>
-                      <a
-                        href={`tel:${CONTACT_INFO.secondaryPhone}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all cursor-pointer"
-                        aria-label="Llamar a la segunda opción"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                        <span>Llamar</span>
-                      </a>
-                    </div>
+                    <a
+                      href={`https://wa.me/${CONTACT_INFO.secondaryWhatsappRaw}?text=${encodeURIComponent('Hola Casa Kinti, me comunico por este medio alternativo.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#25D366]/90 hover:bg-[#25D366] text-[#0A1C24] text-xs font-bold transition-all hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
+                      aria-label="Escribir al WhatsApp secundario"
+                    >
+                      <WhatsAppOfficialIcon className="w-3.5 h-3.5 text-[#0A1C24]" />
+                      <span>WhatsApp</span>
+                    </a>
                   </div>
                 </div>
 
@@ -558,7 +561,7 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </div>

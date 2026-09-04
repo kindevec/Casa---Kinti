@@ -1,4 +1,4 @@
-﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type NicheMode = 'holistica' | 'educacion';
 
@@ -6,6 +6,8 @@ interface NicheContextType {
   mode: NicheMode;
   setMode: (mode: NicheMode) => void;
   toggleMode: () => void;
+  targetSection: string | null;
+  triggerNav: (sectionId: string) => void;
 }
 
 const NicheContext = createContext<NicheContextType | undefined>(undefined);
@@ -29,6 +31,13 @@ export const NicheProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   };
 
+  const [targetSection, setTargetSection] = useState<string | null>(null);
+
+  const triggerNav = (sectionId: string) => {
+    const cleanId = sectionId.replace('#', '');
+    setTargetSection(cleanId + '-' + Date.now());
+  };
+
   const toggleMode = () => {
     setMode(mode === 'holistica' ? 'educacion' : 'holistica');
   };
@@ -38,7 +47,7 @@ export const NicheProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [mode]);
 
   return (
-    <NicheContext.Provider value={{ mode, setMode, toggleMode }}>
+    <NicheContext.Provider value={{ mode, setMode, toggleMode, targetSection, triggerNav }}>
       {children}
     </NicheContext.Provider>
   );

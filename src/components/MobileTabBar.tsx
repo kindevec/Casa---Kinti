@@ -5,12 +5,13 @@ import { WhatsAppOfficialIcon } from './FloralDecorations';
 import { Home, User, BookOpen, ShoppingBag, Flower2 } from 'lucide-react';
 
 export const MobileTabBar: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, triggerNav } = useNicheMode();
   const [activeIndex, setActiveIndex] = useState(0);
   const isNavigatingRef = useRef(false);
   const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const scrollToSection = (href: string) => {
+    triggerNav(href);
     isNavigatingRef.current = true;
     if (navigationTimeoutRef.current) {
       clearTimeout(navigationTimeoutRef.current);

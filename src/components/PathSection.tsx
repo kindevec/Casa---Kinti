@@ -290,14 +290,87 @@ const ARCH_STEP_THEMES = [
               const GraphicComponent = mode === 'educacion' ? theme.EducacionIcon : theme.HolisticaIcon;
 
               return (
-                <div
+                <motion.div
                   key={step.number}
                   id={`path-step-${step.number}`}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay: idx * 0.15, ease: 'easeOut' }}
                   className="group flex flex-col items-center text-center select-none p-2 transition-transform duration-300 hover:-translate-y-2"
                 >
-                  {/* Ícono ilustrativo en oro 24k metálico */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-115">
-                    <GraphicComponent className="w-full h-full drop-shadow-[0_4px_16px_rgba(255,215,0,0.95)]" color="#FFD700" />
+                  {/* Contenedor del ícono con movimiento, iluminación y cambio de color */}
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mb-3">
+                    {/* Halo de luz / Iluminación pulsante de fondo */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full blur-xl pointer-events-none"
+                      animate={{
+                        scale: [0.85, 1.25, 0.85],
+                        opacity: [0.35, 0.8, 0.35],
+                        backgroundColor: [
+                          'rgba(255, 215, 0, 0.55)',
+                          'rgba(255, 248, 214, 0.75)',
+                          'rgba(0, 210, 180, 0.45)',
+                          'rgba(255, 179, 0, 0.65)',
+                          'rgba(255, 215, 0, 0.55)',
+                        ],
+                      }}
+                      transition={{
+                        duration: 3.8 + idx * 0.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: idx * 0.3,
+                      }}
+                    />
+
+                    {/* Anillo de energía orbital giratorio */}
+                    <motion.div
+                      className="absolute inset-1 rounded-full border border-dashed border-[#FFD700]/40 pointer-events-none"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 16 + idx * 2,
+                        repeat: Infinity,
+                        ease: 'linear',
+                      }}
+                    />
+
+                    {/* Ícono animado: Movimiento flotante + Cambio de color cromático + Sombra luminosa */}
+                    <motion.div
+                      animate={{
+                        y: [0, -7, 0, -5, 0],
+                        rotate: [0, 2, -2, 1, 0],
+                        scale: [1, 1.05, 1, 1.03, 1],
+                        color: [
+                          '#FFD700',
+                          '#FFF5C0',
+                          '#00E5C5',
+                          '#FFA000',
+                          '#FFD700',
+                        ],
+                        filter: [
+                          'drop-shadow(0 0 10px rgba(255,215,0,0.85)) drop-shadow(0 4px 14px rgba(0,0,0,0.3))',
+                          'drop-shadow(0 0 22px rgba(255,245,192,0.95)) drop-shadow(0 6px 18px rgba(0,0,0,0.35))',
+                          'drop-shadow(0 0 16px rgba(0,210,180,0.9)) drop-shadow(0 4px 14px rgba(0,0,0,0.3))',
+                          'drop-shadow(0 0 20px rgba(255,160,0,0.85)) drop-shadow(0 5px 16px rgba(0,0,0,0.3))',
+                          'drop-shadow(0 0 10px rgba(255,215,0,0.85)) drop-shadow(0 4px 14px rgba(0,0,0,0.3))',
+                        ],
+                      }}
+                      transition={{
+                        duration: 4.2 + idx * 0.6,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: idx * 0.25,
+                      }}
+                      whileHover={{
+                        scale: 1.22,
+                        rotate: 6,
+                        filter: 'drop-shadow(0 0 28px rgba(255,235,59,1)) drop-shadow(0 0 10px #FFFFFF)',
+                        transition: { duration: 0.25 },
+                      }}
+                      className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center cursor-pointer"
+                    >
+                      <GraphicComponent className="w-full h-full" color="currentColor" />
+                    </motion.div>
                   </div>
 
                   {/* Título Principal en Oro 24K Metálico */}
@@ -314,7 +387,7 @@ const ARCH_STEP_THEMES = [
                   <p className="text-xs sm:text-[13px] md:text-sm text-[#0A1C24] leading-relaxed font-semibold max-w-[240px] mx-auto">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>

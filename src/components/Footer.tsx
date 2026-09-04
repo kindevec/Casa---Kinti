@@ -14,9 +14,10 @@ const TikTokIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' })
 );
 
 export const Footer: React.FC = () => {
-  const { mode } = useNicheMode();
+  const { mode, triggerNav } = useNicheMode();
 
   const handleLinkClick = (href: string) => {
+    triggerNav(href);
     const elem = document.querySelector(href);
     if (elem) {
       elem.scrollIntoView({ behavior: 'smooth' });

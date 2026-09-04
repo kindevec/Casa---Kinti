@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
+import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 
 export const MissionVisionSection: React.FC = () => {
   const { mode } = useNicheMode();
@@ -28,13 +29,28 @@ export const MissionVisionSection: React.FC = () => {
       <div className="absolute -bottom-10 right-10 w-80 h-80 bg-[#00D2B4]/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Cabecera de la Sección */}
-        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-14 sm:mb-20">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
-            Nuestra <span className="italic text-[#B88E44] font-normal">Misión</span> &{' '}
-            <span className="italic text-[#2B7294] font-normal">Visión</span>
-          </h2>
-        </div>
+        {/* Cabecera de la Sección con Gráficos Celestiales al lado (solo nicho holístico) */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="text-center max-w-6xl mx-auto space-y-3.5 mb-14 sm:mb-20"
+        >
+          {/* Separador celestial centrado arriba del título solo en móviles */}
+          <div className="flex md:hidden justify-center items-center mb-3 w-full">
+            <CelestialTitleGraphic side="full" className="w-52 xs:w-64 h-auto" />
+          </div>
+
+          <div className="flex items-center justify-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 flex-wrap md:flex-nowrap w-full">
+            <CelestialTitleGraphic side="left" className="hidden md:block w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs whitespace-normal md:whitespace-nowrap text-center">
+              Nuestra <span className="italic text-[#B88E44] font-normal">Misión</span> &{' '}
+              <span className="italic text-[#2B7294] font-normal">Visión</span>
+            </h2>
+            <CelestialTitleGraphic side="right" className="hidden md:block w-28 md:w-36 lg:w-48 xl:w-56 h-auto shrink-0" />
+          </div>
+        </motion.div>
 
         {/* Tarjetas con estilo TeachingMethods: flotación + brillo + borde dorado + footer amarillo animado */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto items-stretch">
@@ -72,7 +88,7 @@ export const MissionVisionSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: card.delay }}
               whileHover={{ scale: 1.03, y: -14, transition: { duration: 0.28, ease: 'easeOut' } }}
-              className="group relative flex flex-col rounded-t-[140px] sm:rounded-t-[160px] rounded-b-3xl overflow-hidden border-2 border-[#FFD700] cursor-default"
+              className="group relative flex flex-col rounded-t-[140px] sm:rounded-t-[160px] rounded-b-3xl overflow-hidden border-2 border-[#FFD700] cursor-default bg-[#FFFDE7]"
             >
               {/* Pulsing glow behind card on hover */}
               <motion.div
@@ -107,7 +123,7 @@ export const MissionVisionSection: React.FC = () => {
 
               {/* Footer animado en amarillo pastel pulsante */}
               <motion.div
-                className="relative p-6 sm:p-8 border-t-2 border-[#FFD700]/60 text-center flex flex-col items-center space-y-3.5"
+                className="relative flex-1 w-full p-6 sm:p-8 border-t-2 border-[#FFD700]/60 text-center flex flex-col items-center space-y-3.5"
                 animate={{ backgroundColor: ['#FFFDE7', '#FFF9C4', '#FFEE58', '#FFF9C4', '#FFFDE7'] }}
                 transition={{ duration: 4 + idx * 0.6, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.4 }}
               >
