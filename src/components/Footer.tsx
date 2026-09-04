@@ -488,7 +488,7 @@ export const Footer: React.FC = () => {
           {/* Derecha: Firma Oficial KINDEV */}
           <div className="flex justify-center">
             <a 
-              href="https://kindevx.web.app/" 
+              href="https://www.kindevsas.com/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:opacity-95 transition-all text-[11px] sm:text-sm flex items-center gap-1.5 sm:gap-2 group"
