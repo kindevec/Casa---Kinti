@@ -12,11 +12,11 @@ export const MissionVisionSection: React.FC = () => {
   const visionImage = isEducacion ? '/vision-educacion-nino.jpg' : '/vision-ceremonia-mandala.jpg';
 
   const misionAlt = isEducacion
-    ? 'Misión Casa Kinti - Niños compartiendo merienda y socialización al aire libre'
+    ? 'Misión Casa Kinti - Niña explorando y conectando con la naturaleza y el aprendizaje sensorial'
     : 'Misión Casa Kinti - Johanna Proaño en conexión con la naturaleza y el río sagrado';
 
   const visionAlt = isEducacion
-    ? 'Visión Casa Kinti - Niño desarrollando su creatividad y motricidad pintando con alegría'
+    ? 'Visión Casa Kinti - Niño sonriente y seguro en un entorno natural y enriquecedor'
     : 'Visión Casa Kinti - Círculo ceremonial sagrado con mandala floral y medicina ancestral';
 
   return (
@@ -60,6 +60,7 @@ export const MissionVisionSection: React.FC = () => {
               label: 'MISIÓN',
               image: misionImage,
               alt: misionAlt,
+              objectPosition: isEducacion ? 'object-[28%_center]' : 'object-center',
               titleColor: '#B88E44',
               dividerColor: '#D4B26F',
               glowColor: 'rgba(255, 215, 0, 0.65)',
@@ -72,6 +73,7 @@ export const MissionVisionSection: React.FC = () => {
               label: 'VISIÓN',
               image: visionImage,
               alt: visionAlt,
+              objectPosition: isEducacion ? 'object-[center_18%]' : 'object-center',
               titleColor: '#2B7294',
               dividerColor: '#2B7294',
               glowColor: 'rgba(43, 114, 148, 0.6)',
@@ -112,7 +114,7 @@ export const MissionVisionSection: React.FC = () => {
                   key={card.image}
                   src={card.image}
                   alt={card.alt}
-                  className="w-full h-full object-cover object-center"
+                  className={`w-full h-full object-cover ${card.objectPosition || 'object-center'}`}
                   loading="lazy"
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
