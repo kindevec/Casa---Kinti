@@ -11,7 +11,10 @@ export const AttentionSection: React.FC = () => {
   const experienceItems = mode === 'educacion' ? INCLUDED_EXPERIENCE_EDUCACION : INCLUDED_EXPERIENCE_HOLISTICA;
 
   return (
-    <section id="atencion-personalizada" className="relative w-full overflow-hidden bg-white">
+    <section
+      id={mode === 'educacion' ? 'servicios' : 'atencion-personalizada'}
+      className="relative w-full overflow-hidden bg-white scroll-mt-20"
+    >
       <div className="absolute inset-0 flex pointer-events-none z-0">
         <div className="w-full lg:w-[30%] xl:w-[28%] bg-gradient-to-b from-[#4AAEA5] via-[#5CBDB5] to-[#3E9C93] h-[380px] lg:h-full relative overflow-hidden">
           <div className="absolute inset-0 opacity-25">
@@ -68,12 +71,33 @@ export const AttentionSection: React.FC = () => {
             className="lg:col-span-7 space-y-6"
           >
             <div>
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#133238] leading-tight">
-                Lo que incluye tu experiencia en{' '}
-                <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal">
-                  Casa Kinti
+              {mode !== 'educacion' && (
+                <span className="inline-block text-[11px] sm:text-xs font-serif font-bold uppercase tracking-[0.2em] text-[#D4A346] mb-2">
+                  Sanación & Bienestar
                 </span>
+              )}
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#133238] leading-tight">
+                {mode === 'educacion' ? (
+                  <>
+                    Lo que incluye cada proceso en{' '}
+                    <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal">
+                      Casa Kinti
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Lo que incluye tu experiencia en{' '}
+                    <span className="italic bg-gradient-to-r from-[#D4A346] via-[#B88E44] to-[#8C6420] bg-clip-text text-transparent font-normal">
+                      Casa Kinti
+                    </span>
+                  </>
+                )}
               </h3>
+              {mode !== 'educacion' && (
+                <p className="mt-2 text-xs sm:text-sm text-[#47666D] leading-relaxed max-w-xl">
+                  Cada sesión y ceremonia está diseñada para brindarte contención, respeto por tu momento vital y herramientas profundas de transformación energética.
+                </p>
+              )}
             </div>
 
             <FlowingExperienceList items={experienceItems} />
@@ -86,7 +110,9 @@ export const AttentionSection: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
                 <AgendarCalendarIcon className="relative z-10 w-4.5 h-4.5 text-[#0A1C24] shrink-0" />
-                <span className="relative z-10 text-center">Agenda tu diagnóstico inicial</span>
+                <span className="relative z-10 text-center">
+                  {mode === 'educacion' ? 'Agenda tu valoración pedagógica' : 'Agenda tu diagnóstico inicial'}
+                </span>
               </a>
             </div>
           </motion.div>

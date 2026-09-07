@@ -54,22 +54,12 @@ function MainSections() {
             <TeachingMethodsSection />
           </Suspense>
 
-          {/* NUESTROS SERVICIOS (Nivelación, Psicopedagógico, Asesoría, Bilingüe, Evaluación) */}
-          <Suspense fallback={<PageLoader />}>
-            <ServicesSection />
-          </Suspense>
-
-          {/* ÁREAS DE ACOMPAÑAMIENTO (Carrusel 3D Coverflow de las 7 materias/áreas) */}
-          <Suspense fallback={<PageLoader />}>
-            <AccompanimentAreasSection />
-          </Suspense>
-
-          {/* PROGRAMAS & TALLERES (Cursos formativos) */}
+          {/* EDUCACIÓN CON SENTIDO: PROGRAMAS & ACOMPAÑAMIENTO ESPECIALIZADO */}
           <Suspense fallback={<PageLoader />}>
             <ExperiencesSection />
           </Suspense>
 
-          {/* LO QUE INCLUYE TU EXPERIENCIA (Sección aparte debajo de Programas & Talleres) */}
+          {/* LO QUE INCLUYE TU EXPERIENCIA (Sección debajo de Programas & Acompañamiento) */}
           <Suspense fallback={<PageLoader />}>
             <AttentionSection />
           </Suspense>

@@ -7,42 +7,42 @@ const ACCOMPANIMENT_AREAS_ITEMS: CarouselCardItem[] = [
   {
     id: 'area-lengua-literatura',
     title: 'Lengua y Literatura',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    image: '/lengua-literatura.jpg',
   },
   {
     id: 'area-terapia-lenguaje',
     title: 'Terapia de Lenguaje',
-    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80',
+    image: '/terapia-lenguaje.jpg',
   },
   {
     id: 'area-matematica',
     title: 'Matemática',
-    image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=800&q=80',
+    image: '/razonamiento-matematico.jpg',
   },
   {
     id: 'area-ingles',
     title: 'Inglés',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+    image: '/inmersion-ingles.png',
   },
   {
     id: 'area-comprension-lectora',
     title: 'Comprensión Lectora',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    image: '/comprension-lectora.png',
   },
   {
     id: 'area-escritura-expresion',
     title: 'Escritura y Expresión',
-    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80',
+    image: '/comprension-lectora.png',
   },
   {
     id: 'area-habitos-estudio',
     title: 'Hábitos y Estrategias de Estudio',
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80',
+    image: '/habitos-estudio.png',
   },
   {
     id: 'area-organizacion-autonomia',
     title: 'Organización y Autonomía en el Aprendizaje',
-    image: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80',
+    image: '/organizacion-autonomia.jpg',
   },
 ];
 

@@ -8,6 +8,13 @@ export interface ProductItem {
   category: string;
   benefits?: string[];
   popular?: boolean;
+  sessions?: string;
+  pricePerSession?: string;
+  targetAudience?: string;
+  objective?: string;
+  includesInfo?: string;
+  modality?: string;
+  groupCategory?: 'programas' | 'especializado' | 'experiencias';
 }
 
 export interface ServiceItem {
@@ -22,6 +29,11 @@ export interface ServiceItem {
   duration?: string;
   keyBenefits?: string[];
   image?: string;
+  sessions?: string;
+  pricePerSession?: string;
+  targetAudience?: string;
+  includesInfo?: string;
+  groupCategory?: 'programas' | 'especializado' | 'experiencias';
 }
 
 export interface TestimonialItem {

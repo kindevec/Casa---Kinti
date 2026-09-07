@@ -50,7 +50,7 @@ export const MobileTabBar: React.FC = () => {
       onClick: () => scrollToSection('#sobre-mi'),
     },
     {
-      label: mode === 'educacion' ? 'Cursos' : 'Productos',
+      label: mode === 'educacion' ? 'Programas' : 'Productos',
       href: mode === 'educacion' ? '#cursos' : '#productos',
       color: '#D4B26F',
       icon: mode === 'educacion' ? <BookOpen className="icon" /> : <ShoppingBag className="icon" />,

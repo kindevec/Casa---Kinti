@@ -5,7 +5,7 @@ import { useNicheMode } from '../context/NicheContext';
 const METHODS = [
   {
     title: 'Educación Alternativa',
-    image: 'https://images.unsplash.com/photo-1544776193-352d25ca82cd?auto=format&fit=crop&w=600&q=80',
+    image: '/educacion-alternativa.jpg',
     alt: 'Educación Alternativa - niños aprendiendo con materiales naturales',
     delay: 0,
     floatY: [0, -10, 0, -6, 0],
@@ -14,7 +14,7 @@ const METHODS = [
   },
   {
     title: 'Principios Montessori',
-    image: 'https://images.unsplash.com/photo-1575783970733-1aaedde1db74?auto=format&fit=crop&w=600&q=80',
+    image: '/metodo-principios-montessori.jpg',
     alt: 'Principios Montessori - materiales didácticos sensoriales',
     delay: 0.15,
     floatY: [0, -8, 2, -12, 0],
@@ -23,7 +23,7 @@ const METHODS = [
   },
   {
     title: 'Estrategias Pedagógicas Personalizadas',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80',
+    image: '/estrategias-pedagogicas.jpg',
     alt: 'Estrategias Pedagógicas Personalizadas - acompañamiento individualizado',
     delay: 0.3,
     floatY: [0, -12, 4, -8, 0],
@@ -32,7 +32,7 @@ const METHODS = [
   },
   {
     title: 'Herramientas de Terapias Integrativas',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
+    image: '/metodo-terapias-integrativas.jpg',
     alt: 'Herramientas de Terapias Integrativas - bienestar holístico',
     delay: 0.45,
     floatY: [0, -7, 3, -11, 0],
@@ -175,23 +175,23 @@ export const TeachingMethodsSection: React.FC = () => {
               {/* Efecto de brillo al hover — sweep diagonal */}
               <div className="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 pointer-events-none z-30" />
 
-              {/* Foto — ocupa la mayor parte */}
-              <div className="relative flex-1 overflow-hidden min-h-[240px] sm:min-h-[260px]">
+              {/* Foto — ocupa la mayor parte con encuadre alejado y sin recortes */}
+              <div className="relative flex-1 overflow-hidden h-[330px] sm:h-[360px] min-h-[300px] bg-[#FFFDE7]/40">
                 <motion.img
                   src={method.image}
                   alt={method.alt}
                   loading="lazy"
-                  className="w-full h-full object-cover absolute inset-0"
-                  whileHover={{ scale: 1.08 }}
+                  className="w-full h-full object-cover object-[center_16%] absolute inset-0 [image-rendering:-webkit-optimize-contrast]"
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                 />
                 {/* Overlay degradado suave hacia abajo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDE7]/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDE7]/60 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Título — fondo amarillo pastel animado */}
               <motion.div
-                className="relative p-5 sm:p-6 border-t-2 border-[#FFD700]/60 text-center"
+                className="relative p-4 sm:p-5 border-t-2 border-[#FFD700]/60 text-center"
                 animate={{
                   backgroundColor: [
                     '#FFFDE7',

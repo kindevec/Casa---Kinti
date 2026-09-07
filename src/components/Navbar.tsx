@@ -74,7 +74,7 @@ export const Navbar: React.FC = () => {
     if (link.href === '#productos') {
       return {
         ...link,
-        label: mode === 'educacion' ? 'CURSOS' : 'PRODUCTOS',
+        label: mode === 'educacion' ? 'PROGRAMAS' : 'PRODUCTOS',
         href: mode === 'educacion' ? '#cursos' : '#productos',
       };
     }

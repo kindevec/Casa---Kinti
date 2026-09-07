@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useNicheMode } from '../context/NicheContext';
-import { WHATSAPP_PHONE, COURSES_EDUCACION } from '../data';
-import { Clock, Tag, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
+import { WHATSAPP_PHONE, COURSES_EDUCACION, SERVICES_EDUCACION, EDUCATION_PILLARS_META } from '../data';
+import { Clock, Tag, BookOpen, ArrowRight, Sparkles, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { WhatsAppOfficialIcon } from './FloralDecorations';
 import { CardCurtainReveal, CardCurtainSplitCover } from './ui/card-curtain-reveal';
+import { CardCarousel, CarouselCardItem } from './ui/card-carousel';
 import { CelestialTitleGraphic } from './CelestialTitleGraphic';
 
 // Filigrana ornamental para las 4 esquinas de cada carta estilo tarot místico
@@ -250,96 +251,468 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
 export const ExperiencesSection: React.FC = () => {
   const { mode, targetSection } = useNicheMode();
   const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
+  const [activePillar, setActivePillar] = useState<'todos' | 'programas' | 'acompanamiento' | 'experiencias'>('todos');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const CARDS_PER_PAGE = 6;
 
-  // En el modo educación mostramos la sección Cursos con tarjetas de cortina
+  // En el modo educación mostramos la sección unificada 'EDUCACIÓN CON SENTIDO'
   if (mode === 'educacion') {
+    const specializedServices = SERVICES_EDUCACION.filter((s) => s.groupCategory === 'especializado');
+    const experienceServices = SERVICES_EDUCACION.filter((s) => s.groupCategory === 'experiencias');
+
+    const PILLAR_TABS = [
+      { id: 'todos' as const, label: 'Ver Todo', shortLabel: 'Todo', icon: '✨' },
+      { id: 'programas' as const, label: 'Programas de Aprendizaje', shortLabel: 'Programas', icon: '📚' },
+      { id: 'acompanamiento' as const, label: 'Acompañamiento Especializado', shortLabel: 'Acompañamiento', icon: '🧠' },
+      { id: 'experiencias' as const, label: 'Experiencias para Niños', shortLabel: 'Experiencias', icon: '🎨' },
+    ];
+
+    // Unificamos las tarjetas en una lista homogénea
+    const allCards = [
+      ...COURSES_EDUCACION.map((c) => ({
+        id: `course-${c.id}`,
+        title: c.name,
+        categoryTag: 'programas' as const,
+        categoryName: 'Programa de Aprendizaje',
+        badge: c.badge || 'Programa',
+        sessions: c.sessions,
+        price: c.price,
+        description: c.description,
+        image: c.image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+        whatsappMessage: `Hola Johanna, deseo más información sobre el programa: *${c.name}* (${c.price} | ${c.sessions}).`,
+      })),
+      ...specializedServices.map((s) => ({
+        id: `service-${s.id}`,
+        title: s.title,
+        categoryTag: 'acompanamiento' as const,
+        categoryName: 'Acompañamiento Especializado',
+        badge: s.badge,
+        sessions: s.sessions,
+        price: s.price,
+        description: s.description,
+        image: s.image || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+        whatsappMessage: `Hola Johanna, deseo agendar el servicio: *${s.title}* (${s.price} | ${s.sessions}).`,
+      })),
+      ...experienceServices.map((e) => ({
+        id: `experience-${e.id}`,
+        title: e.title,
+        categoryTag: 'experiencias' as const,
+        categoryName: 'Experiencias para Niños',
+        badge: e.badge,
+        sessions: e.sessions,
+        price: e.price,
+        description: e.description,
+        image: e.image || 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80',
+        whatsappMessage: `Hola Johanna, deseo inscribir a mi hijo/a en: *${e.title}* (${e.price} | ${e.sessions}).`,
+      })),
+    ];
+
+    // Filtrar según categoría seleccionada
+    const filteredCards = activePillar === 'todos' 
+      ? allCards 
+      : allCards.filter((card) => card.categoryTag === activePillar);
+
+    const totalPages = Math.ceil(filteredCards.length / CARDS_PER_PAGE);
+    const displayedCards = filteredCards.slice((currentPage - 1) * CARDS_PER_PAGE, currentPage * CARDS_PER_PAGE);
+
+    const handleTabChange = (tabId: 'todos' | 'programas' | 'acompanamiento' | 'experiencias') => {
+      setActivePillar(tabId);
+      setCurrentPage(1);
+    };
+
     return (
       <section
         id="cursos"
-        className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-b from-[#3E9C93] via-[#4AAEA5] to-[#368F87] text-white border-t border-[#FFEA79]/30"
+        className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-white text-[#133238] border-t border-slate-100"
       >
-        {/* Luces ambientales */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-white/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#FFD700]/15 rounded-full blur-[120px] pointer-events-none" />
+        {/* Sutiles acentos de luz ambiental */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-[#4AAEA5]/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Encabezado limpio: solo el título Cursos con animación de entrada */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 sm:space-y-16">
+          
+          {/* ========================================================
+              1. ENCABEZADO: EDUCACIÓN CON SENTIDO + SELECTOR DORADO
+             ======================================================== */}
           <motion.div
-            key={`educacion-courses-header-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.65, ease: 'easeOut' }}
-            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+            className="text-center max-w-4xl mx-auto space-y-6"
           >
-            <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#052C34] font-black leading-tight drop-shadow-xs">
-              Cursos
-            </h3>
+            {/* Gráfico ornamental celestial */}
+            <div className="flex justify-center items-center mb-1">
+              <CelestialTitleGraphic side="full" className="w-56 sm:w-72 h-auto text-[#D4B26F]" />
+            </div>
+
+            {/* Título Principal de la Sección */}
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#052C34] font-black leading-tight tracking-wide">
+              EDUCACIÓN Y{' '}
+              <span className="bg-gradient-to-r from-[#D4A346] via-[#E5A824] to-[#8C6420] bg-clip-text text-transparent drop-shadow-xs inline-block">
+                ACOMPAÑAMIENTO
+              </span>
+            </h2>
+
+            {/* SELECTOR INTERACTIVO DORADO (Estilo Botones Oro Radiante sin fondos blancos ni scrollbar) */}
+            <div className="flex items-center justify-center pt-3">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 max-w-full">
+                {PILLAR_TABS.map((tab) => {
+                  const isActive = activePillar === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => handleTabChange(tab.id)}
+                      type="button"
+                      className={`relative flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl font-serif text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer select-none ${
+                        isActive
+                          ? 'bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] text-[#0A1C24] shadow-lg shadow-[#D4B26F]/40 scale-[1.04] border border-[#FFE57A]'
+                          : 'bg-transparent text-[#133238] border border-[#D4B26F]/50 hover:border-[#D4B26F] hover:text-[#052C34] hover:bg-[#FFEA79]/15'
+                      }`}
+                    >
+                      <span className="text-base sm:text-lg">{tab.icon}</span>
+                      <span>{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Grid de cursos con tarjetas de cortina */}
-          <div
-            key={`educacion-courses-grid-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-350"
-          >
-            {COURSES_EDUCACION.map((course, idx) => (
-              <motion.div
-                key={`${course.id}-${targetSection?.startsWith('cursos') ? targetSection : 'default'}`}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: idx * 0.15, ease: 'easeOut' }}
-                className="relative overflow-visible"
-              >
-                <CardCurtainReveal
-                  id={`course-curtain-${course.id}`}
-                  className="relative bg-white rounded-2xl min-h-[380px] sm:min-h-[400px] shadow-[0_8px_30px_rgba(212,178,111,0.25)] hover:shadow-[0_12px_40px_rgba(212,178,111,0.45)] border-2 border-[#FFD700] transition-all duration-300 flex flex-col justify-between overflow-hidden"
-                >
-                  {/* ========================================================
-                      1. CORTINA FRONTAL: UN SOLO TÍTULO SOBRE LA IMAGEN
-                     ======================================================== */}
-                  <CardCurtainSplitCover
-                    image={course.image || '/tarot-hero.png'}
-                    title={course.name}
-                    price=""
-                    badge={course.badge}
-                    category={course.category || 'Curso Formativo'}
-                  />
+          {/* ========================================================
+              2. CONTENIDO: TARJETAS CORTINA CON PAGINACIÓN (MÁXIMO 6 POR VISTA)
+             ======================================================== */}
+          <div className="space-y-8">
+            <motion.div
+              key={`${activePillar}-page-${currentPage}`}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-center"
+            >
+              {displayedCards.map((card) => (
+                <div key={card.id} className="w-full max-w-sm mx-auto">
+                  <CardCurtainReveal
+                    id={`curtain-${card.id}`}
+                    className="relative bg-white rounded-2xl min-h-[390px] sm:min-h-[410px] shadow-[0_8px_30px_rgba(212,178,111,0.25)] hover:shadow-[0_12px_40px_rgba(212,178,111,0.45)] border-2 border-[#FFD700] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  >
+                    {/* Cortina Frontal Dividida */}
+                    <CardCurtainSplitCover
+                      image={card.image}
+                      title={card.title}
+                      price={card.price}
+                      badge={card.badge}
+                      category={card.categoryName}
+                    />
 
-                  {/* ========================================================
-                      2. CONTENIDO INTERIOR REVELADO (DESCRIPCIÓN Y BOTÓN)
-                     ======================================================== */}
-                  <div className="absolute inset-0 z-10 p-6 sm:p-7 flex flex-col justify-center items-center gap-5 w-full bg-gradient-to-b from-white via-[#F8FBFC] to-[#EFF6F8] text-[#133238]">
-                    
-                    {/* Categoría */}
-                    <div className="flex flex-wrap items-center justify-center gap-1.5 shrink-0 w-full">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#133238] bg-[#FFF8D6] px-3 py-1 rounded-full border border-[#FFD700] shadow-xs">
-                        {course.category || 'Curso Formativo'}
-                      </span>
+                    {/* Contenido Interior Revelado */}
+                    <div className="absolute inset-0 z-10 p-6 sm:p-7 flex flex-col justify-center items-center gap-5 w-full bg-gradient-to-b from-white via-[#F8FBFC] to-[#EFF6F8] text-[#133238]">
+                      {/* Insignia con la Categoría / Especialidad (sin mención a sesiones) */}
+                      <div className="flex flex-wrap items-center justify-center gap-1.5 shrink-0 w-full">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#133238] bg-[#FFF8D6] px-3.5 py-1 rounded-full border border-[#FFD700] shadow-xs">
+                          {card.badge}
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-[#2C484E] leading-relaxed font-light max-w-xs mx-auto text-center">
+                        {card.description}
+                      </p>
+
+                      <a
+                        href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(card.whatsappMessage)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative overflow-hidden w-full inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] text-xs sm:text-sm font-serif font-bold uppercase tracking-wider py-3.5 px-4 rounded-sm shadow-md hover:shadow-[0_6px_22px_rgba(212,178,111,0.5)] transition-all hover:scale-[1.02] active:scale-97 group/btn cursor-pointer"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                        <WhatsAppOfficialIcon className="w-5 h-5 text-[#0A1C24] shrink-0" />
+                        <span>Consultar por WhatsApp</span>
+                      </a>
+                    </div>
+                  </CardCurtainReveal>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CONTROLES DE NAVEGACIÓN: SÓLO FLECHAS Y NÚMEROS PERFECTAMENTE CENTRADOS */}
+            {totalPages > 1 && (
+              <div className="w-full flex justify-center items-center pt-6 pb-2">
+                <div className="inline-flex items-center justify-center gap-3">
+                  {/* Flecha Anterior */}
+                  <button
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    type="button"
+                    aria-label="Página anterior"
+                    className="w-10 h-10 rounded-full flex items-center justify-center border border-[#D4B26F]/50 text-[#0A1C24] hover:bg-[#FFEA79]/30 hover:border-[#D4B26F] transition-all cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed active:scale-90"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  {/* Números de Página */}
+                  <div className="flex items-center gap-2">
+                    {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        type="button"
+                        className={`w-9 h-9 rounded-xl font-serif text-sm font-bold transition-all cursor-pointer flex items-center justify-center ${
+                          currentPage === pageNum
+                            ? 'bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] text-[#0A1C24] shadow-md shadow-[#D4B26F]/30 scale-105'
+                            : 'text-[#133238]/70 hover:text-[#052C34] hover:bg-[#FFEA79]/15'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Flecha Siguiente */}
+                  <button
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    type="button"
+                    aria-label="Página siguiente"
+                    className="w-10 h-10 rounded-full flex items-center justify-center border border-[#D4B26F]/50 text-[#0A1C24] hover:bg-[#FFEA79]/30 hover:border-[#D4B26F] transition-all cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed active:scale-90"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ========================================================
+              5. BLOQUE INFERIOR: DETALLES DE GARANTÍA Y MODALIDADES
+              (Con las mismas animaciones y efectos de colores que el contenedor de kits de holística)
+             ======================================================== */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            animate={{
+              y: [0, -7, 0],
+            }}
+            transition={{
+              duration: 5.2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            whileHover={{ scale: 1.015 }}
+            className="relative max-w-3xl mx-auto rounded-3xl overflow-hidden p-[2px] group shadow-[0_12px_35px_rgba(0,0,0,0.3),0_0_25px_rgba(0,210,180,0.2)] hover:shadow-[0_16px_45px_rgba(255,215,0,0.35),0_0_40px_rgba(0,210,180,0.4)] transition-all duration-500"
+          >
+            {/* Borde Animado Conic Multicolor (Turquesa, Oro, Ámbar, Esmeralda en Giro Continuo) */}
+            <motion.div
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              className="absolute -inset-[160%] bg-[conic-gradient(from_0deg,_#00D2B4,_#FFD700,_#00F5D4,_#E5A824,_#38BDF8,_#00D2B4)] opacity-75 group-hover:opacity-100 blur-sm pointer-events-none"
+            />
+
+            {/* Contenedor Interior con Orbes Flotantes de Luz y Brillo */}
+            <div className="relative rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-5 sm:p-7 text-white space-y-6 overflow-hidden border border-[#D4A346]/40">
+              
+              {/* Orbe de Luz 1: Turquesa Brillante Flotante */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.3, 1],
+                  x: [0, 20, 0],
+                  y: [0, -15, 0],
+                  opacity: [0.2, 0.45, 0.2],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -top-10 -left-10 w-60 h-60 bg-[#00D2B4]/25 rounded-full blur-2xl pointer-events-none"
+              />
+
+              {/* Orbe de Luz 2: Oro Cálido Flotante */}
+              <motion.div
+                animate={{
+                  scale: [1.15, 1, 1.15],
+                  x: [0, -25, 0],
+                  y: [0, 20, 0],
+                  opacity: [0.25, 0.5, 0.25],
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute -bottom-10 -right-10 w-60 h-60 bg-[#FFD700]/25 rounded-full blur-2xl pointer-events-none"
+              />
+
+              {/* Velo de estrellas sutiles */}
+              <div className="absolute inset-0 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
+              
+              {/* Encabezado del Bloque con degradado animado */}
+              <div className="relative z-10 text-center space-y-1">
+                <motion.h3
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                  style={{ backgroundSize: '200% 200%' }}
+                  className="font-serif text-xl sm:text-2xl md:text-3xl font-black bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] via-[#00D2B4] to-[#FFF8D6] bg-clip-text text-transparent drop-shadow-sm tracking-wide"
+                >
+                  Condiciones de Cada Programa
+                </motion.h3>
+              </div>
+
+              {/* 4 Puntos Clave de Condiciones */}
+              <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                {[
+                  {
+                    title: 'Modalidad',
+                    detail: 'Presencial / Online',
+                    // Ícono: MapPin + Monitor / Red Global Sagrada
+                    icon: (
+                      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+                        {/* Monitor / Portal digital */}
+                        <rect x="12" y="14" width="40" height="26" rx="4" stroke="#B88E44" strokeWidth="2.2" fill="#B88E44" fillOpacity="0.16" />
+                        <path d="M26 40 L22 48 L42 48 L38 40" stroke="#B88E44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M20 48 L44 48" stroke="#B88E44" strokeWidth="2.4" strokeLinecap="round" />
+                        {/* Pin de ubicación presencial superpuesto con brillo */}
+                        <circle cx="32" cy="25" r="4" fill="#B88E44" />
+                        <path d="M32 19 C28.5 19 26 21.5 26 25 C26 29 32 34 32 34 C32 34 38 29 38 25 C38 21.5 35.5 19 32 19 Z" stroke="#B88E44" strokeWidth="1.8" fill="#B88E44" fillOpacity="0.3" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    title: 'Duración',
+                    detail: '45–60 min por sesión',
+                    // Ícono: Reloj con Manecillas y Puntos de Tiempo
+                    icon: (
+                      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+                        <circle cx="32" cy="32" r="22" stroke="#B88E44" strokeWidth="2.2" fill="#B88E44" fillOpacity="0.18" />
+                        <path d="M32 18 L32 32 L42 37" stroke="#B88E44" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="32" cy="32" r="2.5" fill="#B88E44" />
+                        <circle cx="32" cy="14" r="1.5" fill="#B88E44" />
+                        <circle cx="50" cy="32" r="1.5" fill="#B88E44" />
+                        <circle cx="32" cy="50" r="1.5" fill="#B88E44" />
+                        <circle cx="14" cy="32" r="1.5" fill="#B88E44" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    title: 'Edad',
+                    detail: '5 a 12 años',
+                    // Ícono: Niño / Crecimiento / Estrellita de Aprendizaje
+                    icon: (
+                      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+                        <circle cx="32" cy="20" r="7" stroke="#B88E44" strokeWidth="2.2" fill="#B88E44" fillOpacity="0.2" />
+                        <path d="M18 48 C18 40 24 35 32 35 C40 35 46 40 46 48" stroke="#B88E44" strokeWidth="2.4" strokeLinecap="round" />
+                        <path d="M46 18 L48 22 L52 22 L49 25 L50 29 L46 26 L42 29 L43 25 L40 22 L44 22 Z" fill="#B88E44" fillOpacity="0.8" />
+                        <circle cx="32" cy="19" r="2" fill="#B88E44" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    title: 'Cupos Limitados',
+                    detail: 'Atención personalizada',
+                    // Ícono: Escudo / Sello Exclusivo de Atención Personalizada
+                    icon: (
+                      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+                        <path
+                          d="M32 10 L48 16 V28 C48 40 32 50 32 50 C32 50 16 40 16 28 V16 L32 10 Z"
+                          stroke="#B88E44"
+                          strokeWidth="2.2"
+                          strokeLinejoin="round"
+                          fill="#B88E44"
+                          fillOpacity="0.18"
+                        />
+                        <path d="M25 29 L30 34 L39 23" stroke="#B88E44" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ),
+                  },
+                ].map((item, gIdx) => (
+                  <div
+                    key={gIdx}
+                    className="flex flex-col items-center text-center space-y-2 p-1 group/item"
+                  >
+                    {/* Medallón con Aura y Anillo rotatorio */}
+                    <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center">
+                      {/* Aura pulsante de fondo */}
+                      <motion.div
+                        className="absolute -inset-1 rounded-full blur-md pointer-events-none"
+                        animate={{
+                          scale: [0.92, 1.15, 0.92],
+                          opacity: [0.35, 0.7, 0.35],
+                          backgroundColor: [
+                            'rgba(255, 215, 0, 0.35)',
+                            'rgba(255, 248, 214, 0.5)',
+                            'rgba(0, 210, 180, 0.3)',
+                            'rgba(212, 163, 70, 0.45)',
+                            'rgba(255, 215, 0, 0.35)',
+                          ],
+                        }}
+                        transition={{
+                          duration: 4 + gIdx * 0.5,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: gIdx * 0.25,
+                        }}
+                      />
+
+                      {/* Anillo exterior punteado rotatorio */}
+                      <motion.div
+                        className="absolute inset-[-3px] rounded-full border border-dashed pointer-events-none"
+                        animate={{
+                          rotate: gIdx % 2 === 0 ? 360 : -360,
+                          borderColor: [
+                            'rgba(255, 215, 0, 0.65)',
+                            'rgba(255, 248, 214, 0.85)',
+                            'rgba(0, 210, 180, 0.6)',
+                            'rgba(212, 163, 70, 0.8)',
+                            'rgba(255, 215, 0, 0.65)',
+                          ],
+                        }}
+                        transition={{
+                          rotate: { duration: 16 + gIdx * 2, repeat: Infinity, ease: 'linear' },
+                          borderColor: { duration: 4 + gIdx * 0.5, repeat: Infinity, ease: 'easeInOut' },
+                        }}
+                      />
+
+                      {/* Medallón central dorado de Sobre Mí */}
+                      <motion.div
+                        className="w-full h-full rounded-full bg-gradient-to-br from-[#FFFBEE] via-[#FFF3C4] to-[#F5E08A] border-2 border-[#D4A346] flex items-center justify-center relative overflow-hidden shadow-[0_4px_14px_rgba(212,163,70,0.5)]"
+                        whileHover={{ scale: 1.08 }}
+                      >
+                        <div className="w-7 h-7 flex items-center justify-center">
+                          {item.icon}
+                        </div>
+                      </motion.div>
                     </div>
 
-                    {/* Descripción centrada */}
-                    <p className="text-xs sm:text-sm text-[#2C484E] leading-relaxed font-light max-w-xs mx-auto text-center">
-                      {course.description}
-                    </p>
-
-                    {/* Botón de Contactar en Oro */}
-                    <a
-                      href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(`Hola Johanna, deseo más información sobre el curso: *${course.name}*.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative overflow-hidden w-full inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] text-xs sm:text-sm font-serif font-bold uppercase tracking-wider py-3.5 px-4 rounded-sm shadow-md hover:shadow-[0_6px_22px_rgba(212,178,111,0.5)] transition-all hover:scale-[1.02] active:scale-97 group/btn cursor-pointer"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
-                      <WhatsAppOfficialIcon className="w-5 h-5 text-[#0A1C24] shrink-0" />
-                      <span>Consultar por WhatsApp</span>
-                    </a>
-
+                    {/* Título debajo del ícono + Texto pequeño debajo del título */}
+                    <div className="space-y-0.5">
+                      <h4 className="font-serif text-sm sm:text-base font-bold text-[#FFD700] tracking-wide">
+                        {item.title}
+                      </h4>
+                      <p className="text-[11px] sm:text-xs text-slate-300 font-medium leading-tight max-w-[160px] mx-auto">
+                        {item.detail}
+                      </p>
+                    </div>
                   </div>
-                </CardCurtainReveal>
-              </motion.div>
-            ))}
-          </div>
+                ))}
+              </div>
+
+              {/* Botón Central de WhatsApp para Consultas Globales */}
+              <div className="relative z-10 flex justify-center pt-1">
+                <a
+                  href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+                    'Hola Johanna, deseo coordinar un acompañamiento educativo para mi hijo/a en Casa Kinti.'
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] font-serif text-xs sm:text-sm font-bold px-7 py-3.5 rounded-xl uppercase tracking-[0.14em] shadow-lg hover:shadow-[0_8px_25px_rgba(255,215,0,0.5)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <WhatsAppOfficialIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A1C24]" />
+                  <span>Consultar Disponibilidad de Cupos</span>
+                </a>
+              </div>
+
+            </div>
+          </motion.div>
+
         </div>
       </section>
     );

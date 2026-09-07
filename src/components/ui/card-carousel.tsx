@@ -7,12 +7,14 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { WhatsAppOfficialIcon } from "../FloralDecorations";
 import {
   Autoplay,
   EffectCoverflow,
   Navigation,
   Pagination,
 } from "swiper/modules";
+import { cn } from "../../lib/utils";
 
 export interface CarouselCardItem {
   id?: string;
@@ -35,6 +37,8 @@ interface CardCarouselProps {
   badgeText?: string;
   title?: string;
   subtitle?: string;
+  slideWidth?: string;
+  renderCard?: (item: CarouselCardItem, index: number) => React.ReactNode;
 }
 
 const SLIDE_SPEED = 700;   // animation duration ms - smooth and fluid
@@ -49,6 +53,8 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   badgeText,
   title = "Áreas de Acompañamiento",
   subtitle,
+  slideWidth,
+  renderCard,
 }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -134,8 +140,8 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   .card-carousel-swiper .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 280px;
-    max-width: 82vw;
+    width: ${slideWidth || '280px'};
+    max-width: 86vw;
     will-change: transform, opacity;
     opacity: 0.58;
     filter: brightness(0.88);
@@ -144,7 +150,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
 
   @media (min-width: 640px) {
     .card-carousel-swiper .swiper-slide {
-      width: 320px;
+      width: ${slideWidth || '320px'};
     }
   }
 
@@ -272,29 +278,72 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
         >
           {cardItems.map((item, index) => (
             <SwiperSlide key={item.id || index}>
-              <div className="group/card relative flex flex-col h-[360px] sm:h-[400px] rounded-3xl overflow-hidden bg-[#FFFDE7] border-2 border-[#FFD700] shadow-[0_12px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_45px_rgba(212,178,111,0.55)] transition-shadow duration-500 cursor-pointer">
-                {/* Image */}
-                <div className="relative flex-1 w-full overflow-hidden bg-[#EDF4F8]">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover object-center group-hover/card:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#FFFDE7]/50 via-transparent to-transparent pointer-events-none" />
-                </div>
+              {renderCard ? (
+                renderCard(item, index)
+              ) : (
+                <div className="group/card relative flex flex-col h-[380px] sm:h-[420px] rounded-3xl overflow-hidden bg-white border-2 border-[#FFD700] shadow-[0_12px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_45px_rgba(212,178,111,0.55)] transition-shadow duration-500 cursor-pointer">
+                  {/* Image */}
+                  <div className="relative flex-1 w-full overflow-hidden bg-[#EDF4F8]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className={cn(
+                        "w-full h-full object-cover transition-transform duration-700 [image-rendering:-webkit-optimize-contrast]",
+                        item.image?.includes('comprension-lectora') ? 'object-[center_35%]' :
+                        item.image?.includes('habitos-estudio') ? 'object-[center_25%]' :
+                        item.image?.includes('inmersion-ingles') ? 'object-[center_30%]' :
+                        item.image?.includes('lengua-literatura') ? 'object-[center_40%]' :
+                        item.image?.includes('terapia-lenguaje') ? 'object-[center_25%]' :
+                        item.image?.includes('asesoria-aprendizaje') ? 'object-[center_30%]' :
+                        item.image?.includes('evaluacion-psicopedagogica') ? 'object-[center_25%]' :
+                        item.image?.includes('principios-montessori') ? 'object-[center_30%]' :
+                        item.image?.includes('terapias-integrativas') ? 'object-[center_20%]' :
+                        item.image?.includes('nivelacion-escolar') ? 'object-[center_14%]' :
+                        item.image?.includes('educacion-alternativa') ? 'object-[center_16%]' :
+                        item.image?.includes('estrategias-pedagogicas') ? 'object-[center_18%]' :
+                        'object-[center_18%]',
+                        "group-hover/card:scale-102"
+                      )}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                    
+                    {/* Badge & Price pill on top/overlay */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
+                      {item.badge && (
+                        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#052C34] bg-[#FFF8D6] px-2.5 py-1 rounded-full border border-[#FFD700] shadow-sm backdrop-blur-xs">
+                          {item.badge}
+                        </span>
+                      )}
+                      {item.price && (
+                        <span className="text-xs sm:text-sm font-bold font-serif-display text-white bg-[#052C34]/85 px-2.5 py-0.5 rounded-full border border-[#FFD700]/60 shadow-sm ml-auto">
+                          {item.price}
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
-                {/* Pastel yellow footer */}
-                <div className="relative p-4 sm:p-5 border-t-2 border-[#FFD700]/50 text-center flex items-center justify-center min-h-[72px] bg-[#FFFDE7]">
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-30"
-                    style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(255,215,0,0.35) 0%, transparent 70%)' }}
-                  />
-                  <h4 className="relative z-10 font-serif text-base sm:text-lg font-bold text-[#133238] group-hover/card:text-[#8C6420] transition-colors duration-300 leading-snug">
-                    {item.title}
-                  </h4>
+                  {/* Footer with Title and optional WhatsApp button */}
+                  <div className="relative p-4 sm:p-5 border-t-2 border-[#FFD700]/40 text-center flex flex-col items-center justify-center gap-2.5 bg-gradient-to-b from-white to-[#F9FCFD]">
+                    <h4 className="relative z-10 font-serif text-sm sm:text-base font-bold text-[#133238] group-hover/card:text-[#8C6420] transition-colors duration-300 leading-snug line-clamp-2">
+                      {item.title}
+                    </h4>
+
+                    {item.whatsappMessage && (
+                      <a
+                        href={`https://wa.me/593962669994?text=${encodeURIComponent(item.whatsappMessage)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 rounded-lg bg-gradient-to-r from-[#FFEA79] via-[#E5C985] to-[#D4B26F] hover:from-[#FFF2B2] hover:via-[#ECD394] hover:to-[#DEC080] text-[#0A1C24] text-[11px] font-serif font-bold uppercase tracking-wider shadow-xs hover:shadow-md transition-all active:scale-97 cursor-pointer z-20"
+                      >
+                        <WhatsAppOfficialIcon className="w-4 h-4 text-[#0A1C24] shrink-0" />
+                        <span>Consultar</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

@@ -84,6 +84,46 @@ export const CardCurtainReveal = React.forwardRef<
 })
 CardCurtainReveal.displayName = "CardCurtainReveal"
 
+const getImageCoverClasses = (imgUrl: string) => {
+  if (imgUrl.includes('comprension-lectora')) {
+    return 'object-[center_35%]';
+  }
+  if (imgUrl.includes('habitos-estudio')) {
+    return 'object-[center_25%]';
+  }
+  if (imgUrl.includes('inmersion-ingles')) {
+    return 'object-[center_30%]';
+  }
+  if (imgUrl.includes('lengua-literatura')) {
+    return 'object-[center_40%]';
+  }
+  if (imgUrl.includes('terapia-lenguaje')) {
+    return 'object-[center_25%]';
+  }
+  if (imgUrl.includes('asesoria-aprendizaje')) {
+    return 'object-[center_30%]';
+  }
+  if (imgUrl.includes('evaluacion-psicopedagogica')) {
+    return 'object-[center_25%]';
+  }
+  if (imgUrl.includes('principios-montessori')) {
+    return 'object-[center_30%]';
+  }
+  if (imgUrl.includes('terapias-integrativas')) {
+    return 'object-[center_20%]';
+  }
+  if (imgUrl.includes('educacion-alternativa')) {
+    return 'object-[center_16%]';
+  }
+  if (imgUrl.includes('estrategias-pedagogicas')) {
+    return 'object-[center_18%]';
+  }
+  if (imgUrl.includes('nivelacion-escolar')) {
+    return 'object-[center_14%]';
+  }
+  return 'object-[center_18%]';
+};
+
 /**
  * Cortina dividida en dos hojas que se abren hacia los lados al pasar el mouse o al tocar la tarjeta
  */
@@ -107,6 +147,7 @@ export const CardCurtainSplitCover = ({
   icon?: React.ReactNode
 }) => {
   const { isMouseIn, setIsMouseIn } = useCardCurtainRevealContext()
+  const imageCoverPos = getImageCoverClasses(image)
 
   return (
     <div
@@ -132,11 +173,11 @@ export const CardCurtainSplitCover = ({
           ease: [0.32, 0.72, 0, 1],
         }}
       >
-        <div className="absolute top-0 left-0 w-[200%] h-full">
+        <div className="absolute top-0 left-0 w-[200%] h-full bg-[#EDF4F8]">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
+            className={cn("w-full h-full object-cover [image-rendering:-webkit-optimize-contrast]", imageCoverPos)}
           />
           {/* Degradado sutil y claro en la base para lectura de texto, imagen 100% clara y nítida arriba */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#133238]/85 via-[#133238]/25 via-40% to-transparent" />
@@ -155,11 +196,11 @@ export const CardCurtainSplitCover = ({
           ease: [0.32, 0.72, 0, 1],
         }}
       >
-        <div className="absolute top-0 right-0 w-[200%] h-full">
+        <div className="absolute top-0 right-0 w-[200%] h-full bg-[#EDF4F8]">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
+            className={cn("w-full h-full object-cover [image-rendering:-webkit-optimize-contrast]", imageCoverPos)}
           />
           {/* Degradado sutil y claro en la base para lectura de texto, imagen 100% clara y nítida arriba */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#133238]/85 via-[#133238]/25 via-40% to-transparent" />
