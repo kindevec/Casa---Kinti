@@ -588,5 +588,95 @@ body[data-mode="holistica"] .only-educacion {
   box-shadow: 0 0 25px rgba(229, 201, 133, 0.35);
 }
 
+/* ========================================================
+   KITS ABRE CAMINOS - 3D FLIP CARDS ROBUSTOS PARA SAFARI/iOS & MÓVIL
+   ======================================================== */
 
+.card-flip-perspective {
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
 
+.card-flip-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-flip-container.is-flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-flip-container {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
+}
+
+.card-face-front {
+  -webkit-transform: rotateY(0deg) translate3d(0, 0, 1px);
+  transform: rotateY(0deg) translate3d(0, 0, 1px);
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.card-face-back {
+  -webkit-transform: rotateY(180deg) translate3d(0, 0, 1px);
+  transform: rotateY(180deg) translate3d(0, 0, 1px);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Transición en estado flipped (click o tap móvil) */
+.card-flip-container.is-flipped .card-face-front {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease-out 0.12s, visibility 0.2s ease-out 0.12s !important;
+}
+
+.card-flip-container.is-flipped .card-face-back {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 5 !important;
+  transition: opacity 0.25s ease-in 0.15s, visibility 0.25s ease-in 0.15s !important;
+}
+
+/* Transición en hover desktop */
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-face-front {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out 0.12s, visibility 0.2s ease-out 0.12s;
+  }
+  .group:hover .card-face-back {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 5;
+    transition: opacity 0.25s ease-in 0.15s, visibility 0.25s ease-in 0.15s;
+  }
+}

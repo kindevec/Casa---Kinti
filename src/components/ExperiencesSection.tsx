@@ -777,21 +777,15 @@ export const ExperiencesSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.6, delay: idx * 0.15, ease: 'easeOut' }}
-                className="group relative h-[470px] sm:h-[490px] w-full [perspective:1000px] cursor-pointer select-none"
+                className="group relative h-[470px] sm:h-[490px] w-full card-flip-perspective cursor-pointer select-none"
               >
                 {/* Contenedor Giratorio 3D con animación suave */}
-                <div
-                  className={`relative w-full h-full duration-700 [transform-style:preserve-3d] transition-transform ${
-                    isFlipped ? '[transform:rotateY(180deg)]' : 'group-hover:[transform:rotateY(180deg)]'
-                  }`}
-                >
+                <div className={`card-flip-container ${isFlipped ? 'is-flipped' : ''}`}>
                   
                   {/* ========================================================
                       CARA FRONTAL: SOLO KIT, DIBUJO Y NOMBRE CON EFECTOS
                      ======================================================== */}
-                  <div
-                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)] group-hover:shadow-[0_0_35px_rgba(255,215,0,0.35)] transition-shadow duration-500"
-                  >
+                  <div className="card-face card-face-front rounded-3xl p-2 sm:p-2.5 flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)] group-hover:shadow-[0_0_35px_rgba(255,215,0,0.35)] transition-shadow duration-500">
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between items-center text-center overflow-hidden border border-[#D4B26F]/40">
                       
                       {/* Filigranas doradas en las 4 esquinas */}
@@ -844,7 +838,8 @@ export const ExperiencesSection: React.FC = () => {
                           {kit.title}
                         </h4>
                         <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-[#00D2B4] tracking-wider font-medium opacity-80 group-hover:opacity-100 transition-opacity">
-                          ↻ Pasa el cursor para ver detalles
+                          <span className="hidden sm:inline">↻ Pasa el cursor o haz clic para ver detalles</span>
+                          <span className="inline sm:hidden">↻ Toca para ver detalles</span>
                         </span>
                       </div>
 
@@ -854,9 +849,7 @@ export const ExperiencesSection: React.FC = () => {
                   {/* ========================================================
                       CARA TRASERA: DESCRIPCIÓN ESTÁTICA Y NÍTIDA (SIN CONTENEDOR)
                      ======================================================== */}
-                  <div
-                    className="absolute inset-0 w-full h-full rounded-3xl p-2 sm:p-2.5 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)]"
-                  >
+                  <div className="card-face card-face-back rounded-3xl p-2 sm:p-2.5 flex flex-col bg-gradient-to-b from-[#D4B26F]/50 via-[#D4B26F]/25 to-[#D4B26F]/45 shadow-[0_14px_34px_rgba(0,0,0,0.35)]">
                     <div className="relative flex-1 rounded-[22px] bg-gradient-to-b from-[#021014] via-[#041A20] to-[#07242B] p-6 sm:p-7 flex flex-col justify-between overflow-hidden border border-[#D4B26F]/40 text-center">
                       
                       {/* Filigranas doradas en las 4 esquinas */}
@@ -884,7 +877,7 @@ export const ExperiencesSection: React.FC = () => {
                       </div>
 
                       {/* Precio & Duración */}
-                      <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 mb-3">
+                      <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 mb-2">
                         <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm px-3.5 py-1 rounded-full shadow-md">
                           <Tag className="w-3 h-3 text-[#041A20]" />
                           Precio: {kit.price}
@@ -895,8 +888,8 @@ export const ExperiencesSection: React.FC = () => {
                         </span>
                       </div>
 
-                      {/* Botón de Pedir por WhatsApp */}
-                      <div className="relative z-10">
+                      {/* Botón de Pedir por WhatsApp & Volver al frente */}
+                      <div className="relative z-10 flex flex-col items-center">
                         <a
                           href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(kit.whatsappMessage)}`}
                           target="_blank"
@@ -904,9 +897,19 @@ export const ExperiencesSection: React.FC = () => {
                           onClick={(e) => e.stopPropagation()}
                           className="w-full bg-gradient-to-r from-[#FFF8D6] via-[#FFD700] to-[#D4A346] hover:from-white hover:via-[#FFF8D6] hover:to-[#E5A824] text-[#041A20] font-serif font-black text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-[0_4px_16px_rgba(212,178,111,0.35)] hover:shadow-[0_0_24px_rgba(255,215,0,0.5)] transition-all duration-200 hover:scale-102 active:scale-98 flex items-center justify-center gap-2 cursor-pointer select-none"
                         >
-                          <WhatsAppOfficialIcon className="w-4 h-4 text-[#041A20] shrink-0" />
+                          <WhatsAppOfficialIcon className="w-4 h-4 text-[#0A1C24] shrink-0" />
                           <span>Pedir por WhatsApp</span>
                         </a>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleFlip(kit.id);
+                          }}
+                          className="mt-2 text-[11px] text-[#00D2B4] hover:text-[#FFD700] transition-colors inline-flex items-center justify-center gap-1 cursor-pointer select-none font-medium"
+                        >
+                          <span>↻ Volver al frente</span>
+                        </button>
                       </div>
 
                     </div>
