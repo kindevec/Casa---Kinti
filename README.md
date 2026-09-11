@@ -1,6 +1,6 @@
 # Casa Kinti — Medicinas Integrativas & Educación Infantil
 
-Landing page oficial de **Casa Kinti**, ubicada en **Quito, Ecuador**, dirigida por **Johanna Proaño** (Educadora Infantil Bilingüe, Máster en Problemas de Aprendizaje, Terapeuta en Flores de Bach y Herbolaria, Mujer Medicina Certificada).
+Landing page oficial de **Casa Kinti**, ubicada en **Quito, Ecuador**, dirigida por **Johana Proaño** (Educadora Infantil Bilingüe, Máster en Problemas de Aprendizaje, Terapeuta en Flores de Bach y Herbolaria, Mujer Medicina Certificada).
 
 ---
 
@@ -21,8 +21,8 @@ Landing page oficial de **Casa Kinti**, ubicada en **Quito, Ecuador**, dirigida 
 
 ## 🏛️ Estructura de 5 Secciones Continuas
 
-1. **#inicio — Inicio:** Header minimalista con logo, Hero editorial de dos columnas con marco floral y mariposas con aleteo animado, franja de credenciales de Johanna, recorrido del cliente en 4 etapas (*Aprende, Sana, Equilibra, Florece*) y banner de promoción especial *Tarot Terapéutico Express a $15*.
-2. **#sobre-mi — Sobre Mí:** Trayectoria académica y espiritual de Johanna Proaño, historia de fundación de Casa Kinti, badges de especialidades y cita inspiradora.
+1. **#inicio — Inicio:** Header minimalista con logo, Hero editorial de dos columnas con marco floral y mariposas con aleteo animado, franja de credenciales de Johana, recorrido del cliente en 4 etapas (*Aprende, Sana, Equilibra, Florece*) y banner de promoción especial *Tarot Terapéutico Express a $15*.
+2. **#sobre-mi — Sobre Mí:** Trayectoria académica y espiritual de Johana Proaño, historia de fundación de Casa Kinti, badges de especialidades y cita inspiradora.
 3. **#productos — Productos:** Catálogo editorial de 6 productos (Pulseras Amuletos con estudio radiestésico GRATIS, Aceite de Lavanda, Palo Santo, Sahumerio Siete Poderes, Kit de Limpieza y Cristales sueltos) con modal de detalles y botón de pedido por WhatsApp.
 4. **#servicios — Servicios:** Dos bloques claramente diferenciados:
    - **Bloque A (Medicina Ancestral):** Limpias energéticas, Flores de Bach, Herbolaria y Tarot Terapéutico.

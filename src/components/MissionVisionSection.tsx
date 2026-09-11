@@ -13,7 +13,7 @@ export const MissionVisionSection: React.FC = () => {
 
   const misionAlt = isEducacion
     ? 'Misión Casa Kinti - Niña explorando y conectando con la naturaleza y el aprendizaje sensorial'
-    : 'Misión Casa Kinti - Johanna Proaño en conexión con la naturaleza y el río sagrado';
+    : 'Misión Casa Kinti - Johana Proaño en conexión con la naturaleza y el río sagrado';
 
   const visionAlt = isEducacion
     ? 'Visión Casa Kinti - Niño sonriente y seguro en un entorno natural y enriquecedor'

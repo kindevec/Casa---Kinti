@@ -107,7 +107,7 @@ export const Footer: React.FC = () => {
                     CASA KINTI
                   </span>
                   <span className="text-[9.5px] sm:text-[11px] tracking-[0.24em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_8px_rgba(255,215,0,0.9)] select-none">
-                    JOHANNA PROAÑO
+                    JOHANA PROAÑO
                   </span>
                 </div>
               </motion.a>
@@ -164,11 +164,11 @@ export const Footer: React.FC = () => {
             >
               {mode === 'educacion' ? (
                 <>
-                  Centro psicopedagógico y estimulación bilingüe infantil. Diagnóstico, nivelación y acompañamiento especializado en Quito. Guiado por Johanna Proaño.
+                  Centro psicopedagógico y estimulación bilingüe infantil. Diagnóstico, nivelación y acompañamiento especializado en Quito. Guiado por Johana Proaño.
                 </>
               ) : (
                 <>
-                  Santuario de sanación integral, medicina ancestral andina y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johanna Proaño.
+                  Santuario de sanación integral, medicina ancestral andina y bienestar holístico en Quito, Ecuador. Guiado con rigor y amor por Johana Proaño.
                 </>
               )}
             </p>

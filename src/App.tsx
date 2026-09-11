@@ -36,7 +36,7 @@ function MainSections() {
       {/* PASOS: Los 4 Pasos del Camino de Transformación */}
       <PathSection />
 
-      {/* SECCIÓN 2: HISTORIA PERSONAL (Johanna Proaño con marco en arco romano) */}
+      {/* SECCIÓN 2: HISTORIA PERSONAL (Johana Proaño con marco en arco romano) */}
       <Suspense fallback={<PageLoader />}>
         <AboutSection />
       </Suspense>

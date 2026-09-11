@@ -182,12 +182,12 @@ export const AboutSection: React.FC = () => {
                 ✦
               </div>
 
-              {/* Marco Principal del Arco Romano con la Fotografía de Johanna */}
+              {/* Marco Principal del Arco Romano con la Fotografía de Johana */}
               <div className="relative z-10 w-full h-[400px] xs:h-[440px] sm:h-[480px] md:h-[510px] lg:h-[530px] rounded-t-[190px] sm:rounded-t-[225px] rounded-b-xl overflow-hidden border-[3px] border-[#D4A346] shadow-[0_15px_40px_rgba(0,0,0,0.22)] bg-[#07242C]">
                 <motion.img
-                  key={mode + '-johanna-photo'}
+                  key={mode + '-johana-photo'}
                   src={mode === 'holistica' ? '/johanna-holistica-sobre-mi.jpg' : '/johanna-sobre-mi.jpg'}
-                  alt={mode === 'holistica' ? 'Johanna Proaño - Medicina Ancestral y Terapeuta' : 'Johanna Proaño - Educadora y Máster en Aprendizaje'}
+                  alt={mode === 'holistica' ? 'Johana Proaño - Medicina Ancestral y Terapeuta' : 'Johana Proaño - Educadora y Máster en Aprendizaje'}
                   initial={{ scale: 1.08, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.9, ease: 'easeOut' }}

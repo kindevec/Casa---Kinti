@@ -255,7 +255,7 @@ export const HeroSection: React.FC = () => {
             >
               {mode === 'educacion' ? (
                 <>
-                  Acompañamiento pedagógico y terapéutico con enfoque Montessori y estrategias personalizadas. Guiado por <strong className="font-bold text-[#FFEA79]">Johanna Proaño</strong> para que cada niño gane confianza, descubra sus talentos y vuelva a disfrutar aprender.
+                  Acompañamiento pedagógico y terapéutico con enfoque Montessori y estrategias personalizadas. Guiado por <strong className="font-bold text-[#FFEA79]">Johana Proaño</strong>, Magíster en Problemas de Aprendizaje por la USAL (Universidad de Salamanca de España), para que cada niño gane confianza, descubra sus talentos y vuelva a disfrutar aprender.
                 </>
               ) : (
                 <>
@@ -333,7 +333,7 @@ export const HeroSection: React.FC = () => {
                     <img
                       key="holistica-hero-main-photo"
                       src="/hero-holistica-tambor.jpg"
-                      alt="Johanna Proaño en Ceremonia Ancestral con Tambor Sagrado"
+                      alt="Johana Proaño en Ceremonia Ancestral con Tambor Sagrado"
                       className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 filter brightness-[1.03] contrast-[1.04] object-[center_28%]"
                     />
                   </div>

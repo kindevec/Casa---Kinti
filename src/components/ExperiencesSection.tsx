@@ -211,7 +211,7 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 1 Abre Caminos ($80 USD): Baños de despojo, florecimiento y armonización personal.',
+      'Hola Johana, deseo encargar el Kit 1 Abre Caminos ($80 USD): Baños de despojo, florecimiento y armonización personal.',
   },
   {
     id: 'kit-2',
@@ -227,7 +227,7 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 2 Abre Caminos ($200 USD): Limpia integral de 7 centros y armonización de espacio.',
+      'Hola Johana, deseo encargar el Kit 2 Abre Caminos ($200 USD): Limpia integral de 7 centros y armonización de espacio.',
     isFeatured: true,
   },
   {
@@ -244,7 +244,7 @@ const MYSTICAL_KITS_DATA: MysticalKitCard[] = [
       '10% de descuento automático en la compra de 2 kits',
     ],
     whatsappMessage:
-      'Hola Johanna, deseo encargar el Kit 3 Abre Caminos ($50 USD): Toma de proyección con rapé (medicina sagrada del Brasil), cuencos y ondas binaurales.',
+      'Hola Johana, deseo encargar el Kit 3 Abre Caminos ($50 USD): Toma de proyección con rapé (medicina sagrada del Brasil), cuencos y ondas binaurales.',
   },
 ];
 
@@ -279,7 +279,7 @@ export const ExperiencesSection: React.FC = () => {
         price: c.price,
         description: c.description,
         image: c.image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-        whatsappMessage: `Hola Johanna, deseo más información sobre el programa: *${c.name}* (${c.price} | ${c.sessions}).`,
+        whatsappMessage: `Hola Johana, deseo más información sobre el programa: *${c.name}* (${c.price} | ${c.sessions}).`,
       })),
       ...specializedServices.map((s) => ({
         id: `service-${s.id}`,
@@ -291,7 +291,7 @@ export const ExperiencesSection: React.FC = () => {
         price: s.price,
         description: s.description,
         image: s.image || 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
-        whatsappMessage: `Hola Johanna, deseo agendar el servicio: *${s.title}* (${s.price} | ${s.sessions}).`,
+        whatsappMessage: `Hola Johana, deseo agendar el servicio: *${s.title}* (${s.price} | ${s.sessions}).`,
       })),
       ...experienceServices.map((e) => ({
         id: `experience-${e.id}`,
@@ -303,7 +303,7 @@ export const ExperiencesSection: React.FC = () => {
         price: e.price,
         description: e.description,
         image: e.image || 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80',
-        whatsappMessage: `Hola Johanna, deseo inscribir a mi hijo/a en: *${e.title}* (${e.price} | ${e.sessions}).`,
+        whatsappMessage: `Hola Johana, deseo inscribir a mi hijo/a en: *${e.title}* (${e.price} | ${e.sessions}).`,
       })),
     ];
 
@@ -699,7 +699,7 @@ export const ExperiencesSection: React.FC = () => {
               <div className="relative z-10 flex justify-center pt-1">
                 <a
                   href={`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
-                    'Hola Johanna, deseo coordinar un acompañamiento educativo para mi hijo/a en Casa Kinti.'
+                    'Hola Johana, deseo coordinar un acompañamiento educativo para mi hijo/a en Casa Kinti.'
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

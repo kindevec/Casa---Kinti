@@ -42,7 +42,7 @@ export const ServicesSection: React.FC = () => {
   };
 
   const getServiceBookingUrl = (service: ServiceItem) => {
-    const message = `Hola Johanna, deseo agendar el servicio: *${service.title}* (${service.price}).`;
+    const message = `Hola Johana, deseo agendar el servicio: *${service.title}* (${service.price}).`;
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
   };
 

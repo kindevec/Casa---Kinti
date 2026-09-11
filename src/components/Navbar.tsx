@@ -142,7 +142,7 @@ export const Navbar: React.FC = () => {
               CASA KINTI
             </span>
             <span className="text-[10px] xs:text-[11px] sm:text-[13px] tracking-[0.20em] sm:tracking-[0.26em] font-serif font-black uppercase text-[#FFD700] drop-shadow-[0_1.5px_2px_rgba(5,30,35,0.95)] drop-shadow-[0_0_10px_rgba(255,215,0,0.95)] select-none">
-              JOHANNA PROAÑO
+              JOHANA PROAÑO
             </span>
           </div>
         </motion.a>
@@ -190,14 +190,14 @@ export const Navbar: React.FC = () => {
           {/* Selector Dual de Nicho Compacto y Responsivo */}
           <div
             aria-label="Selector de Nicho"
-            className="flex items-center p-0.5 sm:p-1 rounded-full bg-black/45 border border-white/25 backdrop-blur-md select-none gap-1 shadow-inner shrink-0"
+            className="flex items-center p-0.5 sm:p-1 rounded-full bg-black/45 border border-white/25 backdrop-blur-md select-none gap-0.5 sm:gap-1 shadow-inner shrink-0 translate-x-3 sm:translate-x-0"
           >
             <button
               type="button"
               onClick={() => setMode('holistica')}
-              aria-label="Modo Holística"
-              title="Modo Holística"
-              className={`w-7.5 h-7.5 sm:w-auto sm:h-auto sm:px-3.5 sm:py-1 rounded-full text-xs font-serif font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
+              aria-label="Modo Holístico"
+              title="Modo Holístico"
+              className={`px-2 py-1 xs:px-2.5 xs:py-1 sm:px-3.5 sm:py-1 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-serif font-bold tracking-wide sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap active:scale-95 ${
                 mode === 'holistica'
                   ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] shadow-md shadow-[#D4B26F]/30'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
@@ -205,19 +205,19 @@ export const Navbar: React.FC = () => {
             >
               <img
                 src="/icons/flor.png"
-                alt="Holística"
-                className={`w-4 h-4 object-contain shrink-0 transition-all duration-300 ${
+                alt="Holístico"
+                className={`w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain shrink-0 transition-all duration-300 ${
                   mode === 'holistica' ? 'opacity-95' : 'invert opacity-80'
                 }`}
               />
-              <span className="hidden sm:inline leading-none pt-0.5">Holística</span>
+              <span className="leading-none pt-0.5">Holístico</span>
             </button>
             <button
               type="button"
               onClick={() => setMode('educacion')}
-              aria-label="Modo Educación"
-              title="Modo Educación"
-              className={`w-7.5 h-7.5 sm:w-auto sm:h-auto sm:px-3.5 sm:py-1 rounded-full text-xs font-serif font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95 ${
+              aria-label="Modo Educativo"
+              title="Modo Educativo"
+              className={`px-2 py-1 xs:px-2.5 xs:py-1 sm:px-3.5 sm:py-1 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-serif font-bold tracking-wide sm:tracking-wider uppercase transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap active:scale-95 ${
                 mode === 'educacion'
                   ? 'bg-gradient-to-r from-[#E5C985] via-[#D4B26F] to-[#B88E44] text-[#0A1C24] shadow-md shadow-[#D4B26F]/30'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
@@ -225,12 +225,12 @@ export const Navbar: React.FC = () => {
             >
               <img
                 src="/icons/birrete.png"
-                alt="Educación"
-                className={`w-4 h-4 object-contain shrink-0 transition-all duration-300 ${
+                alt="Educativo"
+                className={`w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain shrink-0 transition-all duration-300 ${
                   mode === 'educacion' ? 'opacity-95' : 'invert opacity-80'
                 }`}
               />
-              <span className="hidden sm:inline leading-none pt-0.5">Educación</span>
+              <span className="leading-none pt-0.5">Educativo</span>
             </button>
           </div>
 

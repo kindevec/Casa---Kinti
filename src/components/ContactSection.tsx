@@ -178,7 +178,7 @@ export const ContactSection: React.FC = () => {
                   ¡Solicitud Recibida con Éxito!
                 </h4>
                 <p className="text-xs sm:text-sm text-white/90 max-w-md mx-auto leading-relaxed">
-                  Gracias por comunicarte con Casa Kinti. Johanna se pondrá en contacto contigo muy pronto a través de WhatsApp o correo electrónico.
+                  Gracias por comunicarte con Casa Kinti. Johana se pondrá en contacto contigo muy pronto a través de WhatsApp o correo electrónico.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
                   <button
